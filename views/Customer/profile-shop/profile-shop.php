@@ -28,12 +28,31 @@
     <section class="product-details spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    
-                    <img src="../../../img/profile/vendor.png"  width="125" height="125"/>
+                <div class="col-lg-5" style="padding: 20px; background-color: lightyellow; box-shadow: 2px 5px 10px gray;">
+                    <div class="row">
+                        <div class="col-4 d-flex justify-content-center">
+                            <img src="../../../img/profile/vendor.png" width="125" height="125" />
+                        </div>
+                        <div class="col-8" style="padding: 0px;">
+                            <h6 class="h5 mb-0 mt-3 font-weight-bold">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
+                            <span>เบอร์ติดต่อ 098-765-4321</span>
+                            <span>ที่อยู่ 123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span><i class="fas fa-boxes" style="margin-right: 10px;"></i>สินค้าทั้งหมด 108 รายการ</span>
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="related__title">
                         <h5>RELATED PRODUCTS</h5>
@@ -132,7 +151,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
     <!-- Product Details Section End -->

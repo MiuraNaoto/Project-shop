@@ -979,7 +979,7 @@
                                                     </div>
                                                     <div class="col-md-4 align-self-center" style="padding: 0px;">
                                                         <div class="col-md-12">
-                                                            <a href="../profile-shop/profile-shop.php">
+                                                            <a href="views/Customer/profile-shop/profile-shop.php">
                                                                 <h6 class="h6 mt-0 text-dark font-weight-bold">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
                                                             </a>
                                                         </div>
@@ -995,7 +995,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                
+
                                                 <h6>Description</h6>
                                                 <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
                                                     loret fugit, sed
