@@ -21,8 +21,8 @@
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__auth">
-        <a href="login.php">Login</a>
-        <a href="login.php">Register</a>
+        <a href="login.php">เข้าสู่ระบบ</a>
+        <a href="register-seller.php">สมัครสมาชิกผู้ขาย</a>
     </div>
 </div>
 <!-- Offcanvas Menu End -->
@@ -66,7 +66,7 @@
                 <div class="header__right">
                     <div class="header__right__auth">
                         <a href="../../../login.php">Login</a>
-                        <!-- <a href="#">Register</a> -->
+                        <a href="../../../register-seller.php">สมัครสมาชิกผู้ขาย</a>
                     </div>
                     <ul class="header__right__widget">
                         <li>

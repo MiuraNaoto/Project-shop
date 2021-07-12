@@ -37,7 +37,7 @@
 
           <!-- Content Row -->
           <div class="row">
-            <div class="col-xl-2 col-md-6 mb-4">
+            <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -53,7 +53,23 @@
               </div>
             </div>
 
-            <div class="col-xl-2 col-md-6 mb-4">
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xl font-weight-bold text-info text-uppercase mb-1">ยอดขายต่อปี</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,0000</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-money-check-alt"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -69,23 +85,7 @@
               </div>
             </div>
 
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-purple shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xl font-weight-bold text-purple text-uppercase mb-1">ที่ต้องชำระ</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-money-check-alt fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-2 col-md-6 mb-4">
+            <div class="col-xl-3 col-md-6 mb-4">
               <a href="../order/order.php" class="custom-card">
                 <div class="card border-left-warning shadow h-100 py-2">
 
@@ -107,74 +107,38 @@
               </a>
             </div>
 
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xl font-weight-bold text-info text-uppercase mb-1">กำลังจัดส่ง</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+            <!-- Content Row -->
+
+            <div class="row">
+              <!-- คะแนนความพึงพอใจ -->
+              <div class="col-md-12">
+                <div class="card shadow mb-4">
+                  <div class="card-body">
+                    <div class="col-12">
+                      <h6 class="text-dark mb-1 font-weight-bold">คะแนนความพึงพอใจ</h6>
                     </div>
-                    <div class="col-auto">
-                      <i class="fas fa-truck fa-2x text-gray-300"></i>
+                    <div class="col-12">
+                      <p class="text-muted mb-1">คะแนนความประพฤติร้านคำของ OTOP เป็นระบบฐานะแนนส่งเสริมให้ผู้ขายมีการบริหารร้านที่ดี ยุคิธรรมและโปร่งใส</p>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-2 col-md-6 mb-4">
-              <div class="card border-left-danger shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xl font-weight-bold text-danger text-uppercase mb-1">คำขอยกเลิก</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-times-circle fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-          <!-- Content Row -->
-
-          <div class="row">
-            <!-- คะแนนความพึงพอใจ -->
-            <div class="col-md-12">
-              <div class="card shadow mb-4">
-                <div class="card-body">
-                  <div class="col-12">
-                    <h6 class="text-dark mb-1 font-weight-bold">คะแนนความพึงพอใจ</h6>
-                  </div>
-                  <div class="col-12">
-                    <p class="text-muted mb-1">คะแนนความประพฤติร้านคำของ OTOP เป็นระบบฐานะแนนส่งเสริมให้ผู้ขายมีการบริหารร้านที่ดี ยุคิธรรมและโปร่งใส</p>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-5">
-                      <div id="star"></div>
-                    </div>
-                    <div class="col-md-7 align-self-center">
-                      <div class="col-md-12">
-                        <h5 class="text-dark mb-1">คะแนนความพึงพอใจ</h5>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <div id="star"></div>
                       </div>
-                      <div class="col-md-12">
-                        <p class="text-muted">บัญชีของคุณอยู่ในระดับยอดเยี่ยมโดยไม่มีคะแนนความประพฤติ กรุณารักษาสถิติร้านค้าของคุณเพือชนะใจผู้ซื้อและสร้างความน่าเชือถือ</p>
+                      <div class="col-md-7 align-self-center">
+                        <div class="col-md-12">
+                          <h5 class="text-dark mb-1">คะแนนความพึงพอใจ</h5>
+                        </div>
+                        <div class="col-md-12">
+                          <p class="text-muted">บัญชีของคุณอยู่ในระดับยอดเยี่ยมโดยไม่มีคะแนนความประพฤติ กรุณารักษาสถิติร้านค้าของคุณเพือชนะใจผู้ซื้อและสร้างความน่าเชือถือ</p>
 
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!-- <div class="col-xl-12 col-lg-7">
+              <!-- <div class="col-xl-12 col-lg-7">
               <div class="card shadow mb-4">
                 <div class="card">
                   <div class="card-body">
@@ -320,49 +284,50 @@
                 </div>
               </div>
             </div> -->
-            <!-- Area Chart -->
-            <div class="col-xl-12 col-lg-7">
-              <div class="card shadow mb-4">
-                <div class="card-body">
-                  <div class="form-group col-md-6 d-flex align-items-center">
-                    <div class="col-sm-8 align-self-center">
-                      <h6 class="m-0 font-weight-bold text-primary d-flex align-items-center">Business Insights</h6>
-                      <p class="text-mute d-flex align-items-center">ภาพรวมของข้อมูลร้านค้าที่เกี่ยวกับคำสั่งซื้อที่ยืนยันแล้ว</p>
+              <!-- Area Chart -->
+              <div class="col-xl-12 col-lg-7">
+                <div class="card shadow mb-4">
+                  <div class="card-body">
+                    <div class="form-group col-md-6 d-flex align-items-center">
+                      <div class="col-sm-8 align-self-center">
+                        <h6 class="m-0 font-weight-bold text-primary d-flex align-items-center">Business Insights</h6>
+                        <p class="text-mute d-flex align-items-center">ภาพรวมของข้อมูลร้านค้าที่เกี่ยวกับคำสั่งซื้อที่ยืนยันแล้ว</p>
+                      </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-8">
-                      <!-- <div class="chart-area">
+                    <div class="row">
+                      <div class="col-sm-8">
+                        <!-- <div class="chart-area">
                         <canvas id="Insights1D"></canvas>
                       </div> -->
-                      <div id="Business-Insights"></div>
-                    </div>
-                    <div class="col-sm-4 align-self-center">
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <h5>จำนวนผู้เยี่ยมชม</h5>
-                          <h3 class="text-dark">0</h3>
-                          <h6>0.00 % เมื่อเทียบกับเมื่อวาน</h6>
-                        </div>
-                        <div class="col-sm-6">
-                          <h5>ยอดเข้าชม</h5>
-                          <h3 class="text-dark">0</h3>
-                          <h6>0.00 % เมื่อเทียบกับเมื่อวาน</h6>
-                        </div>
+                        <div id="Business-Insights"></div>
                       </div>
-                      <br>
-                      <hr>
-                      <br>
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <h5>คำสั่งซื้อ</h5>
-                          <h3 class="text-dark">0</h3>
-                          <h6>0.00 % เมื่อเทียบกับเมื่อวาน</h6>
+                      <div class="col-sm-4 align-self-center">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <h5>จำนวนผู้เยี่ยมชม</h5>
+                            <h3 class="text-dark">0</h3>
+                            <h6>0.00 % เมื่อเทียบกับเมื่อวาน</h6>
+                          </div>
+                          <div class="col-sm-6">
+                            <h5>ยอดเข้าชม</h5>
+                            <h3 class="text-dark">0</h3>
+                            <h6>0.00 % เมื่อเทียบกับเมื่อวาน</h6>
+                          </div>
                         </div>
-                        <div class="col-sm-6">
-                          <h5>อัตราการซื้อสินค้า</h5>
-                          <h3 class="text-dark">0.00%</h3>
-                          <h6>0.00 % เมื่อเทียบกับเมื่อวาน</h6>
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <h5>คำสั่งซื้อ</h5>
+                            <h3 class="text-dark">0</h3>
+                            <h6>0.00 % เมื่อเทียบกับเมื่อวาน</h6>
+                          </div>
+                          <div class="col-sm-6">
+                            <h5>อัตราการซื้อสินค้า</h5>
+                            <h3 class="text-dark">0.00%</h3>
+                            <h6>0.00 % เมื่อเทียบกับเมื่อวาน</h6>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -371,20 +336,19 @@
               </div>
             </div>
           </div>
+
+          <!-- /.container-fluid -->
+
         </div>
+        <!-- End of Main Content -->
 
-        <!-- /.container-fluid -->
-
+        <?php include_once("../layout/footer.php") ?>
+        <script src="dashboard.js"></script>
       </div>
-      <!-- End of Main Content -->
+      <!-- End of Content Wrapper -->
 
-      <?php include_once("../layout/footer.php") ?>
-      <script src="dashboard.js"></script>
     </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
+    <!-- End of Page Wrapper -->
 
 </body>
 

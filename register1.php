@@ -24,61 +24,51 @@
     body {
         background-color: #006664 !important;
     }
-
-    /*
-    .card-signin {
-        background-color: white;
-    }
-
-    #login-header {
-        color: white;
-
-    }
-
-    .card-signin {
-        align: center;
-    }
-
-    .login-small {
-        float: center;
-    } */
 </style>
 
 <body>
     <div class="container">
         <!-- Outer Row -->
         <div class="row d-flex justify-content-center">
-            <div class="container" style="margin-top: 230px;">
+            <div class="container" style="margin-top: 160px;">
                 <div class="row" style="margin-left: 25%;">
                     <div class="col-xl-7 col-lg-12 col-md-12">
                         <div class="card o-hidden border-0 shadow-lg my-5">
                             <div class="card card-signin my-1">
                                 <div class="card-body">
-                                    <form class="form-signin" method="POST" action='sign-in-verify.php'>
+                                    <form class="form-signin" method="POST" action='login.php'>
                                         <center>
                                             <h6>สมัครมาชิก</h6>
+                                            <br>
                                         </center>
-                                        <br>
                                         <div class="form-label-group">
-                                            <label for="inputEmail">เบอร์โทรศัพท์</label>
+                                            <label for="inputEmail">ชื่อผู้ใช้</label>
                                             <div class="col-12" style="padding: 0px;">
-                                                <input type="text" name="tel" id="tel" class="form-control" placeholder="กรุณากรอกเบอร์โทรศัพท์" required autofocus>
+                                                <input type="text" name="username" id="username" class="form-control" placeholder="กรุณากรอกชื่อบัญชี" required autofocus>
                                             </div>
                                         </div>
                                         <br>
+                                        <div class="form-label-group">
+                                            <label for="inputPassword">รหัสผ่าน</label>
 
-                                        <button type="submit" class="btn btn-success" style="width: 100%;" type="submit">ถัดไป</button>
+                                            <div class="col-12" style="padding: 0px;">
+                                                <input class="form-control" type="password" name="password1" id="password1" placeholder="กรุณากรอกรหัสผ่าน" required>
+                                                <!-- <i class="fa fa-eye-slash eye-setting" id="hide1"></i> -->
+                                            </div>
 
-                                        <div class="custom-control custom-checkbox mb-1 align-self-center" style="padding: 0px;">
-                                            <hr>
-                                            <a href="index.php" class="btn btn-google btn-user btn-block">
-                                                <i class="fab fa-google fa-fw"></i> Login with Google
-                                            </a>
-                                            <a href="index.php" class="btn btn-facebook btn-user btn-block">
-                                                <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                            </a>
-                                            <hr>
                                         </div>
+                                        <br>
+                                        <div class="form-label-group">
+                                            <label for="inputPassword">ยืนยันรหัสผ่าน</label>
+                                            <div class="col-12" style="padding: 0px;">
+                                                <input class="form-control" type="password" name="password1" id="password1" placeholder="กรุณากรอกรหัสผ่านยืนยัน" required>
+                                                <!-- <i class="fa fa-eye-slash eye-setting" id="hide1"></i> -->
+                                            </div>
+
+                                        </div>
+                                        <br>
+
+                                        <button type="submit" class="btn btn-success" style="width: 100%;" type="submit">สมัครสมาชิก</button>
                                     </form>
                                 </div>
                             </div>

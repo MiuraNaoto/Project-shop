@@ -37,11 +37,11 @@
             <span>การขาย</span></a>
     </li>
 
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link" href="../cancel-order/cancel-order.php">
             <i class="fas fa-ban"></i>
             <span>คำขอยกเลิก</span></a>
-    </li>
+    </li> -->
     <!-- Heading -->
     <!-- <div class="sidebar-heading">
         Interface

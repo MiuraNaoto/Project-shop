@@ -25,14 +25,16 @@
         background-color: #006664 !important;
     }
 
-    .card-signin {
-        background-color: white;
-    }
-
-    #login-header {
+    .login-header {
         color: white;
 
     }
+
+    /* .card-signin {
+        background-color: white;
+    }
+
+  
 
     .card-signin {
         align: center;
@@ -40,85 +42,78 @@
 
     .login-small {
         float: center;
-    }
+    } */
 </style>
 
+
 <body>
+    <div class="container">
+        <!-- Outer Row -->
+        <div class="row d-flex justify-content-center">
+            <div class="container" style="margin-top: 100px;">
+                <div class="row" style="margin-left: 25%;">
+                    <div class="col-xl-7 col-lg-12 col-md-12">
+                        <div class="login-header">
+                            <h4 class="text-center">ระบบขายสินค้าบนเว็บไซต์รัฐวิสาหกิจชุมชน </h4>
+                            <h6 class="text-center login-small">Community Enterprise Marketing System</h6>
+                        </div>
+                        <div class="card o-hidden border-0 shadow-lg my-5">
+                            <div class="card card-signin my-1">
+                                <div class="card-body">
+                                    <form class="form-signin" method="POST" action='sign-in-verify.php'>
+                                        <center>
+                                            <h6>ล็อกอินเข้าสู่ระบบ</h6>
+                                        </center>
+                                        <br>
+                                        <div class="form-label-group">
+                                            <label for="inputEmail">ชื่อผู้ใช้</label>
+                                            <div class="col-12" style="padding: 0px;">
+                                                <input type="text" name="username" id="username" class="form-control" placeholder="username" required autofocus>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <div class="form-label-group">
+                                            <label for="inputPassword">รหัสผ่าน</label>
 
-    <div style="float:center;">
-        <form id="sign_in" method="POST" action="sign-in-verify.php">
-            <br>
-            <br>
-            <br>
-            <br>
-            <div id="login-header">
-                <h4 class="text-center">ระบบขายสินค้าบนเว็บไซต์รัฐวิสาหกิจชุมชน </h4>
-                <h6 class="text-center login-small">Community Enterprise Marketing System</h6>
-            </div>
-            <div class="container" style="margin-left:30%; margin-top: 4%;">
-                <div class="row">
-                    <img src="./img/icon/KU.png" style="width:31%;height:40%;margin-top:80px; padding-right: 50px;">
-                    <div class="col-sm-9 col-md-7 col-lg-5">
+                                            <div class="col-12" style="padding: 0px;">
+                                                <input class="form-control" type="password" name="password1" id="password1" placeholder="Password" required>
+                                                <i class="fa fa-eye-slash eye-setting" id="hide1"></i>
+                                            </div>
 
+                                        </div>
+                                        <br>
+                                        <div class="custom-control custom-checkbox mb-1 align-self-center">
+                                            <input type="checkbox" class="custom-control-input align-self-center" id="remember" name="remember">
+                                            <label class="custom-control-label align-self-center" for="remember">บันทึกบัญชีผู้ใช้</label>
+                                            <label style="margin-left: 20px;cursor:pointer;color: blue" id="pass_edit" data-toggle="modal" data-target="#ChangeModal"> ลืมรหัสผ่าน?</label>
+                                            <button class="btn btn-success btn-md" style="float:right;" type="submit">ล็อกอิน</button>
+                                        </div>
+                                        <div class="custom-control custom-checkbox mb-1 align-self-center" style="padding: 0px;">
+                                            <hr>
+                                            <a href="index.php" class="btn btn-google btn-user btn-block">
+                                                <i class="fab fa-google fa-fw"></i> Login with Google
+                                            </a>
+                                            <a href="index.php" class="btn btn-facebook btn-user btn-block">
+                                                <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                            </a>
+                                            <hr>
 
-                        <div class="card card-signin my-1">
-
-                            <div class="card-body">
-                                <form class="form-signin" method="POST" action='sign-in-verify.php'>
-                                    <center>
-                                        <h6>ล็อกอินเข้าสู่ระบบ</h6>
-                                    </center>
-                                    <br>
-                                    <div class="form-label-group">
-                                        <label for="inputEmail">ชื่อผู้ใช้</label>
-                                        <div class="col-12" style="padding: 0px;">
-                                            <input type="text" name="username" id="username" class="form-control" placeholder="username" required autofocus>
+                                            <div class="text-center">
+                                                <a href="register.php">สมัครสมาชิก</a>
+                                            </div>
                                         </div>
 
-
-                                    </div>
-                                    <br>
-                                    <div class="form-label-group">
-                                        <label for="inputPassword">รหัสผ่าน</label>
-
-                                        <div class="col-12" style="padding: 0px;">
-                                            <input class="form-control" type="password" name="password1" id="password1" placeholder="Password" required>
-                                            <i class="fa fa-eye-slash eye-setting" id="hide1"></i>
-                                        </div>
-
-                                    </div>
-                                    <br>
-                                    <div class="custom-control custom-checkbox mb-1 align-self-center">
-                                        <input type="checkbox" class="custom-control-input align-self-center" id="remember" name="remember">
-                                        <label class="custom-control-label align-self-center" for="remember">บันทึกบัญชีผู้ใช้</label>
-                                        <label style="margin-left: 20px;cursor:pointer;color: blue" id="pass_edit"> ลืมรหัสผ่าน?</label>
-                                        <button class="btn btn-success btn-md" style="float:right;" type="submit">ล็อกอิน</button>
-                                    </div>
-                                    <div class="custom-control custom-checkbox mb-1 align-self-center" style="padding: 0px;">
-                                        <hr>
-                                        <a href="index.php" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.php" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
-                                        <hr>
-
-                                        <div class="text-center">
-                                            <a href="register.php">สมัครสมาชิก</a>
-                                        </div>
-                                    </div>
-
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
+
                     </div>
-
                 </div>
-            </div>
-        </form>
+                </form>
 
-    </div>
+            </div>
 
 
 </body>
@@ -131,15 +126,15 @@
             <div class="modal-content">
                 <div class="changepass">
                     <div class="modal-header header-modal">
-                        <h4 class="modal-title" style="color:white">ตั้ง Password ใหม่</h4>
+                        <h4 class="modal-title">ตั้ง Password ใหม่</h4>
                     </div>
                     <div class="modal-body" id="ChangeModalBody">
                         <div class="container">
 
                             <div class="row mb-4" style="margin-left: 10px">
-                                <label for="inputEmail">ชื่อผู้ใช้</label>
+                                <label for="inputEmail">รหัสผ่านใหม่</label>
                                 <div class="col-12">
-                                    <input type="text" name="username2" id="username2" class="form-control" placeholder="username" required autofocus>
+                                    <input type="text" name="password" id="password" class="form-control" placeholder="username" style="margin: 0px;" required autofocus>
                                 </div>
                             </div>
 
