@@ -3,7 +3,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://data.tmd.go.th/nwpapi/v1/forecast/location/hourly/at?lat=13.10&lon=100.10&fields=tc,rh&date=2017-08-17&hour=8&duration=2https://data.tmd.go.th/nwpapi/v1/forecast/location/hourly/at?lat=13.10&lon=100.10&fields=tc,rh&date=2017-08-17&hour=8&duration=2https://data.tmd.go.th/nwpapi/v1/forecast/location/hourly/at?lat=13.10&lon=100.10&fields=tc,rh&date=2017-08-17&hour=8&duration=2",
+    CURLOPT_URL => "https://data.tmd.go.th/nwpapi/v1/forecast/location/hourly/at?lat=13.10&lon=100.10&fields=tc,rh,slp,rain,ws10m,wd10m,ws925,ws850,ws700,ws500,ws200,wd925,wd850,wd700,wd500,wd200,cloudlow,cloudmed,cloudhigh,cond",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
@@ -20,11 +20,14 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 $err = curl_error($curl);
 
+$json2array = json_decode($response, true);
+$WeatherForecasts = $json2array["WeatherForecasts"];
+$forecasts = $WeatherForecasts[0]["forecasts"];
 curl_close($curl);
 
 if ($err) {
     echo "cURL Error #:" . $err;
 } else {
-    print_r($response);
+    // print_r($response);
+    echo print_r($forecasts) . "<br>";
 }
-

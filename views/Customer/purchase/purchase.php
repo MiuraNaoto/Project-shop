@@ -87,10 +87,9 @@
                                         <br>
                                         <div class="col-12 d-flex justify-content-end align-self-center">
                                             <button type="button" class="btn btn-warning text-light" style="background-color: orangered; margin-right: 10px; width: 120px;" data-toggle="modal" data-target="#rateingModal">ให้คะแนน</button>
-                                            <a href="../shop/shop.php"><button type="button" class="btn btn-secondary" style="width: 120px;">ซื้ออีกครั้ง</button></a>
+                                            <a href="../profile-shop/profile-shop.php"><button type="button" class="btn btn-secondary" style="width: 120px;">ซื้ออีกครั้ง</button></a>
 
                                         </div>
-
                                     </td>
                                 </tr>
                             </tbody>

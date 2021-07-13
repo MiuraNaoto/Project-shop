@@ -27,90 +27,77 @@
     <section class="shop-cart spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 ">
-                    <div class="shop__cart__table d-flex justify-content-center">
+                <div class="col-lg-12">
+                    <div class="shop__cart__table">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                </tr>
-                            </thead>
                             <tbody>
                                 <tr>
                                     <td class="cart__product__item">
-                                        <img src="../../../img/shop-cart/cp-1.jpg" alt="">
-                                        <div class="cart__product__item__title">
-                                            <h6>Chain bucket bag</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
+                                        <div class="row">
+                                            <div class="col-md-7 d-flex justify-content-start">
+                                                <span class="font-weight-bold mb-0 h6 align-self-center" id="shop-name" style="margin-right: 25px; color: #336633;">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</span>
+                                                <a href="../profile-shop/profile-shop.php">
+                                                    <button type="button" class="btn btn-outline-success" style="font-size: 12px;">ดูร้านค้า <i class="fas fa-store"></i></button>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-5 d-flex justify-content-end">
+                                                <button type="button" class="btn btn-danger rounded-circle d-flex align-items-center d-flex justify-content-center" style="width: 35px; height: 35px;">
+                                                    <i class="fas fa-heart" style="color: whitesmoke;"></i>
+                                                </button>
                                             </div>
                                         </div>
+                                        <hr>
+                                        <div class="cart__product__item__title">
+                                            <img src="../../../img/shop-cart/cp-1.jpg" alt="">
+                                            <div class="col-lg-12">
+                                                <h6>Chain bucket bag</h6>
+                                            </div>
+                                            <div class="col-lg-12 mt-2 ">
+                                                <span class="h5" style="color: #FF6633;">฿1,834</span>
+                                            </div>
+                                            <div class="col-lg-12 mt-2 ">
+                                                <span class="text-muted" style="font-size: 14px;">ขายได้ 1234 ชิ้น</span>
+                                            </div>
+                                        </div>
+                                        <br>
                                     </td>
-                                    <td class="cart__total">$ 300.0</td>
-                                    <td class="cart__close__love"><span class="icon_heart_alt"></span></td>
                                 </tr>
                                 <tr>
                                     <td class="cart__product__item">
-                                        <img src="../../../img/shop-cart/cp-2.jpg" alt="">
-                                        <div class="cart__product__item__title">
-                                            <h6>Zip-pockets pebbled tote briefcase</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
+                                        <div class="row">
+                                            <div class="col-md-7 d-flex justify-content-start">
+                                                <span class="font-weight-bold mb-0 h6 align-self-center" id="shop-name" style="margin-right: 25px; color: #336633;">Chole</span>
+                                                <a href="../profile-shop/profile-shop.php">
+                                                    <button type="button" class="btn btn-outline-success" style="font-size: 12px;">ดูร้านค้า <i class="fas fa-store"></i></button>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-5 d-flex justify-content-end">
+                                                <button type="button" class="btn btn-danger rounded-circle d-flex align-items-center d-flex justify-content-center" style="width: 35px; height: 35px;">
+                                                    <i class="fas fa-heart" style="color: whitesmoke;"></i>
+                                                </button>
                                             </div>
                                         </div>
-                                    </td>
-                                    <td class="cart__price">$ 170.0</td>
-                                    <td class="cart__close__love"><span class="icon_heart_alt"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="cart__product__item">
-                                        <img src="../../../img/shop-cart/cp-3.jpg" alt="">
+                                        <hr>
                                         <div class="cart__product__item__title">
-                                            <h6>Black jean</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
+                                            <img src="../../../img/shop-cart/cp-2.jpg" alt="">
+                                            <div class="col-lg-12">
+                                                <h6>Chain bucket bag</h6>
+                                            </div>
+                                            <div class="col-lg-12 mt-2 ">
+                                                <span class="h5" style="color: #FF6633;">฿1,834</span>
+                                            </div>
+                                            <div class="col-lg-12 mt-2 ">
+                                                <span class="text-muted" style="font-size: 14px;">ขายได้ 1234 ชิ้น</span>
                                             </div>
                                         </div>
+                                        <br>
                                     </td>
-                                    <td class="cart__price">$ 85.0</td>
-                                    <td class="cart__close__love iheart"><span class="icon_heart_alt"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="cart__product__item">
-                                        <img src="../../../img/shop-cart/cp-4.jpg" alt="">
-                                        <div class="cart__product__item__title">
-                                            <h6>Cotton Shirt</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 55.0</td>
-                                    <td class="cart__close__love"><span class="icon_heart_alt"></span></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
     <!-- Shop Cart Section End -->

@@ -131,8 +131,8 @@
                         <div class="categories__text">
                             <h1>Food</h1>
                             <p>358 items</p>
-                            <p>Sitamet, consectetur adipiscing elit, sed do eiusmod tempor incidid-unt labore
-                                edolore magna aliquapendisse ultrices gravida.</p>
+                            <!-- <p>Sitamet, consectetur adipiscing elit, sed do eiusmod tempor incidid-unt labore
+                                edolore magna aliquapendisse ultrices gravida.</p> -->
                             <a href="views/Customer/shop/shop.php">Shop now</a>
                         </div>
                     </div>
@@ -205,10 +205,10 @@
             <div class="row property__gallery">
                 <div class="col-lg-3 col-md-4 col-sm-6 mix women">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="img/product/details/product-1.jpg">
                             <div class="label new">New</div>
                             <ul class="product__hover">
-                                <li><a href="img/product/product-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="img/product/details/product-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
                                 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                 <li><a href="#"><span class="icon_bag_alt"></span></a></li>
                             </ul>
@@ -738,21 +738,21 @@
     <!-- Footer Section Begin -->
     <footer class="footer">
         <div class="container">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-7">
                     <div class="footer__about">
                         <div class="footer__logo">
                             <a href="./index.html"><img src="img/icon/LOGO-OTOP-BLACK.png" alt=""></a>
                         </div>
-                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            cilisis.</p> -->
-                        <!-- <div class="footer__payment">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            cilisis.</p> 
+                         <div class="footer__payment">
                             <a href="#"><img src="img/payment/payment-1.png" alt=""></a>
                             <a href="#"><img src="img/payment/payment-2.png" alt=""></a>
                             <a href="#"><img src="img/payment/payment-3.png" alt=""></a>
                             <a href="#"><img src="img/payment/payment-4.png" alt=""></a>
                             <a href="#"><img src="img/payment/payment-5.png" alt=""></a>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-5">
@@ -793,7 +793,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-lg-12">
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -871,8 +871,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="product__details__text">
-                                        <h3>Essential structured blazer <span>Brand: SKMEIMore Men Watches from
-                                                SKMEI</span></h3>
+                                        <h3>Essential structured blazer <span>Brand: SKMEIMore Men Watches from SKMEI</span></h3>
                                         <div class="rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -881,10 +880,8 @@
                                             <i class="fa fa-star"></i>
                                             <span>( 138 reviews )</span>
                                         </div>
-                                        <div class="product__details__price">$ 75.0 <span>$ 83.0</span></div>
-                                        <p>Nemo enim ipsam voluptatem quia aspernatur aut odit aut loret fugit, sed quia
-                                            consequuntur
-                                            magni lores eos qui ratione voluptatem sequi nesciunt.</p>
+                                        <div class="product__details__price">$ 75.0</div>
+                                        <p style="font-size: 17px;">เสื้อเชิ้ตทรงหลวมที่จัดสไตล์เป็นเสื้อตัวนอกได้ เนื้อผ้าให้สัมผัสหรูหรา</p>
                                         <div class="product__details__button">
                                             <div class="quantity">
                                                 <span>Quantity:</span>
@@ -892,8 +889,7 @@
                                                     <input type="text" value="1">
                                                 </div>
                                             </div>
-                                            <a href="#" class="cart-btn"><span class="icon_bag_alt"></span> Add to
-                                                cart</a>
+                                            <a href="#" class="cart-btn"><span class="icon_bag_alt"></span> Add to cart</a>
                                             <ul>
                                                 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                                 <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
@@ -957,8 +953,49 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-lg-12" style="margin-top: 75px; padding-left: 30px; padding: 30px;">
+                                    <div class="row">
+                                        <div class="col-md-2 d-flex align-items-center d-flex justify-content-center" style="padding: 0px; width: 85px; flex: 0 0 8%;">
+                                            <img src="img/profile/vendor.png" class="rounded-circle" width="80" height="80" />
+                                        </div>
+                                        <div class="col-md-4 align-self-center" style="padding: 0px;">
+                                            <div class="col-md-12 d-flex justify-content-start">
+                                                <span class="font-weight-bold mb-0 h6 align-self-center" id="shop-name" style="margin-right: 25px; color: #336633;">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</span>
+
+                                            </div>
+                                            <div class="col-md-12 mt-3">
+                                                <a href="views/Customer/profile-shop/profile-shop.php">
+                                                    <button type="button" class="btn btn-outline-success" style="font-size: 12px;">ดูร้านค้า <i class="fas fa-store"></i></button>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6" style="padding: 0px; padding-left: 80px;">
+                                            <div class="col-md-12 text-muted">
+                                                <div class="row mb-4">
+                                                    <div class="col-md-1">
+                                                        <i class="fas fa-boxes"></i>
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                        <span>สินค้าทั้งหมด 108 รายการ</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <div class="col-md-1">
+                                                        <i class="fas fa-star-half-alt"></i>
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                        <span>คะแนน 4.5 (จากคะแนนทั้งหมด 400)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-lg-12">
-                                    <div class="product__details__tab">
+                                    <div class="product__details__tab" style="padding: 30px;">
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Description</a>
@@ -967,194 +1004,204 @@
                                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Specification</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Reviews
-                                                    ( 2 )</a>
+                                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Reviews ( 2 )</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                                <div class="row">
-                                                    <div class="col-md-2 d-flex align-items-center d-flex justify-content-center" style="padding: 0px; width: 85px; flex: 0 0 8%;">
-                                                        <img src="img/profile/vendor.png" class="rounded-circle" width="80" height="80" />
-                                                    </div>
-                                                    <div class="col-md-4 align-self-center" style="padding: 0px;">
-                                                        <div class="col-md-12">
-                                                            <a href="views/Customer/profile-shop/profile-shop.php">
-                                                                <h6 class="h6 mt-0 text-dark font-weight-bold">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <span class="mt-0 text-muted">คะแนน 65 คะแนน</span>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <span class="mb-0 text-muted">รายการสินค้า 105 รายการ</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 align-self-center">
-                                                        <span></span>
-                                                    </div>
-                                                </div>
-                                                <br>
+                                                <!-- <h6>Description</h6> -->
+                                                <p style="font-size: 16px;">- เสริมความยืดหยุ่น<br>
+                                                    - ทำจากผ้าบรัชทวิลล์เส้นใยละเอียด<br>
+                                                    - ดีไซน์งานเย็บตะเข็บให้ดูแคชชวล<br>
+                                                    - ทรงหลวมพร้อมกระเป๋ามีฝาปิดจัดสไตล์เป็นเสื้อตัวนอกได้<br></p>
 
-                                                <h6>Description</h6>
-                                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                                                    loret fugit, sed
-                                                    quia consequuntur magni dolores eos qui ratione voluptatem sequi
-                                                    nesciunt loret.
-                                                    Neque porro lorem quisquam est, qui dolorem ipsum quia dolor si.
-                                                    Nemo enim ipsam
-                                                    voluptatem quia voluptas sit aspernatur aut odit aut loret fugit,
-                                                    sed quia ipsu
-                                                    consequuntur magni dolores eos qui ratione voluptatem sequi
-                                                    nesciunt. Nulla
-                                                    consequat massa quis enim.</p>
-                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                                                    commodo ligula eget
-                                                    dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
-                                                    parturient montes,
-                                                    nascetur ridiculus mus. Donec quam felis, ultricies nec,
-                                                    pellentesque eu, pretium
-                                                    quis, sem.</p>
                                             </div>
                                             <div class="tab-pane" id="tabs-2" role="tabpanel">
-                                                <h6>Specification</h6>
-                                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                                                    loret fugit, sed
-                                                    quia consequuntur magni dolores eos qui ratione voluptatem sequi
-                                                    nesciunt loret.
-                                                    Neque porro lorem quisquam est, qui dolorem ipsum quia dolor si.
-                                                    Nemo enim ipsam
-                                                    voluptatem quia voluptas sit aspernatur aut odit aut loret fugit,
-                                                    sed quia ipsu
-                                                    consequuntur magni dolores eos qui ratione voluptatem sequi
-                                                    nesciunt. Nulla
-                                                    consequat massa quis enim.</p>
-                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                                                    commodo ligula eget
-                                                    dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
-                                                    parturient montes,
-                                                    nascetur ridiculus mus. Donec quam felis, ultricies nec,
-                                                    pellentesque eu, pretium
-                                                    quis, sem.</p>
+                                                <!-- <h6>Specification</h6> -->
+                                                <p style="font-size: 16px;">รหัสสินค้า 439615<br>
+                                                    โปรดทราบว่าสินค้านี้อาจมีรหัสสินค้าแตกต่างไป แม้จะเป็นสินค้าเดียวกันก็ตาม<br>
+                                                    รายละเอียดเนื้อผ้า<br>
+                                                    98% ผ้าคอตตอน, 2% ผ้าสแปนเดกซ์<br>
+                                                    คำแนะนำในการซัก<br>
+                                                    ซักเครื่อง ด้วยน้ำเย็น</p>
                                             </div>
-                                            <div class="tab-pane" id="tabs-3" role="tabpanel">
-                                                <h6>Reviews ( 2 )</h6>
-                                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                                                    loret fugit, sed
-                                                    quia consequuntur magni dolores eos qui ratione voluptatem sequi
-                                                    nesciunt loret.
-                                                    Neque porro lorem quisquam est, qui dolorem ipsum quia dolor si.
-                                                    Nemo enim ipsam
-                                                    voluptatem quia voluptas sit aspernatur aut odit aut loret fugit,
-                                                    sed quia ipsu
-                                                    consequuntur magni dolores eos qui ratione voluptatem sequi
-                                                    nesciunt. Nulla
-                                                    consequat massa quis enim.</p>
-                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                                                    commodo ligula eget
-                                                    dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
-                                                    parturient montes,
-                                                    nascetur ridiculus mus. Donec quam felis, ultricies nec,
-                                                    pellentesque eu, pretium
-                                                    quis, sem.</p>
+                                            <div class="tab-pane" id="tabs-3" role="tabpanel" style="padding-left: 80px; padding-right: 80px; padding-top: 10px;">
+                                                <div class="row">
+                                                    <div class="col-md-2 d-flex align-items-center d-flex justify-content-center" style="padding: 0px; width: 85px; flex: 0 0 8%;">
+                                                        <img src="../../../img/profile/user.png" class="rounded-circle" width="65" height="65" />
+                                                    </div>
+                                                    <div class="col-md-10 align-self-center" style="padding: 0px;">
+                                                        <div class="col-md-12 d-flex justify-content-start">
+                                                            <span class="font-weight-bold mb-0 h6 align-self-center" id="shop-name" style="margin-right: 25px; color: #336633;">Unknown</span>
+                                                        </div>
+                                                        <div class="col-md-12 mt-1">
+                                                            <div class="rating text-warning">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="col-md-12">
+                                        <span class="mb-0 text-muted">ตัวเลือกสินค้า : น้ำส้มสูตรโบราณคิดเมื่อวานแต่บอกโบราณเผื่อขายดี</span>
+                                    </div> -->
+                                                        <div class="col-md-12 mt-1">
+                                                            <span class="mb-0 text-muted">ร้านค้าเชื่อถือได้ สินค้ามีคุณภาพและมีมาตรฐาน</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-md-2 d-flex align-items-center d-flex justify-content-center" style="padding: 0px; width: 85px; flex: 0 0 8%;">
+                                                        <img src="../../../img/profile/user.png" class="rounded-circle" width="65" height="65" />
+                                                    </div>
+                                                    <div class="col-md-10 align-self-center" style="padding: 0px;">
+                                                        <div class="col-md-12 d-flex justify-content-start">
+                                                            <span class="font-weight-bold mb-0 h6 align-self-center" id="shop-name" style="margin-right: 25px; color: #336633;">Unknown</span>
+                                                        </div>
+                                                        <div class="col-md-12 mt-1">
+                                                            <div class="rating text-warning">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="col-md-12">
+                                        <span class="mb-0 text-muted">ตัวเลือกสินค้า : น้ำส้มสูตรโบราณคิดเมื่อวานแต่บอกโบราณเผื่อขายดี</span>
+                                    </div> -->
+                                                        <div class="col-md-12 mt-1">
+                                                            <span class="mb-0 text-muted">ร้านค้าเชื่อถือได้ สินค้ามีคุณภาพและมีมาตรฐาน</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-md-2 d-flex align-items-center d-flex justify-content-center" style="padding: 0px; width: 85px; flex: 0 0 8%;">
+                                                        <img src="../../../img/profile/user.png" class="rounded-circle" width="65" height="65" />
+                                                    </div>
+                                                    <div class="col-md-10 align-self-center" style="padding: 0px;">
+                                                        <div class="col-md-12 d-flex justify-content-start">
+                                                            <span class="font-weight-bold mb-0 h6 align-self-center" id="shop-name" style="margin-right: 25px; color: #336633;">Unknown</span>
+                                                        </div>
+                                                        <div class="col-md-12 mt-1">
+                                                            <div class="rating text-warning">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="col-md-12">
+                                        <span class="mb-0 text-muted">ตัวเลือกสินค้า : น้ำส้มสูตรโบราณคิดเมื่อวานแต่บอกโบราณเผื่อขายดี</span>
+                                    </div> -->
+                                                        <div class="col-md-12 mt-1">
+                                                            <span class="mb-0 text-muted">ร้านค้าเชื่อถือได้ สินค้ามีคุณภาพและมีมาตรฐาน</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 text-center">
-                                    <div class="related__title">
-                                        <h5>RELATED PRODUCTS</h5>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="product__item">
-                                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-1.jpg">
-                                            <div class="label new">New</div>
-                                            <ul class="product__hover">
-                                                <li><a href="img/product/related/rp-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__item__text">
-                                            <h6><a href="#">Buttons tweed blazer</a></h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
+                                    <div class="row">
+                                        <div class="col-lg-12 text-center">
+                                            <div class="related__title">
+                                                <h5>RELATED PRODUCTS</h5>
                                             </div>
-                                            <div class="product__price">$ 59.0</div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="product__item">
-                                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-2.jpg">
-                                            <ul class="product__hover">
-                                                <li><a href="img/product/related/rp-2.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__item__text">
-                                            <h6><a href="#">Flowy striped skirt</a></h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <div class="product__item">
+                                                <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-1.jpg">
+                                                    <div class="label new">New</div>
+                                                    <ul class="product__hover">
+                                                        <li><a href="img/product/related/rp-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="product__item__text">
+                                                    <h6><a href="#">Buttons tweed blazer</a></h6>
+                                                    <div class="rating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="product__price">$ 59.0</div>
+                                                </div>
                                             </div>
-                                            <div class="product__price">$ 49.0</div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="product__item">
-                                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-3.jpg">
-                                            <div class="label stockout">out of stock</div>
-                                            <ul class="product__hover">
-                                                <li><a href="img/product/related/rp-3.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__item__text">
-                                            <h6><a href="#">Cotton T-Shirt</a></h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <div class="product__item">
+                                                <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-2.jpg">
+                                                    <ul class="product__hover">
+                                                        <li><a href="img/product/related/rp-2.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="product__item__text">
+                                                    <h6><a href="#">Flowy striped skirt</a></h6>
+                                                    <div class="rating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="product__price">$ 49.0</div>
+                                                </div>
                                             </div>
-                                            <div class="product__price">$ 59.0</div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="product__item">
-                                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-4.jpg">
-                                            <ul class="product__hover">
-                                                <li><a href="img/product/related/rp-4.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__item__text">
-                                            <h6><a href="#">Slim striped pocket shirt</a></h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <div class="product__item">
+                                                <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-3.jpg">
+                                                    <div class="label stockout">out of stock</div>
+                                                    <ul class="product__hover">
+                                                        <li><a href="img/product/related/rp-3.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="product__item__text">
+                                                    <h6><a href="#">Cotton T-Shirt</a></h6>
+                                                    <div class="rating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="product__price">$ 59.0</div>
+                                                </div>
                                             </div>
-                                            <div class="product__price">$ 59.0</div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <div class="product__item">
+                                                <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-4.jpg">
+                                                    <ul class="product__hover">
+                                                        <li><a href="img/product/related/rp-4.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="product__item__text">
+                                                    <h6><a href="#">Slim striped pocket shirt</a></h6>
+                                                    <div class="rating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="product__price">$ 59.0</div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

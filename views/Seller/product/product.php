@@ -87,9 +87,6 @@
                                             <td style="vertical-align: middle; text-align: end;">650</td>
                                             <td style="vertical-align: middle; text-align: end;">458</td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" id="show" class="btn btn-primary btn-md" title='ดูข้อมูล'>
-                                                    <i class="fas fa-bars"></i>
-                                                </button>
                                                 <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า' data-toggle="modal" data-target="#editModal">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
@@ -106,9 +103,6 @@
                                             <td style="vertical-align: middle; text-align: end;">20</td>
                                             <td style="vertical-align: middle; text-align: end;">15</td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" id="show" class="btn btn-primary btn-md" title='ดูข้อมูล'>
-                                                    <i class="fas fa-bars"></i>
-                                                </button>
                                                 <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า'>
                                                     <i class="fas fa-edit"></i>
                                                 </button>
@@ -125,9 +119,6 @@
                                             <td style="vertical-align: middle; text-align: end;">5</td>
                                             <td style="vertical-align: middle; text-align: end;">5</td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" id="show" class="btn btn-primary btn-md" title='ดูข้อมูล'>
-                                                    <i class="fas fa-bars"></i>
-                                                </button>
                                                 <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า'>
                                                     <i class="fas fa-edit"></i>
                                                 </button>
@@ -144,9 +135,6 @@
                                             <td style="vertical-align: middle; text-align: end;">20</td>
                                             <td style="vertical-align: middle; text-align: end;">2</td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" id="show" class="btn btn-primary btn-md" title='ดูข้อมูล'>
-                                                    <i class="fas fa-bars"></i>
-                                                </button>
                                                 <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า'>
                                                     <i class="fas fa-edit"></i>
                                                 </button>
@@ -163,9 +151,6 @@
                                             <td style="vertical-align: middle; text-align: end;">1</td>
                                             <td style="vertical-align: middle; text-align: end;">0</td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" id="show" class="btn btn-primary btn-md" title='ดูข้อมูล'>
-                                                    <i class="fas fa-bars"></i>
-                                                </button>
                                                 <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า'>
                                                     <i class="fas fa-edit"></i>
                                                 </button>
