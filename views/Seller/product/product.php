@@ -97,7 +97,7 @@
                                         </tr>
                                         <tr>
                                             <td class="d-flex align-items-center d-flex justify-content-center"><img src="../../../img/product/Seller/drink.png" class="img-circle" width="60" height="60"></td>
-                                            <td style="vertical-align: middle;">น้ำส้ม</td>
+                                            <td style="vertical-align: middle;">น้ำส้มสูตรโปบราณพึ่งคิดได้เมื่อวานแต่บอกโบราณเผื่อขายดี</td>
                                             <td style="vertical-align: middle;">เครื่องดื่ม</td>
                                             <td style="vertical-align: middle; text-align: end;">10.00</td>
                                             <td style="vertical-align: middle; text-align: end;">20</td>
@@ -145,7 +145,7 @@
                                         </tr>
                                         <tr>
                                             <td class="d-flex align-items-center d-flex justify-content-center"><img src="../../../img/product/Seller/marijuana.png" class="img-circle" width="60" height="60"></td>
-                                            <td style="vertical-align: middle;">กัญชา</td>
+                                            <td style="vertical-align: middle;">สมุนไพรเพิ่มรอยยิ้มแบบรวดเร็ว</td>
                                             <td style="vertical-align: middle;">สมุนไพร</td>
                                             <td style="vertical-align: middle; text-align: end;">900.00</td>
                                             <td style="vertical-align: middle; text-align: end;">1</td>

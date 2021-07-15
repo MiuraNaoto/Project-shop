@@ -45,9 +45,36 @@
                 <div class="col-lg-12">
                     <div class="shop__cart__table">
                         <table>
-                            <thead>
+                            <tbody>
                                 <tr>
-                                    <th>
+                                    <td class="cart__product__item">
+                                        <div class="row">
+                                            <div class="col-md-7 d-flex justify-content-start">
+                                                <span class="font-weight-bold mb-0 h6 align-self-center" id="shop-name" style="margin-right: 25px; color: #336633;">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</span>
+                                                <a href="../profile-shop/profile-shop.php">
+                                                    <button type="button" class="btn btn-outline-success" style="font-size: 12px;">ดูร้านค้า <i class="fas fa-store"></i></button>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-5 d-flex justify-content-end">
+                                                <span class="mb-0 h6 align-self-center text-warning" style="margin-right: 25px;"><i class="far fa-clock"></i> กำลังรอตรวจสอบ</span>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="cart__product__item__title">
+                                            <img src="../../../img/product/Seller/drink.png" alt=""  width="90px" height="90px">
+                                            <h6>น้ำส้มสูตรโปบราณพึ่งคิดได้เมื่อวานแต่บอกโบราณเผื่อขายดี </h6>
+                                            <p class="h6 mt-2 text-muted" style="font-size: 14px;">ตัวเลือกสินค้า : น้ำส้มปั่น</p>
+                                            <h6 class="text-muted" style="font-size: 14px;">x 1 <span class="mb-0 h6" style="margin-top: 65px; margin-left: 955px;">฿10</span></h6>
+                                        </div>
+                                        <hr>
+                                        <div class="col-12 d-flex justify-content-end align-self-center">
+                                            <span class="mb-0 h6 text-muted" style="margin-right: 25px;">ยอดคำสั่งซื้อทั้งหมด </span>
+                                            <span class="mb-0 h5" style="color: #FF6633;">฿10</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="cart__product__item">
                                         <div class="row">
                                             <div class="col-md-7 d-flex justify-content-start">
                                                 <span class="font-weight-bold mb-0 h6 align-self-center" id="shop-name" style="margin-right: 25px; color: #336633;">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</span>
@@ -59,13 +86,7 @@
                                                 <span class="mb-0 h6 align-self-center text-success" style="margin-right: 25px;"><i class="fas fa-truck"></i> พัสดุถูกจัดส่งสำเร็จแล้ว</span>
                                             </div>
                                         </div>
-
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="cart__product__item">
+                                        <hr>
                                         <div class="cart__product__item__title">
                                             <img src="../../../img/shop-cart/cp-1.jpg" alt="">
                                             <h6>Chain bucket bag</h6>

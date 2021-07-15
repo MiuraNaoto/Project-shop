@@ -22,7 +22,10 @@
 
 <style>
     body {
-        background-color: #006664 !important;
+        /* background-color: #006664 !important; */
+        background-color: #00766a;
+        background-image: linear-gradient(180deg, #00766a 10%, #108579 100%);
+        background-size: cover;
     }
 
     .login-header {
@@ -82,29 +85,30 @@
                                             </div>
 
                                         </div>
-                                        <br>
-                                        <div class="custom-control custom-checkbox mb-1 align-self-center">
-                                            <input type="checkbox" class="custom-control-input align-self-center" id="remember" name="remember">
-                                            <label class="custom-control-label align-self-center" for="remember">บันทึกบัญชีผู้ใช้</label>
-                                            <label style="margin-left: 20px;cursor:pointer;color: blue" id="pass_edit" data-toggle="modal" data-target="#ChangeModal"> ลืมรหัสผ่าน?</label>
-                                            <button class="btn btn-success btn-md" style="float:right;" type="submit">ล็อกอิน</button>
-                                        </div>
-                                        <div class="custom-control custom-checkbox mb-1 align-self-center" style="padding: 0px;">
-                                            <hr>
-                                            <a href="index.php" class="btn btn-google btn-user btn-block">
-                                                <i class="fab fa-google fa-fw"></i> Login with Google
-                                            </a>
-                                            <a href="index.php" class="btn btn-facebook btn-user btn-block">
-                                                <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                            </a>
-                                            <hr>
-
-                                            <div class="text-center">
-                                                <a href="register.php">สมัครสมาชิก</a>
-                                            </div>
-                                        </div>
-
                                     </form>
+                                    <br>
+                                    <div class="custom-control custom-checkbox mb-1 align-self-center">
+                                        <input type="checkbox" class="custom-control-input align-self-center" id="remember" name="remember">
+                                        <label class="custom-control-label align-self-center" for="remember">บันทึกบัญชีผู้ใช้</label>
+                                        <label style="margin-left: 20px;cursor:pointer;color: blue" id="pass_edit" data-toggle="modal" data-target="#ChangeModal"> ลืมรหัสผ่าน?</label>
+                                        <a href="index.php"><button class="btn btn-success btn-md" style="float:right;" type="submit">ล็อกอิน</button></a>
+                                    </div>
+                                    <div class="custom-control custom-checkbox mb-1 align-self-center" style="padding: 0px;">
+                                        <hr>
+                                        <a href="index.php" class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                        </a>
+                                        <a href="index.php" class="btn btn-facebook btn-user btn-block">
+                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                        </a>
+                                        <hr>
+
+                                        <div class="text-center">
+                                            <a href="register.php">สมัครสมาชิก</a>
+                                        </div>
+                                    </div>
+
+                                    <!-- </form> -->
                                 </div>
                             </div>
                         </div>

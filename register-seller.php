@@ -23,7 +23,10 @@
 </head>
 <style>
     body {
-        background-color: #006664 !important;
+        /* background-color: #006664 !important; */
+        background-color: #00766a;
+        background-image: linear-gradient(180deg, #00766a 10%, #108579 100%);
+        background-size: cover;
     }
 
     .p-5-6 {
@@ -67,7 +70,7 @@
                                                 <label>คุณมีสินค้าพร้อมจำหน่ายหรือไม่ <span class="text-danger">*</span></label>
                                                 <br>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input " type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                    <input class="form-check-input " type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
                                                     <label class="form-check-label" for="exampleRadios1">มีสินค้าพร้อมจำหน่าย</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">

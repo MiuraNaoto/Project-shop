@@ -58,16 +58,16 @@
                                     <thead>
                                         <tr>
                                             <th style="text-align: center;">ลำดับ</th>
-                                            <th style="text-align: center;">หมายเลขคำสั่งซื้อ</th>
+                                            <th style="text-align: center;">หมายเลข<br>คำสั่งซื้อ</th>
                                             <th style="text-align: center;">ชื่อ-นามสกุล</th>
                                             <th style="text-align: center;">ที่อยู่จัดส่ง</th>
                                             <th style="text-align: center;">รายการสินค้า</th>
                                             <th style="text-align: center;">จำนวน</th>
                                             <th style="text-align: center;">ยอดรวม</th>
-                                            <th style="text-align: center;">วันที่สั่งซื้อ</th>
-                                            <th style="text-align: center;">วิธีการชำระเงิน</th>
+                                            <th style="text-align: center;">วัน-เวลาสั่งซื้อ</th>
+                                            <th style="width: 9%; text-align: center;">วิธีการ<br>ชำระเงิน</th>
                                             <th style="text-align: center;">สถานะการชำระ</th>
-                                            <th style="text-align: center;">เลขพัสดุ</th>
+                                            <th style="width: 13%; text-align: center;">จัดการ</th>
                                         </tr>
                                     </thead>
                                     <!-- <tfoot>
@@ -85,15 +85,24 @@
                                             <td class="d-flex align-items-center d-flex justify-content-center">1</td>
                                             <td style="vertical-align: middle; text-align: end;">2103254</td>
                                             <td style="vertical-align: middle; text-align: end;">นายก ขคง</td>
-                                            <td style="vertical-align: middle; text-align: end;">เลขที่ 1 หมู่ 6 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140.</td>
+                                            <td style="vertical-align: middle; text-align: end;">เลขที่ 1 หมู่ 6 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140</td>
                                             <td style="vertical-align: middle; text-align: end;">ชุดอิ่มคุ้ม</td>
                                             <td style="vertical-align: middle; text-align: end;">20</td>
-                                            <td style="vertical-align: middle; text-align: end;">2400.00</td>
-                                            <td style="vertical-align: middle; text-align: end;">11/07/2564</td>
+                                            <td style="vertical-align: middle; text-align: end;">2,400.00</td>
+                                            <td style="vertical-align: middle; text-align: end;">11/07/2564 17:30:14</td>
                                             <td style="vertical-align: middle; text-align: end;">โอนผ่านธนาคาร</td>
-                                            <td style="vertical-align: middle; text-align: end;">ชำระแล้ว</td>
+                                            <td style="vertical-align: middle; text-align: center;">กำลังตรวจสอบ</td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" id="show" class="btn btn-success btn-md" title='เพิ่มเลขพัสดุ'>
+                                                <button type="button" id="show" class="btn btn-primary btn-md" title='หลักฐานการโอนเงิน' data-toggle="modal" data-target="#paymentModal">
+                                                    <i class="fas fa-image"></i>
+                                                </button>
+                                                <button type="button" id="show" class="btn btn-success btn-md" title='ยืนยันการซื้อ'>
+                                                    <i class="fas fa-check"></i>
+                                                </button>
+                                                <button type="button" id="show" class="btn btn-danger btn-md" title='ไม่ยืนยันการซื้อ'>
+                                                    <i class="fas fa-ban"></i>
+                                                </button>
+                                                <button type="button" id="show" class="btn btn-warning btn-md" title='เพิ่มเลขพัสดุ'>
                                                     <i class="fas fa-plus"></i>
                                                 </button>
                                             </td>
@@ -102,15 +111,24 @@
                                             <td class="d-flex align-items-center d-flex justify-content-center">2</td>
                                             <td style="vertical-align: middle; text-align: end;">2103255</td>
                                             <td style="vertical-align: middle; text-align: end;">นายก ขคง</td>
-                                            <td style="vertical-align: middle; text-align: end;">เลขที่ 1 หมู่ 6 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140.</td>
-                                            <td style="vertical-align: middle; text-align: end;">น้ำส้ม</td>
-                                            <td style="vertical-align: middle; text-align: end;">5</td>
-                                            <td style="vertical-align: middle; text-align: end;">75.00</td>
-                                            <td style="vertical-align: middle; text-align: end;">11/07/2564</td>
+                                            <td style="vertical-align: middle; text-align: end;">เลขที่ 1 หมู่ 6 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140</td>
+                                            <td style="vertical-align: middle; text-align: end;">น้ำส้มสูตรโปบราณพึ่งคิดได้เมื่อวานแต่บอกโบราณเผื่อขายดี</td>
+                                            <td style="vertical-align: middle; text-align: end;">1</td>
+                                            <td style="vertical-align: middle; text-align: end;">10.00</td>
+                                            <td style="vertical-align: middle; text-align: end;">11/07/2564 17:30:14</td>
                                             <td style="vertical-align: middle; text-align: end;">โอนผ่านธนาคาร</td>
-                                            <td style="vertical-align: middle; text-align: end;">ชำระแล้ว</td>
+                                            <td style="vertical-align: middle; text-align: center;">ชำระแล้ว</td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" id="show" class="btn btn-success btn-md" title='เพิ่มเลขพัสดุ'>
+                                                <button type="button" id="show" class="btn btn-primary btn-md" title='หลักฐานการโอนเงิน' data-toggle="modal" data-target="#paymentModal">
+                                                    <i class="fas fa-image"></i>
+                                                </button>
+                                                <button type="button" id="show" class="btn btn-success btn-md" title='ยืนยันการซื้อ' disabled>
+                                                    <i class="fas fa-check"></i>
+                                                </button>
+                                                <button type="button" id="show" class="btn btn-danger btn-md" title='ไม่ยืนยันการซื้อ' disabled>
+                                                    <i class="fas fa-ban"></i>
+                                                </button>
+                                                <button type="button" id="show" class="btn btn-warning btn-md" title='เพิ่มเลขพัสดุ'>
                                                     <i class="fas fa-plus"></i>
                                                 </button>
                                             </td>
@@ -126,8 +144,11 @@
 
             </div>
             <!-- End of Main Content -->
-            <?php include_once("../layout/footer.php"); ?>
-            
+            <?php
+            include_once("../layout/footer.php");
+            include_once("orderModal.php");
+            ?>
+
             <script type="text/javascript" src="order.js"></script>
         </div>
         <!-- End of Content Wrapper -->

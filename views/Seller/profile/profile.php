@@ -24,8 +24,6 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-
-
                     <div class="row">
                         <div class="col-xl-12 col-12 mb-4">
                             <div class="card">

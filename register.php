@@ -22,7 +22,10 @@
 
 <style>
     body {
-        background-color: #006664 !important;
+        /* background-color: #006664 !important; */
+        background-color: #00766a;
+        background-image: linear-gradient(180deg, #00766a 10%, #108579 100%);
+        background-size: cover;
     }
 
     /*

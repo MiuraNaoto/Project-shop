@@ -31,3 +31,5 @@ if ($err) {
     // print_r($response);
     echo print_r($forecasts) . "<br>";
 }
+
+echo md5("admin1nut1234");
