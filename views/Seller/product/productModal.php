@@ -35,7 +35,7 @@
                     </div>
                     <div class="row mb-4">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                            <span>ราคาสินค้า<span class="text-danger"> *</span></span>
+                            <span>ราคาสินค้าต่อชิ้น (บาท) <span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                             <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="กรุณากรอกราคาสินค้า" required="" oninput="setCustomValidity('')">
@@ -43,7 +43,7 @@
                     </div>
                     <div class="row mb-4">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                            <span>จำนวนสินค้า<span class="text-danger"> *</span></span>
+                            <span>จำนวนสินค้า (ชิ้น) <span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                             <input type="number" class="form-control" id="count" name="count" placeholder="กรุณากรอกจำนวนสินค้า" required="" oninput="setCustomValidity('')">
@@ -111,7 +111,7 @@
                     </div>
                     <div class="row mb-4">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                            <span>ราคาสินค้า<span class="text-danger"> *</span></span>
+                            <span>ราคาสินค้าต่อชิ้น (บาท)<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                             <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="กรุณากรอกราคาสินค้า" value="120.00" required="" oninput="setCustomValidity('')">
@@ -119,7 +119,7 @@
                     </div>
                     <div class="row mb-4">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                            <span>จำนวนสินค้า<span class="text-danger"> *</span></span>
+                            <span>จำนวนสินค้า (ชิ้น)<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                             <input type="number" class="form-control" id="count" name="count" placeholder="กรุณากรอกจำนวนสินค้า" value="650" required="" oninput="setCustomValidity('')">

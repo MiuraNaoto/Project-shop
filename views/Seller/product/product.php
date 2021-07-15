@@ -62,9 +62,10 @@
                                             <th style="text-align: center;">รูปสินค้า</th>
                                             <th style="width: 35%; text-align: center;">ชื่อสินค้า</th>
                                             <th style="text-align: center;">ประเภทสินค้า</th>
-                                            <th style="text-align: center;">ราคา</th>
-                                            <th style="text-align: center;">จำนวน</th>
-                                            <th style="text-align: center;">ยอดขาย</th>
+                                            <th style="text-align: center;">ราคาต่อชิ้น (บาท)</th>
+                                            <th style="text-align: center;">สินค้าคงคลัง (ชิ้น)</th>
+                                            <th style="text-align: center;">ยอดขาย (ชิ้น)</th>
+                                            <th style="text-align: center;">ยอดขายต่อ 1 สัปดาห์ (ชิ้น)</th>
                                             <th style="width: 15%; text-align: center;">จัดการ</th>
                                         </tr>
                                     </thead>
@@ -86,6 +87,7 @@
                                             <td style="vertical-align: middle; text-align: end;">120.00</td>
                                             <td style="vertical-align: middle; text-align: end;">650</td>
                                             <td style="vertical-align: middle; text-align: end;">458</td>
+                                            <td style="vertical-align: middle; text-align: end;">420</td>
                                             <td style="text-align: center; vertical-align: middle;">
                                                 <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า' data-toggle="modal" data-target="#editModal">
                                                     <i class="fas fa-edit"></i>
@@ -102,6 +104,7 @@
                                             <td style="vertical-align: middle; text-align: end;">10.00</td>
                                             <td style="vertical-align: middle; text-align: end;">20</td>
                                             <td style="vertical-align: middle; text-align: end;">15</td>
+                                            <td style="vertical-align: middle; text-align: end;">15</td>
                                             <td style="text-align: center; vertical-align: middle;">
                                                 <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า'>
                                                     <i class="fas fa-edit"></i>
@@ -115,9 +118,10 @@
                                             <td class="d-flex align-items-center d-flex justify-content-center"><img src="../../../img/product/Seller/bags.png" class="img-circle" width="60" height="60"></td>
                                             <td style="vertical-align: middle;">กระเป๋า</td>
                                             <td style="vertical-align: middle;">ของใช้</td>
-                                            <td style="vertical-align: middle; text-align: end;">12350.00</td>
+                                            <td style="vertical-align: middle; text-align: end;">12,350.00</td>
                                             <td style="vertical-align: middle; text-align: end;">5</td>
                                             <td style="vertical-align: middle; text-align: end;">5</td>
+                                            <td style="vertical-align: middle; text-align: end;">2</td>
                                             <td style="text-align: center; vertical-align: middle;">
                                                 <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า'>
                                                     <i class="fas fa-edit"></i>
@@ -134,6 +138,7 @@
                                             <td style="vertical-align: middle; text-align: end;">10.00</td>
                                             <td style="vertical-align: middle; text-align: end;">20</td>
                                             <td style="vertical-align: middle; text-align: end;">2</td>
+                                            <td style="vertical-align: middle; text-align: end;">2</td>
                                             <td style="text-align: center; vertical-align: middle;">
                                                 <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า'>
                                                     <i class="fas fa-edit"></i>
@@ -149,6 +154,7 @@
                                             <td style="vertical-align: middle;">สมุนไพร</td>
                                             <td style="vertical-align: middle; text-align: end;">900.00</td>
                                             <td style="vertical-align: middle; text-align: end;">1</td>
+                                            <td style="vertical-align: middle; text-align: end;">0</td>
                                             <td style="vertical-align: middle; text-align: end;">0</td>
                                             <td style="text-align: center; vertical-align: middle;">
                                                 <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า'>
