@@ -27,8 +27,9 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="../../../index.php"><i class="fa fa-home"></i> Home</a>
-                        <a href="../checkout/checkout.php"> รายการสินค้า</a>
-                        <span>ชำระเงิน</span>
+                        <a href="../shop-cart/shop-cart.php">Shopping cart</a>
+                        <a href="../checkout/checkout.php">Checkout</a>
+                        <span>Payment</span>
                     </div>
                 </div>
             </div>
