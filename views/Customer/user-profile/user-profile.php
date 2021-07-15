@@ -47,7 +47,6 @@
                                                 <button type="button" class="btn btn-success btn-md" title='เพิ่มที่อยู่จัดส่ง' data-toggle="modal" data-target="#insertAddress">
                                                     <i class="fas fa-plus"></i>
                                                 </button>
-
                                                 <button type="button" id="btn_info" class="btn btn-warning btn-md text-light" title='เปลี่ยนข้อมูลบัญชี' data-toggle="modal" data-target="#editModal">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
@@ -89,8 +88,20 @@
                     </div>
                     <div class="card">
                         <div class="card-header card-bg font-weight-bold" style="color:<?= $color ?>;">
-                            ที่อยู่จัดส่ง
+                            <div class="row">
+                                <div class="col-md-8 align-self-center">
+                                    <span>
+                                        ที่อยู่จัดส่ง
+                                    </span>
+                                </div>
+                                <div class="col-md-4 d-flex justify-content-end">
+                                    <button type="button" id="btn_info" class="btn btn-warning text-light" title='เปลี่ยนข้อมูลบัญชี' data-toggle="modal" data-target="#editAddress">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
