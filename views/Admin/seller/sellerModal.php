@@ -53,15 +53,7 @@
                             <span>เบอร์โทร<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="tel" name="tel" placeholder="กรุณากรอกเบอร์โทร" value="098-765-4321" required="" oninput="setCustomValidity('')">
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                            <span>อีเมล์<span class="text-danger"> *</span></span>
-                        </div>
-                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="email" name="email" placeholder="กรุณากรอกอีเมล์" value="awaiwa@gmail.com" required="" oninput="setCustomValidity('')">
+                            <input type="text" class="form-control" id="tel" name="tel" placeholder="กรุณากรอกชื่อ" value="098-765-4321" required="" oninput="setCustomValidity('')">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -73,6 +65,22 @@
                         </div>
                     </div>
                     <div class="row mb-4">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <span>คะแนนความพึงพอใจ <span class="text-danger"> *</span></span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="กรุณากรอกชื่อบัญชี" value="65" required="" oninput="setCustomValidity('')">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <span>วันที่สมัครสมาชิก </span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="กรุณากรอกชื่อบัญชี" value="11/07/2564 17:30:14" required="" oninput="setCustomValidity('')" disabled>
+                        </div>
+                    </div>
+                    <!-- <div class="row mb-4">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
                             <span>ที่อยู่<span class="text-danger"> *</span></span>
                         </div>
@@ -127,80 +135,7 @@
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                             <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="กรุณากรอกรหัสไปรษณีย์" value="73140" required="" oninput="setCustomValidity('')">
                         </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                            <span>จำนวนพนักงงาน <span class="text-danger"> *</span></span>
-                        </div>
-                        <div class="col-xl-9 col-12">
-                            <input type="number" class="form-control" placeholder="กรุณากรอกจำนวนพนักงงาน" value="5" required="" oninput="setCustomValidity('')">
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-right">
-                            <span>พนักงานประจำของร้านค้า <span class="text-danger"> *</span></span>
-                        </div>
-                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="fulltime" name="fulltime" value="option1" checked>
-                                    <label class="form-check-label" for="inlineCheckbox1">มีพนักงานประจำ (Full Time)</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="parttime" name="parttime" value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">มีพนักงงานชั่วคราว (Part Time)</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="none" name="none" value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">ไม่มีพนักงานขายประจำ/ชั่วคราว</label>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <input type="hidden" name="e_time" id="e_time" />
-
-
-                <div class="modal-footer">
-                    <input type="hidden" id="hidden_id" name="request" value="edit" />
-                    <button type="submit" id="edit" class="btn btn-danger" data-dismiss="modal" style="width: 70px;">ยกเลิก</button>
-                    <button type="submit" id="editsub" name="editsub" class="btn btn-success" style="width: 70px;">แก้ไข</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Edit Password -->
-<div class="modal fade" id="editPassModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" a aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">เปลี่ยนรหัสผ่าน</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="manage.php" method="post" enctype="multipart/form-data" id="editform" id="editForm" name="editform" role="form">
-
-                <div class="modal-body">
-                    <div class="row mb-4">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                            <span>รหัสผ่านใหม่<span class="text-danger"> *</span></span>
-                        </div>
-                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="shop_name" name="shop_name" placeholder="กรุณากรอกรหัสผ่านใหม่" required="" oninput="setCustomValidity('')">
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                            <span>รหัสผ่านปัจจุบัน<span class="text-danger"> *</span></span>
-                        </div>
-                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="กรุณากรอกรหัสผ่านปัจจุบัน" required="" oninput="setCustomValidity('')">
-                        </div>
-                    </div>
+                    </div> -->
                 </div>
                 <input type="hidden" name="e_time" id="e_time" />
 

@@ -31,33 +31,6 @@
         </div>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="../seller/seller.php">
-            <i class="fas fa-boxes"></i>
-            <span>จัดการผู้ขาย</span></a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="../order/order.php">
-            <i class="fas fa-shopping-basket"></i>
-            <span>คำสั่งซื้อ</span></a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="../delivery/delivery.php">
-            <i class="fas fa-truck"></i>
-            <span>การจัดส่งสินค้า</span></a>
-    </li>
-
-
-
-
-    <li class="nav-item">
-        <a class="nav-link" href="../sales/sales.php">
-            <i class="fas fa-clipboard-check"></i>
-            <span>การขาย</span></a>
-    </li>
-
     <!-- <li class="nav-item">
         <a class="nav-link" href="../cancel-order/cancel-order.php">
             <i class="fas fa-ban"></i>
