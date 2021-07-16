@@ -18,11 +18,23 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-users"></i>
+            <span>จัดการบัญชีผู้ใช้</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="../seller/seller.php">บัญชีรายชื่อผู้ขาย</a>
+                <a class="collapse-item" href="../customer/customer.php">บัญชีรายชื่อลูกค้า</a>
+            </div>
+        </div>
+    </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="../product/product.php">
+        <a class="nav-link" href="../seller/seller.php">
             <i class="fas fa-boxes"></i>
-            <span>รายการสินค้า</span></a>
+            <span>จัดการผู้ขาย</span></a>
     </li>
 
     <li class="nav-item">
@@ -37,18 +49,6 @@
             <span>การจัดส่งสินค้า</span></a>
     </li>
 
-    <!-- <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>รายการคำสั่งซื้อ</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="buttons.html">คำสั่งซื้อ</a>
-                <a class="collapse-item" href="cards.html">การจัดส่ง</a>
-            </div>
-        </div>
-    </li> -->
 
 
 

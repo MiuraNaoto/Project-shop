@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-    <?php include_once("../layout/header.php") ?>
+    <?php
+    include_once("../layout/header.php");
+    ?>
 
 </head>
 
@@ -47,12 +49,12 @@
                             <h6 class="m-0 font-weight-bold d-flex justify-content-start" style="color: #006664;">รายการคำสั่งซื้อ</h6>
                         </div>
                         <div class="card-body">
-                            <div class="row mb-2">
+                            <!-- <div class="row mb-2">
                                 <div class="col-xl-3 col-12">
                                     <button type="button" id="btn_excel" class="btn btn-outline-success btn-sm"><i class="fas fa-file-excel"></i> Excel</button>
                                     <button type="button" id="btn_comfirm" class="btn btn-outline-danger btn-sm"><i class="fas fa-file-pdf"></i> PDF</button>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -93,9 +95,6 @@
                                                 <button type="button" id="show" class="btn btn-danger btn-md" title='ไม่ยืนยันการซื้อ' disabled>
                                                     <i class="fas fa-ban"></i>
                                                 </button>
-                                                <button type="button" id="show" class="btn btn-warning btn-md" title='เพิ่มเลขพัสดุ' data-toggle="modal" data-target="#transportModal">
-                                                    <i class="fas fa-plus"></i>
-                                                </button>
                                             </td>
                                         </tr>
                                         <?php
@@ -123,9 +122,6 @@
                                                     </button>
                                                     <button type="button" id="show" class="btn btn-danger btn-md" title='ไม่ยืนยันการซื้อ'>
                                                         <i class="fas fa-ban"></i>
-                                                    </button>
-                                                    <button type="button" id="show" class="btn btn-warning btn-md" title='เพิ่มเลขพัสดุ' data-toggle="modal" data-target="#transportModal">
-                                                        <i class="fas fa-plus"></i>
                                                     </button>
                                                 </td>
                                             </tr>

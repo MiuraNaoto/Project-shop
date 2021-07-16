@@ -1,3 +1,62 @@
+<!-- SHOW QR-CODE Modal -->
+<div class="modal fade" id="showQRcodeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">QR-CODE สินค้า</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="showForm" name="showForm" role="form">
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <img src="../../../img/qr-code/testqr.png" width="100%">
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="row mb-4">
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                                    <span>รหัสสินค้า</span>
+                                </div>
+                                <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                                    <input type="text" class="form-control" value="654981" disabled>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                                    <span>ประเภทสินค้า</span>
+                                </div>
+                                <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                                    <input type="text" class="form-control" value="อาหาร" disabled>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                                    <span>ชื่อสินค้า</span>
+                                </div>
+                                <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                                    <input type="text" class="form-control" value="ชุดอิ่มคุ้ม" disabled>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                                    <span>ราคาต่อชิ้น</span>
+                                </div>
+                                <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                                    <input type="text" class="form-control" value="120.00" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+
 <!-- ADDModal -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -39,6 +98,14 @@
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                             <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="กรุณากรอกราคาสินค้า" required="" oninput="setCustomValidity('')">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <span>ค่าจัดส่งสินค้า (บาท) <span class="text-danger"> *</span></span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <input type="number" step="0.01" class="form-control" id="price_transport" name="price_transport" placeholder="กรุณากรอกราคาค่าจัดส่งสินค้าสินค้า" required="" oninput="setCustomValidity('')">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -115,6 +182,14 @@
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                             <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="กรุณากรอกราคาสินค้า" value="120.00" required="" oninput="setCustomValidity('')">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <span>ค่าจัดส่งสินค้า (บาท) <span class="text-danger"> *</span></span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <input type="number" step="0.01" class="form-control" id="price_transport" name="price_transport" placeholder="กรุณากรอกราคาค่าจัดส่งสินค้าสินค้า" value="45.00" required="" oninput="setCustomValidity('')">
                         </div>
                     </div>
                     <div class="row mb-4">

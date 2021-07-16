@@ -17,7 +17,7 @@
             </div>
         </div>
     </form> -->
-    <h4 class="h3 mb-0 " style="color: #00766a;">Seller Centre</h4>
+    <h4 class="h3 mb-0 " style="color: #00766a;">Administrator</h4>
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
 
@@ -154,18 +154,22 @@
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Seller</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
                 <img class="img-profile rounded-circle" src="../../../img/profile/vendor.png">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="../profile/profile.php">
+                <!-- <a class="dropdown-item" href="../profile/profile.php">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
-                </a>
+                </a> -->
                 <a class="dropdown-item" href="../../../index.php">
                     <i class="fas fa-user-tag fa-sm fa-fw mr-2 text-gray-400"></i>
                     หน้าลูกค้า
+                </a>
+                <a class="dropdown-item" href="../../Seller/dashboard/dashboard.php">
+                    <i class="fas fa-user-tag fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Seller Centre
                 </a>
                 <!-- <a class="dropdown-item" href="#">
                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>

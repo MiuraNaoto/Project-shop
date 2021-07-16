@@ -2,6 +2,7 @@
 
 require_once '../../../vendor/autoload.php';
 
+
 $defaultConfig = (new Mpdf\Config\ConfigVariables())->getDefaults();
 $fontDirs = $defaultConfig['fontDir'];
 
@@ -83,14 +84,22 @@ ob_start();
             }
             ?>
         </table>
-        <p align="right">ครูที่ปรึกษา : <i>Kong RuksiamStudio</i></p>
         <?php
-        $html = ob_get_contents();
-        $mpdf->WriteHTML($html);
-        $mpdf->Output("MyReport.pdf");
-        ob_end_flush();
+        try {
+            $html = ob_get_contents();
+            ob_clean();
+            $mpdf->WriteHTML($html);
+            //$mpdf->Output("บัญชีรายชื่อผู้ใช้.pdf",'F');
+            header('Content-Disposition: attachment; filename="รายที่อยู่จัดส่ง.pdf"');
+            $mpdf->Output();
+        } catch (\Mpdf\MpdfException $e) { // Note: safer fully qualified exception 
+            //       name used for catch
+            // Process the exception, log, print etc.
+            echo $e->getMessage();
+        }
+
+        exit;
         ?>
-        <a href="MyReport.pdf" class="btn btn-primary">โหลดผลการเรียน (pdf)</a>
+        <!-- <a href="MyReport.pdf" class="btn btn-primary">โหลดผลการเรียน (pdf)</a> -->
     </div>
 </body>
-© 2021 GitHub, Inc.

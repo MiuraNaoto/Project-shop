@@ -28,11 +28,11 @@
                             <div class="card-header card-bg">
                                 <div class="row">
                                     <div class="col-12">
-                                        <span class="link-active font-weight-bold" style="color:<?= $color ?>;">รายการสินค้า</span>
+                                        <span class="link-active font-weight-bold" style="color:<?= $color ?>;">บัญชีรายชื่อลูกค้า</span>
                                         <span style="float:right;">
                                             <i class="fas fa-bookmark"></i>
                                             <a class="link-path" href="../dashboard/dashboard.php">หน้าแรก</a>
-                                            <span> > รายการสินค้า</span>
+                                            <span> > บัญชีรายชื่อลูกค้า</span>
                                             <!-- <a class="link-path link-active" href="#" style="padding-top:20px;color:#006664">รายการสินค้า</a> -->
                                         </span>
                                     </div>
@@ -47,7 +47,7 @@
                             <!-- <h6 class="m-0 font-weight-bold text-primary">รายการสินค้า</h6> -->
                             <div class="form-row ">
                                 <div class="col-md-10 d-flex align-items-center">
-                                    <h6 class="m-0 font-weight-bold d-flex justify-content-start" style="color: #006664;">รายการสินค้า</h6>
+                                    <h6 class="m-0 font-weight-bold d-flex justify-content-start" style="color: #006664;">บัญชีรายชื่อลูกค้า</h6>
                                 </div>
                                 <div class="col-md-2 d-flex align-items-center align-self-center d-flex justify-content-end">
                                     <button class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i>&nbsp&nbsp เพิ่มรายการสินค้า</button>
@@ -199,7 +199,7 @@
             <!-- End of Main Content -->
             <?php
             include_once("../layout/footer.php");
-            include_once("productModal.php");
+            // include_once("productModal.php");
 
             ?>
             <script type="text/javascript" src="product.js"></script>

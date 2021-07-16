@@ -923,6 +923,8 @@
                                 <div class="col-lg-6">
                                     <div class="product__details__text">
                                         <h3>Essential structured blazer <span>Brand: SKMEIMore Men Watches from SKMEI</span></h3>
+                                        <span style="font-size: 14px; color: #444444;">รหัสสินค้า C03266</span>
+                                        <br>
                                         <div class="rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
