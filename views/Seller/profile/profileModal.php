@@ -214,3 +214,57 @@
         </div>
     </div>
 </div>
+
+<!-- ADD BANK -->
+<div class="modal fade" id="addBank" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" a aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">เพิ่มบัญชีธนาคาร</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="manage.php" method="post" enctype="multipart/form-data" id="editform" id="editForm" name="editform" role="form">
+
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <span>ชื่อธนาคาร<span class="text-danger"> *</span></span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <select name="title" id="bank" class="form-control">
+                                <option value="" disabled selected>เลือกธนาคาร</option>
+                                <option value="">ธนาคารไทยพาณิชย์</option>
+                                <option value="">ธนาคารกรุงไทย</option>
+                                <option value="">ธนาคารกสิกรไทย</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <span>ชื่อบัญชีธนาคาร<span class="text-danger"> *</span></span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <input type="text" class="form-control" id="bankname" name="bankname" placeholder="กรุณากรอกชื่อบัญชีธนาคาร" required="" oninput="setCustomValidity('')">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <span>เลขที่บัญชีธนาคาร<span class="text-danger"> *</span></span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <input type="text" class="form-control" id="bankname" name="bankname" placeholder="กรุณากรอกเลขที่บัญชีธนาคาร" required="" oninput="setCustomValidity('')">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <input type="hidden" id="hidden_id" name="request" value="insert_bank" />
+                    <button type="submit" id="edit" class="btn btn-danger" data-dismiss="modal" style="width: 70px;">ยกเลิก</button>
+                    <button type="submit" id="editsub" name="editsub" class="btn btn-success" style="width: 70px;">เพิ่ม</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -48,23 +48,26 @@
                             <div class="row">
                                 <div class="col-xl-12 col-12">
                                     <div class="card">
-                                        <div class="card-header card-bg font-weight-bold" style="color:<?= $color ?>;">
+                                        <div class="card-header card-bg font-weight-bold" style="color: #006664;">
                                             รูปโปรไฟล์
                                         </div>
                                         <div class="card-body">
                                             <div class="row d-flex justify-content-center d-flex align-items-center">
-                                                <img class="img-radius img-profile" src="../../../img/profile/vendor.png" width="350px" height="350px">
+                                                <img class="img-radius img-profile" src="../../../img/profile/vendor.png" width="270px" height="270px">
                                             </div>
                                             <div class="row mt-3">
                                                 <div class="col-xl-12 col-12">
                                                     <center>
+                                                        <button type="button" id="edit_photo" class="btn btn-success btn-md" title='เพิ่มบัญชีธนาคาร' data-toggle="modal" data-target="#addBank">
+                                                            <i class="fas fa-money-check-alt"></i>
+                                                        </button>
                                                         <button type="button" id="edit_photo" class="btn btn-primary btn-md" title='เปลี่ยนรูปโปรไฟล์'>
                                                             <i class="fas fa-image"></i>
                                                         </button>
                                                         <button type="button" id="btn_info" class="btn btn-warning btn-md" title='เปลี่ยนข้อมูลบัญชี' data-toggle="modal" data-target="#editModal">
                                                             <i class="fas fa-edit"></i>
                                                         </button>
-                                                        <button type="button" id="btn_pass" class="btn btn-success btn-md pass_edit" title='เปลี่ยนรหัสผ่าน' data-toggle="modal" data-target="#editPassModal">
+                                                        <button type="button" id="btn_pass" class="btn btn-secondary btn-md pass_edit" title='เปลี่ยนรหัสผ่าน' data-toggle="modal" data-target="#editPassModal">
                                                             <i class="fa fa-cog"></i>
                                                         </button>
                                                     </center>
@@ -74,10 +77,75 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row mt-4">
+                                <div class="col-xl-12 col-12">
+                                    <div class="card">
+                                        <div class="card-header card-bg font-weight-bold" style="color: #006664;">
+                                            บัญชีธนาคาร
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row mb-4">
+                                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
+                                                    <span>ธนาคาร :</span>
+                                                </div>
+                                                <div class="col-xl-9 col-12">
+                                                    <input type="text" class="form-control" id="title" value="ธนาคารไทยพาณิชย์" disabled>
+                                                    <!-- <span>ธนาคารไทยพาณิชย์</span> -->
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
+                                                    <span>ชื่อบัญชี :</span>
+                                                </div>
+                                                <div class="col-xl-9 col-12">
+                                                    <input type="text" class="form-control" id="title" value="ขายอะไรก็ไม่รู้ แต่อยากขายนะ" disabled>
+                                                    <!-- <span>ขายอะไรก็ไม่รู้ แต่อยากขายนะ</span> -->
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
+                                                    <span>เลขที่บัญชี :</span>
+                                                </div>
+                                                <div class="col-xl-9 col-12">
+                                                    <input type="text" class="form-control" id="title" value="769-356954-8" disabled>
+                                                    <!-- <span>769-356954-8</span> -->
+                                                </div>
+                                            </div>
+                                            <hr class="mt-4">
+                                            <div class="row mb-4">
+                                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
+                                                    <span>ธนาคาร :</span>
+                                                </div>
+                                                <div class="col-xl-9 col-12">
+                                                    <input type="text" class="form-control" id="title" value="ธนาคารกรุงไทย" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
+                                                    <span>ชื่อบัญชี :</span>
+                                                </div>
+                                                <div class="col-xl-9 col-12">
+                                                    <input type="text" class="form-control" id="title" value="ขายอะไรก็ไม่รู้ แต่อยากขายนะ" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
+                                                    <span>เลขที่บัญชี :</span>
+                                                </div>
+                                                <div class="col-xl-9 col-12">
+                                                    <input type="text" class="form-control" id="title" value="769-648956-1" disabled>
+                                                </div>
+                                            </div>
+                                            <hr class="mb-4">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-xl-8 col-12 mb-4">
                             <div class="card">
-                                <div class="card-header card-bg font-weight-bold" style="color:<?= $color ?>;">
+                                <div class="card-header card-bg font-weight-bold" style="color: #006664;">
                                     รายละเอียดบัญชี
                                 </div>
                                 <div class="card-body">
@@ -142,10 +210,11 @@
                                             <span>ที่อยู่ :</span>
                                         </div>
                                         <div class="col-xl-9 col-12">
-                                            <input type="text" class="form-control" id="mail" value="123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140" disabled>
+                                            <!-- <input type="text" class="form-control" id="mail" value="123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140" disabled> -->
+                                            <input type="text" class="form-control" id="mail" value="123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456" disabled>
                                         </div>
                                     </div>
-                                    <!-- <div class="row mb-4">
+                                    <div class="row mb-4">
                                         <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
                                             <span>ตำบล/แขวง :</span>
                                         </div>
@@ -176,7 +245,7 @@
                                         <div class="col-xl-9 col-12">
                                             <input type="text" class="form-control" id="mail" value="73140" disabled>
                                         </div>
-                                    </div> -->
+                                    </div>
                                     <div class="row mb-4">
                                         <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
                                             <span>จำนวนพนักงงาน : </span>

@@ -55,8 +55,22 @@
                                 <div class="card" style="width: 19rem;">
                                     <img class="card-img-top" src="../../../img/payment/SCB.png" alt="Card image cap">
                                     <div class="card-body text-center font-weight-bold">
-                                        <h5 class="card-title">เลขบัญชี</h5>
-                                        <h6 class="card-text">097-0-44XXX-X</h6>
+                                        <div class="row mt-2 mb-4 ">
+                                            <div class="col-md-5">
+                                                <h6 class="font-weight-bold d-flex justify-content-start" style="font-size: 18px;">เลขบัญชี</h6>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <h6 class="d-flex justify-content-start">097-0-44XXX-X</h6>
+                                            </div>
+                                        </div>
+                                        <div class="row  mt-4">
+                                            <div class="col-md-5">
+                                                <h6 class="font-weight-bold d-flex justify-content-start" style="font-size: 18px;">ชื่อบัญชี</h6>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <h6 class="d-flex justify-content-star">097-0-44XXX-X</h6>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -64,8 +78,22 @@
                                 <div class="card" style="width: 19rem;">
                                     <img class="card-img-top" src="../../../img/payment/กรุงไทย-1.jpg" alt="Card image cap">
                                     <div class="card-body text-center font-weight-bold">
-                                        <h5 class="card-title">เลขบัญชี</h5>
-                                        <h6 class="card-text">097-0-44XXX-X</h6>
+                                        <div class="row mt-2 mb-4 ">
+                                            <div class="col-md-5">
+                                                <h6 class="font-weight-bold d-flex justify-content-start" style="font-size: 18px;">เลขบัญชี</h6>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <h6 class="d-flex justify-content-start">097-0-44XXX-X</h6>
+                                            </div>
+                                        </div>
+                                        <div class="row  mt-4">
+                                            <div class="col-md-5">
+                                                <h6 class="font-weight-bold d-flex justify-content-start" style="font-size: 18px;">ชื่อบัญชี</h6>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <h6 class="d-flex justify-content-star">097-0-44XXX-X</h6>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -73,8 +101,22 @@
                                 <div class="card" style="width: 19rem;">
                                     <img class="card-img-top" src="../../../img/payment/promptpay.jpg" alt="Card image cap">
                                     <div class="card-body text-center font-weight-bold">
-                                        <h5 class="card-title">เลขบัญชี</h5>
-                                        <h6 class="card-text">098-765-4321</h6>
+                                        <div class="row mt-2 mb-4 ">
+                                            <div class="col-md-5">
+                                                <h6 class="font-weight-bold d-flex justify-content-start" style="font-size: 18px;">เลขบัญชี</h6>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <h6 class="d-flex justify-content-start">097-0-44XXX-X</h6>
+                                            </div>
+                                        </div>
+                                        <div class="row  mt-4">
+                                            <div class="col-md-5">
+                                                <h6 class="font-weight-bold d-flex justify-content-start" style="font-size: 18px;">ชื่อบัญชี</h6>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <h6 class="d-flex justify-content-star">097-0-44XXX-X</h6>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

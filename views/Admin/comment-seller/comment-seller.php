@@ -28,11 +28,11 @@
                             <div class="card-header card-bg">
                                 <div class="row">
                                     <div class="col-12">
-                                        <span class="link-active font-weight-bold" style="color:<?= $color ?>;">บัญชีรายชื่อผู้ขาย</span>
+                                        <span class="link-active font-weight-bold" style="color:<?= $color ?>;">คอมเมนต์ร้านค้า</span>
                                         <span style="float:right;">
                                             <i class="fas fa-bookmark"></i>
                                             <a class="link-path" href="../dashboard/dashboard.php">หน้าแรก</a>
-                                            <span> > บัญชีรายชื่อผู้ขาย</span>
+                                            <span> > คอมเมนต์ร้านค้า</span>
                                             <!-- <a class="link-path link-active" href="#" style="padding-top:20px;color:#006664">รายการสินค้า</a> -->
                                         </span>
                                     </div>
@@ -47,7 +47,7 @@
                             <!-- <h6 class="m-0 font-weight-bold text-primary">รายการสินค้า</h6> -->
                             <div class="form-row ">
                                 <div class="col-md-10 d-flex align-items-center">
-                                    <h6 class="m-0 font-weight-bold d-flex justify-content-start" style="color: #006664;">บัญชีรายชื่อผู้ขาย</h6>
+                                    <h6 class="m-0 font-weight-bold d-flex justify-content-start" style="color: #006664;">คอมเมนต์ร้านค้า</h6>
                                 </div>
                             </div>
                         </div>
@@ -115,10 +115,10 @@
             <!-- End of Main Content -->
             <?php
             include_once("../layout/footer.php");
-            include_once("sellerModal.php");
+            // include_once("sellerModal.php");
 
             ?>
-            <script type="text/javascript" src="seller.js"></script>
+            <!-- <script type="text/javascript" src="seller.js"></script> -->
         </div>
         <!-- End of Content Wrapper -->
 
