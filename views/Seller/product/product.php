@@ -60,7 +60,7 @@
                                     <thead>
                                         <tr>
                                             <th style="text-align: center;">รูปสินค้า</th>
-                                            <th style="width: 35%; text-align: center;">ชื่อสินค้า</th>
+                                            <th style="text-align: center;">ชื่อสินค้า</th>
                                             <th style="text-align: center;">ประเภทสินค้า</th>
                                             <th style="text-align: center;">ค่าจัดส่งสินค้า (บาท)</th>
                                             <th style="text-align: center;">ราคาจัดส่งสินค้า (บาท)</th>

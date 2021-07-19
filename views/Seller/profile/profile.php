@@ -229,7 +229,7 @@
                                 </div>
                                 <div class="card-body align-self-center">
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-6 col-sm-6" style="padding-left: 20px; padding-right: 20px;">
+                                        <div class="col-lg-4 col-md-6 col-sm-6">
                                             <div class="card">
                                                 <img class="card-img-top" src="../../../img/payment/SCB.png" alt="Card image cap">
                                                 <div class="card-body text-center font-weight-bold">
@@ -252,7 +252,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6" style="padding-left: 20px; padding-right: 20px;">
+                                        <div class="col-lg-4 col-md-6 col-sm-6">
                                             <div class="card">
                                                 <img class="card-img-top" src="../../../img/payment/กรุงไทย-1.jpg" alt="Card image cap">
                                                 <div class="card-body text-center font-weight-bold">
@@ -269,13 +269,13 @@
                                                             <h6 class="font-weight-bold d-flex justify-content-start">ชื่อบัญชี</h6>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <h6 class="d-flex justify-content-start">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
+                                                            <h6 class="text-left">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6" style="padding-left: 20px; padding-right: 20px;">
+                                        <!-- <div class="col-lg-3 col-md-6 col-sm-6">
                                             <div class="card">
                                                 <img class="card-img-top" src="../../../img/payment/kasikorn.png" alt="Card image cap">
                                                 <div class="card-body text-center font-weight-bold">
@@ -297,8 +297,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6" style="padding-left: 20px; padding-right: 20px;">
+                                        </div> -->
+                                        <div class="col-lg-4 col-md-6 col-sm-6">
                                             <div class="card">
                                                 <img class="card-img-top" src="../../../img/payment/promptpay.jpg" alt="Card image cap">
                                                 <div class="card-body text-center font-weight-bold">
