@@ -68,7 +68,7 @@
                                                 <h6 class="font-weight-bold d-flex justify-content-start" style="font-size: 18px;">ชื่อบัญชี</h6>
                                             </div>
                                             <div class="col-md-7">
-                                                <h6 class="d-flex justify-content-star">097-0-44XXX-X</h6>
+                                                <h6 class="d-flex justify-content-star">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -91,7 +91,7 @@
                                                 <h6 class="font-weight-bold d-flex justify-content-start" style="font-size: 18px;">ชื่อบัญชี</h6>
                                             </div>
                                             <div class="col-md-7">
-                                                <h6 class="d-flex justify-content-star">097-0-44XXX-X</h6>
+                                                <h6 class="d-flex justify-content-star">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -114,7 +114,7 @@
                                                 <h6 class="font-weight-bold d-flex justify-content-start" style="font-size: 18px;">ชื่อบัญชี</h6>
                                             </div>
                                             <div class="col-md-7">
-                                                <h6 class="d-flex justify-content-star">097-0-44XXX-X</h6>
+                                                <h6 class="d-flex justify-content-star">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
                                             </div>
                                         </div>
                                     </div>

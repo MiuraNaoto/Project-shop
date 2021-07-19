@@ -51,16 +51,14 @@
                                         <div class="card-header card-bg font-weight-bold" style="color: #006664;">
                                             รูปโปรไฟล์
                                         </div>
-                                        <div class="card-body">
-                                            <div class="row d-flex justify-content-center d-flex align-items-center">
-                                                <img class="img-radius img-profile" src="../../../img/profile/vendor.png" width="270px" height="270px">
+                                        <div class="card-body align-self-center mt-6" style="height: 458.26px; padding-top: 30px;">
+                                            <div class="row d-flex justify-content-center d-flex align-items-center mt-3 mb-4">
+                                                <img class="img-radius img-profile" src="../../../img/profile/vendor.png" width="300px" height="300px">
                                             </div>
-                                            <div class="row mt-3">
+                                            <div class="row mb-4">
                                                 <div class="col-xl-12 col-12">
                                                     <center>
-                                                        <button type="button" id="edit_photo" class="btn btn-success btn-md" title='เพิ่มบัญชีธนาคาร' data-toggle="modal" data-target="#addBank">
-                                                            <i class="fas fa-money-check-alt"></i>
-                                                        </button>
+
                                                         <button type="button" id="edit_photo" class="btn btn-primary btn-md" title='เปลี่ยนรูปโปรไฟล์'>
                                                             <i class="fas fa-image"></i>
                                                         </button>
@@ -77,71 +75,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row mt-4">
-                                <div class="col-xl-12 col-12">
-                                    <div class="card">
-                                        <div class="card-header card-bg font-weight-bold" style="color: #006664;">
-                                            บัญชีธนาคาร
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row mb-4">
-                                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                                    <span>ธนาคาร :</span>
-                                                </div>
-                                                <div class="col-xl-9 col-12">
-                                                    <input type="text" class="form-control" id="title" value="ธนาคารไทยพาณิชย์" disabled>
-                                                    <!-- <span>ธนาคารไทยพาณิชย์</span> -->
-                                                </div>
-                                            </div>
-                                            <div class="row mb-4">
-                                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                                    <span>ชื่อบัญชี :</span>
-                                                </div>
-                                                <div class="col-xl-9 col-12">
-                                                    <input type="text" class="form-control" id="title" value="ขายอะไรก็ไม่รู้ แต่อยากขายนะ" disabled>
-                                                    <!-- <span>ขายอะไรก็ไม่รู้ แต่อยากขายนะ</span> -->
-                                                </div>
-                                            </div>
-                                            <div class="row mb-4">
-                                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                                    <span>เลขที่บัญชี :</span>
-                                                </div>
-                                                <div class="col-xl-9 col-12">
-                                                    <input type="text" class="form-control" id="title" value="769-356954-8" disabled>
-                                                    <!-- <span>769-356954-8</span> -->
-                                                </div>
-                                            </div>
-                                            <hr class="mt-4">
-                                            <div class="row mb-4">
-                                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                                    <span>ธนาคาร :</span>
-                                                </div>
-                                                <div class="col-xl-9 col-12">
-                                                    <input type="text" class="form-control" id="title" value="ธนาคารกรุงไทย" disabled>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-4">
-                                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                                    <span>ชื่อบัญชี :</span>
-                                                </div>
-                                                <div class="col-xl-9 col-12">
-                                                    <input type="text" class="form-control" id="title" value="ขายอะไรก็ไม่รู้ แต่อยากขายนะ" disabled>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-4">
-                                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                                    <span>เลขที่บัญชี :</span>
-                                                </div>
-                                                <div class="col-xl-9 col-12">
-                                                    <input type="text" class="form-control" id="title" value="769-648956-1" disabled>
-                                                </div>
-                                            </div>
-                                            <hr class="mb-4">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="col-xl-8 col-12 mb-4">
                             <div class="card">
@@ -149,7 +82,7 @@
                                     รายละเอียดบัญชี
                                 </div>
                                 <div class="card-body">
-                                    <div class="row mb-4">
+                                    <div class="row mb-3">
                                         <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
                                             <span>ชื่อร้านค้า :</span>
                                         </div>
@@ -157,31 +90,31 @@
                                             <input type="text" class="form-control" id="title" value="ขายอะไรก็ไม่รู้ แต่อยากขายนะ" disabled>
                                         </div>
                                     </div>
-                                    <div class="row mb-4">
+                                    <!-- <div class="row mb-3">
                                         <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
                                             <span>คำนำหน้า :</span>
                                         </div>
                                         <div class="col-xl-9 col-12">
                                             <input type="text" class="form-control" id="firstname" value="นาย" disabled>
                                         </div>
-                                    </div>
-                                    <div class="row mb-4">
+                                    </div> -->
+                                    <div class="row mb-3">
                                         <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                            <span>ชื่อ :</span>
+                                            <span>ชื่อ-นามสกุล :</span>
                                         </div>
                                         <div class="col-xl-9 col-12">
-                                            <input type="text" class="form-control" id="firstname" value="มั่นหมาย" disabled>
+                                            <input type="text" class="form-control" id="firstname" value="นายมั่นหมาย หมายมั่น" disabled>
                                         </div>
                                     </div>
-                                    <div class="row mb-4">
+                                    <!-- <div class="row mb-3">
                                         <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
                                             <span>นามสกุล :</span>
                                         </div>
                                         <div class="col-xl-9 col-12">
                                             <input type="text" class="form-control" id="firstname" value="หมายมั่น" disabled>
                                         </div>
-                                    </div>
-                                    <div class="row mb-4">
+                                    </div> -->
+                                    <div class="row mb-3">
                                         <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
                                             <span>เบอร์โทร :</span>
                                         </div>
@@ -189,7 +122,7 @@
                                             <input type="text" class="form-control" id="firstname" value="098-765-4321" disabled>
                                         </div>
                                     </div>
-                                    <div class="row mb-4">
+                                    <div class="row mb-3">
                                         <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
                                             <span>อีเมล์ :</span>
                                         </div>
@@ -197,7 +130,7 @@
                                             <input type="text" class="form-control" id="mail" value="awaiwa@gmail.com" disabled>
                                         </div>
                                     </div>
-                                    <div class="row mb-4">
+                                    <div class="row mb-3">
                                         <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
                                             <span>ชื่อบัญชี : </span>
                                         </div>
@@ -205,16 +138,16 @@
                                             <input type="text" class="form-control" id="username" value="a-rai-wa" disabled>
                                         </div>
                                     </div>
-                                    <div class="row mb-4">
+                                    <div class="row mb-3">
                                         <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
                                             <span>ที่อยู่ :</span>
                                         </div>
                                         <div class="col-xl-9 col-12">
-                                            <!-- <input type="text" class="form-control" id="mail" value="123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140" disabled> -->
-                                            <input type="text" class="form-control" id="mail" value="123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456" disabled>
+                                            <input type="text" class="form-control" id="mail" value="123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140" disabled>
+                                            <!-- <input type="text" class="form-control" id="mail" value="123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456" disabled> -->
                                         </div>
                                     </div>
-                                    <div class="row mb-4">
+                                    <!-- <div class="row mb-4">
                                         <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
                                             <span>ตำบล/แขวง :</span>
                                         </div>
@@ -245,8 +178,8 @@
                                         <div class="col-xl-9 col-12">
                                             <input type="text" class="form-control" id="mail" value="73140" disabled>
                                         </div>
-                                    </div>
-                                    <div class="row mb-4">
+                                    </div> -->
+                                    <div class="row mb-3">
                                         <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
                                             <span>จำนวนพนักงงาน : </span>
                                         </div>
@@ -254,7 +187,7 @@
                                             <input type="number" class="form-control" id="staff" value="5" disabled>
                                         </div>
                                     </div>
-                                    <div class="row mb-4">
+                                    <div class="row mb-3">
                                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-right">
                                             <span>พนักงานประจำของร้านค้า</span>
                                         </div>
@@ -277,21 +210,136 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-xl-12 col-12 mb-4">
+                            <div class="card">
+                                <div class="card-header card-bg font-weight-bold" style="color: #006664;">
+                                    <div class="row">
+                                        <div class="col-md-8 d-flex align-items-center">
+                                            บัญชีธนาคาร
+                                        </div>
+                                        <div class="col-md-4 d-flex align-items-center d-flex justify-content-end">
+                                            <button type="button" id="edit_photo" class="btn btn-success btn-md" title='เพิ่มบัญชีธนาคาร' data-toggle="modal" data-target="#addBank">
+                                                <i class="fas fa-money-check-alt"></i>&nbsp;&nbsp;&nbsp;เพิ่มบัญชีธนาคาร
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="card-body align-self-center">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6 col-sm-6" style="padding-left: 20px; padding-right: 20px;">
+                                            <div class="card">
+                                                <img class="card-img-top" src="../../../img/payment/SCB.png" alt="Card image cap">
+                                                <div class="card-body text-center font-weight-bold">
+                                                    <div class="row mt-2 mb-4 ">
+                                                        <div class="col-md-4">
+                                                            <h6 class="font-weight-bold d-flex justify-content-start">เลขบัญชี</h6>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <h6 class="d-flex justify-content-start">097-0-44XXX-X</h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row  mt-4">
+                                                        <div class="col-md-4">
+                                                            <h6 class="font-weight-bold d-flex justify-content-start">ชื่อบัญชี</h6>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <h6 class="text-left">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6" style="padding-left: 20px; padding-right: 20px;">
+                                            <div class="card">
+                                                <img class="card-img-top" src="../../../img/payment/กรุงไทย-1.jpg" alt="Card image cap">
+                                                <div class="card-body text-center font-weight-bold">
+                                                    <div class="row mt-2 mb-4">
+                                                        <div class="col-md-4">
+                                                            <h6 class="font-weight-bold d-flex justify-content-start">เลขบัญชี</h6>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <h6 class="text-left">097-0-44XXX-X</h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row  mt-4">
+                                                        <div class="col-md-4">
+                                                            <h6 class="font-weight-bold d-flex justify-content-start">ชื่อบัญชี</h6>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <h6 class="d-flex justify-content-start">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6" style="padding-left: 20px; padding-right: 20px;">
+                                            <div class="card">
+                                                <img class="card-img-top" src="../../../img/payment/kasikorn.png" alt="Card image cap">
+                                                <div class="card-body text-center font-weight-bold">
+                                                    <div class="row mt-2 mb-4 ">
+                                                        <div class="col-md-4">
+                                                            <h6 class="font-weight-bold d-flex justify-content-start">เลขบัญชี</h6>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <h6 class="text-left">097-0-44XXX-X</h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row  mt-4">
+                                                        <div class="col-md-4">
+                                                            <h6 class="font-weight-bold d-flex justify-content-start">ชื่อบัญชี</h6>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <h6 class="text-left">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6" style="padding-left: 20px; padding-right: 20px;">
+                                            <div class="card">
+                                                <img class="card-img-top" src="../../../img/payment/promptpay.jpg" alt="Card image cap">
+                                                <div class="card-body text-center font-weight-bold">
+                                                    <div class="row mt-2 mb-4">
+                                                        <div class="col-md-4">
+                                                            <h6 class="font-weight-bold d-flex justify-content-start">เลขบัญชี</h6>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <h6 class="text-left">097-0-44XXX-X</h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row  mt-4">
+                                                        <div class="col-md-4">
+                                                            <h6 class="font-weight-bold d-flex justify-content-start">ชื่อบัญชี</h6>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <h6 class="d-flex justify-content-start">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- /.container-fluid -->
+
                 </div>
-
-                <!-- /.container-fluid -->
-
+                <!-- End of Main Content -->
+                <?php
+                include_once("../layout/footer.php");
+                include_once("profileModal.php");
+                ?>
             </div>
-            <!-- End of Main Content -->
-            <?php
-            include_once("../layout/footer.php");
-            include_once("profileModal.php");
-            ?>
-        </div>
-        <!-- End of Content Wrapper -->
+            <!-- End of Content Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
+        </div>
+        <!-- End of Page Wrapper -->
 
 </body>
 
