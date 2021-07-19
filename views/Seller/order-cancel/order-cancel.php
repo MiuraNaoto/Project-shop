@@ -30,11 +30,11 @@
                             <div class="card-header card-bg">
                                 <div class="row">
                                     <div class="col-12">
-                                        <span class="link-active font-weight-bold" style="color:<?= $color ?>;">รายการคำสั่งซื้อ</span>
+                                        <span class="link-active font-weight-bold" style="color:<?= $color ?>;">รายการคำสั่งซื้อที่ไม่อนุมัติ</span>
                                         <span style="float:right;">
                                             <i class="fas fa-bookmark"></i>
                                             <a class="link-path" href="../dashboard/dashboard.php">หน้าแรก</a>
-                                            <span> > รายการคำสั่งซื้อ</span>
+                                            <span> > รายการคำสั่งซื้อที่ไม่อนุมัติ</span>
                                             <!-- <a class="link-path link-active" href="#" style="padding-top:20px;color:#006664">รายการคำสั่งซื้อ</a> -->
                                         </span>
                                     </div>
@@ -46,7 +46,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold d-flex justify-content-start" style="color: #006664;">รายการคำสั่งซื้อ</h6>
+                            <h6 class="m-0 font-weight-bold d-flex justify-content-start" style="color: #006664;">รายการคำสั่งซื้อที่ไม่อนุมัติ</h6>
                         </div>
                         <div class="card-body">
                             <!-- <div class="row mb-2">
@@ -66,14 +66,14 @@
                                             <th style="text-align: center;">จำนวน</th>
                                             <th style="text-align: center;">ยอดรวม</th>
                                             <th style="text-align: center;">วัน-เวลาสั่งซื้อ</th>
-                                            <th style="width: 9%; text-align: center;">วิธีการ<br>ชำระเงิน</th>
-                                            <th style="text-align: center;">สถานะการชำระ</th>
+                                            <!-- <th style="width: 9%; text-align: center;">วิธีการ<br>ชำระเงิน</th> -->
+                                            <th style="text-align: center;">เหตุผล</th>
                                             <th style="width: 18%; text-align: center;">จัดการ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        for ($i = 1; $i < 101; $i++) {
+                                        for ($i = 1; $i < 5; $i++) {
                                         ?>
                                             <tr>
                                                 <td style="vertical-align: middle; text-align: center;"><?php echo $i; ?></td>
@@ -83,8 +83,8 @@
                                                 <td style="vertical-align: middle; text-align: end;">20</td>
                                                 <td style="vertical-align: middle; text-align: end;">2,400.00</td>
                                                 <td style="vertical-align: middle; text-align: end;">11/07/2564 17:30:14</td>
-                                                <td style="vertical-align: middle; text-align: end;">โอนผ่านธนาคาร</td>
-                                                <td style="vertical-align: middle; text-align: center;">กำลังตรวจสอบ</td>
+                                                <!-- <td style="vertical-align: middle; text-align: end;">โอนผ่านธนาคาร</td> -->
+                                                <td style="vertical-align: middle; text-align: center;">โอนเงินไม่ครบจำนวน</td>
                                                 <td style="text-align: center; vertical-align: middle;">
                                                     <button type="button" id="show" class="btn btn-primary btn-md" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#detailOderModal">
                                                         <i class="fas fa-bars"></i>
@@ -94,9 +94,6 @@
                                                     </button>
                                                     <button type="button" id="show" class="btn btn-success btn-md" title='ยืนยันการซื้อ'>
                                                         <i class="fas fa-check"></i>
-                                                    </button>
-                                                    <button type="button" id="show" class="btn btn-danger btn-md" title='ไม่ยืนยันการซื้อ' data-toggle="modal" data-target="#disapprovedModal">
-                                                        <i class="fas fa-ban"></i>
                                                     </button>
                                                 </td>
                                             </tr>
@@ -116,7 +113,7 @@
             <!-- End of Main Content -->
             <?php
             include_once("../layout/footer.php");
-            include_once("orderModal.php");
+            // include_once("orderModal.php");
             ?>
 
             <script type="text/javascript" src="order.js"></script>

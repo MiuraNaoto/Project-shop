@@ -86,11 +86,11 @@
                                             <td style="vertical-align: middle; text-align: end;">65</td>
                                             <td style="vertical-align: middle; text-align: end;">11/07/2564 17:30:14</td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <a href="../comment-seller/comment-seller.php">
+                                                <!-- <a href="../comment-seller/comment-seller.php">
                                                     <button type="button" id="btn_comment" class="btn btn-primary btn-md" title="ดูคอมเม้นของร้านค้า">
                                                         <i class="fas fa-comment-dots"></i>
                                                     </button>
-                                                </a>
+                                                </a> -->
                                                 <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลผู้ใช้' data-toggle="modal" data-target="#editModal">
                                                     <i class="fas fa-edit"></i>
                                                 </button>

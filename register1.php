@@ -70,7 +70,11 @@
 
                                         </div>
                                         <br>
-
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                            <label class="custom-control-label" for="customCheck1">เงื่อนไขและข้อตกลง</label>
+                                        </div>
+                                        <br>
                                         <button type="submit" class="btn btn-success" style="width: 100%;" type="submit">สมัครสมาชิก</button>
                                     </form>
                                 </div>

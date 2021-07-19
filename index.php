@@ -41,12 +41,18 @@
         <div class="offcanvas__close">+</div>
         <ul class="offcanvas__widget">
             <li><span class="icon_search search-switch"></span></li>
-            <li><a href="#"><span class="icon_heart_alt"></span>
+            <li>
+                <a href="#"><span class="icon_heart_alt"></span>
                     <div class="tip">2</div>
-                </a></li>
-            <li><a href="./shop-cart.html"><span class="icon_bag_alt"></span>
+                </a>
+            </li>
+            <li>
+                <a href="./shop-cart.html">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    <!-- <span class="icon_bag_alt"></span> -->
                     <div class="tip">2</div>
-                </a></li>
+                </a>
+            </li>
         </ul>
         <div class="offcanvas__logo">
             <a href="./index.html"><img src="img/logo.png" alt=""></a>
@@ -143,26 +149,37 @@
                 </div>
                 <div class="col-lg-3 align-self-center">
                     <div class="row d-flex justify-content-end">
-                        <div class="col-lg-6 text-light d-flex justify-content-end align-self-center">
-                            <a href="login.php" style="color: whitesmoke;">เข้าสู่ระบบ</a>
-                        </div>
-                        <div class="col-lg-1 text-light d-flex justify-content-end align-self-center">
-                            <hr style="height: 30px; width: 1px; background-color: whitesmoke; display:block;">
-                        </div>
-                        <div class="col-lg-2 align-self-center">
-                            <ul class="header__right__widget d-flex justify-content-center">
+                        <div class="col-lg-8 align-self-center ">
+                            <ul class="header__right__widget d-flex justify-content-end">
                                 <li>
                                     <a href="views/Customer/favorite/favorite.php"><span class="icon_heart_alt"></span>
                                         <div class="tip">2</div>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="views/Customer/shop-cart/shop-cart.php"><span class="icon_bag_alt"></span>
+                                    <a href="views/Customer/shop-cart/shop-cart.php">
+                                        <span class="icon_cart_alt"></span>
                                         <div class="tip">2</div>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="views/Customer/purchase/purchase.php">
+                                        <span class="icon_bag_alt"></span>
+
+                                        <div class="tip">3</div>
+                                    </a>
+                                </li>
+
+
                             </ul>
                         </div>
+                        <div class="col-lg-1 text-light d-flex justify-content-center align-self-center">
+                            <hr style="height: 30px; width: 1px; background-color: whitesmoke; display:block;">
+                        </div>
+                        <div class="col-lg-3 text-light d-flex justify-content-center align-self-center">
+                            <a href="login.php" style="color: whitesmoke;">เข้าสู่ระบบ</a>
+                        </div>
+
                     </div>
                 </div>
             </div>
