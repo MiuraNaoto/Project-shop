@@ -49,62 +49,114 @@
                             <h6 class="m-0 font-weight-bold d-flex justify-content-start" style="color: #006664;">รายการคำสั่งซื้อ</h6>
                         </div>
                         <div class="card-body">
-                            <!-- <div class="row mb-2">
-                                <div class="col-xl-3 col-12">
-                                    <button type="button" id="btn_excel" class="btn btn-outline-success btn-sm"><i class="fas fa-file-excel"></i> Excel</button>
-                                    <button type="button" id="btn_comfirm" class="btn btn-outline-danger btn-sm"><i class="fas fa-file-pdf"></i> PDF</button>
-                                </div>
-                            </div> -->
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th style="text-align: center;">ลำดับ</th>
-                                            <th style="text-align: center;">หมายเลข<br>คำสั่งซื้อ</th>
-                                            <th style="text-align: center;">ชื่อ-นามสกุล</th>
-                                            <th style="text-align: center;">รายการสินค้า</th>
-                                            <th style="text-align: center;">จำนวน</th>
-                                            <th style="text-align: center;">ยอดรวม</th>
-                                            <th style="text-align: center;">วัน-เวลาสั่งซื้อ</th>
-                                            <th style="width: 9%; text-align: center;">วิธีการ<br>ชำระเงิน</th>
-                                            <th style="text-align: center;">สถานะการชำระ</th>
-                                            <th style="width: 18%; text-align: center;">จัดการ</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for ($i = 1; $i < 101; $i++) {
-                                        ?>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="tap2-tab" data-toggle="tab" href="#tap1" role="tab" aria-controls="tap1" aria-selected="true">รายการคำสั่งซื้อ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tap2-tab" data-toggle="tab" href="#tap2" role="tab" aria-controls="tap2" aria-selected="false">รายการคำสั่งซื้อที่ไม่อนุมัติ</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent" style="margin-top:20px;">
+                                <div class="tab-pane fade show active" id="tap1" role="tabpanel" aria-labelledby="tap1-tab">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
                                             <tr>
-                                                <td style="vertical-align: middle; text-align: center;"><?php echo $i; ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo rand() ?></td>
-                                                <td style="vertical-align: middle; text-align: end;">นายก ขคง</td>
-                                                <td style="vertical-align: middle; text-align: end;">ชุดอิ่มคุ้ม</td>
-                                                <td style="vertical-align: middle; text-align: end;">20</td>
-                                                <td style="vertical-align: middle; text-align: end;">2,400.00</td>
-                                                <td style="vertical-align: middle; text-align: end;">11/07/2564 17:30:14</td>
-                                                <td style="vertical-align: middle; text-align: end;">โอนผ่านธนาคาร</td>
-                                                <td style="vertical-align: middle; text-align: center;">กำลังตรวจสอบ</td>
-                                                <td style="text-align: center; vertical-align: middle;">
-                                                    <button type="button" id="show" class="btn btn-primary btn-md" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#detailOderModal">
-                                                        <i class="fas fa-bars"></i>
-                                                    </button>
-                                                    <button type="button" id="show" class="btn btn-primary btn-md" title='หลักฐานการโอนเงิน' data-toggle="modal" data-target="#paymentModal">
-                                                        <i class="fas fa-image"></i>
-                                                    </button>
-                                                    <button type="button" id="show" class="btn btn-success btn-md" title='ยืนยันการซื้อ'>
-                                                        <i class="fas fa-check"></i>
-                                                    </button>
-                                                    <button type="button" id="show" class="btn btn-danger btn-md" title='ไม่ยืนยันการซื้อ' data-toggle="modal" data-target="#disapprovedModal">
-                                                        <i class="fas fa-ban"></i>
-                                                    </button>
-                                                </td>
+                                                <th style="text-align: center;">ลำดับ</th>
+                                                <th style="text-align: center;">หมายเลข<br>คำสั่งซื้อ</th>
+                                                <th style="text-align: center;">ชื่อ-นามสกุล</th>
+                                                <th style="text-align: center;">รายการสินค้า</th>
+                                                <th style="text-align: center;">จำนวน</th>
+                                                <th style="text-align: center;">ยอดรวม</th>
+                                                <th style="text-align: center;">วัน-เวลาสั่งซื้อ</th>
+                                                <th style="width: 9%; text-align: center;">วิธีการ<br>ชำระเงิน</th>
+                                                <th style="text-align: center;">สถานะการชำระ</th>
+                                                <th style="width: 18%; text-align: center;">จัดการ</th>
                                             </tr>
-                                        <?php
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            for ($i = 1; $i < 101; $i++) {
+                                            ?>
+                                                <tr>
+                                                    <td style="vertical-align: middle; text-align: center;"><?php echo $i; ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo rand() ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;">นายก ขคง</td>
+                                                    <td style="vertical-align: middle; text-align: end;">ชุดอิ่มคุ้ม</td>
+                                                    <td style="vertical-align: middle; text-align: end;">20</td>
+                                                    <td style="vertical-align: middle; text-align: end;">2,400.00</td>
+                                                    <td style="vertical-align: middle; text-align: end;">11/07/2564 17:30:14</td>
+                                                    <td style="vertical-align: middle; text-align: end;">โอนผ่านธนาคาร</td>
+                                                    <td style="vertical-align: middle; text-align: center;">กำลังตรวจสอบ</td>
+                                                    <td style="text-align: center; vertical-align: middle;">
+                                                        <button type="button" id="show" class="btn btn-primary btn-md" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#detailOderModal">
+                                                            <i class="fas fa-bars"></i>
+                                                        </button>
+                                                        <button type="button" id="show" class="btn btn-primary btn-md" title='หลักฐานการโอนเงิน' data-toggle="modal" data-target="#paymentModal">
+                                                            <i class="fas fa-image"></i>
+                                                        </button>
+                                                        <button type="button" id="show" class="btn btn-success btn-md" title='ยืนยันการซื้อ'>
+                                                            <i class="fas fa-check"></i>
+                                                        </button>
+                                                        <button type="button" id="show" class="btn btn-danger btn-md" title='ไม่ยืนยันการซื้อ' data-toggle="modal" data-target="#disapprovedModal">
+                                                            <i class="fas fa-ban"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="tap2" role="tabpanel" aria-labelledby="tap2-tab">
+                                    <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center;">ลำดับ</th>
+                                                <th style="text-align: center;">หมายเลข<br>คำสั่งซื้อ</th>
+                                                <th style="text-align: center;">ชื่อ-นามสกุล</th>
+                                                <th style="text-align: center;">รายการสินค้า</th>
+                                                <th style="text-align: center;">จำนวน</th>
+                                                <th style="text-align: center;">ยอดรวม</th>
+                                                <th style="text-align: center;">วัน-เวลาสั่งซื้อ</th>
+                                                <!-- <th style="width: 9%; text-align: center;">วิธีการ<br>ชำระเงิน</th> -->
+                                                <th style="text-align: center;">เหตุผล</th>
+                                                <th style="width: 18%; text-align: center;">จัดการ</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            for ($i = 1; $i < 5; $i++) {
+                                            ?>
+                                                <tr>
+                                                    <td style="vertical-align: middle; text-align: center;"><?php echo $i; ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo rand() ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;">นายก ขคง</td>
+                                                    <td style="vertical-align: middle; text-align: end;">ชุดอิ่มคุ้ม</td>
+                                                    <td style="vertical-align: middle; text-align: end;">20</td>
+                                                    <td style="vertical-align: middle; text-align: end;">2,400.00</td>
+                                                    <td style="vertical-align: middle; text-align: end;">11/07/2564 17:30:14</td>
+                                                    <!-- <td style="vertical-align: middle; text-align: end;">โอนผ่านธนาคาร</td> -->
+                                                    <td style="vertical-align: middle; text-align: center;">โอนเงินไม่ครบจำนวน</td>
+                                                    <td style="text-align: center; vertical-align: middle;">
+                                                        <button type="button" id="show" class="btn btn-primary btn-md" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#detailOderModal">
+                                                            <i class="fas fa-bars"></i>
+                                                        </button>
+                                                        <button type="button" id="show" class="btn btn-primary btn-md" title='หลักฐานการโอนเงิน' data-toggle="modal" data-target="#paymentModal">
+                                                            <i class="fas fa-image"></i>
+                                                        </button>
+                                                        <button type="button" id="show" class="btn btn-success btn-md" title='ยืนยันการซื้อ'>
+                                                            <i class="fas fa-check"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

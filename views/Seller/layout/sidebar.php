@@ -31,11 +31,11 @@
             <span>คำสั่งซื้อ</span></a>
     </li>
 
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link" href="../order-cancel/order-cancel.php">
             <i class="far fa-times-circle"></i>
             <span>คำสั่งซื้อที่ไม่อนุมัติ</span></a>
-    </li>
+    </li> -->
 
     <li class="nav-item">
         <a class="nav-link" href="../delivery/delivery.php">
