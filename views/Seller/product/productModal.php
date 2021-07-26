@@ -50,11 +50,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="hidden_id" name="request" value="insertUser" />
+                    <button type="submit" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+                    <button type="submit" id="insert" name="insert" class="btn btn-primary">พิมพ์ QR-CODE สินค้า</button>
+                </div>
+            </form>
         </div>
-        </form>
     </div>
-</div>
-</div>
 </div>
 
 <!-- ADDModal -->

@@ -91,9 +91,9 @@
                                                 <!-- <button type="button" id="btm_qrcode" class="btn btn-primary btn-md" title='ดู qr-code สินค้า' data-toggle="modal" data-target="#showQRcodeModal">
                                                     <i class="fas fa-bars"></i>
                                                 </button> -->
-                                                <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลผู้ใช้' data-toggle="modal" data-target="#editModal">
+                                                <!-- <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลผู้ใช้' data-toggle="modal" data-target="#editModal">
                                                     <i class="fas fa-edit"></i>
-                                                </button>
+                                                </button> -->
                                                 <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='บล็อคผู้ใช้' style="background-color: #e67e22; border-color: #e67e22;" onclick="banfunction('1','ขายอะไรก็ไม่รู้ แต่อยากขายนะ','นายมั่นหมาย หมายมั่น','a-rai-wa','65')">
                                                     <i class="fas fa-ban"></i>
                                                 </button>

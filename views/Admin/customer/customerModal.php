@@ -151,7 +151,7 @@
                             <span>ที่อยู่<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="address" name="address" placeholder="กรุณากรอกที่อยู่" value="123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456" required="" oninput="setCustomValidity('')">
+                            <input type="text" class="form-control" id="address" name="address" placeholder="กรุณากรอกที่อยู่" value="123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456" disabled>
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -159,10 +159,11 @@
                             <span>ตำบล/แขวง<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <select name="subdistrict" id="subdistrict" class="form-control">
+                            <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="กำแพงแสน" value="กำแพงแสน" required="" oninput="setCustomValidity('')" disabled>
+                            <!-- <select name="subdistrict" id="subdistrict" class="form-control">
                                 <option value="" disabled>เลือกตำบล/แขวง</option>
-                                <option value="" selected>กำแพงแสน</option>
-                            </select>
+                                <option value="" selected disabled>กำแพงแสน</option>
+                            </select> -->
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -170,14 +171,15 @@
                             <span>อำเภอ/เขต<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <select name="district" id="district" class="form-control">
+                            <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="กำแพงแสน" value="กำแพงแสน" required="" oninput="setCustomValidity('')" disabled>
+                            <!-- <select name="district" id="district" class="form-control">
                                 <option value="" disabled>เลือกอำเภอ/เขต</option>
-                                <option value="" selected>กำแพงแสน</option>
+                                <option value="" selected disabled>กำแพงแสน</option>
                                 <option value="">เมือง</option>
                                 <option value="">สามพราน</option>
                                 <option value="">นครชัยศรี</option>
                                 <option value="">บางเลน</option>
-                            </select>
+                            </select> -->
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -185,13 +187,14 @@
                             <span>จังหวัด<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <select name="provice" id="provice" class="form-control">
+                            <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="นครปฐม" value="นครปฐม" required="" oninput="setCustomValidity('')" disabled>
+                            <!-- <select name="provice" id="provice" class="form-control">
                                 <option value="" disabled>เลือกจังหวัด</option>
-                                <option value="" selected>นครปฐม</option>
+                                <option value="" selected disabled>นครปฐม</option>
                                 <option value="">กรุงเทพมหานคร</option>
                                 <option value="">ราชบุรี</option>
                                 <option value="">กาญจนบุรี</option>
-                            </select>
+                            </select> -->
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -199,7 +202,7 @@
                             <span>รหัสไปรษณีย์ <span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="กรุณากรอกรหัสไปรษณีย์" value="73140" required="" oninput="setCustomValidity('')">
+                            <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="กรุณากรอกรหัสไปรษณีย์" value="73140" required="" oninput="setCustomValidity('')" disabled>
                         </div>
                     </div>
                 </div>

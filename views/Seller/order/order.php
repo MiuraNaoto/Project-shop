@@ -45,9 +45,9 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
+                        <!-- <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold d-flex justify-content-start" style="color: #006664;">รายการคำสั่งซื้อ</h6>
-                        </div>
+                        </div> -->
                         <div class="card-body">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
@@ -121,7 +121,7 @@
                                                 <th style="text-align: center;">ยอดรวม</th>
                                                 <th style="text-align: center;">วัน-เวลาสั่งซื้อ</th>
                                                 <!-- <th style="width: 9%; text-align: center;">วิธีการ<br>ชำระเงิน</th> -->
-                                                <th style="text-align: center;">เหตุผล</th>
+                                                <th style="width: 18%; text-align: center;">เหตุผล</th>
                                                 <th style="width: 18%; text-align: center;">จัดการ</th>
                                             </tr>
                                         </thead>
@@ -138,8 +138,8 @@
                                                     <td style="vertical-align: middle; text-align: end;">2,400.00</td>
                                                     <td style="vertical-align: middle; text-align: end;">11/07/2564 17:30:14</td>
                                                     <!-- <td style="vertical-align: middle; text-align: end;">โอนผ่านธนาคาร</td> -->
-                                                    <td style="vertical-align: middle; text-align: center;">โอนเงินไม่ครบจำนวน</td>
-                                                    <td style="text-align: center; vertical-align: middle;">
+                                                    <td style="width: 12%; vertical-align: middle; text-align: center;">โอนเงินไม่ครบจำนวน</td>
+                                                    <td style="width: 15%;  text-align: center; vertical-align: middle;">
                                                         <button type="button" id="show" class="btn btn-primary btn-md" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#detailOderModal">
                                                             <i class="fas fa-bars"></i>
                                                         </button>
@@ -148,6 +148,9 @@
                                                         </button>
                                                         <button type="button" id="show" class="btn btn-success btn-md" title='ยืนยันการซื้อ'>
                                                             <i class="fas fa-check"></i>
+                                                        </button>
+                                                        <button type="button" id="show" class="btn btn-danger btn-md" title='ยกเลิกคำสั่งซื้อ' onclick="cancelfunction('1810089695	','ชุดสุดคุ้ม','อาหาร','ราคา','จำนวน')">
+                                                            <i class="fas fa-times"></i>
                                                         </button>
                                                     </td>
                                                 </tr>
