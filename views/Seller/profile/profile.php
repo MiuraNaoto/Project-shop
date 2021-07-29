@@ -124,6 +124,15 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
+                                            <span>ที่อยู่ :</span>
+                                        </div>
+                                        <div class="col-xl-9 col-12">
+                                            <input type="text" class="form-control" id="mail" value="123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140" disabled>
+                                            <!-- <input type="text" class="form-control" id="mail" value="123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456" disabled> -->
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
                                             <span>อีเมล์ :</span>
                                         </div>
                                         <div class="col-xl-9 col-12">
@@ -136,15 +145,6 @@
                                         </div>
                                         <div class="col-xl-9 col-12">
                                             <input type="text" class="form-control" id="username" value="a-rai-wa" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                            <span>ที่อยู่ :</span>
-                                        </div>
-                                        <div class="col-xl-9 col-12">
-                                            <input type="text" class="form-control" id="mail" value="123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140" disabled>
-                                            <!-- <input type="text" class="form-control" id="mail" value="123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456" disabled> -->
                                         </div>
                                     </div>
                                     <!-- <div class="row mb-4">
@@ -181,10 +181,10 @@
                                     </div> -->
                                     <div class="row mb-3">
                                         <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                            <span>จำนวนพนักงงาน : </span>
+                                            <span>เวลาทำการ : </span>
                                         </div>
                                         <div class="col-xl-9 col-12">
-                                            <input type="number" class="form-control" id="staff" value="5" disabled>
+                                            <input type="text" class="form-control" id="staff" value="08:00 -18.00" disabled>
                                         </div>
                                     </div>
                                     <div class="row mb-3">

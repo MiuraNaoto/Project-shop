@@ -105,6 +105,22 @@
                                     <span>คะแนน 4.5 <br> (จากคะแนนทั้งหมด 400)</span>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-1" style="padding: 0px;">
+                                    <i class="far fa-clock"></i>
+                                </div>
+                                <div class="col-md-11">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <span class="text-success">เปิดอยู่</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span> 10.00 - 18.00</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

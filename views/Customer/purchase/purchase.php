@@ -71,6 +71,10 @@
                                             <span class="mb-0 h6 text-muted" style="margin-right: 25px;">ยอดคำสั่งซื้อทั้งหมด </span>
                                             <span class="mb-0 h5" style="color: #FF6633;">฿10</span>
                                         </div>
+                                        <br>
+                                        <div class="col-12 d-flex justify-content-end align-self-center">
+                                            <button type="button" class="btn btn-danger text-light">ยกเลิกคำสั่งซื้อ</button>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>

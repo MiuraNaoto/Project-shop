@@ -130,6 +130,25 @@
                     </div>
                     <div class="row mb-4">
                         <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
+                            <span>เวลาทำการ <span class="text-danger"> *</span></span>
+                        </div>
+                        <div class="col-xl-9 col-12">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <input type="time" class="form-control" value="08:00" required="" oninput="setCustomValidity('')">
+                                </div>
+                                <div class="col-md-2" style="text-align: center;">
+                                    <span> - </span>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="time" class="form-control" value="18:00" required="" oninput="setCustomValidity('')">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
                             <span>จำนวนพนักงงาน <span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-xl-9 col-12">
@@ -158,6 +177,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <input type="hidden" name="e_time" id="e_time" />
 

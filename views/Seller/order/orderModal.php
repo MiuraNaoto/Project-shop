@@ -79,7 +79,13 @@
                         <span>เหตุผล <span class="text-danger"> *</span></span>
                     </div>
                     <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> -->
+                        <select name="title" id="title" class="form-control">
+                            <option value="" selected>เลือกเหตุผลที่ไม่อนุมัติ</option>
+                            <option value="">โอนเงินเกินจำนวน</option>
+                            <option value="">โอนเงินไม่ครบจำนวน</option>
+                            <option value="">อื่นๆ</option>
+                        </select>
                     </div>
                 </div>
 
@@ -91,6 +97,41 @@
         </div>
     </div>
 </div>
+
+
+<!-- AddbillOderModal -->
+<div class="modal fade" id="AddbillOderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">เพิ่มหลักฐานการโอนเงิน</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-4">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                        <span>หลักฐานการโอนเงิน <span class="text-danger"> *</span></span>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success">บันทึก</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- Detail Oder Modal -->
 <div class="modal fade" id="detailOderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -162,6 +203,14 @@
                     </div>
                     <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                         <input type="text" class="form-control" value="1 หมู่ 6 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140" disabled>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                        <span>เบอร์โทรศัพท์</span>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <input type="text" class="form-control" value="019-998-3211" disabled>
                     </div>
                 </div>
                 <div class="row mb-4">

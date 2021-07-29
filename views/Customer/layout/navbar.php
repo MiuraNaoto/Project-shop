@@ -53,6 +53,12 @@
                         <div class="col-lg-4 align-self-center">
                             <ul class="header__right__widget d-flex justify-content-center">
                                 <li>
+                                    <a href="../notification/notification.php">
+                                        <i class="fa fa-bell-o" aria-hidden="true"></i>
+                                        <div class="tip">1</div>
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="../favorite/favorite.php"><span class="icon_heart_alt"></span>
                                         <div class="tip">2</div>
                                     </a>
