@@ -30,7 +30,7 @@
                             <div class="card-header card-bg">
                                 <div class="row">
                                     <div class="col-12">
-                                        <span class="link-active font-weight-bold" style="color:<?= $color ?>;">รายการคำสั่งซื้อ</span>
+                                        <span class="link-active font-weight-bold" style="color:<?= $color ?>;">คำสั่งซื้อ</span>
                                         <span style="float:right;">
                                             <i class="fas fa-bookmark"></i>
                                             <a class="link-path" href="../dashboard/dashboard.php">หน้าแรก</a>

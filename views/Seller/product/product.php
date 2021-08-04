@@ -62,8 +62,8 @@
                                             <th style="text-align: center;">รูปสินค้า</th>
                                             <th style="text-align: center;">ชื่อสินค้า</th>
                                             <th style="text-align: center;">ประเภทสินค้า</th>
+                                            <th style="text-align: center;">ราคาสินค้า (บาท)</th>
                                             <th style="text-align: center;">ค่าจัดส่งสินค้า (บาท)</th>
-                                            <th style="text-align: center;">ราคาจัดส่งสินค้า (บาท)</th>
                                             <th style="text-align: center;">สินค้าคงคลัง (ชิ้น)</th>
                                             <th style="text-align: center;">ยอดขาย (ชิ้น)</th>
                                             <th style="text-align: center;">ยอดขายต่อ 1 สัปดาห์ (ชิ้น)</th>

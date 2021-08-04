@@ -126,17 +126,110 @@
 
                 <h5 style="padding-top: 80px;">แนบหลักฐานการโอนเงิน</h5>
                 <div class="row">
-                    <div class="col-lg-10 col-md-6 col-sm-6">
-                        <div class="checkout__form__input" style="padding-top: 30px;">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                                <label class="custom-file-label" for="validatedCustomFile">กรุณาแนหลักฐานการโอนเงิน</label>
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mb-4">
+                                    <div class="col-md-4">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-md-5">
+                                                <span>หมายเลขคำสั่งซื้อ</span>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" id="ordernumber" name="ordernumber" value="17500859897465" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-md-5">
+                                                <span>ช่องทางชำระเงิน</span>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <select class="form-control" id="exampleFormControlSelect1">
+                                                    <option disabled selected>กรุณาเลือกช่องทางชำระเงิน</option>
+                                                    <option>ATM</option>
+                                                    <option>Internet Banking</option>
+                                                    <option>ชำระผ่านเค้าท์เตอร์ธนาคาร</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-md-6">
+                                                <span>ชำระเงินผ่านธนาคาร</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <select class="form-control" id="exampleFormControlSelect1">
+                                                    <option disabled selected>กรุณาเลือกธนาคาร</option>
+                                                    <option>ธนาคารไทยพาณิชย์</option>
+                                                    <option>ธนาคารกรุงไทย</option>
+                                                    <option>ธนาคารทหารไทย</option>
+                                                    <option>ธนาคารกรุงเทพ</option>
+                                                    <option>ธนาคารทหารไทย</option>
+                                                    <option>ธนาคารกสิกร</option>
+                                                    <option>ธนาคารออมสิน</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-lg-12">
+                                        <div class="checkout__form__input">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                                                <label class="custom-file-label" for="validatedCustomFile">กรุณาแนหลักฐานการโอนเงิน</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-md-3">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-md-5">
+                                                <span>จำนวนเงิน</span>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input type="number" class="form-control" id="price" name="price" step="0.1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-md-5">
+                                                <span>วัน/เดือน/ปี</span>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input type="date" class="form-control" id="date" name="date">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-md-6">
+                                                <span>เวลาที่ชำระเงิน</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="time" class="form-control" id="time" name="time">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="checkout__form__input text-center">
+                                            <a href="../purchase/purchase.php"><button type="button" class="btn btn-success" style="width: 165px;">ยืนยัน</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6">
-                        <div class="checkout__form__input" style="padding-top: 30px;">
-                            <a href="../purchase/purchase.php"><button type="button" class="btn btn-success" style="width: 165px;">ยืนยัน</button></a>
+                            <!-- <div class="card-footer bg-transparent text-right">
+
+                            </div> -->
                         </div>
                     </div>
                 </div>
