@@ -38,7 +38,6 @@ if (sizeof($DATA) == 2) {
     $_SESSION[md5('typeid')] = $typeid;
     $_SESSION[md5('user')]   = $DATA;
     $_SESSION[md5($username . $password)] = $_SERVER['REQUEST_TIME'];
-    $_SESSION['chk_login'] = true;
 } else {
     header("location:login.php");
 }

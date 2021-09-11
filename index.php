@@ -1,10 +1,14 @@
 <?php
 session_start();
-$idUT = $_SESSION[md5('typeid')];
-$username = $_SESSION[md5('username')];
-$USER = $_SESSION[md5('user')];
-echo $username;
-echo print_r($USER);
+
+if(isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isset($_SESSION[md5('user')])){
+    $idUT = $_SESSION[md5('typeid')];
+    $username = $_SESSION[md5('username')];
+    $USER = $_SESSION[md5('user')];
+    echo $username;
+    echo print_r($USER);
+}
+
 ?>
 
 
