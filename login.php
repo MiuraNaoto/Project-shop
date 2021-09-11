@@ -80,7 +80,7 @@
                                             <label for="inputPassword">รหัสผ่าน</label>
 
                                             <div class="col-12" style="padding: 0px;">
-                                                <input class="form-control" type="password" name="password1" id="password1" placeholder="Password" required>
+                                                <input class="form-control" type="password" name="password" id="password" placeholder="Password" required>
                                                 <i class="fa fa-eye-slash eye-setting" id="hide1"></i>
                                             </div>
 

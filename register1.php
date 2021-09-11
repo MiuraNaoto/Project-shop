@@ -44,38 +44,40 @@
                                             <h6>สมัครมาชิก</h6>
                                             <br>
                                         </center>
-                                        <div class="form-label-group">
-                                            <label for="inputEmail">ชื่อผู้ใช้</label>
-                                            <div class="col-12" style="padding: 0px;">
-                                                <input type="text" name="username" id="username" class="form-control" placeholder="กรุณากรอกชื่อบัญชี" required autofocus>
+                                        <div class="container" id="regester1">
+                                            <div class="form-label-group">
+                                                <label for="inputEmail">ชื่อผู้ใช้</label>
+                                                <div class="col-12" style="padding: 0px;">
+                                                    <input type="text" name="username" id="username" class="form-control" placeholder="กรุณากรอกชื่อบัญชี" required autofocus>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-label-group">
-                                            <label for="inputPassword">รหัสผ่าน</label>
+                                            <br>
+                                            <div class="form-label-group">
+                                                <label for="inputPassword">รหัสผ่าน</label>
 
-                                            <div class="col-12" style="padding: 0px;">
-                                                <input class="form-control" type="password" name="password1" id="password1" placeholder="กรุณากรอกรหัสผ่าน" required>
-                                                <!-- <i class="fa fa-eye-slash eye-setting" id="hide1"></i> -->
+                                                <div class="col-12" style="padding: 0px;">
+                                                    <input class="form-control" type="password" name="password1" id="password1" placeholder="กรุณากรอกรหัสผ่าน" required>
+                                                    <!-- <i class="fa fa-eye-slash eye-setting" id="hide1"></i> -->
+                                                </div>
+
                                             </div>
+                                            <br>
+                                            <div class="form-label-group">
+                                                <label for="inputPassword">ยืนยันรหัสผ่าน</label>
+                                                <div class="col-12" style="padding: 0px;">
+                                                    <input class="form-control" type="password" name="password1" id="password1" placeholder="กรุณากรอกรหัสผ่านยืนยัน" required>
+                                                    <!-- <i class="fa fa-eye-slash eye-setting" id="hide1"></i> -->
+                                                </div>
 
-                                        </div>
-                                        <br>
-                                        <div class="form-label-group">
-                                            <label for="inputPassword">ยืนยันรหัสผ่าน</label>
-                                            <div class="col-12" style="padding: 0px;">
-                                                <input class="form-control" type="password" name="password1" id="password1" placeholder="กรุณากรอกรหัสผ่านยืนยัน" required>
-                                                <!-- <i class="fa fa-eye-slash eye-setting" id="hide1"></i> -->
                                             </div>
-
+                                            <br>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                <label class="custom-control-label" for="customCheck1">เงื่อนไขและข้อตกลง</label>
+                                            </div>
+                                            <br>
+                                            <button type="submit" class="btn btn-success" style="width: 100%;" type="submit">สมัครสมาชิก</button>
                                         </div>
-                                        <br>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                            <label class="custom-control-label" for="customCheck1">เงื่อนไขและข้อตกลง</label>
-                                        </div>
-                                        <br>
-                                        <button type="submit" class="btn btn-success" style="width: 100%;" type="submit">สมัครสมาชิก</button>
                                     </form>
                                 </div>
                             </div>
