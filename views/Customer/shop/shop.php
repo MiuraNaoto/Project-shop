@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+    include_once("./shop_query.php");
+    $data = getAllProduct();
+    echo json_encode($data);
+    echo $data[1]['product_id'];
+    echo "<br>" . count($data);
+?>
+
 <head>
     <?php include_once("../layout/header.php") ?>
 </head>
@@ -232,8 +240,65 @@
                         </div>
                     </div>
                 </div>
+
+                
+
                 <div class="col-lg-9 col-md-9">
                     <div class="row">
+                        <?php
+                           for($i=1 ; $i<count($data) ; $i++){
+                                echo '<div class="col-lg-4 col-md-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="'. $data[$i]['picture'] .'product-'. $i .'.jpg">
+                                        <div class="label new">New</div>
+                                        <ul class="product__hover">
+                                            <li><a href="'. $data[$i]['picture'] .'product-'. $i .'.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                            <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                            <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product__item__text">
+                                        <h6><a href="../product_detail/product-details.php">' . $data[$i]['product_name'] . '</a></h6>
+                                        <div class="rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="product__price">$'. $data[$i]['price'] .'</div>
+                                    </div>
+                                </div>
+                            </div>';
+                           }
+                        ?>
+
+                         <!--
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="../../../img/product/details/product-1.jpg">
+                                    <div class="label new">New</div>
+                                    <ul class="product__hover">
+                                        <li><a href="../../../img/product/details/product-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="../product_detail/product-details.php">Furry hooded parka</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">$ 59.0</div>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                         <!--
                         <div class="col-lg-4 col-md-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="../../../img/product/details/product-1.jpg">
@@ -261,7 +326,7 @@
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="../../../img/shop/shop-2.jpg">
                                     <ul class="product__hover">
-                                        <li><a href="img/shop/shop-2.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="../../../img/shop/shop-2.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
                                         <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                         <li><a href="#"><span class="icon_bag_alt"></span></a></li>
                                     </ul>
@@ -444,6 +509,7 @@
                                 <a href="#"><i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
+-->
                     </div>
                 </div>
             </div>

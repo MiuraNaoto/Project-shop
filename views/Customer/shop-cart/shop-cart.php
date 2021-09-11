@@ -40,6 +40,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <!--
                                 <tr>
                                     <td class="cart__product__item">
                                         <img src="../../../img/shop-cart/cp-1.jpg" alt="">
@@ -132,6 +133,7 @@
                                     <td class="cart__total">$ 110.0</td>
                                     <td class="cart__close"><span class="icon_close"></span></td>
                                 </tr>
+-->
                             </tbody>
                         </table>
                     </div>
@@ -145,7 +147,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="cart__btn update__btn">
-                        <a href="../shop/shop.php"><span class="icon_loading"></span> Update cart</a>
+                        <a href="./shop-cart.php"><span class="icon_loading"></span> Update cart</a>
                     </div>
                 </div>
             </div>
