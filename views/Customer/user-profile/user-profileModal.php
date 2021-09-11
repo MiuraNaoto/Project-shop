@@ -1,3 +1,8 @@
+<?php
+include_once("../../../query/query.php");
+?>
+
+
 <!-- Edit Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" a aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -85,7 +90,7 @@
 </div>
 
 
-<!-- Add  -->
+<!-- Add Address -->
 <div class="modal fade" id="insertAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" a aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -101,11 +106,13 @@
                         <span>คำนำหน้า<span class="text-danger"> *</span></span>
                     </div>
                     <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <select name="title" id="title" class="form-control">
-                            <option value="" selected disabled>เลือกคำนำหน้า</option>
-                            <option value="">นาย</option>
-                            <option value="">นาง</option>
-                            <option value="">นางสาว</option>
+                        <select name="title" id="title" class="form-control" required>
+                            <option value="" selected disabled>กรุณาเลือกคำนำหน้า</option>
+                            <?php
+                            $USER_TITLE = getUserTitle();
+                            for ($i = 1; $i < count($USER_TITLE); $i++) {
+                                echo '<option value="' . $USER_TITLE[$i]["id"] . '">' . $USER_TITLE[$i]["title"] . '</option>';
+                            } ?>
                         </select>
                     </div>
                 </div>
@@ -114,7 +121,7 @@
                         <span>ชื่อจริง <span class="text-danger"> *</span></span>
                     </div>
                     <div class="col-xl-9 col-12">
-                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="กรุณากรอกชื่อจริง">
+                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="กรุณากรอกชื่อจริง" required>
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -122,7 +129,7 @@
                         <span>นามสกุล <span class="text-danger"> *</span></span>
                     </div>
                     <div class="col-xl-9 col-12">
-                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="กรุณากรอกนามสกุล">
+                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="กรุณากรอกนามสกุล" required>
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -130,28 +137,29 @@
                         <span>เบอร์โทรศัพท์ <span class="text-danger"> *</span></span>
                     </div>
                     <div class="col-xl-9 col-12">
-                        <input type="text" class="form-control" id="tel" name="tel" placeholder="กรุณากรอกเบอร์โทรศัพท์">
+                        <input type="text" class="form-control" id="tel" name="tel" placeholder="กรุณากรอกเบอร์โทรศัพท์" required>
                     </div>
                 </div>
-                <div class="row mb-4">
+                <!-- <div class="row mb-4">
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
                         <span>รหัสไปรษณีย์ <span class="text-danger"> *</span></span>
                     </div>
                     <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                         <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="กรุณากรอกรหัสไปรษณีย์" required="" oninput="setCustomValidity('')">
                     </div>
-                </div>
+                </div> -->
                 <div class="row mb-4">
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
                         <span>จังหวัด<span class="text-danger"> *</span></span>
                     </div>
                     <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <select name="provice" id="provice" class="form-control">
-                            <option value="" selected disabled>เลือกจังหวัด</option>
-                            <option value="">นครปฐม</option>
-                            <option value="">กรุงเทพมหานคร</option>
-                            <option value="">ราชบุรี</option>
-                            <option value="">กาญจนบุรี</option>
+                        <select name="provice" id="provice" class="form-control" required>
+                            <option value="" selected disabled>กรุณาเลือกจังหวัด</option>
+                            <?php
+                            $PROVINCE = getProvince();
+                            for ($i = 1; $i < count($PROVINCE); $i++) {
+                                echo '<option value="' . $PROVINCE[$i]["id"] . '">' . $PROVINCE[$i]["name_in_thai"] . '</option>';
+                            } ?>
                         </select>
                     </div>
                 </div>
@@ -160,13 +168,13 @@
                         <span>อำเภอ/เขต<span class="text-danger"> *</span></span>
                     </div>
                     <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <select name="district" id="district" class="form-control">
-                            <option value="" selected disabled>เลือกอำเภอ/เขต</option>
-                            <option value="">กำแพงแสน</option>
-                            <option value="">เมือง</option>
-                            <option value="">สามพราน</option>
-                            <option value="">นครชัยศรี</option>
-                            <option value="">บางเลน</option>
+                        <select name="district" id="district" class="form-control" required>
+                            <option value="" selected disabled>กรุณาเลือกอำเภอ/เขต</option>
+                            <?php
+                            $DISTRICTS = getDistricts();
+                            for ($i = 1; $i < count($DISTRICTS); $i++) {
+                                echo '<option value="' . $DISTRICTS[$i]["id"] . '">' . $DISTRICTS[$i]["name_in_thai"] . '</option>';
+                            } ?>
                         </select>
                     </div>
                 </div>
@@ -175,9 +183,13 @@
                         <span>ตำบล/แขวง<span class="text-danger"> *</span></span>
                     </div>
                     <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <select name="subdistrict" id="subdistrict" class="form-control">
-                            <option value="" selected disabled>เลือกตำบล/แขวง</option>
-                            <option value="">กำแพงแสน</option>
+                        <select name="subdistrict" id="subdistrict" class="form-control" required>
+                            <option value="" selected disabled>กรุณาเลือกตำบล/แขวง</option>
+                            <?php
+                            $SUBDISTRICTS = getSubDistricts();
+                            for ($i = 1; $i < count($SUBDISTRICTS); $i++) {
+                                echo '<option value="' . $SUBDISTRICTS[$i]["id"] . '">' . $SUBDISTRICTS[$i]["name_in_thai"] . '</option>';
+                            } ?>
                         </select>
                     </div>
                 </div>
@@ -186,14 +198,15 @@
                         <span>ที่อยู่ <span class="text-danger"> *</span></span>
                     </div>
                     <div class="col-xl-9 col-12">
-                        <input type="text" class="form-control" id="address" name="address" placeholder="กรุณากรอกที่อยู่">
+                        <input type="text" class="form-control" id="address" name="address" placeholder="กรุณากรอกที่อยู่" required>
                     </div>
                 </div>
 
             </div>
+            <input type="hidden" id="insert_address" name="insert_address" value="insert_address" />
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
-                <button type="button" class="btn btn-success">เพิ่มที่อยู่จัดส่ง</button>
+                <button type="submit" id="add_address" name="add_address" class="btn btn-success">เพิ่มที่อยู่จัดส่ง</button>
             </div>
         </div>
     </div>

@@ -1,3 +1,22 @@
+<?php
+include_once("../../../query/query.php");
+session_start();
+// $idUT = $_SESSION[md5('typeid')];
+// $username = $_SESSION[md5('username')];
+$USER = $_SESSION[md5('user')];
+echo print_r($USER);
+echo "<br>" . "<br>";
+// $SUBDISTRICTS = getSubDistricts();
+// echo print_r($SUBDISTRICTS);
+function format_phonenumber($phonenumber)
+{
+    if (preg_match('/^(\d{3})(\d{3})(\d{4})$/',  $phonenumber,  $matches)) {
+        $result = $matches[1] . '-' . $matches[2] . '-' . $matches[3];
+    }
+    return $result;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +55,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row d-flex justify-content-center d-flex align-items-center">
-                                        <img class="img-radius img-profile" src="../../../img/profile/vendor.png" width="350px" height="350px">
+                                        <img class="img-radius img-profile" src='<?php echo  "../../../img/profile/" . $USER[1]["profile_user"] ?>' width="350px" height="350px">
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-xl-12 col-12">
@@ -73,7 +92,7 @@
                                     <span>ชื่อบัญชี :</span>
                                 </div>
                                 <div class="col-xl-9 col-12">
-                                    <input type="text" class="form-control" id="title" value="test_customer" disabled>
+                                    <input type="text" class="form-control" id="title" value="<?php echo $USER[1]["username"] ?>" disabled>
                                 </div>
                             </div>
                             <div class="row mb-4">
@@ -81,7 +100,7 @@
                                     <span>เบอร์โทรศัพท์ :</span>
                                 </div>
                                 <div class="col-xl-9 col-12">
-                                    <input type="text" class="form-control" id="firstname" value="089-657-1234" disabled>
+                                    <input type="text" class="form-control" id="firstname" value="<?php echo format_phonenumber($USER[1]["tel"]); ?>" disabled>
                                 </div>
                             </div>
                         </div>
@@ -159,6 +178,7 @@
     include_once("../layout/js.php");
     include_once("user-profileModal.php");
     ?>
+    <script src="user-profile.js"></script>
 </body>
 
 </html>
