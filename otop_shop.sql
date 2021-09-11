@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2021 at 05:58 PM
+-- Generation Time: Sep 11, 2021 at 07:26 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.0
 
@@ -54,6 +54,7 @@ CREATE TABLE `bank_account` (
 
 CREATE TABLE `delivery_address` (
   `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
   `title` int(11) NOT NULL,
   `firstname` varchar(90) NOT NULL,
   `lastname` varchar(90) NOT NULL,
@@ -61,6 +62,13 @@ CREATE TABLE `delivery_address` (
   `address` varchar(255) NOT NULL,
   `subdistrict` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `delivery_address`
+--
+
+INSERT INTO `delivery_address` (`id`, `uid`, `title`, `firstname`, `lastname`, `tel`, `address`, `subdistrict`) VALUES
+(1, 1, 1, 'test', 'test', '0987654321', '112', 1);
 
 -- --------------------------------------------------------
 
@@ -83,8 +91,8 @@ CREATE TABLE `delivery_type` (
 CREATE TABLE `districts` (
   `id` int(11) NOT NULL,
   `code` int(11) NOT NULL,
-  `name_in_thai` varchar(150) NOT NULL,
-  `name_in_english` varchar(150) NOT NULL,
+  `districts_name_in_thai` varchar(150) NOT NULL,
+  `districts_name_in_english` varchar(150) NOT NULL,
   `province_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -92,7 +100,7 @@ CREATE TABLE `districts` (
 -- Dumping data for table `districts`
 --
 
-INSERT INTO `districts` (`id`, `code`, `name_in_thai`, `name_in_english`, `province_id`) VALUES
+INSERT INTO `districts` (`id`, `code`, `districts_name_in_thai`, `districts_name_in_english`, `province_id`) VALUES
 (1, 1001, 'เขต พระนคร', 'Phra Nakhon', 1),
 (2, 1002, 'เขต ดุสิต', 'Dusit', 1),
 (3, 1003, 'เขต หนองจอก', 'Nong Chok', 1),
@@ -1086,15 +1094,15 @@ CREATE TABLE `product_type` (
 CREATE TABLE `provinces` (
   `id` int(11) NOT NULL,
   `code` int(11) NOT NULL,
-  `name_in_thai` varchar(150) NOT NULL,
-  `name_in_english` varchar(150) NOT NULL
+  `provinces_name_in_thai` varchar(150) NOT NULL,
+  `provinces_name_in_english` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `provinces`
 --
 
-INSERT INTO `provinces` (`id`, `code`, `name_in_thai`, `name_in_english`) VALUES
+INSERT INTO `provinces` (`id`, `code`, `provinces_name_in_thai`, `provinces_name_in_english`) VALUES
 (1, 10, 'กรุงเทพมหานคร', 'Bangkok'),
 (2, 11, 'สมุทรปราการ', 'Samut Prakarn'),
 (3, 12, 'นนทบุรี', 'Nonthaburi'),
@@ -1205,8 +1213,8 @@ CREATE TABLE `sales_demand` (
 CREATE TABLE `subdistricts` (
   `id` int(11) NOT NULL,
   `code` int(11) NOT NULL,
-  `name_in_thai` varchar(150) NOT NULL,
-  `name_in_english` varchar(150) DEFAULT NULL,
+  `subdistricts_name_in_thai` varchar(150) NOT NULL,
+  `subdistricts_name_in_english` varchar(150) DEFAULT NULL,
   `latitude` decimal(6,3) NOT NULL,
   `longitude` decimal(6,3) NOT NULL,
   `district_id` int(11) NOT NULL,
@@ -1217,7 +1225,7 @@ CREATE TABLE `subdistricts` (
 -- Dumping data for table `subdistricts`
 --
 
-INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
+INSERT INTO `subdistricts` (`id`, `code`, `subdistricts_name_in_thai`, `subdistricts_name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
 (1, 100101, 'พระบรมมหาราชวัง', 'Phra Borom Maha Ratchawang', '13.751', '100.492', 1, 10200),
 (2, 100102, 'วังบูรพาภิรมย์', 'Wang Burapha Phirom', '13.744', '100.499', 1, 10200),
 (3, 100103, 'วัดราชบพิธ', 'Wat Ratchabophit', '13.750', '100.499', 1, 10200),
@@ -1942,7 +1950,7 @@ INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `la
 (722, 170105, 'หัวไผ่', 'Hua Phai', '14.965', '100.429', 104, 16000),
 (723, 170106, 'ต้นโพธิ์', 'Ton Pho', '14.869', '100.398', 104, 16000),
 (724, 170107, 'จักรสีห์', 'Chaksi', '14.836', '100.398', 104, 16000);
-INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
+INSERT INTO `subdistricts` (`id`, `code`, `subdistricts_name_in_thai`, `subdistricts_name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
 (725, 170108, 'บางกระบือ', 'Bang Krabue', '14.907', '100.363', 104, 16000),
 (726, 170201, 'สิงห์', 'Sing', '14.890', '100.338', 105, 16130),
 (727, 170202, 'ไม้ดัด', 'Mai Dat', '14.858', '100.345', 105, 16130),
@@ -2638,7 +2646,7 @@ INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `la
 (1417, 270601, 'อรัญประเทศ', 'Aranya Prathet', '13.680', '102.517', 194, 27120),
 (1418, 270602, 'เมืองไผ่', 'Mueang Phai', '13.651', '102.427', 194, 27120),
 (1419, 270603, 'หันทราย', 'Han Sai', '13.806', '102.452', 194, 27120);
-INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
+INSERT INTO `subdistricts` (`id`, `code`, `subdistricts_name_in_thai`, `subdistricts_name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
 (1420, 270604, 'คลองน้ำใส', 'Khlong Nam Sai', '13.590', '102.514', 194, 27120),
 (1421, 270605, 'ท่าข้าม', 'Tha Kham', '13.639', '102.531', 194, 27120),
 (1422, 270606, 'ป่าไร่', 'Pa Rai', '13.745', '102.585', 194, 27120),
@@ -3338,9 +3346,9 @@ INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `la
 (2116, 330405, 'สังเม็ก', 'Sang Mek', '14.643', '104.729', 273, 33110),
 (2117, 330406, 'น้ำอ้อม', 'Nam Om', '14.660', '104.657', 273, 33110),
 (2118, 330407, 'ละลาย', 'Lalai', '14.444', '104.547', 273, 33110),
-(2119, 330408, 'รุง', 'Rung', '14.480', '104.630', 273, 33110),
-(2120, 330409, 'ตระกาจ', 'Trakat', '14.712', '104.596', 273, 33110);
-INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
+(2119, 330408, 'รุง', 'Rung', '14.480', '104.630', 273, 33110);
+INSERT INTO `subdistricts` (`id`, `code`, `subdistricts_name_in_thai`, `subdistricts_name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
+(2120, 330409, 'ตระกาจ', 'Trakat', '14.712', '104.596', 273, 33110),
 (2121, 330411, 'จานใหญ่', 'Chan Yai', '14.724', '104.655', 273, 33110),
 (2122, 330412, 'ภูเงิน', 'Phu Ngoen', '14.745', '104.571', 273, 33110),
 (2123, 330413, 'ชำ', 'Cham', '14.543', '104.575', 273, 33110),
@@ -4049,10 +4057,10 @@ INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `la
 (2826, 390205, 'กุดดินจี่', 'Kut Din Chi', '17.349', '102.273', 358, 39350),
 (2827, 390206, 'ฝั่งแดง', 'Fang Daeng', '17.221', '102.223', 358, 39170),
 (2828, 390207, 'เก่ากลอย', 'Kao Kloi', '17.397', '102.339', 358, 39350),
-(2829, 390209, 'โนนเมือง', 'Non Mueang', '17.181', '102.154', 358, 39170),
+(2829, 390209, 'โนนเมือง', 'Non Mueang', '17.181', '102.154', 358, 39170);
+INSERT INTO `subdistricts` (`id`, `code`, `subdistricts_name_in_thai`, `subdistricts_name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
 (2830, 390210, 'อุทัยสวรรค์', 'Uthai Sawan', '17.235', '102.143', 358, 39170),
-(2831, 390211, 'ดงสวรรค์', 'Dong Sawan', '17.443', '102.193', 358, 39350);
-INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
+(2831, 390211, 'ดงสวรรค์', 'Dong Sawan', '17.443', '102.193', 358, 39350),
 (2832, 390213, 'กุดแห่', 'Kut Hae', '17.391', '102.149', 358, 39170),
 (2833, 390301, 'โนนสัง', 'Non Sang', '16.872', '102.560', 359, 39140),
 (2834, 390302, 'บ้านถิ่น', 'Ban Thin', '16.987', '102.527', 359, 39140),
@@ -4751,10 +4759,10 @@ INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `la
 (3527, 450206, 'บ้านฝาง', 'Ban Fang', '15.703', '103.452', 446, 45150),
 (3528, 450207, 'หนองแวง', 'Nong Waeng', '15.741', '103.631', 446, 45150),
 (3529, 450208, 'กำแพง', 'Kamphaeng', '15.560', '103.496', 446, 45150),
-(3530, 450209, 'กู่กาสิงห์', 'Ku Ka Sing', '15.591', '103.655', 446, 45150),
+(3530, 450209, 'กู่กาสิงห์', 'Ku Ka Sing', '15.591', '103.655', 446, 45150);
+INSERT INTO `subdistricts` (`id`, `code`, `subdistricts_name_in_thai`, `subdistricts_name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
 (3531, 450210, 'น้ำอ้อม', 'Nam Om', '15.639', '103.511', 446, 45150),
-(3532, 450211, 'โนนสว่าง', 'Non Sawang', '15.704', '103.506', 446, 45150);
-INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
+(3532, 450211, 'โนนสว่าง', 'Non Sawang', '15.704', '103.506', 446, 45150),
 (3533, 450212, 'ทุ่งทอง', 'Thung Thong', '15.487', '103.451', 446, 45150),
 (3534, 450213, 'ดงครั่งน้อย', 'Dong Khrang Noi', '15.511', '103.617', 446, 45150),
 (3535, 450301, 'บัวแดง', 'Bua Daeng', '15.650', '103.359', 447, 45190),
@@ -5454,10 +5462,10 @@ INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `la
 (4229, 501402, 'สันทรายน้อย', 'San Sai Noi', '18.819', '99.024', 533, 50210),
 (4230, 501403, 'สันพระเนตร', 'San Phranet', '18.808', '99.038', 533, 50210),
 (4231, 501404, 'สันนาเม็ง', 'San Na Meng', '18.842', '99.062', 533, 50210),
-(4232, 501405, 'สันป่าเปา', 'San Pa Pao', '18.861', '99.084', 533, 50210),
+(4232, 501405, 'สันป่าเปา', 'San Pa Pao', '18.861', '99.084', 533, 50210);
+INSERT INTO `subdistricts` (`id`, `code`, `subdistricts_name_in_thai`, `subdistricts_name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
 (4233, 501406, 'หนองแหย่ง', 'Nong Yaeng', '18.911', '99.101', 533, 50210),
-(4234, 501407, 'หนองจ๊อม', 'Nong Chom', '18.852', '99.023', 533, 50210);
-INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
+(4234, 501407, 'หนองจ๊อม', 'Nong Chom', '18.852', '99.023', 533, 50210),
 (4235, 501408, 'หนองหาร', 'Nong Han', '18.930', '99.014', 533, 50290),
 (4236, 501410, 'แม่แฝกใหม่', 'Mae Faek Mai', '19.026', '99.007', 533, 50290),
 (4237, 501411, 'เมืองเล็น', 'Mueang Len', '18.896', '99.080', 533, 50210),
@@ -6165,10 +6173,10 @@ INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `la
 (4939, 600108, 'บางพระหลวง', 'Bang Phra Luang', '15.771', '100.188', 632, 60000),
 (4940, 600109, 'บางม่วง', 'Bang Muang', '15.755', '100.110', 632, 60000),
 (4941, 600110, 'บ้านมะเกลือ', 'Ban Makluea', '15.801', '100.143', 632, 60000),
-(4942, 600111, 'บ้านแก่ง', 'Ban Kaeng', '15.788', '100.057', 632, 60000),
+(4942, 600111, 'บ้านแก่ง', 'Ban Kaeng', '15.788', '100.057', 632, 60000);
+INSERT INTO `subdistricts` (`id`, `code`, `subdistricts_name_in_thai`, `subdistricts_name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
 (4943, 600112, 'พระนอน', 'Phra Non', '15.663', '100.216', 632, 60000),
-(4944, 600113, 'วัดไทรย์', 'Wat Sai', '15.735', '100.080', 632, 60000);
-INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
+(4944, 600113, 'วัดไทรย์', 'Wat Sai', '15.735', '100.080', 632, 60000),
 (4945, 600114, 'หนองกรด', 'Nong Krot', '15.724', '99.997', 632, 60240),
 (4946, 600115, 'หนองกระโดน', 'Nong Kradon', '15.804', '99.965', 632, 60240),
 (4947, 600116, 'หนองปลิง', 'Nong Pling', '15.645', '100.169', 632, 60000),
@@ -6862,11 +6870,11 @@ INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `la
 (5635, 670809, 'บึงสามพัน', 'Bueng Sam Phan', '15.791', '101.022', 712, 67160),
 (5636, 670901, 'น้ำหนาว', 'Nam Nao', '16.764', '101.681', 713, 67260),
 (5637, 670902, 'หลักด่าน', 'Lak Dan', '16.937', '101.477', 713, 67260),
-(5638, 670903, 'วังกวาง', 'Wang Kwang', '16.936', '101.595', 713, 67260),
+(5638, 670903, 'วังกวาง', 'Wang Kwang', '16.936', '101.595', 713, 67260);
+INSERT INTO `subdistricts` (`id`, `code`, `subdistricts_name_in_thai`, `subdistricts_name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
 (5639, 670904, 'โคกมน', 'Khok Mon', '16.709', '101.710', 713, 67260),
 (5640, 671001, 'วังโป่ง', 'Wang Pong', '16.347', '100.809', 714, 67240),
-(5641, 671002, 'ท้ายดง', 'Thai Dong', '16.297', '100.678', 714, 67240);
-INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
+(5641, 671002, 'ท้ายดง', 'Thai Dong', '16.297', '100.678', 714, 67240),
 (5642, 671003, 'ซับเปิบ', 'Sap Poep', '16.362', '100.918', 714, 67240),
 (5643, 671004, 'วังหิน', 'Wang Hin', '16.387', '100.754', 714, 67240),
 (5644, 671005, 'วังศาล', 'Wang San', '16.283', '100.758', 714, 67240),
@@ -7558,12 +7566,12 @@ INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `la
 (6330, 800611, 'การะเกด', 'Karaket', '8.073', '100.154', 783, 80190),
 (6331, 800612, 'เขาพระบาท', 'Khao Phrabat', '8.084', '100.191', 783, 80190),
 (6332, 800613, 'แม่เจ้าอยู่หัว', 'Mae Chao Yu Hua', '8.075', '100.094', 783, 80190),
-(6333, 800701, 'ชะอวด', 'Cha-Uat', '7.996', '100.020', 784, 80180),
+(6333, 800701, 'ชะอวด', 'Cha-Uat', '7.996', '100.020', 784, 80180);
+INSERT INTO `subdistricts` (`id`, `code`, `subdistricts_name_in_thai`, `subdistricts_name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
 (6334, 800702, 'ท่าเสม็ด', 'Tha Samet', '7.949', '100.017', 784, 80180),
 (6335, 800703, 'ท่าประจะ', 'Tha Pracha', '7.973', '99.960', 784, 80180),
 (6336, 800704, 'เคร็ง', 'Khreng', '7.952', '100.103', 784, 80180),
-(6337, 800705, 'วังอ่าง', 'Wang Ang', '7.927', '99.886', 784, 80180);
-INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
+(6337, 800705, 'วังอ่าง', 'Wang Ang', '7.927', '99.886', 784, 80180),
 (6338, 800706, 'บ้านตูล', 'Ban Tun', '8.070', '100.000', 784, 80180),
 (6339, 800707, 'ขอนหาด', 'Khon Hat', '7.872', '100.059', 784, 80180),
 (6340, 800708, 'เกาะขันธ์', 'Ko Khan', '7.910', '99.935', 784, 80180),
@@ -8278,13 +8286,13 @@ INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `la
 (7049, 921003, 'ตะเสะ', 'Tase', '7.183', '99.599', 884, 92120),
 (7050, 930101, 'คูหาสวรรค์', 'Khu Ha Sa Wan', '7.625', '100.085', 885, 93000),
 (7051, 930103, 'เขาเจียก', 'Khao Chiak', '7.624', '100.039', 885, 93000),
-(7052, 930104, 'ท่ามิหรำ', 'Tha Mi Ram', '7.589', '100.050', 885, 93000),
+(7052, 930104, 'ท่ามิหรำ', 'Tha Mi Ram', '7.589', '100.050', 885, 93000);
+INSERT INTO `subdistricts` (`id`, `code`, `subdistricts_name_in_thai`, `subdistricts_name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
 (7053, 930105, 'โคกชะงาย', 'Khok Cha Ngai', '7.615', '100.003', 885, 93000),
 (7054, 930106, 'นาท่อม', 'Na Thom', '7.585', '100.002', 885, 93000),
 (7055, 930107, 'ปรางหมู่', 'Prang Mu', '7.647', '100.068', 885, 93000),
 (7056, 930108, 'ท่าแค', 'Tha Khae', '7.545', '100.050', 885, 93000),
-(7057, 930109, 'ลำปำ', 'Lam Pam', '7.651', '100.141', 885, 93000);
-INSERT INTO `subdistricts` (`id`, `code`, `name_in_thai`, `name_in_english`, `latitude`, `longitude`, `district_id`, `zip_code`) VALUES
+(7057, 930109, 'ลำปำ', 'Lam Pam', '7.651', '100.141', 885, 93000),
 (7058, 930110, 'ตำนาน', 'Tamnan', '7.572', '100.083', 885, 93000),
 (7059, 930111, 'ควนมะพร้าว', 'Khuan Ma Phrao', '7.588', '100.124', 885, 93000),
 (7060, 930112, 'ร่มเมือง', 'Rom Mueang', '7.556', '100.008', 885, 93000),
@@ -8615,7 +8623,6 @@ CREATE TABLE `user-list` (
   `username` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
   `tel` varchar(10) NOT NULL,
-  `address_user` int(11) DEFAULT NULL,
   `title_id` int(11) DEFAULT NULL,
   `firstname` varchar(90) DEFAULT NULL,
   `lastname` varchar(90) DEFAULT NULL,
@@ -8644,9 +8651,9 @@ CREATE TABLE `user-list` (
 -- Dumping data for table `user-list`
 --
 
-INSERT INTO `user-list` (`uid`, `username`, `password`, `tel`, `address_user`, `title_id`, `firstname`, `lastname`, `email`, `address_shop`, `subdistrict_shop`, `have_product`, `sd_id`, `quantity_product`, `full_time_staff`, `temporary_staff`, `donthave`, `quantity_staff`, `time_open`, `time_closed`, `profile_user`, `profile_shop`, `u-is-admin`, `u-is-user`, `u-is-saler`, `modify_user`, `modify_saler`) VALUES
-(1, 'test', '811cb34edaf1f230f587a368cd0ca6c2', '0987654321', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'default_user.png', NULL, 0, 1, 0, 1631367575, NULL),
-(2, 'admin', 'f6fdffe48c908deb0f4c3bd36c032e72', '0987654321', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'default_user.png', 'default_saler.png', 1, 1, 1, 1631367692, 1631367692);
+INSERT INTO `user-list` (`uid`, `username`, `password`, `tel`, `title_id`, `firstname`, `lastname`, `email`, `address_shop`, `subdistrict_shop`, `have_product`, `sd_id`, `quantity_product`, `full_time_staff`, `temporary_staff`, `donthave`, `quantity_staff`, `time_open`, `time_closed`, `profile_user`, `profile_shop`, `u-is-admin`, `u-is-user`, `u-is-saler`, `modify_user`, `modify_saler`) VALUES
+(1, 'test', '811cb34edaf1f230f587a368cd0ca6c2', '0987654321', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'default_user.png', NULL, 0, 1, 0, 1631367575, NULL),
+(2, 'admin', 'f6fdffe48c908deb0f4c3bd36c032e72', '0987654321', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'default_user.png', 'default_saler.png', 1, 1, 1, 1631367692, 1631367692);
 
 -- --------------------------------------------------------
 
@@ -8704,7 +8711,8 @@ ALTER TABLE `bank_account`
 ALTER TABLE `delivery_address`
   ADD PRIMARY KEY (`id`),
   ADD KEY `subdistrict` (`subdistrict`),
-  ADD KEY `title` (`title`);
+  ADD KEY `title` (`title`),
+  ADD KEY `uid` (`uid`);
 
 --
 -- Indexes for table `delivery_type`
@@ -8788,8 +8796,7 @@ ALTER TABLE `user-list`
   ADD UNIQUE KEY `username` (`username`),
   ADD KEY `subdistrict_shop` (`subdistrict_shop`),
   ADD KEY `sd_id` (`sd_id`),
-  ADD KEY `title_id` (`title_id`),
-  ADD KEY `address_user` (`address_user`);
+  ADD KEY `title_id` (`title_id`);
 
 --
 -- Indexes for table `user-title`
@@ -8823,7 +8830,7 @@ ALTER TABLE `bank_account`
 -- AUTO_INCREMENT for table `delivery_address`
 --
 ALTER TABLE `delivery_address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `delivery_type`
@@ -8919,7 +8926,8 @@ ALTER TABLE `bank_account`
 --
 ALTER TABLE `delivery_address`
   ADD CONSTRAINT `delivery_address_ibfk_1` FOREIGN KEY (`title`) REFERENCES `user-title` (`id`),
-  ADD CONSTRAINT `delivery_address_ibfk_2` FOREIGN KEY (`subdistrict`) REFERENCES `subdistricts` (`id`);
+  ADD CONSTRAINT `delivery_address_ibfk_2` FOREIGN KEY (`subdistrict`) REFERENCES `subdistricts` (`id`),
+  ADD CONSTRAINT `delivery_address_ibfk_3` FOREIGN KEY (`uid`) REFERENCES `user-list` (`uid`);
 
 --
 -- Constraints for table `districts`
@@ -8962,8 +8970,7 @@ ALTER TABLE `subdistricts`
 ALTER TABLE `user-list`
   ADD CONSTRAINT `user-list_ibfk_1` FOREIGN KEY (`title_id`) REFERENCES `user-title` (`id`),
   ADD CONSTRAINT `user-list_ibfk_2` FOREIGN KEY (`subdistrict_shop`) REFERENCES `subdistricts` (`id`),
-  ADD CONSTRAINT `user-list_ibfk_3` FOREIGN KEY (`sd_id`) REFERENCES `sales_demand` (`id`),
-  ADD CONSTRAINT `user-list_ibfk_4` FOREIGN KEY (`address_user`) REFERENCES `delivery_address` (`id`);
+  ADD CONSTRAINT `user-list_ibfk_3` FOREIGN KEY (`sd_id`) REFERENCES `sales_demand` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
