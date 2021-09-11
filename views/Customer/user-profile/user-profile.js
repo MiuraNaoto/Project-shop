@@ -1,7 +1,10 @@
 $(document).ready(function () {
   $(document).on("click", "#add_address", function (e) {
-      
-      var title = $("#title").val();
-      
+
+    $("#title").on("change", function () {
+      var title = $(this).val();
+    });
+
+    var title
   });
 });

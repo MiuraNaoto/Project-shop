@@ -66,24 +66,24 @@
                          <div class="col-lg-4 align-self-center ">
                              <ul class="header__right__widget d-flex justify-content-end">
                                  <li>
-                                     <a href="./views/Customer/notification/notification.php">
+                                     <a href="../notification/notification.php">
                                          <i class="fa fa-bell-o" aria-hidden="true"></i>
                                          <div class="tip">1</div>
                                      </a>
                                  </li>
                                  <li>
-                                     <a href="views/Customer/favorite/favorite.php"><span class="icon_heart_alt"></span>
+                                     <a href="../favorite/favorite.php"><span class="icon_heart_alt"></span>
                                          <div class="tip">2</div>
                                      </a>
                                  </li>
                                  <li>
-                                     <a href="views/Customer/shop-cart/shop-cart.php">
+                                     <a href="../shop-cart/shop-cart.php">
                                          <span class="icon_cart_alt"></span>
                                          <div class="tip">2</div>
                                      </a>
                                  </li>
                                  <li>
-                                     <a href="views/Customer/purchase/purchase.php">
+                                     <a href="../purchase/purchase.php">
                                          <span class="icon_bag_alt"></span>
 
                                          <div class="tip">3</div>
@@ -97,10 +97,10 @@
                          <div class="col-lg-7 text-light align-self-center">
                              <div class="row">
                                  <div class="col-lg-6 d-flex justify-content-center" style="padding: 0px;">
-                                     <a href="register-seller.php" style="color: whitesmoke;">Seller Centre</a>
+                                     <a href="../../../register-seller.php" style="color: whitesmoke;">Seller Centre</a>
                                  </div>
                                  <div class="col-lg-4 d-flex justify-content-center" style="padding: 0px;">
-                                     <a href="./views/Customer/user-profile/user-profile.php" style="color: whitesmoke;">Profile</a>
+                                     <a href="../user-profile/user-profile.php" style="color: whitesmoke;">Profile</a>
                                  </div>
                                  <div class="col-lg-2 d-flex justify-content-center" style="padding: 0px;">
                                      <a href="../../../logout.php" style="color: whitesmoke;"><i class="fa fa-power-off fa-lg" aria-hidden="true"></i></a>
