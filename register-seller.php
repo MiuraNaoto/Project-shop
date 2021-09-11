@@ -61,7 +61,7 @@
                                             <img src="img/icon/default-image-620x600.jpg" width="215px">
                                         </div>
                                         <div class="col custom-file ">
-                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <input type="file" class="custom-file-input" id="customFile" name="customFile" accept="image/png, image/jpeg">
                                             <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>
@@ -70,11 +70,11 @@
                                             <label>คุณมีสินค้าพร้อมจำหน่ายหรือไม่ <span class="text-danger">*</span></label>
                                             <br>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input " type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                                                <input class="form-check-input " type="radio" name="exampleRadios" id="have_product" value="option1">
                                                 <label class="form-check-label" for="exampleRadios1">มีสินค้าพร้อมจำหน่าย</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                                <input class="form-check-input" type="radio" name="exampleRadios" id="havent_product" value="option2">
                                                 <label class="form-check-label" for="exampleRadios2">ไม่มีสินค้าพร้อมจำหน่าย</label>
                                             </div>
                                         </div>
@@ -170,7 +170,7 @@
                                                                 <div class="col-lg-5">
                                                                     <input type="time" class="form-control" id="time" name="time" placeholder="กรุณากรอกเวลาเปิด" required>
                                                                 </div>
-                                                                <div class="col-lg-2"  style="text-align: center;">
+                                                                <div class="col-lg-2" style="text-align: center;">
                                                                     <span> - </span>
                                                                 </div>
                                                                 <div class="col-lg-5">
@@ -282,8 +282,11 @@
 
         <!-- sweet alert -->
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     </div>
     <!-- End of Content Wrapper -->
 

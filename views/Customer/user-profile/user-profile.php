@@ -50,6 +50,7 @@ echo print_r($ADDRESS_USER);
                                     <div class="row d-flex justify-content-center d-flex align-items-center">
                                         <img class="img-radius img-profile" src='<?php echo  "../../../img/profile/" . $USER[1]["profile_user"] ?>' width="350px" height="350px">
                                     </div>
+                                    <br>
                                     <div class="row mt-3">
                                         <div class="col-xl-12 col-12">
                                             <center>
@@ -58,10 +59,9 @@ echo print_r($ADDRESS_USER);
                                                 </button>
                                                 <button type="button" class="btn btn-success btn-md" title='เพิ่มที่อยู่จัดส่ง' data-toggle="modal" data-target="#insertAddress">
                                                     <i class="fas fa-plus"></i>
+                                                    <span>&nbsp;เพิ่มที่อยู่จัดส่ง</span>
                                                 </button>
-                                                <button type="button" id="btn_info" class="btn btn-warning btn-md text-light" title='เปลี่ยนข้อมูลบัญชี' data-toggle="modal" data-target="#editModal">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
+
                                                 <button type="button" id="btn_pass" class="btn btn-secondary btn-md pass_edit" title='เปลี่ยนรหัสผ่าน' data-toggle="modal" data-target="#editPassModal">
                                                     <i class="fa fa-cog"></i>
                                                 </button>
@@ -76,7 +76,19 @@ echo print_r($ADDRESS_USER);
                 <div class="col-xl-8 col-12 mb-4">
                     <div class="card mb-4">
                         <div class="card-header card-bg font-weight-bold" style="color:<?= $color ?>;">
-                            รายละเอียดบัญชี
+                            <div class="row">
+                                <div class="col-md-8 align-self-center">
+                                    <span>
+                                        รายละเอียดบัญชี
+                                    </span>
+                                </div>
+                                <div class="col-md-4 d-flex justify-content-end">
+                                    <button type="button" id="btn_info" class="btn btn-warning btn-md text-light" title='เปลี่ยนข้อมูลบัญชี' data-toggle="modal" data-target="#editModal">
+                                        <i class="fas fa-edit"></i>
+                                        <span>&nbsp;แก้ไขรายละเอียดบัญชี</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -105,12 +117,13 @@ echo print_r($ADDRESS_USER);
                                 <div class="row">
                                     <div class="col-md-8 align-self-center">
                                         <span>
-                                            ที่อยู่จัดส่ง
+                                            <?php echo "ที่อยู่จัดส่ง " . $i; ?>
                                         </span>
                                     </div>
                                     <div class="col-md-4 d-flex justify-content-end">
-                                        <button type="button" id="btn_info" class="btn btn-warning text-light" title='เปลี่ยนข้อมูลบัญชี' data-toggle="modal" data-target="#editAddress">
+                                        <button type="button" id="<?php echo $ADDRESS_USER[$i]["daid"] ?>" class="btn btn-warning text-light" title='เปลี่ยนข้อมูลบัญชี' data-toggle="modal" data-target="#editAddress">
                                             <i class="fas fa-edit"></i>
+                                            <span>&nbsp;<?php echo "แก้ไขที่อยู่จัดส่ง " . $i ?></span>
                                         </button>
                                     </div>
                                 </div>
@@ -174,6 +187,7 @@ echo print_r($ADDRESS_USER);
                             </div>
                         </div>
                     <?php
+
                     }
                     ?>
 

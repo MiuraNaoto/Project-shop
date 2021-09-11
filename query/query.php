@@ -8,6 +8,13 @@ function getUserTitle()
     return $DATA;
 }
 
+function getUser($uid)
+{
+    $sql = "SELECT * FROM `user-list` WHERE `uid` = $uid";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
 function getAddressUser($uid)
 {
     $sql = "SELECT * FROM `delivery_address`
@@ -17,7 +24,6 @@ function getAddressUser($uid)
                     INNER JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id`
                     WHERE `delivery_address`.`uid` = $uid";
     $DATA = selectData($sql);
-    print_r($DATA);
     return $DATA;
 }
 
