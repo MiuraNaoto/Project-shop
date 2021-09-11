@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2021 at 07:26 PM
+-- Generation Time: Sep 11, 2021 at 09:27 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.0
 
@@ -53,7 +53,7 @@ CREATE TABLE `bank_account` (
 --
 
 CREATE TABLE `delivery_address` (
-  `id` int(11) NOT NULL,
+  `daid` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
   `title` int(11) NOT NULL,
   `firstname` varchar(90) NOT NULL,
@@ -67,8 +67,12 @@ CREATE TABLE `delivery_address` (
 -- Dumping data for table `delivery_address`
 --
 
-INSERT INTO `delivery_address` (`id`, `uid`, `title`, `firstname`, `lastname`, `tel`, `address`, `subdistrict`) VALUES
-(1, 1, 1, 'test', 'test', '0987654321', '112', 1);
+INSERT INTO `delivery_address` (`daid`, `uid`, `title`, `firstname`, `lastname`, `tel`, `address`, `subdistrict`) VALUES
+(1, 1, 1, 'test', 'test', '0987654321', '112', 1),
+(2, 1, 1, 'ชิษณุชา', 'สุวรรณ', '0987654321', '85', 5),
+(3, 1, 1, 'ttt', 'ttt', '0123456789', 'e32', 15),
+(4, 1, 1, 'ชิษณุชา', 'สุวรรณ', '0123456789', '85', 10),
+(5, 1, 3, 'gg', 'gg', '0123456789', '321', 12);
 
 -- --------------------------------------------------------
 
@@ -8652,7 +8656,7 @@ CREATE TABLE `user-list` (
 --
 
 INSERT INTO `user-list` (`uid`, `username`, `password`, `tel`, `title_id`, `firstname`, `lastname`, `email`, `address_shop`, `subdistrict_shop`, `have_product`, `sd_id`, `quantity_product`, `full_time_staff`, `temporary_staff`, `donthave`, `quantity_staff`, `time_open`, `time_closed`, `profile_user`, `profile_shop`, `u-is-admin`, `u-is-user`, `u-is-saler`, `modify_user`, `modify_saler`) VALUES
-(1, 'test', '811cb34edaf1f230f587a368cd0ca6c2', '0987654321', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'default_user.png', NULL, 0, 1, 0, 1631367575, NULL),
+(1, 'test', '811cb34edaf1f230f587a368cd0ca6c2', '0123445678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'default_user.png', NULL, 0, 1, 0, 1631367575, NULL),
 (2, 'admin', 'f6fdffe48c908deb0f4c3bd36c032e72', '0987654321', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'default_user.png', 'default_saler.png', 1, 1, 1, 1631367692, 1631367692);
 
 -- --------------------------------------------------------
@@ -8709,7 +8713,7 @@ ALTER TABLE `bank_account`
 -- Indexes for table `delivery_address`
 --
 ALTER TABLE `delivery_address`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`daid`),
   ADD KEY `subdistrict` (`subdistrict`),
   ADD KEY `title` (`title`),
   ADD KEY `uid` (`uid`);
@@ -8830,7 +8834,7 @@ ALTER TABLE `bank_account`
 -- AUTO_INCREMENT for table `delivery_address`
 --
 ALTER TABLE `delivery_address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `daid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `delivery_type`
@@ -8939,10 +8943,10 @@ ALTER TABLE `districts`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`daid`) REFERENCES `delivery_address` (`id`),
   ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`bankid`) REFERENCES `bank` (`id`),
   ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`type_payment`) REFERENCES `type_payment` (`tpid`),
-  ADD CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`reason_id`) REFERENCES `reason` (`id`);
+  ADD CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`reason_id`) REFERENCES `reason` (`id`),
+  ADD CONSTRAINT `orders_ibfk_5` FOREIGN KEY (`daid`) REFERENCES `delivery_address` (`daid`);
 
 --
 -- Constraints for table `product`
