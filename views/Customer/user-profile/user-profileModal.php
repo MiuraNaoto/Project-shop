@@ -159,7 +159,7 @@ include_once("../../../query/query.php");
                                 <?php
                                 $PROVINCE = getProvince();
                                 for ($i = 1; $i < count($PROVINCE); $i++) {
-                                    echo '<option value="' . $PROVINCE[$i]["id"] . '">' . $PROVINCE[$i]["name_in_thai"] . '</option>';
+                                    echo '<option value="' . $PROVINCE[$i]["id"] . '">' . $PROVINCE[$i]["provinces_name_in_thai"] . '</option>';
                                 } ?>
                             </select>
                         </div>
@@ -174,7 +174,7 @@ include_once("../../../query/query.php");
                                 <?php
                                 $DISTRICTS = getDistricts();
                                 for ($i = 1; $i < count($DISTRICTS); $i++) {
-                                    echo '<option value="' . $DISTRICTS[$i]["id"] . '">' . $DISTRICTS[$i]["name_in_thai"] . '</option>';
+                                    echo '<option value="' . $DISTRICTS[$i]["id"] . '">' . $DISTRICTS[$i]["districts_name_in_thai"] . '</option>';
                                 } ?>
                             </select>
                         </div>
@@ -189,7 +189,7 @@ include_once("../../../query/query.php");
                                 <?php
                                 $SUBDISTRICTS = getSubDistricts();
                                 for ($i = 1; $i < count($SUBDISTRICTS); $i++) {
-                                    echo '<option value="' . $SUBDISTRICTS[$i]["id"] . '">' . $SUBDISTRICTS[$i]["name_in_thai"] . '</option>';
+                                    echo '<option value="' . $SUBDISTRICTS[$i]["id"] . '">' . $SUBDISTRICTS[$i]["subdistricts_name_in_thai"] . '</option>';
                                 } ?>
                             </select>
                         </div>
@@ -204,10 +204,10 @@ include_once("../../../query/query.php");
                     </div>
 
                 </div>
-                <input type="hidden" id="insert_address" name="request" value="insert_address" />
+                <input type="hidden" id="request" name="request" value="insert_address" />
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
-                    <button type="submit" id="add_address" name="add_address" class="btn btn-success"  value="insert">เพิ่มที่อยู่จัดส่ง</button>
+                    <button type="submit" id="add_address" name="add_address" class="btn btn-success" value="insert">เพิ่มที่อยู่จัดส่ง</button>
                 </div>
             </div>
         </div>

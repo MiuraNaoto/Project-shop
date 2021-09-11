@@ -8,7 +8,7 @@ $(document).ready(function () {
     var district = $("#district").val();
     var subdistrict = $("#subdistrict").val();
     var address = $("#address").val();
-    var insert_address = $("#insert_address").val();
+    var request = $("#request").val();
 
     console.log(title);
     console.log(firstname);
@@ -18,25 +18,19 @@ $(document).ready(function () {
     console.log(district);
     console.log(subdistrict);
     console.log(address);
-    console.log(insert_address);
+    console.log(request);
 
     $.ajax({
       url: "manage.php",
       method: "POST",
-      data: {
-        title: title,
-        firstname: firstname,
-        lastname: lastname,
-        tel: tel,
-        provice: provice,
-        district: district,
-        subdistrict: subdistrict,
-        address: address,
-        insert_address: insert_address,
-      },
+      data: $("form#form-insert-address").serialize(),
       datatype: "json",
+      async: false,
+      cache: false,
+      contentType: false,
+      processData: false,
       success: function (data) {
-        alert(data);
+        // alert(data);
         // location.reload();
         location.href = "manage.php";
       },

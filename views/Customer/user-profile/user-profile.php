@@ -1,20 +1,13 @@
 <?php
 include_once("../../../query/query.php");
+include_once("../../../query/function.php");
 session_start();
 // $idUT = $_SESSION[md5('typeid')];
 // $username = $_SESSION[md5('username')];
 $USER = $_SESSION[md5('user')];
-echo print_r($USER);
-echo "<br>" . "<br>";
-// $SUBDISTRICTS = getSubDistricts();
-// echo print_r($SUBDISTRICTS);
-function format_phonenumber($phonenumber)
-{
-    if (preg_match('/^(\d{3})(\d{3})(\d{4})$/',  $phonenumber,  $matches)) {
-        $result = $matches[1] . '-' . $matches[2] . '-' . $matches[3];
-    }
-    return $result;
-}
+$uid = $USER[1]["uid"];
+$ADDRESS_USER = getAddressUser($uid);
+echo print_r($ADDRESS_USER);
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +74,6 @@ function format_phonenumber($phonenumber)
                     </div>
                 </div>
                 <div class="col-xl-8 col-12 mb-4">
-
                     <div class="card mb-4">
                         <div class="card-header card-bg font-weight-bold" style="color:<?= $color ?>;">
                             รายละเอียดบัญชี
@@ -105,66 +97,86 @@ function format_phonenumber($phonenumber)
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header card-bg font-weight-bold" style="color:<?= $color ?>;">
-                            <div class="row">
-                                <div class="col-md-8 align-self-center">
-                                    <span>
-                                        ที่อยู่จัดส่ง
-                                    </span>
-                                </div>
-                                <div class="col-md-4 d-flex justify-content-end">
-                                    <button type="button" id="btn_info" class="btn btn-warning text-light" title='เปลี่ยนข้อมูลบัญชี' data-toggle="modal" data-target="#editAddress">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="row mb-4">
-                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                    <span>คำนำหน้า :</span>
-                                </div>
-                                <div class="col-xl-9 col-12">
-                                    <input type="text" class="form-control" id="title" value="นาย" disabled>
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                    <span>ชื่อจริง :</span>
-                                </div>
-                                <div class="col-xl-9 col-12">
-                                    <input type="text" class="form-control" id="title" value="สมหมาย" disabled>
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                    <span>นามสกุล :</span>
-                                </div>
-                                <div class="col-xl-9 col-12">
-                                    <input type="text" class="form-control" id="title" value="หมายปอง" disabled>
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                    <span>เบอร์โทรศัพท์ :</span>
-                                </div>
-                                <div class="col-xl-9 col-12">
-                                    <input type="text" class="form-control" id="firstname" value="089-657-1234" disabled>
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                    <span>ที่อยู่ :</span>
-                                </div>
-                                <div class="col-xl-9 col-12">
-                                    <input type="text" class="form-control" id="title" value="เลขที่ 1 หมู่ 6 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140" disabled>
+                    <?php
+                    for ($i = 1; $i < count($ADDRESS_USER); $i++) {
+                    ?>
+                        <div class="card mb-4">
+                            <div class="card-header card-bg font-weight-bold" style="color:<?= $color ?>;">
+                                <div class="row">
+                                    <div class="col-md-8 align-self-center">
+                                        <span>
+                                            ที่อยู่จัดส่ง
+                                        </span>
+                                    </div>
+                                    <div class="col-md-4 d-flex justify-content-end">
+                                        <button type="button" id="btn_info" class="btn btn-warning text-light" title='เปลี่ยนข้อมูลบัญชี' data-toggle="modal" data-target="#editAddress">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 
+                            <div class="card-body">
+                                <div class="row mb-4">
+                                    <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
+                                        <span>คำนำหน้า :</span>
+                                    </div>
+                                    <div class="col-xl-9 col-12">
+                                        <input type="text" class="form-control" id="title" value="<?Php echo $ADDRESS_USER[$i]["title"] ?>" disabled>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
+                                        <span>ชื่อจริง :</span>
+                                    </div>
+                                    <div class="col-xl-9 col-12">
+                                        <input type="text" class="form-control" id="firstname" value="<?Php echo $ADDRESS_USER[$i]["firstname"] ?>" disabled>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
+                                        <span>นามสกุล :</span>
+                                    </div>
+                                    <div class="col-xl-9 col-12">
+                                        <input type="text" class="form-control" id="lastname" value="<?Php echo $ADDRESS_USER[$i]["lastname"] ?>" disabled>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
+                                        <span>เบอร์โทรศัพท์ :</span>
+                                    </div>
+                                    <div class="col-xl-9 col-12">
+                                        <input type="text" class="form-control" id="tel" value="<?Php echo format_phonenumber($ADDRESS_USER[$i]["tel"]) ?>" disabled>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
+                                        <span>ที่อยู่ :</span>
+                                    </div>
+                                    <div class="col-xl-9 col-12">
+                                        <input type="text" class="form-control" id="title" value="<?Php
+                                                                                                    if ($ADDRESS_USER[$i]["provinces_name_in_thai"] == "กรุงเทพมหานคร") {
+                                                                                                        echo "เลขที่ " . $ADDRESS_USER[$i]["address"] .
+                                                                                                            " แขวง" . $ADDRESS_USER[$i]["subdistricts_name_in_thai"] .
+                                                                                                            " " . $ADDRESS_USER[$i]["districts_name_in_thai"] .
+                                                                                                            " " . $ADDRESS_USER[$i]["provinces_name_in_thai"] .
+                                                                                                            ", " . $ADDRESS_USER[$i]["zip_code"];
+                                                                                                    } else {
+                                                                                                        echo "เลขที่" . $ADDRESS_USER[$i]["address"] .
+                                                                                                            " ต." . $ADDRESS_USER[$i]["subdistricts_name_in_thai"] .
+                                                                                                            " อ." . $ADDRESS_USER[$i]["districts_name_in_thai"] .
+                                                                                                            " จ." . $ADDRESS_USER[$i]["provinces_name_in_thai"] .
+                                                                                                            ", " . $ADDRESS_USER[$i]["zip_code"];
+                                                                                                    }
+                                                                                                    ?>" disabled>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    <?php
+                    }
+                    ?>
+
                 </div>
 
             </div>
