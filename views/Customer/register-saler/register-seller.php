@@ -192,7 +192,7 @@ $PROVINCE = getDistricts();
                                             <label>ชื่อร้าน <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="shop-name" name="shop-name" placeholder="กรุณากรอกขื่อร้าน" required oninvalid="this.setCustomValidity('กรุณากรอกชื่อร้าน')" oninput="this.setCustomValidity('')">
                                         </div>
-                                    
+
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <label>ที่อยู่ร้าน <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="address" name="address" placeholder="กรุณากรอกที่อยู่ร้าน" required oninvalid="this.setCustomValidity('กรุณากรอกที่อยู่ร้าน')" oninput="this.setCustomValidity('')">
@@ -237,7 +237,7 @@ $PROVINCE = getDistricts();
                                     <hr>
                                     <div class="p-5-6" style="padding: 0px;">
                                         <div class="col-lg-12 text-right" style="padding: 0px; margin-left: 20px;">
-
+                                            <input type="hidden" id="request" name="request" value="register" />
                                             <a href="../../../index.php"><button type="button" class="btn btn-danger">ยกเลิก</button></a>
                                             <button type="submit" id="register-saler" name="register-saler" class="btn btn-success">สมัครสมาชิก</button>
                                         </div>

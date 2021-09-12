@@ -6,7 +6,11 @@ session_start();
 // $username = $_SESSION[md5('username')];
 $USER = $_SESSION[md5('user')];
 $uid = $USER[1]["uid"];
-// echo print_r($ADDRESS_USER);
+echo $USER[1]["profile_shop"];
+print_r($USER);
+$INFO_SALER = getsalerInfo($uid);
+$BANK_ACCOUNT = getBankAccount($uid);
+echo print_r($BANK_ACCOUNT);
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +68,7 @@ $uid = $USER[1]["uid"];
                                         </div>
                                         <div class="card-body align-self-center mt-6" style="height: 458.26px; padding-top: 30px;">
                                             <div class="row d-flex justify-content-center d-flex align-items-center mt-3 mb-4">
-                                                <img class="img-radius img-profile" src="../../../img/profile/vendor.png" width="300px" height="300px">
+                                                <img class="img-radius img-profile" src='<?php echo "../../../img/profile/saler/" . $USER[1]["profile_shop"] ?>' width="300px" height="300px">
                                             </div>
                                             <div class="row mb-4">
                                                 <div class="col-xl-12 col-12">
@@ -98,7 +102,7 @@ $uid = $USER[1]["uid"];
                                             <span>ชื่อร้านค้า :</span>
                                         </div>
                                         <div class="col-xl-9 col-12">
-                                            <input type="text" class="form-control" id="title" value="ขายอะไรก็ไม่รู้ แต่อยากขายนะ" disabled>
+                                            <input type="text" class="form-control" id="title" value="<?php echo $INFO_SALER[1]["shop_name"] ?>" disabled>
                                         </div>
                                     </div>
                                     <!-- <div class="row mb-3">
@@ -114,7 +118,7 @@ $uid = $USER[1]["uid"];
                                             <span>ชื่อ-นามสกุล :</span>
                                         </div>
                                         <div class="col-xl-9 col-12">
-                                            <input type="text" class="form-control" id="firstname" value="นายมั่นหมาย หมายมั่น" disabled>
+                                            <input type="text" class="form-control" id="firstname" value="<?php echo $INFO_SALER[1]["title"] . $INFO_SALER[1]["firstname"] . " " . $INFO_SALER[1]["lastname"] ?>" disabled>
                                         </div>
                                     </div>
                                     <!-- <div class="row mb-3">
@@ -130,7 +134,7 @@ $uid = $USER[1]["uid"];
                                             <span>เบอร์โทร :</span>
                                         </div>
                                         <div class="col-xl-9 col-12">
-                                            <input type="text" class="form-control" id="firstname" value="098-765-4321" disabled>
+                                            <input type="text" class="form-control" id="firstname" value="<?php echo format_phonenumber($INFO_SALER[1]["tel"]) ?>" disabled>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -138,7 +142,21 @@ $uid = $USER[1]["uid"];
                                             <span>ที่อยู่ :</span>
                                         </div>
                                         <div class="col-xl-9 col-12">
-                                            <input type="text" class="form-control" id="mail" value="123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140" disabled>
+                                            <input type="text" class="form-control" id="mail" value="<?Php
+                                                                                                        if ($INFO_SALER[1]["provinces_name_in_thai"] == "กรุงเทพมหานคร") {
+                                                                                                            echo "เลขที่ " . $INFO_SALER[1]["address_shop"] .
+                                                                                                                " แขวง" . $INFO_SALER[1]["subdistricts_name_in_thai"] .
+                                                                                                                " " . $INFO_SALER[1]["districts_name_in_thai"] .
+                                                                                                                " " . $INFO_SALER[1]["provinces_name_in_thai"] .
+                                                                                                                ", " . $INFO_SALER[1]["zip_code"];
+                                                                                                        } else {
+                                                                                                            echo "เลขที่" . $INFO_SALER[1]["address_shop"] .
+                                                                                                                " ต." . $INFO_SALER[1]["subdistricts_name_in_thai"] .
+                                                                                                                " อ." . $INFO_SALER[1]["districts_name_in_thai"] .
+                                                                                                                " จ." . $INFO_SALER[1]["provinces_name_in_thai"] .
+                                                                                                                ", " . $INFO_SALER[1]["zip_code"];
+                                                                                                        }
+                                                                                                        ?>" disabled>
                                             <!-- <input type="text" class="form-control" id="mail" value="123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456" disabled> -->
                                         </div>
                                     </div>
@@ -147,7 +165,7 @@ $uid = $USER[1]["uid"];
                                             <span>อีเมล์ :</span>
                                         </div>
                                         <div class="col-xl-9 col-12">
-                                            <input type="text" class="form-control" id="mail" value="awaiwa@gmail.com" disabled>
+                                            <input type="text" class="form-control" id="mail" value="<?php echo $INFO_SALER[1]["email"] ?>" disabled>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -155,47 +173,15 @@ $uid = $USER[1]["uid"];
                                             <span>ชื่อบัญชี : </span>
                                         </div>
                                         <div class="col-xl-9 col-12">
-                                            <input type="text" class="form-control" id="username" value="a-rai-wa" disabled>
+                                            <input type="text" class="form-control" id="username" value="<?php echo $INFO_SALER[1]["username"] ?>" disabled>
                                         </div>
                                     </div>
-                                    <!-- <div class="row mb-4">
-                                        <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                            <span>ตำบล/แขวง :</span>
-                                        </div>
-                                        <div class="col-xl-9 col-12">
-                                            <input type="text" class="form-control" id="mail" value="กำแพงแสน" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                            <span>อำเภอ/เขต :</span>
-                                        </div>
-                                        <div class="col-xl-9 col-12">
-                                            <input type="text" class="form-control" id="mail" value="กำแพงแสน" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                            <span>จังหวัด :</span>
-                                        </div>
-                                        <div class="col-xl-9 col-12">
-                                            <input type="text" class="form-control" id="mail" value="นครปฐม" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
-                                            <span>รหัสไปรษณีย์ :</span>
-                                        </div>
-                                        <div class="col-xl-9 col-12">
-                                            <input type="text" class="form-control" id="mail" value="73140" disabled>
-                                        </div>
-                                    </div> -->
                                     <div class="row mb-3">
                                         <div class="col-xl-3 col-12 d-flex align-items-center d-flex justify-content-end">
                                             <span>เวลาทำการ : </span>
                                         </div>
                                         <div class="col-xl-9 col-12">
-                                            <input type="text" class="form-control" id="staff" value="08:00 -18.00" disabled>
+                                            <input type="text" class="form-control" id="staff" value="<?php echo $INFO_SALER[1]["time_open"] . " - " . $INFO_SALER[1]["time_closed"] ?>" disabled>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -203,18 +189,70 @@ $uid = $USER[1]["uid"];
                                             <span>พนักงานประจำของร้านค้า</span>
                                         </div>
                                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="admin" name="admin" value="option1" disabled checked>
-                                                <label class="form-check-label" for="inlineCheckbox1">มีพนักงานประจำ (Full Time)</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="admin" name="admin" value="option1" disabled>
-                                                <label class="form-check-label" for="inlineCheckbox1">ไม่มีพนักงานขายประจำ</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="research" name="research" value="option2" disabled>
-                                                <label class="form-check-label" for="inlineCheckbox2">มีพนักงงานชั่วคราว (Part Time)</label>
-                                            </div>
+                                            <?php
+                                            if ($INFO_SALER[1]["full_time_staff"] == 1 && $INFO_SALER[1]["temporary_staff"] == 0 && $INFO_SALER[1]["donthave"] == 0) {
+                                            ?>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="admin" name="admin" value="option1" disabled checked>
+                                                    <label class="form-check-label" for="inlineCheckbox1">มีพนักงานประจำ (Full Time)</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="admin" name="admin" value="option1" disabled>
+                                                    <label class="form-check-label" for="inlineCheckbox1">ไม่มีพนักงานขายประจำ</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="research" name="research" value="option2" disabled>
+                                                    <label class="form-check-label" for="inlineCheckbox2">มีพนักงงานชั่วคราว (Part Time)</label>
+                                                </div>
+                                            <?php
+                                            } else if ($INFO_SALER[1]["full_time_staff"] == 0 && $INFO_SALER[1]["temporary_staff"] == 1 && $INFO_SALER[1]["donthave"] == 0) {
+                                            ?>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="admin" name="admin" value="option1" disabled>
+                                                    <label class="form-check-label" for="inlineCheckbox1">มีพนักงานประจำ (Full Time)</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="admin" name="admin" value="option1" disabled checked>
+                                                    <label class="form-check-label" for="inlineCheckbox1">ไม่มีพนักงานขายประจำ</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="research" name="research" value="option2" disabled>
+                                                    <label class="form-check-label" for="inlineCheckbox2">มีพนักงงานชั่วคราว (Part Time)</label>
+                                                </div>
+                                            <?php
+                                            } else if ($INFO_SALER[1]["full_time_staff"] == 1 && $INFO_SALER[1]["temporary_staff"] == 1 && $INFO_SALER[1]["donthave"] == 0) {
+                                            ?>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="admin" name="admin" value="option1" disabled checked>
+                                                    <label class="form-check-label" for="inlineCheckbox1">มีพนักงานประจำ (Full Time)</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="admin" name="admin" value="option1" disabled checked>
+                                                    <label class="form-check-label" for="inlineCheckbox1">ไม่มีพนักงานขายประจำ</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="research" name="research" value="option2" disabled>
+                                                    <label class="form-check-label" for="inlineCheckbox2">มีพนักงงานชั่วคราว (Part Time)</label>
+                                                </div>
+                                            <?php
+                                            } else if ($INFO_SALER[1]["full_time_staff"] == 0 && $INFO_SALER[1]["temporary_staff"] == 0 && $INFO_SALER[1]["donthave"] == 1) {
+                                            ?>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="admin" name="admin" value="option1" disabled>
+                                                    <label class="form-check-label" for="inlineCheckbox1">มีพนักงานประจำ (Full Time)</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="admin" name="admin" value="option1" disabled>
+                                                    <label class="form-check-label" for="inlineCheckbox1">ไม่มีพนักงานขายประจำ</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="research" name="research" value="option2" disabled checked>
+                                                    <label class="form-check-label" for="inlineCheckbox2">มีพนักงงานชั่วคราว (Part Time)</label>
+                                                </div>
+                                            <?php
+                                            }
+                                            ?>
+
                                         </div>
                                     </div>
                                 </div>
@@ -236,20 +274,25 @@ $uid = $USER[1]["uid"];
                                             </button>
                                         </div>
                                     </div>
+                                </div>
 
-                                </div>
-                                <div class="card-body align-self-center">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-sm-6">
+                                <?php if ($BANK_ACCOUNT[0]['numrow']) {
+                                    echo '<div class="card-body">
+                                             <div class="row">';
+                                    for ($i = 1; $i < count($BANK_ACCOUNT); $i++) {
+
+                                ?>
+
+                                        <div class="col-lg-3 mb-4">
                                             <div class="card">
-                                                <img class="card-img-top" src="../../../img/payment/SCB.png" alt="Card image cap">
+                                                <img class="card-img-top" src='<?php echo "../../../img/payment/" . $BANK_ACCOUNT[$i]["picture"] ?>' alt="<?php echo $BANK_ACCOUNT[$i]["name"] ?>">
                                                 <div class="card-body text-center font-weight-bold">
                                                     <div class="row mt-2 mb-4 ">
                                                         <div class="col-md-4">
                                                             <h6 class="font-weight-bold d-flex justify-content-start">เลขบัญชี</h6>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <h6 class="d-flex justify-content-start">097-0-44XXX-X</h6>
+                                                            <h6 class="d-flex justify-content-start"><?php echo $BANK_ACCOUNT[$i]["account_code"] ?></h6>
                                                         </div>
                                                     </div>
                                                     <div class="row  mt-4">
@@ -257,83 +300,24 @@ $uid = $USER[1]["uid"];
                                                             <h6 class="font-weight-bold d-flex justify-content-start">ชื่อบัญชี</h6>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <h6 class="text-left">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
+                                                            <h6 class="text-left"><?php echo $BANK_ACCOUNT[$i]["account_name"] ?></h6>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6">
-                                            <div class="card">
-                                                <img class="card-img-top" src="../../../img/payment/กรุงไทย-1.jpg" alt="Card image cap">
-                                                <div class="card-body text-center font-weight-bold">
-                                                    <div class="row mt-2 mb-4">
-                                                        <div class="col-md-4">
-                                                            <h6 class="font-weight-bold d-flex justify-content-start">เลขบัญชี</h6>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <h6 class="text-left">097-0-44XXX-X</h6>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row  mt-4">
-                                                        <div class="col-md-4">
-                                                            <h6 class="font-weight-bold d-flex justify-content-start">ชื่อบัญชี</h6>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <h6 class="text-left">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="card">
-                                                <img class="card-img-top" src="../../../img/payment/kasikorn.png" alt="Card image cap">
-                                                <div class="card-body text-center font-weight-bold">
-                                                    <div class="row mt-2 mb-4 ">
-                                                        <div class="col-md-4">
-                                                            <h6 class="font-weight-bold d-flex justify-content-start">เลขบัญชี</h6>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <h6 class="text-left">097-0-44XXX-X</h6>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row  mt-4">
-                                                        <div class="col-md-4">
-                                                            <h6 class="font-weight-bold d-flex justify-content-start">ชื่อบัญชี</h6>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <h6 class="text-left">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                        <div class="col-lg-4 col-md-6 col-sm-6">
-                                            <div class="card">
-                                                <img class="card-img-top" src="../../../img/payment/promptpay.jpg" alt="Card image cap">
-                                                <div class="card-body text-center font-weight-bold">
-                                                    <div class="row mt-2 mb-4">
-                                                        <div class="col-md-4">
-                                                            <h6 class="font-weight-bold d-flex justify-content-start">เลขบัญชี</h6>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <h6 class="text-left">097-0-44XXX-X</h6>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row  mt-4">
-                                                        <div class="col-md-4">
-                                                            <h6 class="font-weight-bold d-flex justify-content-start">ชื่อบัญชี</h6>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <h6 class="d-flex justify-content-start">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php
+                                    }
+
+                                    echo '</div>
+                                        </div>';
+                                }
+                                ?>
+
+
+
+
+
                             </div>
                         </div>
                     </div>
@@ -346,6 +330,7 @@ $uid = $USER[1]["uid"];
                 include_once("../layout/footer.php");
                 include_once("profileModal.php");
                 ?>
+                <script src="profile.js"></script>
             </div>
             <!-- End of Content Wrapper -->
 

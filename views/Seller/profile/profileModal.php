@@ -1,3 +1,20 @@
+<?php
+include_once("../../../query/query.php");
+session_start();
+$USER = $_SESSION[md5('user')];
+$uid = $USER[1]["uid"];
+$USER = getUser($uid);
+$BANK = getBank();
+?>
+
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+
+        opacity: 0;
+
+    }
+</style>
 <!-- Edit Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" a aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -9,7 +26,6 @@
                 </button>
             </div>
             <form action="manage.php" method="post" enctype="multipart/form-data" id="editform" id="editForm" name="editform" role="form">
-
                 <div class="modal-body">
                     <div class="row mb-4">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
@@ -245,19 +261,19 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="manage.php" method="post" enctype="multipart/form-data" id="editform" id="editForm" name="editform" role="form">
-
+            <form action="manage.php" method="post" enctype="multipart/form-data" id="form-insert-bank" name="form-insert-bank" role="form">
                 <div class="modal-body">
                     <div class="row mb-4">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
                             <span>ชื่อธนาคาร<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <select name="title" id="bank" class="form-control">
+                            <select name="banktype" id="banktype" class="form-control" required oninvalid="this.setCustomValidity('กรุณาเลือกธนาคาร')" oninput="this.setCustomValidity('')">
                                 <option value="" disabled selected>เลือกธนาคาร</option>
-                                <option value="">ธนาคารไทยพาณิชย์</option>
-                                <option value="">ธนาคารกรุงไทย</option>
-                                <option value="">ธนาคารกสิกรไทย</option>
+                                <?php
+                                for ($i = 1; $i < count($BANK); $i++) {
+                                    echo '<option value="' . $BANK[$i]["id"] . '">' . $BANK[$i]["name"] . '</option>';
+                                } ?>
                             </select>
                         </div>
                     </div>
@@ -266,7 +282,7 @@
                             <span>ชื่อบัญชีธนาคาร<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="bankname" name="bankname" placeholder="กรุณากรอกชื่อบัญชีธนาคาร" required="" oninput="setCustomValidity('')">
+                            <input type="text" class="form-control" id="bankname" name="bankname" placeholder="กรุณากรอกชื่อบัญชีธนาคาร" required oninvalid="this.setCustomValidity('กรุณากรอกชื่อบัญชีธนาคาร')" oninput="this.setCustomValidity('')">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -274,15 +290,15 @@
                             <span>เลขที่บัญชีธนาคาร<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="bankname" name="bankname" placeholder="กรุณากรอกเลขที่บัญชีธนาคาร" required="" oninput="setCustomValidity('')">
+                            <input type="number" class="form-control" id="bankcode" name="bankcode" placeholder="กรุณากรอกเลขที่บัญชีธนาคาร" required oninvalid="this.setCustomValidity('กรุณากรอกเลขที่บัญชีธนาคาร')" oninput="this.setCustomValidity('')">
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <input type="hidden" id="hidden_id" name="request" value="insert_bank" />
-                    <button type="submit" id="edit" class="btn btn-danger" data-dismiss="modal" style="width: 70px;">ยกเลิก</button>
-                    <button type="submit" id="editsub" name="editsub" class="btn btn-success" style="width: 70px;">เพิ่ม</button>
+                    <input type="hidden" id="request" name="request" value="insert_bank" />
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" style="width: 70px;">ยกเลิก</button>
+                    <button type="submit" id="add_bank" name="add_bank" class="btn btn-success add_bank">เพิ่มบัญชีธนาคาร</button>
                 </div>
             </form>
         </div>
