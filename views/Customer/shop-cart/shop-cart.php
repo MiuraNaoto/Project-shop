@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+    
+?>
+
 <head>
     <?php include_once("../layout/header.php") ?>
 </head>
