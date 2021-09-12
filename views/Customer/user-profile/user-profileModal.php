@@ -6,6 +6,7 @@ $uid = $USER[1]["uid"];
 $USER = getUser($uid);
 $ADDRESS_USER = getAddressUser($uid);
 $PROVINCE = getDistricts();
+
 ?>
 
 

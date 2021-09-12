@@ -2,7 +2,7 @@ $(document).ready(function () {
   // $(document).on("click", "#register-saler", function (e) {
   $("register-saler-form").submit(function (e) {
     e.preventDefault();
-
+    var formdata = new FormData();
     $.ajax({
       url: "register-seller-verify.php",
       method: "POST",
