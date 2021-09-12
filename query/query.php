@@ -1,6 +1,7 @@
 <?php
 include_once("../../../dbConnect.php");
 
+// PART-USER
 function getUserTitle()
 {
     $sql = "SELECT * FROM `user-title`";
@@ -27,6 +28,7 @@ function getAddressUser($uid)
     return $DATA;
 }
 
+// PART-LOCATION 
 function getProvince()
 {
     $sql = "SELECT * FROM `provinces`";
@@ -44,6 +46,14 @@ function getDistricts()
 function getSubDistricts()
 {
     $sql = "SELECT * FROM `subdistricts`";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
+// PART-PRODUCT
+function getProductType()
+{
+    $sql = "SELECT * FROM `product_type`";
     $DATA = selectData($sql);
     return $DATA;
 }

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isset($_SESSION[md5('user')])){
+if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isset($_SESSION[md5('user')])) {
     $idUT = $_SESSION[md5('typeid')];
     $username = $_SESSION[md5('username')];
     $USER = $_SESSION[md5('user')];
@@ -200,7 +200,7 @@ if(isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isset
                             <div class="col-lg-7 text-light align-self-center">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex justify-content-center" style="padding: 0px;">
-                                        <a href="register-seller.php" style="color: whitesmoke;">Seller Centre</a>
+                                        <a href="./views/Customer/register-saler/register-seller-verify.php" style="color: whitesmoke;">Seller Centre</a>
                                     </div>
                                     <div class="col-lg-4 d-flex justify-content-center" style="padding: 0px;">
                                         <a href="./views/Customer/user-profile/user-profile.php" style="color: whitesmoke;">Profile</a>
