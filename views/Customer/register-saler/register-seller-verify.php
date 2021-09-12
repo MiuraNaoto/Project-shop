@@ -32,14 +32,12 @@ if ($USER[1]["u-is-saler"] == 1) {
             echo  $profile_path;
             if (move_uploaded_file($tmp, $profile_path)) {
                 echo "profile success";
-                // $profile_path = "picture/profile/cow/" . $id_new . "_" . $time . ".png";
             }
         }
     } else {
         $final_image = "default_saler.png";
     }
 
-    // $shop_img = $_FILES["shop-profile-img"];
     $have_product = $_POST["have_product"];
     $havent_product = $_POST["havent_product"];
     $type_product = $_POST["type-product"];
@@ -60,25 +58,25 @@ if ($USER[1]["u-is-saler"] == 1) {
     $subdistrict = $_POST["subdistrict"];
     $address = $_POST["address"];
 
-    echo $have_product . "<br>";
-    echo $havent_product . "<br>";
-    echo "type_product :" . print_r($type_product) . "<br>";
-    echo $amount_type_product . "<br>";
-    echo $title . "<br>";
-    echo $firstname . "<br>";
-    echo $lastname . "<br>";
-    echo $email . "<br>";
-    echo $fulltime . "<br>";
-    echo $parttime . "<br>";
-    echo $none . "<br>";
-    echo $amountataff . "<br>";
-    echo $time_open . "<br>";
-    echo $time_closed . "<br>";
-    echo $shop_name . "<br>";
-    echo $provice . "<br>";
-    echo $district . "<br>";
-    echo $subdistrict . "<br>";
-    echo $address . "<br>";
+    // echo $have_product . "<br>";
+    // echo $havent_product . "<br>";
+    // echo "type_product :" . print_r($type_product) . "<br>";
+    // echo $amount_type_product . "<br>";
+    // echo $title . "<br>";
+    // echo $firstname . "<br>";
+    // echo $lastname . "<br>";
+    // echo $email . "<br>";
+    // echo $fulltime . "<br>";
+    // echo $parttime . "<br>";
+    // echo $none . "<br>";
+    // echo $amountataff . "<br>";
+    // echo $time_open . "<br>";
+    // echo $time_closed . "<br>";
+    // echo $shop_name . "<br>";
+    // echo $provice . "<br>";
+    // echo $district . "<br>";
+    // echo $subdistrict . "<br>";
+    // echo $address . "<br>";
 
     if (isset($have_product)) {
         $have_product = 1;
@@ -124,12 +122,10 @@ if ($USER[1]["u-is-saler"] == 1) {
                                     `modify_saler`='$time' 
             WHERE `uid`='$uid'";
     $DATA = addinsertData($sql);
-    // echo $sql . "<br>";
 
     for ($i = 0; $i < count($type_product); $i++) {
         $sql_saledemand = "INSERT INTO `sales_demand`(`product_type`, `uid`) VALUES ('$type_product[$i]','$uid')";
         $DATA = addinsertData($sql_saledemand);
-        // echo $sql_saledemand . "<br>";
     }
     header("location: ../../Seller/Seller/profile/profile.php");
 }
