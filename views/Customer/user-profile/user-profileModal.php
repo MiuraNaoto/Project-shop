@@ -5,6 +5,7 @@ $USER = $_SESSION[md5('user')];
 $uid = $USER[1]["uid"];
 $USER = getUser($uid);
 $ADDRESS_USER = getAddressUser($uid);
+$PROVINCE = getDistricts();
 ?>
 
 
@@ -156,7 +157,7 @@ $ADDRESS_USER = getAddressUser($uid);
                             <span>จังหวัด<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <select name="provice" id="provice" class="form-control" required oninvalid="this.setCustomValidity('กรุณากรอกจังหวัด')" oninput="this.setCustomValidity('')">
+                            <select name="provice" id="provice" class="form-control" onchange="selectProvince();" required oninvalid="this.setCustomValidity('กรุณากรอกจังหวัด')" oninput="this.setCustomValidity('')">
                                 <option value="" selected disabled>กรุณาเลือกจังหวัด</option>
                                 <?php
                                 $PROVINCE = getProvince();
@@ -171,7 +172,7 @@ $ADDRESS_USER = getAddressUser($uid);
                             <span>อำเภอ/เขต<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <select name="district" id="district" class="form-control" required oninvalid="this.setCustomValidity('กรุณากรอกอำเภอ/เขต')" oninput="this.setCustomValidity('')">
+                            <select name="district" id="district" class="form-control" required onchange="selectDistrict();" oninvalid="this.setCustomValidity('กรุณากรอกอำเภอ/เขต')" oninput="this.setCustomValidity('')">
                                 <option value="" selected disabled>กรุณาเลือกอำเภอ/เขต</option>
                                 <?php
                                 $DISTRICTS = getDistricts();
@@ -334,3 +335,51 @@ $ADDRESS_USER = getAddressUser($uid);
         </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    function selectProvince() {
+        var provinceObject = document.getElementById("provice");
+        var districtObject = document.getElementById("district");
+        var subdistrictObject = document.getElementById("subdistrict");
+        var provinceId = document.getElementById("provice").value;
+        // console.log(provinceId)
+
+        districtObject.innerHTML = '<option value="" >กรุณาเลือกอำเภอ/เขต</option>';
+        subdistrictObject.innerHTML = '<option value="" >กรุณาเลือกตำบล/แขวง</option>';
+        $.get('./districts.php?province_id=' + provinceId, function(data) {
+            // console.log(data)
+            var result = JSON.parse(data);
+            // console.log(result);
+            $.each(result, function(index, item) {
+                // console.log(item)
+                if (index != 0) {
+                    districtObject.innerHTML += "<option value='" + item.id + "'> " + item.districts_name_in_thai + "</option>";
+                }
+            });
+        });
+
+    }
+
+    function selectDistrict() {
+        var districtObject = document.getElementById("district");
+        var subdistrictObject = document.getElementById("subdistrict");
+        var districtId = document.getElementById("district").value;
+        // console.log(provinceId)
+
+        subdistrictObject.innerHTML = '<option value="" >กรุณาเลือกตำบล/แขวง</option>';
+        $.get('./sub-districts.php?district_id=' + districtId, function(data) {
+            // console.log(data)
+            var result = JSON.parse(data);
+            // console.log(result);
+            $.each(result, function(index, item) {
+                // console.log(item)
+                if (index != 0) {
+                    subdistrictObject.innerHTML += "<option value='" + item.id + "'> " + item.subdistricts_name_in_thai + "</option>";
+                }
+            });
+        });
+
+    }
+</script>
