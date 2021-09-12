@@ -6,11 +6,14 @@ session_start();
 // $username = $_SESSION[md5('username')];
 $USER = $_SESSION[md5('user')];
 $uid = $USER[1]["uid"];
-echo $USER[1]["profile_shop"];
 print_r($USER);
 $INFO_SALER = getsalerInfo($uid);
 $BANK_ACCOUNT = getBankAccount($uid);
-echo print_r($BANK_ACCOUNT);
+$UTID = getUserTitleByid($uid);
+$UTID1 = getUserTitleSelect($uid);
+print_r($UTID);
+print_r($UTID1);
+// echo print_r($BANK_ACCOUNT);
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +23,56 @@ echo print_r($BANK_ACCOUNT);
     <?php include_once("../layout/header.php") ?>
 
 </head>
+
+<style>
+    .profile-pic {
+        color: transparent;
+        transition: all 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .profile-pic input {
+        display: none;
+    }
+
+    .profile-pic img {
+        position: absolute;
+        object-fit: cover;
+        width: 350px;
+        height: 350px;
+        box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
+        border-radius: 300px;
+        z-index: 0;
+    }
+
+    .profile-pic .-label {
+        cursor: pointer;
+        height: 350px;
+        width: 350px;
+    }
+
+    .profile-pic:hover .-label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 10000;
+        color: #fafafa;
+        transition: background-color 0.2s ease-in-out;
+        border-radius: 300px;
+        margin-bottom: 0;
+    }
+
+    .profile-pic span {
+        display: inline-flex;
+        padding: 0.2em;
+        height: 2em;
+    }
+</style>
 
 <body id="page-top">
 
@@ -66,21 +119,28 @@ echo print_r($BANK_ACCOUNT);
                                         <div class="card-header card-bg font-weight-bold" style="color: #006664;">
                                             รูปโปรไฟล์
                                         </div>
-                                        <div class="card-body align-self-center mt-6" style="height: 458.26px; padding-top: 30px;">
-                                            <div class="row d-flex justify-content-center d-flex align-items-center mt-3 mb-4">
-                                                <img class="img-radius img-profile" src='<?php echo "../../../img/profile/saler/" . $USER[1]["profile_shop"] ?>' width="300px" height="300px">
-                                            </div>
-                                            <div class="row mb-4">
+                                        <div class="card-body align-self-center mt-2" style="height: 100%; ">
+                                            <form name="uploadpic" id="uploadpic" method="POST" action="manage.php" enctype="multipart/form-data">
+                                                <div class="profile-pic">
+                                                    <input type="text" id="uid" name="uid" value="<?php echo $uid ?>" style="display:none" />
+                                                    <input type="text" id="request" name="request" value="updateprofile" style="display:none" />
+                                                    <input type="text" id="profile_shop" name="profile_shop" value="<?php echo $USER[1]["profile_shop"]; ?>" style="display:none" />
+                                                    <input id="uploadImage" type="file" accept="image/jpeg, image/jpg, image/png" name="image" hidden />
+                                                    <label class="-label" for="uploadImage">
+                                                        <span class="glyphicon glyphicon-camera"></span>
+                                                        <span>เปลี่ยนรูปโปรไฟล์</span>
+                                                    </label>
+                                                    <img class='img-radius img-profile' src='<?php echo "../../../img/profile/saler/" . $USER[1]["profile_shop"] ?>' style="object-fit: cover;" />
+                                                </div>
+                                            </form>
+
+                                            <div class="row mb-2">
                                                 <div class="col-xl-12 col-12">
                                                     <center>
-
-                                                        <button type="button" id="edit_photo" class="btn btn-primary btn-md" title='เปลี่ยนรูปโปรไฟล์'>
-                                                            <i class="fas fa-image"></i>
-                                                        </button>
-                                                        <button type="button" id="btn_info" class="btn btn-warning btn-md" title='เปลี่ยนข้อมูลบัญชี' data-toggle="modal" data-target="#editModal">
+                                                        <button type="button" id="btn_info" class="btn btn-warning btn-lg" title='เปลี่ยนข้อมูลบัญชี' data-toggle="modal" data-target="#editModal">
                                                             <i class="fas fa-edit"></i>
                                                         </button>
-                                                        <button type="button" id="btn_pass" class="btn btn-secondary btn-md pass_edit" title='เปลี่ยนรหัสผ่าน' data-toggle="modal" data-target="#editPassModal">
+                                                        <button type="button" id="btn_pass" class="btn btn-secondary btn-lg pass_edit" title='เปลี่ยนรหัสผ่าน' data-toggle="modal" data-target="#editPassModal">
                                                             <i class="fa fa-cog"></i>
                                                         </button>
                                                     </center>
@@ -184,7 +244,7 @@ echo print_r($BANK_ACCOUNT);
                                             <input type="text" class="form-control" id="staff" value="<?php echo $INFO_SALER[1]["time_open"] . " - " . $INFO_SALER[1]["time_closed"] ?>" disabled>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
+                                    <div class="row mb-4">
                                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-right">
                                             <span>พนักงานประจำของร้านค้า</span>
                                         </div>
@@ -333,7 +393,6 @@ echo print_r($BANK_ACCOUNT);
                 <script src="profile.js"></script>
             </div>
             <!-- End of Content Wrapper -->
-
         </div>
         <!-- End of Page Wrapper -->
 

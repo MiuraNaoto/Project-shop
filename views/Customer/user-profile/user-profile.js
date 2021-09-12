@@ -65,4 +65,9 @@ $(document).ready(function () {
       },
     });
   });
+
+  $(document).on("click", ".edit_address", function (event) {
+    var daid = $(this).attr("id");
+    console.log(daid);
+  });
 });

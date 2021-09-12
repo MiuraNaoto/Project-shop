@@ -2,12 +2,13 @@
 include_once("../../../query/query.php");
 include_once("../../../query/function.php");
 session_start();
-// $idUT = $_SESSION[md5('typeid')];
-// $username = $_SESSION[md5('username')];
+// // $idUT = $_SESSION[md5('typeid')];
+// // $username = $_SESSION[md5('username')];
 $USER = $_SESSION[md5('user')];
 $uid = $USER[1]["uid"];
+
 $ADDRESS_USER = getAddressUser($uid);
-echo print_r($ADDRESS_USER);
+// echo print_r($ADDRESS_USER);
 ?>
 
 <!DOCTYPE html>
@@ -121,7 +122,7 @@ echo print_r($ADDRESS_USER);
                                         </span>
                                     </div>
                                     <div class="col-md-4 d-flex justify-content-end">
-                                        <button type="button" id="<?php echo $ADDRESS_USER[$i]["daid"] ?>" class="btn btn-warning text-light" title='เปลี่ยนข้อมูลบัญชี' data-toggle="modal" data-target="#editAddress">
+                                        <button type="button" id="<?php echo $ADDRESS_USER[$i]["daid"] ?>" class="btn btn-warning text-light edit_address" title='เปลี่ยนข้อมูลบัญชี' data-toggle="modal" data-target="#editAddress">
                                             <i class="fas fa-edit"></i>
                                             <span>&nbsp;<?php echo "แก้ไขที่อยู่จัดส่ง " . $i ?></span>
                                         </button>
@@ -167,7 +168,7 @@ echo print_r($ADDRESS_USER);
                                         <span>ที่อยู่ :</span>
                                     </div>
                                     <div class="col-xl-9 col-12">
-                                        <input type="text" class="form-control" id="title" value="<?Php
+                                        <input type="text" class="form-control" id="title" value="<?php
                                                                                                     if ($ADDRESS_USER[$i]["provinces_name_in_thai"] == "กรุงเทพมหานคร") {
                                                                                                         echo "เลขที่ " . $ADDRESS_USER[$i]["address"] .
                                                                                                             " แขวง" . $ADDRESS_USER[$i]["subdistricts_name_in_thai"] .

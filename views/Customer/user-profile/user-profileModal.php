@@ -221,7 +221,7 @@ $PROVINCE = getDistricts();
 </div>
 
 <!-- edit Address  -->
-<div class="modal fade" id="editAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" a aria-hidden="true">
+<div class="modal fade" id="editAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -250,7 +250,7 @@ $PROVINCE = getDistricts();
                             <span>ชื่อจริง <span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-xl-9 col-12">
-                            <input type="text" class="form-control" id="ea_firstname" name="ea_firstname" value="สมหมาย" placeholder="กรุณากรอกชื่อจริง">
+                            <input type="text" class="form-control" id="ea_firstname" name="ea_firstname" value="" placeholder="กรุณากรอกชื่อจริง">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -330,7 +330,7 @@ $PROVINCE = getDistricts();
                 <div class="modal-footer">
                     <input type="hidden" id="request" name="request" value="edit_address" />
                     <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
-                    <button type="submit" class="btn btn-success">แก้ไขอยู่จัดส่ง</button>
+                    <button type="submit" class="btn btn-succes edit_address_submit">แก้ไขอยู่จัดส่ง</button>
                 </div>
             </form>
         </div>

@@ -27,7 +27,7 @@ if ($USER[1]["u-is-saler"] == 1) {
                 $final_image = $uid . "_" . $time . ".png";
             }
 
-            echo $final_image;
+            // echo $final_image;
             // check's valid format
             if (in_array($ext, $valid_extensions)) {
                 $profile_path = $profile_path . strtolower($final_image);
@@ -105,25 +105,27 @@ if ($USER[1]["u-is-saler"] == 1) {
         }
 
         $sql = "UPDATE `user-list` SET  `title_id`='$title',
-                                    `firstname`='$firstname',
-                                    `lastname`='$lastname',
-                                    `email`='$email',
-                                    `shop_name`='$shop_name',
-                                    `address_shop`='$address',
-                                    `subdistrict_shop`='$subdistrict',
-                                    `have_product`='$have_product',
-                                    `quantity_product`='$amount_type_product',
-                                    `full_time_staff`='$fulltime',
-                                    `temporary_staff`='$parttime',
-                                    `donthave`='$none',
-                                    `quantity_staff`='$amountataff',
-                                    `time_open`='$time_open',
-                                    `time_closed`='$time_closed',
-                                    `profile_shop`='$final_image',
-                                    `u-is-saler`='1',
-                                    `modify_saler`='$time' 
-            WHERE `uid`='$uid'";
-        $DATA = addinsertData($sql);
+                                        `firstname`='$firstname',
+                                        `lastname`='$lastname',
+                                        `email`='$email',
+                                        `shop_name`='$shop_name',
+                                        `address_shop`='$address',
+                                        `subdistrict_shop`='$subdistrict',
+                                        `have_product`='$have_product',
+                                        `quantity_product`='$amount_type_product',
+                                        `full_time_staff`='$fulltime',
+                                        `temporary_staff`='$parttime',
+                                        `donthave`='$none',
+                                        `quantity_staff`='$amountataff',
+                                        `time_open`='$time_open',
+                                        `time_closed`='$time_closed',
+                                        `profile_shop`='$final_image',
+                                        `u-is-saler`='1',
+                                        `modify_saler`='$time' 
+                WHERE `uid`='$uid'";
+        // echo $sql;
+        $DATA = updateData($sql);
+        // echo $DATA;
 
         for ($i = 0; $i < count($type_product); $i++) {
             $sql_saledemand = "INSERT INTO `sales_demand`(`product_type`, `uid`) VALUES ('$type_product[$i]','$uid')";

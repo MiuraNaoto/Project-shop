@@ -9,6 +9,20 @@ function getUserTitle()
     return $DATA;
 }
 
+function getUserTitleByid($utid)
+{
+    $sql = "SELECT * FROM `user-title`   WHERE `id` = $utid";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
+function getUserTitleSelect($utid)
+{
+    $sql = "SELECT * FROM `user-title` WHERE `id` != $utid";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
 function getUser($uid)
 {
     $sql = "SELECT * FROM `user-list` WHERE `uid` = $uid";
@@ -37,6 +51,15 @@ function getBankAccount($uid)
     return $DATA;
 }
 
+function chackBankCode($account_code)
+{
+    $sql = "SELECT * FROM `bank_account` 
+    INNER JOIN `bank` ON `bank_account`.`bankid` = `bank`.`id`
+    WHERE `account_code` = $account_code";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
 function getBank()
 {
     $sql = "SELECT * FROM `bank`";
@@ -52,6 +75,13 @@ function getAddressUser($uid)
                     INNER JOIN `districts` ON `subdistricts`.`district_id` = `districts`.`id`
                     INNER JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id`
                     WHERE `delivery_address`.`uid` = $uid";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
+function updateAddressDelivery($daid)
+{
+    $sql = "SELECT * FROM `delivery_address` WHERE `daid` = $daid";
     $DATA = selectData($sql);
     return $DATA;
 }
