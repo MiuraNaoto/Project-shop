@@ -66,8 +66,19 @@ $(document).ready(function () {
     });
   });
 
-  $(document).on("click", ".edit_address", function (event) {
+  $(document).on("click", ".edit_address", function (e) {
+    e.preventDefault();
     var daid = $(this).attr("id");
     console.log(daid);
+
+    $.ajax({
+      url: "user-profileModal.php",
+      method: "POST",
+      data: { daid: daid },
+      dataType: "json",
+      success: function (data) {
+        location.reload();
+      },
+    });
   });
 });

@@ -282,6 +282,9 @@ $PROVINCE = getDistricts();
                             <span>จังหวัด<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            
+                            <?php echo $_POST['daid'];?>
+
                             <select name="ea_provice" id="ea_provice" class="form-control">
                                 <option value="" disabled>เลือกจังหวัด</option>
                                 <option value="" selected>นครปฐม</option>
