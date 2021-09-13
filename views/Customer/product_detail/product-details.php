@@ -4,6 +4,7 @@
 <?php
 include_once("./product_detail_query.php");
 $product_id = $_GET['product_id'];
+echo $product_id;
 $data = getProductDetail($product_id);
 $countProduct = countProduct($data[1]['shop_name']);
 $relateProduct = getRelateProducts($data[1]['shop_name'], $data[1]['type']);
@@ -94,10 +95,10 @@ echo '<br>' . json_encode($relateProduct);
                                     <input type="text" value="1">
                                 </div>
                             </div>
-                            
-                            
-                            <button class="cart-btn" id="addToCart" onclick="addToCart(<?php echo $data[1]['product_id'];?>)"><span class="icon_bag_alt"></span>Add to cart</button>
-                            
+
+
+                            <button class="cart-btn" id="addToCart" onclick="addToCart(<?php echo $data[1]['product_id']; ?>)"><span class="icon_bag_alt"></span>Add to cart</button>
+
 
                             <ul>
                                 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
@@ -396,30 +397,27 @@ echo '<br>' . json_encode($relateProduct);
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
-
-
-
     function addToCart(id) {
-        
+
         console.log("Add complet...");
         console.log(id);
         $.ajax({
             type: 'POST',
             url: 'addToCart.php',
             //data: s.concat(id),
-            data:{
+            data: {
                 product_id: id,
-            } ,
-            
+            },
+
             //dataType: 'html', 
             //dataType: "json",
             success: function(output) {
-               // location.reload();
-               console.log(output);
-               //location.href = "./addToCart.php"
+                // location.reload();
+                console.log(output);
+                //location.href = "./addToCart.php"
             }
         });
-        
+
 
     }
 

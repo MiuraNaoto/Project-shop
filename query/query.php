@@ -115,3 +115,10 @@ function getProductType()
     $DATA = selectData($sql);
     return $DATA;
 }
+
+function getAllProduct()
+{
+    $sql = "SELECT * FROM `product`";
+    $DATA = selectData($sql);
+    return $DATA;
+}
