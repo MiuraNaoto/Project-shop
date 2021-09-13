@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2021 at 07:38 AM
+-- Generation Time: Sep 13, 2021 at 08:06 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.0
 
@@ -1117,16 +1117,17 @@ CREATE TABLE `product` (
   `stock` int(11) NOT NULL,
   `delivery_type` int(11) NOT NULL,
   `picture` varchar(90) DEFAULT NULL,
-  `qrcode` varchar(50) DEFAULT NULL
+  `qrcode` varchar(50) DEFAULT NULL,
+  `modify` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`product_id`, `product_name`, `product_type`, `price`, `shipping_cost`, `stock`, `delivery_type`, `picture`, `qrcode`) VALUES
-(1, '1', 5, 50, 50, 4, 1, NULL, NULL),
-(2, 'b', 4, 5000, 50, 4, 1, NULL, NULL);
+INSERT INTO `product` (`product_id`, `product_name`, `product_type`, `price`, `shipping_cost`, `stock`, `delivery_type`, `picture`, `qrcode`, `modify`) VALUES
+(1, '1', 5, 50, 50, 4, 1, NULL, NULL, NULL),
+(2, 'b', 4, 5000, 50, 4, 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1335,7 +1336,8 @@ INSERT INTO `sales_demand` (`id`, `product_type`, `uid`) VALUES
 (59, 2, 13),
 (60, 2, 14),
 (61, 3, 14),
-(62, 4, 14);
+(62, 4, 14),
+(63, 1, 15);
 
 -- --------------------------------------------------------
 
@@ -8797,7 +8799,8 @@ INSERT INTO `user-list` (`uid`, `username`, `password`, `tel`, `title_id`, `firs
 (11, 'e', '81d3ab7d96f938faf4d3b3cc56ff998a', '0123456789', 1, 'e', 'e', 'test@gmail.com', 'shop2', '123', 1260, 1, 1, 1, 0, 0, 1, '08:00:00', '08:01:00', 'default_user.png', '11_1631511069.png', 0, 1, 1, 1631511027, 1631511069),
 (12, 'f', '24f66f4f39a722a15933dcf9ba991080', '0123456789', 2, 'f', 'f', 'test@gmail.com', 'shop3', '123', 1325, 1, 1, 1, 0, 0, 1, '08:00:00', '09:00:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 1631511128, 1631511158),
 (13, 'g', 'fd995fc6d0238301375d48fbf16f19d3', '0123456789', 1, 'g', 'g', 'test@gmail.com', 'shop4', '3423', 1120, 1, 1, 1, 0, 0, 123, '12:33:00', '13:34:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 1631511209, 1631511296),
-(14, 'h', 'f35211d5f4e385d39c3a64f4cebca824', '0123456789', 1, 'h', 'h', 'test@gmail.com', 'shoph', '231', 1040, 1, 1, 1, 0, 0, 1, '09:01:00', '09:02:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 1631511432, 1631511477);
+(14, 'h', 'f35211d5f4e385d39c3a64f4cebca824', '0123456789', 1, 'h', 'h', 'test@gmail.com', 'shoph', '231', 1040, 1, 1, 1, 0, 0, 1, '09:01:00', '09:02:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 1631511432, 1631511477),
+(15, 'i', '3b7423011265ea6694f6d6b4d969c76f', '0123456789', 1, 'i', 'i', 'test@gmail.com', 'shopi', '23', 1047, 1, 1, 1, 0, 0, 1, '21:01:00', '12:21:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 1631511908, 1631511941);
 
 -- --------------------------------------------------------
 
@@ -9022,7 +9025,7 @@ ALTER TABLE `reason`
 -- AUTO_INCREMENT for table `sales_demand`
 --
 ALTER TABLE `sales_demand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `subdistricts`
@@ -9040,7 +9043,7 @@ ALTER TABLE `type_payment`
 -- AUTO_INCREMENT for table `user-list`
 --
 ALTER TABLE `user-list`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `user-title`
