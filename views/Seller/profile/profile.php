@@ -2,8 +2,8 @@
 include_once("../../../query/query.php");
 include_once("../../../query/function.php");
 session_start();
-// $idUT = $_SESSION[md5('typeid')];
-// $username = $_SESSION[md5('username')];
+$idUT = $_SESSION[md5('typeid')];
+$username = $_SESSION[md5('username')];
 $USER = $_SESSION[md5('user')];
 $uid = $USER[1]["uid"];
 print_r($USER);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2021 at 09:27 PM
+-- Generation Time: Sep 13, 2021 at 07:38 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.0
 
@@ -29,8 +29,34 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bank` (
   `id` int(11) NOT NULL,
-  `name` int(11) NOT NULL
+  `name` varchar(150) NOT NULL,
+  `picture` varchar(90) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bank`
+--
+
+INSERT INTO `bank` (`id`, `name`, `picture`) VALUES
+(1, 'ธนาคารกรุงเทพ', 'bangkok.png'),
+(2, 'ธนาคารกสิกรไทย', 'kasikorn.png'),
+(3, 'ธนาคารกรุงไทย', 'krungthai.png'),
+(4, 'ธนาคารทหารไทยธนชาต', 'ttb.png'),
+(5, 'ธนาคารไทยพาณิชย์', 'scb.png'),
+(6, 'ธนาคารกรุงศรีอยุธยา', 'krungsri.png'),
+(7, 'ธนาคารเกียรตินาคินภัทร', 'KIATNAKIN_PHATRA_BANK.png'),
+(8, 'ธนาคารซีไอเอ็มบีไทย', 'cimb.png'),
+(9, 'ธนาคารทิสโก้', 'tisco.png'),
+(10, 'ธนาคารยูโอบี', 'uob.png'),
+(11, 'ธนาคารไทยเครดิตเพื่อรายย่อย', 'thaicredit.png'),
+(12, 'ธนาคารแลนด์ แอนด์ เฮ้าส์', 'lh.png'),
+(13, 'ธนาคารไอซีบีซี (ไทย)', 'icbc.png'),
+(14, 'ธนาคารพัฒนาวิสาหกิจขนาดกลางและขนาดย่อมแห่งประเทศไทย', 'sme.png'),
+(15, 'ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร', 'baac.png'),
+(16, 'ธนาคารเพื่อการส่งออกและนำเข้าแห่งประเทศไทย', 'exim.png'),
+(17, 'ธนาคารออมสิน', 'GSB.png'),
+(18, 'ธนาคารอาคารสงเคราะห์', 'GH.png'),
+(19, 'ธนาคารอิสลามแห่งประเทศไทย', 'islmic.png');
 
 -- --------------------------------------------------------
 
@@ -41,10 +67,19 @@ CREATE TABLE `bank` (
 CREATE TABLE `bank_account` (
   `baid` int(11) NOT NULL,
   `account_code` varchar(10) NOT NULL,
-  `account_name` varchar(50) NOT NULL,
+  `account_name` varchar(150) NOT NULL,
   `bankid` int(11) NOT NULL,
   `uid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bank_account`
+--
+
+INSERT INTO `bank_account` (`baid`, `account_code`, `account_name`, `bankid`, `uid`) VALUES
+(1, '0123456789', 'ขายอะไรก็ไม่รู้แต่อยากขายนะ', 5, 1),
+(3, '0987654321', 'ขายอะไรก็ไม่รู้แต่อยากขายนะ', 2, 1),
+(4, '7896543210', 'ขายอะไรก็ไม่รู้แต่อยากขายนะ', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -85,6 +120,13 @@ CREATE TABLE `delivery_type` (
   `delivery_name` varchar(90) NOT NULL,
   `standard_price` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `delivery_type`
+--
+
+INSERT INTO `delivery_type` (`id`, `delivery_name`, `standard_price`) VALUES
+(1, 'kerry', 25);
 
 -- --------------------------------------------------------
 
@@ -1074,9 +1116,17 @@ CREATE TABLE `product` (
   `shipping_cost` double NOT NULL,
   `stock` int(11) NOT NULL,
   `delivery_type` int(11) NOT NULL,
-  `picture` varchar(90) NOT NULL,
-  `qrcode` varchar(50) NOT NULL
+  `picture` varchar(90) DEFAULT NULL,
+  `qrcode` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`product_id`, `product_name`, `product_type`, `price`, `shipping_cost`, `stock`, `delivery_type`, `picture`, `qrcode`) VALUES
+(1, '1', 5, 50, 50, 4, 1, NULL, NULL),
+(2, 'b', 4, 5000, 50, 4, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1088,6 +1138,17 @@ CREATE TABLE `product_type` (
   `id` int(11) NOT NULL,
   `type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `product_type`
+--
+
+INSERT INTO `product_type` (`id`, `type`) VALUES
+(1, 'เสื้อผ้า'),
+(2, 'อาหาร'),
+(3, 'เครื่องดื่ม'),
+(4, 'สมุนไพร'),
+(5, 'ยา');
 
 -- --------------------------------------------------------
 
@@ -1207,6 +1268,74 @@ CREATE TABLE `sales_demand` (
   `product_type` int(11) NOT NULL,
   `uid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `sales_demand`
+--
+
+INSERT INTO `sales_demand` (`id`, `product_type`, `uid`) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 1),
+(5, 2, 4),
+(6, 3, 4),
+(7, 2, 5),
+(8, 3, 5),
+(9, 2, 6),
+(10, 4, 6),
+(11, 1, 7),
+(12, 2, 7),
+(13, 3, 7),
+(14, 4, 7),
+(15, 1, 7),
+(16, 2, 7),
+(17, 3, 7),
+(18, 4, 7),
+(19, 1, 7),
+(20, 2, 7),
+(21, 3, 7),
+(22, 4, 7),
+(23, 1, 7),
+(24, 2, 7),
+(25, 3, 7),
+(26, 4, 7),
+(27, 2, 7),
+(28, 3, 7),
+(29, 1, 7),
+(30, 2, 7),
+(31, 3, 7),
+(32, 4, 7),
+(33, 5, 7),
+(34, 1, 7),
+(35, 2, 7),
+(36, 3, 7),
+(37, 4, 7),
+(38, 5, 7),
+(39, 1, 7),
+(40, 2, 7),
+(41, 3, 7),
+(42, 4, 7),
+(43, 5, 7),
+(44, 1, 7),
+(45, 2, 7),
+(46, 3, 7),
+(47, 4, 7),
+(48, 5, 7),
+(49, 2, 8),
+(50, 3, 8),
+(51, 1, 9),
+(52, 1, 10),
+(53, 1, 11),
+(54, 2, 11),
+(55, 3, 11),
+(56, 2, 12),
+(57, 2, 13),
+(58, 2, 13),
+(59, 2, 13),
+(60, 2, 14),
+(61, 3, 14),
+(62, 4, 14);
 
 -- --------------------------------------------------------
 
@@ -8631,10 +8760,10 @@ CREATE TABLE `user-list` (
   `firstname` varchar(90) DEFAULT NULL,
   `lastname` varchar(90) DEFAULT NULL,
   `email` varchar(90) DEFAULT NULL,
+  `shop_name` varchar(150) DEFAULT NULL,
   `address_shop` varchar(255) DEFAULT NULL,
   `subdistrict_shop` int(11) DEFAULT NULL,
   `have_product` tinyint(1) DEFAULT NULL,
-  `sd_id` int(11) DEFAULT NULL,
   `quantity_product` int(11) DEFAULT NULL,
   `full_time_staff` tinyint(1) DEFAULT NULL,
   `temporary_staff` tinyint(1) DEFAULT NULL,
@@ -8655,9 +8784,20 @@ CREATE TABLE `user-list` (
 -- Dumping data for table `user-list`
 --
 
-INSERT INTO `user-list` (`uid`, `username`, `password`, `tel`, `title_id`, `firstname`, `lastname`, `email`, `address_shop`, `subdistrict_shop`, `have_product`, `sd_id`, `quantity_product`, `full_time_staff`, `temporary_staff`, `donthave`, `quantity_staff`, `time_open`, `time_closed`, `profile_user`, `profile_shop`, `u-is-admin`, `u-is-user`, `u-is-saler`, `modify_user`, `modify_saler`) VALUES
-(1, 'test', '811cb34edaf1f230f587a368cd0ca6c2', '0123445678', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'default_user.png', NULL, 0, 1, 0, 1631367575, NULL),
-(2, 'admin', 'f6fdffe48c908deb0f4c3bd36c032e72', '0987654321', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'default_user.png', 'default_saler.png', 1, 1, 1, 1631367692, 1631367692);
+INSERT INTO `user-list` (`uid`, `username`, `password`, `tel`, `title_id`, `firstname`, `lastname`, `email`, `shop_name`, `address_shop`, `subdistrict_shop`, `have_product`, `quantity_product`, `full_time_staff`, `temporary_staff`, `donthave`, `quantity_staff`, `time_open`, `time_closed`, `profile_user`, `profile_shop`, `u-is-admin`, `u-is-user`, `u-is-saler`, `modify_user`, `modify_saler`) VALUES
+(1, 'test1', '098f6bcd4621d373cade4e832627b4f6', '0123445678', 2, 'test', 'test', 'test@gmail.com', 'ขายอะไรก็ไม่รู็แต่อยากขายนะ', '132', 64, 1, 4, 1, 1, 0, 22, '08:00:00', '21:00:00', 'default_user.png', '1_1631470254.png', 0, 1, 1, 1631367575, 1631438554),
+(2, 'admin', 'f6fdffe48c908deb0f4c3bd36c032e72', '0987654321', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'default_user.png', 'default_saler.png', 1, 1, 1, 1631367692, 1631367692),
+(4, 'a', 'cff3494a11b75cfc0675771d91a6a47b', '0123456789', 1, 'a', 'a', 'a@gmail.com', 'shop1', '85', 1354, 1, 1, 1, 1, 0, 1, '21:23:00', '21:23:00', 'default_user.png', '4_1631453022.png', 0, 1, 1, 1631451241, 1631453022),
+(5, 'b', '7f40abd95c4b17df26a0fd78cb814bdd', '0555555555', 2, 'b', 'b', 'b@gmail.com', 'b', '3434', 1114, 1, 2, 1, 1, 0, 2, '20:27:00', '20:28:00', 'default_user.png', '5_1631453248.png', 0, 1, 1, 1631452506, 1631453248),
+(6, 'c', '0726d5975d4b4d5d136fb4f81891fc1c', '9999999999', 1, 'c', 'c', 'c@gmail.com', 'c', '231', 1168, 1, 2, 1, 1, 0, 1, '23:30:00', '02:30:00', 'default_user.png', '6_1631453417.png', 0, 1, 1, 1631453378, 1631453417),
+(7, 'koara', 'e8f9615895edd6d5a7be3a43c9f3f0a8', '0123456789', 1, 'โคอาล่า', 'มาร์ช', 'koara@march.com', 'Koalas March', '123 ปลาฉลามขึ้บก', 4260, 1, 1, 1, 0, 0, 1, '08:00:00', '18:00:00', 'default_user.png', '7_1631474688.png', 0, 1, 1, 1631473624, 1631474359),
+(8, 'panda', '8af6b645a395d0fb88801ed7190b84d5', '0987654321', 3, 'แพนแพน', 'ด้า', 'panpanda@mail.com', 'panpanda', '1234', 228, 1, 2, 1, 0, 0, 1, '14:00:00', '14:01:00', 'default_user.png', '8_1631474663.png', 0, 1, 1, 1631474492, 1631474617),
+(9, 'test', '811cb34edaf1f230f587a368cd0ca6c2', '0123456789', 1, 'test', 'test', 'test@gmail.com', 'shop1', '123', 910, 1, 1, 1, 0, 0, 1, '08:00:00', '18:00:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 1631510780, 1631510813),
+(10, 'd', '29b3038f5d604acfd4fd26d0ffb6957b', '0123456789', 1, 'd', 'd', 'test@gmail.com', 'shop2', '1231', 1259, 1, 1, 1, 0, 0, 1, '08:00:00', '04:01:00', 'default_user.png', '10_1631510939.png', 0, 1, 1, 1631510908, 1631510939),
+(11, 'e', '81d3ab7d96f938faf4d3b3cc56ff998a', '0123456789', 1, 'e', 'e', 'test@gmail.com', 'shop2', '123', 1260, 1, 1, 1, 0, 0, 1, '08:00:00', '08:01:00', 'default_user.png', '11_1631511069.png', 0, 1, 1, 1631511027, 1631511069),
+(12, 'f', '24f66f4f39a722a15933dcf9ba991080', '0123456789', 2, 'f', 'f', 'test@gmail.com', 'shop3', '123', 1325, 1, 1, 1, 0, 0, 1, '08:00:00', '09:00:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 1631511128, 1631511158),
+(13, 'g', 'fd995fc6d0238301375d48fbf16f19d3', '0123456789', 1, 'g', 'g', 'test@gmail.com', 'shop4', '3423', 1120, 1, 1, 1, 0, 0, 123, '12:33:00', '13:34:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 1631511209, 1631511296),
+(14, 'h', 'f35211d5f4e385d39c3a64f4cebca824', '0123456789', 1, 'h', 'h', 'test@gmail.com', 'shoph', '231', 1040, 1, 1, 1, 0, 0, 1, '09:01:00', '09:02:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 1631511432, 1631511477);
 
 -- --------------------------------------------------------
 
@@ -8706,6 +8846,7 @@ ALTER TABLE `bank`
 --
 ALTER TABLE `bank_account`
   ADD PRIMARY KEY (`baid`,`account_code`),
+  ADD UNIQUE KEY `account_code` (`account_code`),
   ADD KEY `bankid` (`bankid`),
   ADD KEY `uid` (`uid`);
 
@@ -8799,7 +8940,6 @@ ALTER TABLE `user-list`
   ADD PRIMARY KEY (`uid`),
   ADD UNIQUE KEY `username` (`username`),
   ADD KEY `subdistrict_shop` (`subdistrict_shop`),
-  ADD KEY `sd_id` (`sd_id`),
   ADD KEY `title_id` (`title_id`);
 
 --
@@ -8822,13 +8962,13 @@ ALTER TABLE `user-type`
 -- AUTO_INCREMENT for table `bank`
 --
 ALTER TABLE `bank`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `bank_account`
 --
 ALTER TABLE `bank_account`
-  MODIFY `baid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `baid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `delivery_address`
@@ -8840,7 +8980,7 @@ ALTER TABLE `delivery_address`
 -- AUTO_INCREMENT for table `delivery_type`
 --
 ALTER TABLE `delivery_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `districts`
@@ -8858,13 +8998,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `product_type`
 --
 ALTER TABLE `product_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `provinces`
@@ -8882,7 +9022,7 @@ ALTER TABLE `reason`
 -- AUTO_INCREMENT for table `sales_demand`
 --
 ALTER TABLE `sales_demand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `subdistricts`
@@ -8900,7 +9040,7 @@ ALTER TABLE `type_payment`
 -- AUTO_INCREMENT for table `user-list`
 --
 ALTER TABLE `user-list`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `user-title`
@@ -8973,8 +9113,7 @@ ALTER TABLE `subdistricts`
 --
 ALTER TABLE `user-list`
   ADD CONSTRAINT `user-list_ibfk_1` FOREIGN KEY (`title_id`) REFERENCES `user-title` (`id`),
-  ADD CONSTRAINT `user-list_ibfk_2` FOREIGN KEY (`subdistrict_shop`) REFERENCES `subdistricts` (`id`),
-  ADD CONSTRAINT `user-list_ibfk_3` FOREIGN KEY (`sd_id`) REFERENCES `sales_demand` (`id`);
+  ADD CONSTRAINT `user-list_ibfk_2` FOREIGN KEY (`subdistrict_shop`) REFERENCES `subdistricts` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

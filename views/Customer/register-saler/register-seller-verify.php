@@ -10,6 +10,7 @@ if ($USER[1]["u-is-saler"] == 1) {
 } else {
     header("location: ../register-saler/register-seller.php");
     if (isset($_POST["request"]) == "register") {
+        $final_image == '';
         if ($_FILES["shop-profile-img"]) {
             $profile_path = "../../../img/profile/saler/";
             $valid_extensions = array('jpeg', 'jpg', 'png'); // valid extensions
@@ -35,9 +36,9 @@ if ($USER[1]["u-is-saler"] == 1) {
                 if (move_uploaded_file($tmp, $profile_path)) {
                     echo "profile success";
                 }
+            } else {
+                $final_image = "default_saler.png";
             }
-        } else {
-            $final_image = "default_saler.png";
         }
 
         $have_product = $_POST["have_product"];
@@ -123,18 +124,18 @@ if ($USER[1]["u-is-saler"] == 1) {
                                         `u-is-saler`='1',
                                         `modify_saler`='$time' 
                 WHERE `uid`='$uid'";
-        // echo $sql;
+        echo $sql;
         $DATA = updateData($sql);
-        // echo $DATA;
+        echo $DATA;
 
         for ($i = 0; $i < count($type_product); $i++) {
             $sql_saledemand = "INSERT INTO `sales_demand`(`product_type`, `uid`) VALUES ('$type_product[$i]','$uid')";
             $DATA = addinsertData($sql_saledemand);
         }
 
-        $sql = "SELECT * FROM `user-list` WHERE `uid` = $uid";
-        $DATA = selectData($sql);
-        $_SESSION[md5('user')]   = $DATA;
+        $sql_user = "SELECT * FROM `user-list` WHERE `uid` = $uid";
+        $DATA_USER = selectData($sql_user);
+        $_SESSION[md5('user')]   = $DATA_USER;
 
         header("location: ../../Seller/profile/profile.php");
     }
