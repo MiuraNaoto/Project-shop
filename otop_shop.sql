@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2021 at 01:13 PM
+-- Generation Time: Sep 14, 2021 at 01:21 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.0
 
@@ -8801,6 +8801,7 @@ CREATE TABLE `user-list` (
   `u-is-admin` tinyint(1) NOT NULL,
   `u-is-user` tinyint(1) DEFAULT NULL,
   `u-is-saler` tinyint(1) DEFAULT NULL,
+  `is-blocked` tinyint(1) DEFAULT NULL,
   `modify_user` int(11) DEFAULT NULL,
   `modify_saler` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -8809,22 +8810,22 @@ CREATE TABLE `user-list` (
 -- Dumping data for table `user-list`
 --
 
-INSERT INTO `user-list` (`uid`, `username`, `password`, `tel`, `title_id`, `firstname`, `lastname`, `email`, `shop_name`, `address_shop`, `subdistrict_shop`, `have_product`, `quantity_product`, `full_time_staff`, `temporary_staff`, `donthave`, `quantity_staff`, `time_open`, `time_closed`, `profile_user`, `profile_shop`, `u-is-admin`, `u-is-user`, `u-is-saler`, `modify_user`, `modify_saler`) VALUES
-(1, 'test1', '098f6bcd4621d373cade4e832627b4f6', '0123445678', 2, 'test', 'test', 'test@gmail.com', 'ขายอะไรก็ไม่รู็แต่อยากขายนะ', '132', 64, 1, 4, 1, 1, 0, 22, '08:00:00', '21:00:00', 'default_user.png', '1_1631470254.png', 0, 1, 1, 1631367575, 1631438554),
-(2, 'admin', 'f6fdffe48c908deb0f4c3bd36c032e72', '0987654321', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'default_user.png', 'default_saler.png', 1, 1, 1, 1631367692, 1631367692),
-(4, 'a', 'cff3494a11b75cfc0675771d91a6a47b', '0123456789', 1, 'a', 'a', 'a@gmail.com', 'shop1', '85', 1354, 1, 1, 1, 1, 0, 1, '21:23:00', '21:23:00', 'default_user.png', '4_1631453022.png', 0, 1, 1, 1631451241, 1631453022),
-(5, 'b', '7f40abd95c4b17df26a0fd78cb814bdd', '0555555555', 2, 'b', 'b', 'b@gmail.com', 'b', '3434', 1114, 1, 2, 1, 1, 0, 2, '20:27:00', '20:28:00', 'default_user.png', '5_1631453248.png', 0, 1, 1, 1631452506, 1631453248),
-(6, 'c', '0726d5975d4b4d5d136fb4f81891fc1c', '9999999999', 1, 'c', 'c', 'c@gmail.com', 'c', '231', 1168, 1, 2, 1, 1, 0, 1, '23:30:00', '02:30:00', 'default_user.png', '6_1631453417.png', 0, 1, 1, 1631453378, 1631453417),
-(7, 'koara', 'e8f9615895edd6d5a7be3a43c9f3f0a8', '0123456789', 1, 'โคอาล่า', 'มาร์ช', 'koara@march.com', 'Koalas March', '123 ปลาฉลามขึ้บก', 4260, 1, 1, 1, 0, 0, 1, '08:00:00', '18:00:00', '7_1631550950.png', '7_1631474688.png', 0, 1, 1, 1631473624, 1631474359),
-(8, 'panda', '8af6b645a395d0fb88801ed7190b84d5', '0987654321', 3, 'แพนแพน', 'ด้า', 'panpanda@mail.com', 'panpanda', '1234', 228, 1, 2, 1, 0, 0, 1, '14:00:00', '14:01:00', 'default_user.png', '8_1631474663.png', 0, 1, 1, 1631474492, 1631474617),
-(9, 'test', '811cb34edaf1f230f587a368cd0ca6c2', '0123456789', 1, 'test', 'test', 'test@gmail.com', 'shop1', '123', 910, 1, 1, 1, 0, 0, 1, '08:00:00', '18:00:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 1631510780, 1631510813),
-(10, 'd', '29b3038f5d604acfd4fd26d0ffb6957b', '0123456789', 1, 'd', 'd', 'test@gmail.com', 'shop2', '1231', 1259, 1, 1, 1, 0, 0, 1, '08:00:00', '04:01:00', 'default_user.png', '10_1631510939.png', 0, 1, 1, 1631510908, 1631510939),
-(11, 'e', '81d3ab7d96f938faf4d3b3cc56ff998a', '0123456789', 1, 'e', 'e', 'test@gmail.com', 'shop2', '123', 1260, 1, 1, 1, 0, 0, 1, '08:00:00', '08:01:00', 'default_user.png', '11_1631511069.png', 0, 1, 1, 1631511027, 1631511069),
-(12, 'f', '24f66f4f39a722a15933dcf9ba991080', '0123456789', 2, 'f', 'f', 'test@gmail.com', 'shop3', '123', 1325, 1, 1, 1, 0, 0, 1, '08:00:00', '09:00:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 1631511128, 1631511158),
-(13, 'g', 'fd995fc6d0238301375d48fbf16f19d3', '0123456789', 1, 'g', 'g', 'test@gmail.com', 'shop4', '3423', 1120, 1, 1, 1, 0, 0, 123, '12:33:00', '13:34:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 1631511209, 1631511296),
-(14, 'h', 'f35211d5f4e385d39c3a64f4cebca824', '0123456789', 1, 'h', 'h', 'test@gmail.com', 'shoph', '231', 1040, 1, 1, 1, 0, 0, 1, '09:01:00', '09:02:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 1631511432, 1631511477),
-(15, 'i', '3b7423011265ea6694f6d6b4d969c76f', '0123456789', 1, 'i', 'i', 'test@gmail.com', 'shopi', '23', 1047, 1, 1, 1, 0, 0, 1, '21:01:00', '12:21:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 1631511908, 1631511941),
-(16, 'j', '3762358607a2e5c5fa3688729ff3680a', '0123456789', 1, 'j', 'j', 'test@gmail.com', 'shop1', '123 ปลาฉลามขึ้บก', 1266, 1, 1, 1, 0, 0, 1, '16:11:00', '17:11:00', 'default_user.png', '16_1631610727.png', 0, 1, 1, 1631610690, 1631610727);
+INSERT INTO `user-list` (`uid`, `username`, `password`, `tel`, `title_id`, `firstname`, `lastname`, `email`, `shop_name`, `address_shop`, `subdistrict_shop`, `have_product`, `quantity_product`, `full_time_staff`, `temporary_staff`, `donthave`, `quantity_staff`, `time_open`, `time_closed`, `profile_user`, `profile_shop`, `u-is-admin`, `u-is-user`, `u-is-saler`, `is-blocked`, `modify_user`, `modify_saler`) VALUES
+(1, 'test1', '098f6bcd4621d373cade4e832627b4f6', '0123445678', 2, 'test', 'test', 'test@gmail.com', 'ขายอะไรก็ไม่รู็แต่อยากขายนะ', '132', 64, 1, 4, 1, 1, 0, 22, '08:00:00', '21:00:00', 'default_user.png', '1_1631470254.png', 0, 1, 1, 0, 1631367575, 1631438554),
+(2, 'admin', 'f6fdffe48c908deb0f4c3bd36c032e72', '0987654321', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'default_user.png', 'default_saler.png', 1, 1, 1, 0, 1631367692, 1631367692),
+(4, 'a', 'cff3494a11b75cfc0675771d91a6a47b', '0123456789', 1, 'a', 'a', 'a@gmail.com', 'shop1', '85', 1354, 1, 1, 1, 1, 0, 1, '21:23:00', '21:23:00', 'default_user.png', '4_1631453022.png', 0, 1, 1, 0, 1631451241, 1631453022),
+(5, 'b', '7f40abd95c4b17df26a0fd78cb814bdd', '0555555555', 2, 'b', 'b', 'b@gmail.com', 'b', '3434', 1114, 1, 2, 1, 1, 0, 2, '20:27:00', '20:28:00', 'default_user.png', '5_1631453248.png', 0, 1, 1, 0, 1631452506, 1631453248),
+(6, 'c', '0726d5975d4b4d5d136fb4f81891fc1c', '9999999999', 1, 'c', 'c', 'c@gmail.com', 'c', '231', 1168, 1, 2, 1, 1, 0, 1, '23:30:00', '02:30:00', 'default_user.png', '6_1631453417.png', 0, 1, 1, 0, 1631453378, 1631453417),
+(7, 'koara', 'e8f9615895edd6d5a7be3a43c9f3f0a8', '0123456789', 1, 'โคอาล่า', 'มาร์ช', 'koara@march.com', 'Koalas March', '123 ปลาฉลามขึ้บก', 4260, 1, 1, 1, 0, 0, 1, '08:00:00', '18:00:00', '7_1631550950.png', '7_1631474688.png', 0, 1, 1, 0, 1631473624, 1631474359),
+(8, 'panda', '8af6b645a395d0fb88801ed7190b84d5', '0987654321', 3, 'แพนแพน', 'ด้า', 'panpanda@mail.com', 'panpanda', '1234', 228, 1, 2, 1, 0, 0, 1, '14:00:00', '14:01:00', 'default_user.png', '8_1631474663.png', 0, 1, 1, 0, 1631474492, 1631474617),
+(9, 'test', '811cb34edaf1f230f587a368cd0ca6c2', '0123456789', 1, 'test', 'test', 'test@gmail.com', 'shop1', '123', 910, 1, 1, 1, 0, 0, 1, '08:00:00', '18:00:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 0, 1631510780, 1631510813),
+(10, 'd', '29b3038f5d604acfd4fd26d0ffb6957b', '0123456789', 1, 'd', 'd', 'test@gmail.com', 'shop2', '1231', 1259, 1, 1, 1, 0, 0, 1, '08:00:00', '04:01:00', 'default_user.png', '10_1631510939.png', 0, 1, 1, 0, 1631510908, 1631510939),
+(11, 'e', '81d3ab7d96f938faf4d3b3cc56ff998a', '0123456789', 1, 'e', 'e', 'test@gmail.com', 'shop2', '123', 1260, 1, 1, 1, 0, 0, 1, '08:00:00', '08:01:00', 'default_user.png', '11_1631511069.png', 0, 1, 1, 0, 1631511027, 1631511069),
+(12, 'f', '24f66f4f39a722a15933dcf9ba991080', '0123456789', 2, 'f', 'f', 'test@gmail.com', 'shop3', '123', 1325, 1, 1, 1, 0, 0, 1, '08:00:00', '09:00:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 0, 1631511128, 1631511158),
+(13, 'g', 'fd995fc6d0238301375d48fbf16f19d3', '0123456789', 1, 'g', 'g', 'test@gmail.com', 'shop4', '3423', 1120, 1, 1, 1, 0, 0, 123, '12:33:00', '13:34:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 0, 1631511209, 1631511296),
+(14, 'h', 'f35211d5f4e385d39c3a64f4cebca824', '0123456789', 1, 'h', 'h', 'test@gmail.com', 'shoph', '231', 1040, 1, 1, 1, 0, 0, 1, '09:01:00', '09:02:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 0, 1631511432, 1631511477),
+(15, 'i', '3b7423011265ea6694f6d6b4d969c76f', '0123456789', 1, 'i', 'i', 'test@gmail.com', 'shopi', '23', 1047, 1, 1, 1, 0, 0, 1, '21:01:00', '12:21:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 0, 1631511908, 1631511941),
+(16, 'j', '3762358607a2e5c5fa3688729ff3680a', '0123456789', 1, 'j', 'j', 'test@gmail.com', 'shop1', '123 ปลาฉลามขึ้บก', 1266, 1, 1, 1, 0, 0, 1, '16:11:00', '17:11:00', 'default_user.png', '16_1631610727.png', 0, 1, 1, 0, 1631610690, 1631610727);
 
 -- --------------------------------------------------------
 

@@ -1,6 +1,6 @@
 <?php
 // include_once("query/query.php");
-// include_once("query/function.php");
+include_once("./dbConnect.php");
 session_start();
 
 if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isset($_SESSION[md5('user')])) {
@@ -10,7 +10,15 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     echo $username;
     echo print_r($USER);
 }
-// $PRODUCT_TYPE = getProductType();
+
+function getProductType()
+{
+    $sql = "SELECT * FROM `product_type`";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
+$PRODUCT_TYPE = getProductType();
 ?>
 
 
