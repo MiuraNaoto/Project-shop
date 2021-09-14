@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+include_once("../../../query/query.php");
+include_once("../../../query/function.php");
+session_start();
+$idUT = $_SESSION[md5('typeid')];
+$username = $_SESSION[md5('username')];
+$USER = $_SESSION[md5('user')];
+$uid = $USER[1]["uid"];
+
+$PRODUCT = getProductByShopID($uid);
+print_r($PRODUCT);
+?>
+
+
 <head>
   <?php include_once("../layout/header.php") ?>
 
@@ -59,7 +73,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xl font-weight-bold text-success text-uppercase mb-1">สินค้าทั้งหมด</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">127</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $PRODUCT[0]["numrow"] ?> </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-boxes fa-2x text-gray-300"></i>

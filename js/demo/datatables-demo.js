@@ -19,3 +19,7 @@ $(document).ready(function() {
   $('#dataTable4').DataTable();
 });
 
+$(document).ready(function() {
+  $('#dataTableProduct').DataTable();
+});
+

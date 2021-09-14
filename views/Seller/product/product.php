@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+include_once("../../../query/query.php");
+include_once("../../../query/function.php");
+session_start();
+$idUT = $_SESSION[md5('typeid')];
+$username = $_SESSION[md5('username')];
+$USER = $_SESSION[md5('user')];
+$uid = $USER[1]["uid"];
+
+$PRODUCT = getProductByShopID($uid);
+print_r($PRODUCT);
+$PRODUCT = getProductByShopID($uid);
+print_r($PRODUCT);
+?>
+
 <head>
     <?php include_once("../layout/header.php") ?>
 
@@ -56,10 +71,11 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTableProduct" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th style="text-align: center;">รูปสินค้า</th>
+                                            <th style="text-align: center;">รหัสสินค้า</th>
                                             <th style="text-align: center;">ชื่อสินค้า</th>
                                             <th style="text-align: center;">ประเภทสินค้า</th>
                                             <th style="text-align: center;">ราคาสินค้า (บาท)</th>
@@ -81,111 +97,37 @@
                                         </tr>
                                     </tfoot> -->
                                     <tbody>
-                                        <tr>
-                                            <td class="d-flex align-items-center d-flex justify-content-center"><img src="../../../img/product/Seller/fast-food.png" class="img-circle" width="60" height="60"></td>
-                                            <td style="vertical-align: middle;">ชุดอิ่มคุ้ม</td>
-                                            <td style="vertical-align: middle;">อาหาร</td>
-                                            <td style="vertical-align: middle; text-align: end;">120.00</td>
-                                            <td style="vertical-align: middle; text-align: end;">45.00</td>
-                                            <td style="vertical-align: middle; text-align: end;">650</td>
-                                            <td style="vertical-align: middle; text-align: end;">458</td>
-                                            <td style="vertical-align: middle; text-align: end;">420</td>
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" id="btm_qrcode" class="btn btn-primary btn-md" title='ดู qr-code สินค้า' data-toggle="modal" data-target="#showQRcodeModal">
-                                                    <i class="fas fa-bars"></i>
-                                                </button>
-                                                <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า' data-toggle="modal" data-target="#editModal">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='ลบสินค้า' onclick="delfunction('1','ชุดสุดคุ้ม','อาหาร','ราคา','จำนวน')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="d-flex align-items-center d-flex justify-content-center"><img src="../../../img/product/Seller/drink.png" class="img-circle" width="60" height="60"></td>
-                                            <td style="vertical-align: middle;">น้ำส้มสูตรโปบราณพึ่งคิดได้เมื่อวานแต่บอกโบราณเผื่อขายดี</td>
-                                            <td style="vertical-align: middle;">เครื่องดื่ม</td>
-                                            <td style="vertical-align: middle; text-align: end;">10.00</td>
-                                            <td style="vertical-align: middle; text-align: end;">45.00</td>
-                                            <td style="vertical-align: middle; text-align: end;">20</td>
-                                            <td style="vertical-align: middle; text-align: end;">15</td>
-                                            <td style="vertical-align: middle; text-align: end;">15</td>
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" id="btm_qrcode" class="btn btn-primary btn-md" title='ดู qr-code สินค้า' data-toggle="modal" data-target="#showQRcodeModal">
-                                                    <i class="fas fa-bars"></i>
-                                                </button>
-                                                <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า'>
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='ลบสินค้า'>
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="d-flex align-items-center d-flex justify-content-center"><img src="../../../img/product/Seller/bags.png" class="img-circle" width="60" height="60"></td>
-                                            <td style="vertical-align: middle;">กระเป๋า</td>
-                                            <td style="vertical-align: middle;">ของใช้</td>
-                                            <td style="vertical-align: middle; text-align: end;">12,350.00</td>
-                                            <td style="vertical-align: middle; text-align: end;">45.00</td>
-                                            <td style="vertical-align: middle; text-align: end;">5</td>
-                                            <td style="vertical-align: middle; text-align: end;">5</td>
-                                            <td style="vertical-align: middle; text-align: end;">2</td>
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" id="btm_qrcode" class="btn btn-primary btn-md" title='ดู qr-code สินค้า' data-toggle="modal" data-target="#showQRcodeModal">
-                                                    <i class="fas fa-bars"></i>
-                                                </button>
-                                                <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า'>
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='ลบสินค้า'>
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="d-flex align-items-center d-flex justify-content-center"><img src="../../../img/product/Seller/clothes-hanger.png" class="img-circle" width="60" height="60"></td>
-                                            <td style="vertical-align: middle;">เสื้อผ้า</td>
-                                            <td style="vertical-align: middle;">เครื่องนุ่งห่ม</td>
-                                            <td style="vertical-align: middle; text-align: end;">10.00</td>
-                                            <td style="vertical-align: middle; text-align: end;">45.00</td>
-                                            <td style="vertical-align: middle; text-align: end;">20</td>
-                                            <td style="vertical-align: middle; text-align: end;">2</td>
-                                            <td style="vertical-align: middle; text-align: end;">2</td>
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" id="btm_qrcode" class="btn btn-primary btn-md" title='ดู qr-code สินค้า' data-toggle="modal" data-target="#showQRcodeModal">
-                                                    <i class="fas fa-bars"></i>
-                                                </button>
-                                                <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า'>
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='ลบสินค้า'>
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="d-flex align-items-center d-flex justify-content-center"><img src="../../../img/product/Seller/marijuana.png" class="img-circle" width="60" height="60"></td>
-                                            <td style="vertical-align: middle;">สมุนไพรเพิ่มรอยยิ้มแบบรวดเร็ว</td>
-                                            <td style="vertical-align: middle;">สมุนไพร</td>
-                                            <td style="vertical-align: middle; text-align: end;">900.00</td>
-                                            <td style="vertical-align: middle; text-align: end;">45.00</td>
-                                            <td style="vertical-align: middle; text-align: end;">1</td>
-                                            <td style="vertical-align: middle; text-align: end;">0</td>
-                                            <td style="vertical-align: middle; text-align: end;">0</td>
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" id="btm_qrcode" class="btn btn-primary btn-md" title='ดู qr-code สินค้า' data-toggle="modal" data-target="#showQRcodeModal">
-                                                    <i class="fas fa-bars"></i>
-                                                </button>
-                                                <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า'>
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='ลบสินค้า'>
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        <?php
+                                        for ($i = 1; $i < count($PRODUCT); $i++) {
+                                        ?>
+                                            <tr>
+                                                <td class="d-flex align-items-center d-flex justify-content-center"><img src="<?php echo "../../../img/product/profile/" . $PRODUCT[$i]["profile_product"] ?>" class="img-circle" width="60" height="60"></td>
+                                                <td style="vertical-align: middle;"><?php echo $PRODUCT[$i]["product_number"] ?></td>
+                                                <td style="vertical-align: middle;"><?php echo $PRODUCT[$i]["product_name"] ?></td>
+                                                <td style="vertical-align: middle;"><?php echo $PRODUCT[$i]["type"] ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo number_format($PRODUCT[$i]["price"], 2) ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo number_format($PRODUCT[$i]["shipping_cost"], 2) ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo number_format($PRODUCT[$i]["stock"]) ?></td>
+                                                <td style="vertical-align: middle; text-align: end;">458</td>
+                                                <td style="vertical-align: middle; text-align: end;">420</td>
+                                                <td style="text-align: center; vertical-align: middle;">
+                                                    <button type="button" id="btm_qrcode" class="btn btn-primary btn-md" title='ดู qr-code สินค้า' data-toggle="modal" data-target="#showQRcodeModal">
+                                                        <i class="fas fa-bars"></i>
+                                                    </button>
+                                                    <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า' data-toggle="modal" data-target="#editModal">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='ลบสินค้า' onclick="delfunction('<?php echo $PRODUCT[$i]['product_id'] ?>',
+                                                                                                                                                            '<?php echo $PRODUCT[$i]['product_number'] ?>',
+                                                                                                                                                            '<?php echo $PRODUCT[$i]['product_name'] ?>')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -200,9 +142,9 @@
             <?php
             include_once("../layout/footer.php");
             include_once("productModal.php");
-
             ?>
             <script type="text/javascript" src="product.js"></script>
+            <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
         </div>
         <!-- End of Content Wrapper -->
 

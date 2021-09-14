@@ -4,7 +4,7 @@
     $idUT = $_SESSION[md5('typeid')];
     $username = $_SESSION[md5('username')];
 
-    echo $username;
+    // echo $username;
     ?>
 
 
@@ -152,7 +152,7 @@
                  <div class="col-lg-3 align-self-center">
                      <div class="row d-flex justify-content-end">
                          <div class="col-lg-7 align-self-center ">
-                             <ul class="header__right__widget d-flex justify-content-end">
+                             <!-- <ul class="header__right__widget d-flex justify-content-end">
                                  <li>
                                      <a href="./views/Customer/notification/notification.php">
                                          <i class="fa fa-bell-o" aria-hidden="true"></i>
@@ -177,11 +177,11 @@
                                          <div class="tip">3</div>
                                      </a>
                                  </li>
-                             </ul>
+                             </ul> -->
                          </div>
-                         <div class="col-lg-1 text-light d-flex justify-content-center align-self-center">
+                         <!-- <div class="col-lg-1 text-light d-flex justify-content-center align-self-center">
                              <hr style="height: 30px; width: 1px; background-color: whitesmoke; display:block;">
-                         </div>
+                         </div> -->
                          <div class="col-lg-4 text-light d-flex justify-content-center align-self-center">
                              <a href="../../../login.php" style="color: whitesmoke;">เข้าสู่ระบบ</a>
                          </div>

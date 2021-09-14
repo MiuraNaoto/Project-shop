@@ -352,7 +352,7 @@ print_r($UTID1);
                                                             <h6 class="font-weight-bold d-flex justify-content-start">เลขบัญชี</h6>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <h6 class="d-flex justify-content-start"><?php echo $BANK_ACCOUNT[$i]["account_code"] ?></h6>
+                                                            <h6 class="d-flex justify-content-start"><?php echo format_banknumber($BANK_ACCOUNT[$i]["account_code"]) ?></h6>
                                                         </div>
                                                     </div>
                                                     <div class="row  mt-4">
@@ -373,11 +373,6 @@ print_r($UTID1);
                                         </div>';
                                 }
                                 ?>
-
-
-
-
-
                             </div>
                         </div>
                     </div>
@@ -386,12 +381,14 @@ print_r($UTID1);
 
                 </div>
                 <!-- End of Main Content -->
-                <?php
-                include_once("../layout/footer.php");
-                include_once("profileModal.php");
-                ?>
-                <script src="profile.js"></script>
+
             </div>
+            <?php
+            include_once("profileModal.php");
+            include_once("../layout/footer.php");
+
+            ?>
+            <script src="profile.js"></script>
             <!-- End of Content Wrapper -->
         </div>
         <!-- End of Page Wrapper -->

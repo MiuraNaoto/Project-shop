@@ -1,4 +1,26 @@
 $(document).ready(function () {
+  $("#uploadpic").on("change", function (e) {
+    e.preventDefault();
+    $.ajax({
+      url: "manage.php",
+      type: "POST",
+      data: new FormData(this),
+      contentType: false,
+      cache: false,
+      processData: false,
+      // datatype: "json",
+      async: false,
+      success: function (data) {
+        // alert(data);
+        location.reload(true);
+        // location.href = "./manage.php"
+      },
+      error: function (e) {
+        $("#err").html(e).fadeIn();
+      },
+    });
+  });
+
   //   $(document).on("click", "#add_address", function (e) {
   $("form-insert-address").submit(function (e) {
     e.preventDefault();

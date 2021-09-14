@@ -36,6 +36,7 @@ switch ($request) {
 
         header("location: ./user-profile.php");
         break;
+
     case 'edit_user':
         $username = $_POST["e_username"];
         $tel = $_POST["e_tel"];
@@ -46,6 +47,61 @@ switch ($request) {
         $sql = "UPDATE `user-list` SET `username`='$username', `tel`='$tel' WHERE `uid`='$uid'";
         $DATA = updateData($sql);
         header("location: ./user-profile.php");
+        break;
+
+    case 'updateprofile':
+
+        $valid_extensions = array('jpeg', 'jpg', 'png'); // valid extensions
+        $path = '../../../img/profile/user/'; // upload directory
+        $uid = $_POST['uid'];
+        $profile = "/img/profile/user/" . $_POST["profile_user"];
+        $time = time();
+
+        if ($_FILES['image']) {
+            $profile = substr($profile, strrpos($profile, '/') + 1);
+            $scan_dir = array_diff(scandir($path), array('..', '.'));
+            if (in_array($profile, $scan_dir)) {
+                unlink($path . "/" . $profile);
+            }
+
+
+            $img = $_FILES['image']['name'];
+            $tmp = $_FILES['image']['tmp_name'];
+
+            // get uploaded file's extension
+            $ext = strtolower(pathinfo($img, PATHINFO_EXTENSION));
+            // echo $ext;
+            // can upload same image using rand function
+            if ($ext == "png") {
+                $final_image = $uid . "_" . $time . "." . $ext;
+            } else {
+                $final_image = $uid . "_" . $time . ".png";
+            }
+
+            echo $final_image;
+            // check's valid format
+            if (in_array($ext, $valid_extensions)) {
+                $path = $path . strtolower($final_image);
+                if (move_uploaded_file($tmp, $path)) {
+                    // echo "<img src='$path" . $final_image . "' />";
+                    // $profile_path_1 = "picture/profile/cow/" . $final_image;
+                    $sql = "UPDATE `user-list` SET `profile_user`='$final_image' WHERE `uid`='$uid'";
+                    echo $sql;
+                    updateData($sql);
+
+                    $sql = "SELECT * FROM `user-list` WHERE `uid` = $uid";
+                    $DATA = selectData($sql);
+                    $_SESSION[md5('user')]   = $DATA;
+
+                    header("location: user-profile.php");
+                }
+            } else {
+                echo 'invalid';
+            }
+        }
+
+
+        // header("location: ./profile.php");
         break;
 }
 

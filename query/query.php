@@ -122,3 +122,50 @@ function getAllProduct()
     $DATA = selectData($sql);
     return $DATA;
 }
+
+function getProductDetail($product_id)
+{
+    $sql = "SELECT * FROM `product` 
+                    INNER JOIN `product_type` ON `product`.`product_type` = `product_type`.`id` 
+                    INNER JOIN `user-list` ON `product`.`uid` = `user-list`.`uid`
+            WHERE `product`.`product_id` = '$product_id'";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
+function getProductByShopID($shop_id)
+{
+    $sql = "SELECT * FROM `product` 
+                    INNER JOIN `product_type` ON `product`.`product_type` = `product_type`.`id` 
+                    INNER JOIN `user-list` ON `product`.`uid` = `user-list`.`uid` 
+            WHERE `user-list`.`uid` = '$shop_id'";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
+function getRelateProducts($product_type)
+{
+    $sql = "SELECT * FROM `product` INNER JOIN `product_type` ON `product`.`product_type` = `product_type`.`id` INNER JOIN `user-list` ON `product`.`uid` = `user-list`.`uid` WHERE `product`.`product_type` = '$product_type' ORDER BY RAND()";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
+function getShopProfile($shop_id)
+{
+    $sql = "SELECT * FROM `user-list` 
+                    INNER JOIN  `product` ON `product`.`uid` = `user-list`.`uid` 
+                    INNER JOIN `product_type` ON `product`.`product_type` = `product_type`.`id`  
+                    INNER JOIN `subdistricts` ON `user-list`.`subdistrict_shop` = `subdistricts`.`id`
+                    INNER JOIN `districts` ON `subdistricts`.`district_id` = `districts`.`id`
+                    INNER JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id`
+            WHERE `user-list`.`uid` = '$shop_id'";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
+function getDeliveryType()
+{
+    $sql = "SELECT * FROM `delivery_type`";
+    $DATA = selectData($sql);
+    return $DATA;
+}

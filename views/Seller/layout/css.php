@@ -9,4 +9,6 @@
     <link href="../../../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css"> -->
+
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme--bootstrap-4/bootstrap-4.scss" rel="stylesheet">

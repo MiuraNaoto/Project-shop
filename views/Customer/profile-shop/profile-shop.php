@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+include_once("../../../query/query.php");
+include_once("../../../query/function.php");
+session_start();
+// $idUT = $_SESSION[md5('typeid')];
+// $username = $_SESSION[md5('username')];
+$shop_id = $_GET['shop_id'];
+$USER = $_SESSION[md5('user')];
+$uid = $USER[1]["uid"];
+
+$SHOP_PROFILE = getShopProfile($shop_id);
+$SHOP_PRODUCT = getProductByShopID($shop_id);
+print_r($SHOP_PROFILE);
+echo  "<br><br><br>";
+print_r($SHOP_PRODUCT);
+?>
 
 <head>
     <?php include_once("../layout/header.php") ?>
@@ -36,7 +52,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="../../../index.php"><i class="fa fa-home"></i> Home</a>
-                        <span>ขายอะไรก็ไม่รู้ แต่อยากขายนะ</span>
+                        <span><?php echo $SHOP_PROFILE[1]["shop_name"] ?></span>
                     </div>
                 </div>
             </div>
@@ -51,17 +67,17 @@
                 <div class="col-lg-6 profile-shop-banner">
                     <div class="row">
                         <div class="col-4 d-flex justify-content-center align-self-center">
-                            <img src="../../../img/profile/vendor.png" width="125" height="125" />
+                            <img src='<?php echo "../../../img/profile/saler/" . $SHOP_PROFILE[1]["profile_shop"] ?>' width="125" height="125" />
                         </div>
                         <div class="col-8">
-                            <h6 class="h5 mb-2 mt-3 font-weight-bold">ขายอะไรก็ไม่รู้ แต่อยากขายนะ <a href="#"><img src="../../../img/icon/line.png" width="22" height="22" style="margin-left: 10px;" /></a></h6>
+                            <h6 class="h5 mb-2 mt-3 font-weight-bold"><?php echo $SHOP_PROFILE[1]["shop_name"] ?> <a href="#"><img src="../../../img/icon/line.png" width="22" height="22" style="margin-left: 10px;" /></a></h6>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3" style="padding: 0px;">
                                     <span class="mt-3 text-muted font-weight-bold">เบอร์ติดต่อ :</span>
                                 </div>
                                 <div class="col-md-9">
-                                    <span class="text-muted"> 098-765-4321</span>
+                                    <span class="text-muted"><?php echo format_phonenumber($SHOP_PROFILE[1]["tel"]) ?></span>
                                 </div>
                             </div>
                             <div class="row">
@@ -69,7 +85,25 @@
                                     <span class="mt-3 text-muted font-weight-bold">ที่อยู่ :</span>
                                 </div>
                                 <div class="col-md-9">
-                                    <span class="text-muted">123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456<br>ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140</span>
+                                    <span class="text-muted"><?php
+                                                                echo $SHOP_PROFILE[1]["address_shop"] . "<br>" . "ต." . $SHOP_PROFILE[1]["subdistricts_name_in_thai"] ?>
+                                        <?Php
+                                        if ($SHOP_PROFILE[1]["provinces_name_in_thai"] == "กรุงเทพมหานคร") {
+                                            echo $SHOP_PROFILE[1]["address_shop"] . "<br>" .
+                                                " แขวง" . $SHOP_PROFILE[1]["subdistricts_name_in_thai"] .
+                                                " " . $SHOP_PROFILE[1]["districts_name_in_thai"] .
+                                                " " . $SHOP_PROFILE[1]["provinces_name_in_thai"] .
+                                                ", " . $SHOP_PROFILE[1]["zip_code"];
+                                        } else {
+                                            echo $SHOP_PROFILE[1]["address_shop"]  . "<br>" .
+                                                " ต." . $SHOP_PROFILE[1]["subdistricts_name_in_thai"] .
+                                                " อ." . $SHOP_PROFILE[1]["districts_name_in_thai"] .
+                                                " จ." . $SHOP_PROFILE[1]["provinces_name_in_thai"] .
+                                                ", " . $SHOP_PROFILE[1]["zip_code"];
+                                        }
+                                        ?>
+
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +118,7 @@
                                     <i class="fas fa-boxes"></i>
                                 </div>
                                 <div class="col-md-10">
-                                    <span>สินค้าทั้งหมด 108 รายการ</span>
+                                    <span><?php echo "สินค้าทั้งหมด " . $SHOP_PRODUCT[0]["numrow"] . " รายการ" ?></span>
                                 </div>
                             </div>
                             <!-- <br> -->
@@ -93,7 +127,16 @@
                                     <i class="fas fa-user-clock"></i>
                                 </div>
                                 <div class="col-md-10">
-                                    <span>เข้าร่วมเมื่อ 1 เดือน ที่ผ่านมา</span>
+                                    <span>
+                                        <?php
+                                        date_default_timezone_set("Asia/Bangkok");
+                                        $current_date = date_create(date("Y-m-d H:i:s", time()));
+                                        $reigster_saler_date = date_create(date("Y-m-d H:i:s", $SHOP_PROFILE[1]["modify_saler"]));
+
+                                        $diff = date_diff($current_date, $reigster_saler_date);
+                                        echo "เข้าร่วมเมื่อ " . $diff->format("%y ปี %m เดือน %d วัน %h ชั่วโมง %i นาที %s วินาที") . " ที่ผ่านมา";
+                                        ?>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -112,12 +155,33 @@
                                 </div>
                                 <div class="col-md-11">
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <span class="text-success">เปิดอยู่</span>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span> 10.00 - 18.00</span>
-                                        </div>
+                                        <?php
+                                        $time_current = date("H:i:s", time());
+                                        $time_opened = $SHOP_PROFILE[1]["time_open"];
+                                        $time_closed = $SHOP_PROFILE[1]["time_closed"];
+
+                                        if ($time_current > $time_opened && $time_current < $time_closed) {
+                                        ?>
+                                            <div class="col-md-4 align-self-center text-center">
+                                                <span class="text-success">เปิดอยู่</span>
+                                            </div>
+                                            <div class="col-md-6 align-self-center">
+                                                <span><?php $time_opened  . " - " . $time_closed; ?></span>
+                                            </div>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <div class="col-md-4 align-self-center text-center">
+                                                <span class="text-danger">ปิดอยู่</span>
+                                            </div>
+                                            <div class="col-md-8 align-self-center">
+                                                <span><?php echo date('H:i', strtotime($time_opened))  . " - " .  date('H:i', strtotime($time_closed)); ?></span>
+                                            </div>
+                                        <?php
+                                        }
+
+                                        ?>
+
                                     </div>
 
                                 </div>
@@ -150,216 +214,46 @@
                         <div class="tab-pane active" id="tabs-1" role="tabpanel">
                             <div class="col-lg-12">
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-6">
-                                        <div class="product__item">
-                                            <div class="product__item__pic set-bg" data-setbg="../../../img/product/details/product-1.jpg">
-                                                <div class="label new">New</div>
-                                                <ul class="product__hover">
-                                                    <li><a href="../../../img/product/details/product-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__item__text">
-                                                <h6><a href="../product_detail/product-details.php">Furry hooded parka</a></h6>
-                                                <div class="rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
+                                    <?php
+                                    for ($i = 1; $i < COUNT($SHOP_PRODUCT); $i++) {
+                                    ?>
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="product__item">
+                                                <div class="product__item__pic set-bg" data-setbg="<?php echo "../../../img/product/profile/" . $SHOP_PRODUCT[$i]["profile_product"]; ?>">
+                                                    <div class="label new">New</div>
+                                                    <ul class="product__hover">
+                                                        <li><a href="<?php echo "../../../img/product/profile/" . $SHOP_PRODUCT[$i]["profile_product"]; ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                                    </ul>
                                                 </div>
-                                                <div class="product__price">$ 59.0</div>
+                                                <div class="product__item__text">
+                                                    <h6><a href='<?php echo "../product_detail/product-details.php?product_id=" . $SHOP_PRODUCT[$i]["product_id"]; ?>'><?php echo $SHOP_PRODUCT[$i]["product_name"] ?></a></h6>
+                                                    <div class="rating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="product__price"><?php echo "฿ " . $SHOP_PRODUCT[$i]["price"]; ?></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6">
-                                        <div class="product__item">
-                                            <div class="product__item__pic set-bg" data-setbg="../../../img/shop/shop-2.jpg">
-                                                <ul class="product__hover">
-                                                    <li><a href="img/shop/shop-2.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__item__text">
-                                                <h6><a href="#">Flowy striped skirt</a></h6>
-                                                <div class="rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <div class="product__price">$ 49.0</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6">
-                                        <div class="product__item">
-                                            <div class="product__item__pic set-bg" data-setbg="../../../img/shop/shop-3.jpg">
-                                                <ul class="product__hover">
-                                                    <li><a href="img/shop/shop-3.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__item__text">
-                                                <h6><a href="#">Croc-effect bag</a></h6>
-                                                <div class="rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <div class="product__price">$ 59.0</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6">
-                                        <div class="product__item">
-                                            <div class="product__item__pic set-bg" data-setbg="../../../img/shop/shop-4.jpg">
-                                                <ul class="product__hover">
-                                                    <li><a href="img/shop/shop-4.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__item__text">
-                                                <h6><a href="#">Dark wash Xavi jeans</a></h6>
-                                                <div class="rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <div class="product__price">$ 59.0</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6">
-                                        <div class="product__item sale">
-                                            <div class="product__item__pic set-bg" data-setbg="../../../img/shop/shop-5.jpg">
-                                                <div class="label">Sale</div>
-                                                <ul class="product__hover">
-                                                    <li><a href="img/shop/shop-5.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__item__text">
-                                                <h6><a href="#">Ankle-cuff sandals</a></h6>
-                                                <div class="rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <div class="product__price">$ 49.0 <span>$ 59.0</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6">
-                                        <div class="product__item">
-                                            <div class="product__item__pic set-bg" data-setbg="../../../img/shop/shop-6.jpg">
-                                                <ul class="product__hover">
-                                                    <li><a href="img/shop/shop-6.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__item__text">
-                                                <h6><a href="#">Contrasting sunglasses</a></h6>
-                                                <div class="rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <div class="product__price">$ 59.0</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6">
-                                        <div class="product__item">
-                                            <div class="product__item__pic set-bg" data-setbg="../../../img/shop/shop-7.jpg">
-                                                <ul class="product__hover">
-                                                    <li><a href="img/shop/shop-7.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__item__text">
-                                                <h6><a href="#">Circular pendant earrings</a></h6>
-                                                <div class="rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <div class="product__price">$ 59.0</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6">
-                                        <div class="product__item">
-                                            <div class="product__item__pic set-bg" data-setbg="../../../img/shop/shop-8.jpg">
-                                                <div class="label stockout stockblue">Out Of Stock</div>
-                                                <ul class="product__hover">
-                                                    <li><a href="img/shop/shop-8.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__item__text">
-                                                <h6><a href="#">Cotton T-Shirt</a></h6>
-                                                <div class="rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <div class="product__price">$ 59.0</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6">
-                                        <div class="product__item sale">
-                                            <div class="product__item__pic set-bg" data-setbg="../../../img/shop/shop-9.jpg">
-                                                <div class="label">Sale</div>
-                                                <ul class="product__hover">
-                                                    <li><a href="img/shop/shop-9.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product__item__text">
-                                                <h6><a href="#">Water resistant zips backpack</a></h6>
-                                                <div class="rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <div class="product__price">$ 49.0 <span>$ 59.0</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 text-center">
+                                    <?php
+                                    }
+
+                                    ?>
+
+                                    <!-- number page -->
+                                    <!-- <div class="col-lg-12 text-center">
                                         <div class="pagination__option">
                                             <a href="#">1</a>
                                             <a href="#">2</a>
                                             <a href="#">3</a>
                                             <a href="#"><i class="fa fa-angle-right"></i></a>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -367,7 +261,7 @@
                         <div class="tab-pane" id="tabs-2" role="tabpanel" style="padding-left: 80px; padding-right: 80px; padding-top: 10px;">
                             <div class="row">
                                 <div class="col-md-2 d-flex align-items-center d-flex justify-content-center" style="padding: 0px; width: 85px; flex: 0 0 8%;">
-                                    <img src="../../../img/profile/user.png" class="rounded-circle" width="65" height="65" />
+                                    <img src="../../../img/profile/user/default_user.png" class="rounded-circle" width="65" height="65" />
                                 </div>
                                 <div class="col-md-10 align-self-center" style="padding: 0px;">
                                     <div class="col-md-12 d-flex justify-content-start">
@@ -393,7 +287,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-md-2 d-flex align-items-center d-flex justify-content-center" style="padding: 0px; width: 85px; flex: 0 0 8%;">
-                                    <img src="../../../img/profile/user.png" class="rounded-circle" width="65" height="65" />
+                                    <img src="../../../img/profile/user/default_user.png" class="rounded-circle" width="65" height="65" />
                                 </div>
                                 <div class="col-md-10 align-self-center" style="padding: 0px;">
                                     <div class="col-md-12 d-flex justify-content-start">
@@ -419,7 +313,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-md-2 d-flex align-items-center d-flex justify-content-center" style="padding: 0px; width: 85px; flex: 0 0 8%;">
-                                    <img src="../../../img/profile/user.png" class="rounded-circle" width="65" height="65" />
+                                    <img src="../../../img/profile/user/default_user.png" class="rounded-circle" width="65" height="65" />
                                 </div>
                                 <div class="col-md-10 align-self-center" style="padding: 0px;">
                                     <div class="col-md-12 d-flex justify-content-start">

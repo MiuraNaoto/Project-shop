@@ -16,6 +16,7 @@ $ADDRESS_USER = getAddressUser($uid);
 
 <head>
     <?php include_once("../layout/header.php") ?>
+    <link rel="stylesheet" href="user-profile.css">
 </head>
 
 <body>
@@ -49,15 +50,28 @@ $ADDRESS_USER = getAddressUser($uid);
                                 </div>
                                 <div class="card-body">
                                     <div class="row d-flex justify-content-center d-flex align-items-center">
-                                        <img class="img-radius img-profile" src='<?php echo  "../../../img/profile/" . $USER[1]["profile_user"] ?>' width="350px" height="350px">
+                                        <!-- <img class="img-radius img-profile" src='<?php echo  "../../../img/profile/user/" . $USER[1]["profile_user"] ?>' width="350px" height="350px"> -->
+                                        <form name="uploadpic" id="uploadpic" method="POST" action="manage.php" enctype="multipart/form-data">
+                                            <div class="profile-pic">
+                                                <input type="text" id="uid" name="uid" value="<?php echo $uid ?>" style="display:none" />
+                                                <input type="text" id="request" name="request" value="updateprofile" style="display:none" />
+                                                <input type="text" id="profile_user" name="profile_user" value="<?php echo $USER[1]["profile_user"]; ?>" style="display:none" />
+                                                <input id="uploadImage" type="file" accept="image/jpeg, image/jpg, image/png" name="image" hidden />
+                                                <label class="-label" for="uploadImage">
+                                                    <span class="glyphicon glyphicon-camera"></span>
+                                                    <span>เปลี่ยนรูปโปรไฟล์</span>
+                                                </label>
+                                                <img class='img-radius img-profile' src='<?php echo "../../../img/profile/user/" . $USER[1]["profile_user"] ?>' style="object-fit: cover;" />
+                                            </div>
+                                        </form>
                                     </div>
                                     <br>
                                     <div class="row mt-3">
                                         <div class="col-xl-12 col-12">
                                             <center>
-                                                <button type="button" id="edit_photo" class="btn btn-primary btn-md" title='เปลี่ยนรูปโปรไฟล์'>
+                                                <!-- <button type="button" id="edit_photo" class="btn btn-primary btn-md" title='เปลี่ยนรูปโปรไฟล์'>
                                                     <i class="fas fa-image"></i>
-                                                </button>
+                                                </button> -->
                                                 <button type="button" class="btn btn-success btn-md" title='เพิ่มที่อยู่จัดส่ง' data-toggle="modal" data-target="#insertAddress">
                                                     <i class="fas fa-plus"></i>
                                                     <span>&nbsp;เพิ่มที่อยู่จัดส่ง</span>
@@ -65,6 +79,7 @@ $ADDRESS_USER = getAddressUser($uid);
 
                                                 <button type="button" id="btn_pass" class="btn btn-secondary btn-md pass_edit" title='เปลี่ยนรหัสผ่าน' data-toggle="modal" data-target="#editPassModal">
                                                     <i class="fa fa-cog"></i>
+                                                    <span>&nbsp;เปลี่ยนรหัสผ่าน</span>
                                                 </button>
                                             </center>
                                         </div>
@@ -110,6 +125,7 @@ $ADDRESS_USER = getAddressUser($uid);
                             </div>
                         </div>
                     </div>
+                    <hr class="hr-text" data-content="ที่อยู่จัดส่ง">
                     <?php
                     for ($i = 1; $i < count($ADDRESS_USER); $i++) {
                     ?>

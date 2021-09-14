@@ -5,6 +5,7 @@
 include_once("../../../query/query.php");
 include_once("../../../query/function.php");
 session_start();
+
 // $idUT = $_SESSION[md5('typeid')];
 // $username = $_SESSION[md5('username')];
 $USER = $_SESSION[md5('user')];
@@ -261,10 +262,10 @@ $PRODUCT = getAllProduct();
                         ?>
                             <div class="col-lg-4 col-md-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="../../../img/product/product-1.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="<?php echo "../../../img/product/profile/" . $PRODUCT[$i]['profile_product'] ?>">
                                         <div class="label new">New</div>
                                         <ul class="product__hover">
-                                            <li><a href="../../../img/product/product-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                            <li><a href="<?php echo "../../../img/product/profile/" . $PRODUCT[$i]['profile_product'] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
                                             <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                             <li><a href="#"><span class="icon_bag_alt"></span></a></li>
                                         </ul>

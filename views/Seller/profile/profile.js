@@ -123,7 +123,7 @@ $(document).ready(function () {
       // datatype: "json",
       async: false,
       success: function (data) {
-        alert(data);
+        // alert(data);
         location.reload(true);
         // location.href = "./manage.php"
       },

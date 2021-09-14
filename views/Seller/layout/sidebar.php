@@ -1,3 +1,113 @@
+<?php
+// session_start();
+// $USER = $_SESSION[md5('user')];
+// $userId = $USER[1]['uid'];
+
+// $sql = "SELECT * FROM `user-list` WHERE `uid` = '" . $userId . "'";
+// $DATA = selectData($sql);
+// if ($DATA[0]['numrow'] == 0) {
+//     header("location:../../../index.php");
+// }
+
+// //get user info 
+// $DATAUSER = $_SESSION[md5('user')];
+// $sql = "SELECT * FROM `user-type` WHERE UTID = " . $idUT;
+// $DATATPYEUSER = selectData($sql);
+// $sql = "SELECT * FROM `user-type` ORDER BY UTID";
+// $DATATPYE = selectData($sql);
+// $color = "#006664";
+// //Set pointer menu
+// $sql = "SELECT `mm-mainmenu`,`mm-submenu` ";
+// $sql = $sql . " FROM `main-menu-list` as L INNER JOIN `web-menu` as M ";
+// $sql = $sql . " ON L.`wm-id`= M.`wm-id` ";
+// $sql = $sql . " WHERE `ut-id`='" . $idUT . "'";
+// $sql = $sql . " && `wm-alias`='" . $CurrentMenu . "'";
+
+// //echo $sql."<br>";
+// $DATA = selectData($sql);
+
+// $selectedMenu1 = $DATA[1]['mm-mainmenu'];
+// $selectedMenu2 = $DATA[1]['mm-submenu'];
+
+// //Create menu list
+// $sql = "SELECT `mm-mainmenu`,`mm-submenu`,`wm-name`, `wm-alias`, `wm-page`, `wm-icon`, `wm-note`";
+// $sql = $sql . " FROM `main-menu-list` as L JOIN `web-menu` as M ";
+// $sql = $sql . " ON L.`wm-id`=M.`wm-id` ";
+// $sql = $sql . " WHERE L.`ut-id`=" . $idUT;
+// $sql = $sql . " ORDER BY L.`mm-mainmenu`,L.`mm-submenu`";
+
+// //echo $sql;
+// $sql = ""
+// $DATA = selectData($sql);
+
+
+// $strMenu = "";
+
+// for ($i = 1; $i <= $DATA[0]['numrow']; $i++) {
+
+//     if ($DATA[$i]['mm-submenu'] == 0) {
+//         // main menu
+//         $activeStyle = "";
+//         $isActive = "";
+//         if ($DATA[$i]['mm-mainmenu'] == $selectedMenu1) {
+//             // active main menu
+//             $classType = " class='nav-item active' ";
+//             $isActive = " id='activityList' ";
+//             if ($DATA[$i]['mm-mainmenu'] != $DATA[$i + 1]['mm-mainmenu'])
+//                 $activeStyle = " style='background-color:yellow; color:#006664;' ";
+//         } else {
+//             //$activeStyle = " style='background-color:red; color:#006664;' ";
+//             $classType = " class='nav-item' ";
+//         }
+
+//         if ($DATA[$i]['wm-icon'] == "") {
+//             $icon = "favorite";
+//         } else {
+//             $icon =  $DATA[$i]['wm-icon'];
+//         }
+//         $url = $DATA[$i]['wm-alias'] . "/" . $DATA[$i]['wm-page'];
+
+//         if ($DATA[$i]['mm-mainmenu'] != $DATA[$i + 1]['mm-mainmenu']) {
+//             $strMenu .= "
+//       <li " . $classType . " " . $isActive . " >
+//         <a class='nav-link' href='../" . $url . "' " . $activeStyle . " >
+//           <i class='material-icons' " . $activeStyle . ">" . $icon . "</i>
+//           <span>" . $DATA[$i]['wm-name'] . "</span>
+//         </a>
+//       </li> ";
+//         } else {
+//             $strMenu .= " 
+//       <li " . $classType . " " . $isActive . " >
+//         <a class='nav-link collapsed' href='#' 
+//           data-toggle='collapse' data-target='#link-" . $i . "' 
+//           aria-expanded='true' aria-controls='link-" . $i . "'>
+//             <i class='material-icons'>" . $icon . "</i>
+//             <span>" . $DATA[$i]['wm-name'] . "</span>
+//         </a>
+//         <div id='link-" . $i . "' class='collapse' 
+//           aria-labelledby='headingTwo' data-parent='#accordionSidebar'>
+//         <div class=' py-2 collapse-inner rounded' 
+//           style='border-left: 2px solid white; border-radius: 0% !important;'>";
+//             //$strMenu .= "</div></div></li>";
+//         }
+//     } else { // sub menu
+//         if ($DATA[$i]['mm-mainmenu'] == $selectedMenu1 && $DATA[$i]['mm-submenu'] == $selectedMenu2) {
+//             // active sub menu
+//             $classType = "class='collapse-item active' style='background-color:yellow'";
+//         } else {
+//             $classType = "class='collapse-item'";
+//         }
+//         $url = $DATA[$i]['wm-alias'] . "/" . $DATA[$i]['wm-page'];
+//         $strMenu .= "<a " . $classType . " href='../" . $url . "' 
+//     style='color:white;'>" . $DATA[$i]['wm-name'] . "</a>";
+
+//         if ($DATA[$i]['mm-mainmenu'] != $DATA[$i + 1]['mm-mainmenu'])
+//             $strMenu .= "</div></div></li>";
+//     }
+// }
+
+// ?>
+
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-sidebar sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->

@@ -2,18 +2,28 @@
 <html lang="en">
 
 <?php
-include_once("./product_detail_query.php");
+include_once("../../../query/query.php");
+include_once("../../../query/function.php");
+session_start();
+// $idUT = $_SESSION[md5('typeid')];
+// $username = $_SESSION[md5('username')];
+$USER = $_SESSION[md5('user')];
+$uid = $USER[1]["uid"];
 $product_id = $_GET['product_id'];
+
+$PRODUCT_DETAIL = getProductDetail($product_id);
+$shop_id = $PRODUCT_DETAIL[1]["uid"];
+$SALER_PRODUCT = getProductByShopID($shop_id);
+$RELATIVE_PRODUCT = getRelateProducts($PRODUCT_DETAIL[1]['product_type']);
+
 echo $product_id;
-$data = getProductDetail($product_id);
-$countProduct = countProduct($data[1]['shop_name']);
-$relateProduct = getRelateProducts($data[1]['shop_name'], $data[1]['type']);
-$shopName = getShopName($product_id);
-/*
-echo json_encode($data);
-echo '<br>' . json_encode($countProduct);
-echo '<br>' . json_encode($relateProduct);
-*/
+echo  "<br><br><br>";
+print_r($PRODUCT_DETAIL);
+echo  "<br><br><br>";
+echo $shop_id;
+echo  "<br><br><br>";
+// echo "product_type" . $PRODUCT_DETAIL[1]['product_type'];
+echo "<br><br><br>RELATIVE_PRODUCT : " . print_r($RELATIVE_PRODUCT);
 ?>
 
 <head>
@@ -31,7 +41,7 @@ echo '<br>' . json_encode($relateProduct);
                     <div class="breadcrumb__links">
                         <a href="../../../index.php"><i class="fa fa-home"></i> Home</a>
                         <a href="../shop/shop.php">Shirts </a>
-                        <span><?php echo $data[1]['product_name'] ?></span>
+                        <span><?php echo $PRODUCT_DETAIL[1]['product_name'] ?></span>
                     </div>
                 </div>
             </div>
@@ -45,38 +55,49 @@ echo '<br>' . json_encode($relateProduct);
             <div class="row">
                 <div class="col-lg-6">
                     <div class="product__details__pic">
-                        <div class="product__details__pic__left product__thumb nice-scroll">
-                            <!--
+                        <div class="product__details__pic__left product__thumb nice-scroll" style="height: 420px;">
                             <a class="pt active" href="#product-1">
-                                <img src="../../../img/product/details/thumb-1.jpg" alt="">
+                                <img src="<?php echo "../../../img/product/profile/" . $PRODUCT_DETAIL[1]["profile_product"] ?>" alt="" style="object-fit: cover;">
                             </a>
-                            <a class="pt" href="#product-2">
-                                <img src="../../../img/product/details/thumb-2.jpg" alt="">
-                            </a>
-                            <a class="pt" href="#product-3">
-                                <img src="../../../img/product/details/thumb-3.jpg" alt="">
-                            </a>
-                            <a class="pt" href="#product-4">
-                                <img src="../../../img/product/details/thumb-4.jpg" alt="">
-                            </a>
--->
+                            <?php
+                            $PICTURE_PRODUCT = array_diff(scandir("../../../img/product/" . $PRODUCT_DETAIL[1]["product_id"]), array('..', '.'));
+                            for ($i = 0; $i < count($PICTURE_PRODUCT); $i++) {
+                                $num = $i + 2;
+                            ?>
+                                <a class="pt" href="<?php echo '#product-' . $num  ?>">
+                                    <img src="<?php echo '../../../img/product/' . trim($PRODUCT_DETAIL[1]["picture"], " ") . $i . ".png"  ?>" alt="">
+                                </a>
+                            <?php
+                            }
+                            ?>
                         </div>
-                        <div class="product__details__slider__content">
+                        <div class="product__details__slider__content" style="height: 420px;">
                             <div class="product__details__pic__slider owl-carousel">
-                                <?php echo '<img data-hash="product-1" class="product__big__img" src="../../../img/product/product-' . $data[1]['product_id'] . '.jpg" alt="">' ?>
+                                <img data-hash="product-1" class="product__big__img" src="<?php echo "../../../img/product/profile/" . $PRODUCT_DETAIL[1]["profile_product"] ?>" alt="">
 
-                                <img data-hash="product-2" class="product__big__img" src="../../../img/product/details/product-3.jpg" alt="">
-                                <img data-hash="product-3" class="product__big__img" src="../../../img/product/details/product-2.jpg" alt="">
-                                <img data-hash="product-4" class="product__big__img" src="../../../img/product/details/product-4.jpg" alt="">
-
+                                <?php
+                                for ($i = 0; $i < count($PICTURE_PRODUCT); $i++) {
+                                    $num = $i + 2;
+                                    // echo $num;
+                                    // echo "../../../img/product/" . $PRODUCT_DETAIL[1]["picture"] . $i . ".png" . "<br>";
+                                ?>
+                                    <img data-hash="<?php echo '#product-' . $num  ?>" class="product__big__img" src="<?php echo '../../../img/product/' . trim($PRODUCT_DETAIL[1]["picture"], " ") . $i . ".png"  ?>" alt="">
+                                <?php
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="product__details__text">
-                        <?php echo '<h3>' . $data[1]['product_name'] . ' <span>Brand: ' . $data[1]['shop_name'] . '</span></h3> 
-                        <span style="font-size: 14px; color: #444444;">รหัสสินค้า: ' . $data[1]['product_number'] . '</span>'; ?>
+                        <h2><?php echo $PRODUCT_DETAIL[1]["product_name"]; ?></h2>
+                        <h3>
+                            <?php $PRODUCT_DETAIL[1]["product_name"] ?>
+                            <span><?php echo "Brand : " . $PRODUCT_DETAIL[1]["shop_name"]; ?></span>
+                        </h3>
+                        <span style="font-size: 14px; color: #444444;"><?php echo "รหัสสินค้า : " . $PRODUCT_DETAIL[1]["product_number"]; ?> </span>
+
                         <br>
                         <div class="rating">
                             <i class="fa fa-star"></i>
@@ -87,7 +108,7 @@ echo '<br>' . json_encode($relateProduct);
                             <span>( 138 reviews )</span>
                         </div>
                         <div class="product__details__price"><?php ?></div>
-                        <p style="font-size: 17px;">เสื้อเชิ้ตทรงหลวมที่จัดสไตล์เป็นเสื้อตัวนอกได้ เนื้อผ้าให้สัมผัสหรูหรา</p>
+                        <!-- <p style="font-size: 17px;">เสื้อเชิ้ตทรงหลวมที่จัดสไตล์เป็นเสื้อตัวนอกได้ เนื้อผ้าให้สัมผัสหรูหรา</p> -->
                         <div class="product__details__button">
                             <div class="quantity">
                                 <span>Quantity:</span>
@@ -95,11 +116,7 @@ echo '<br>' . json_encode($relateProduct);
                                     <input type="text" value="1">
                                 </div>
                             </div>
-
-
-                            <button class="cart-btn" id="addToCart" onclick="addToCart(<?php echo $data[1]['product_id']; ?>)"><span class="icon_bag_alt"></span>Add to cart</button>
-
-
+                            <button class="cart-btn" id="addToCart" onclick="addToCart(<?php echo $PRODUCT_DETAIL[1]['product_id']; ?>)"><span class="icon_bag_alt"></span>Add to cart</button>
                             <ul>
                                 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                 <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
@@ -113,14 +130,12 @@ echo '<br>' . json_encode($relateProduct);
                                         <label for="stockin">
                                             In Stock
                                             <?php
-                                            if ($data[1]['stock'] > 0) {
-                                                echo '<input type="checkbox" id="stockin" checked disabled="true"> (' . $data[1]['stock'] . ')';
+                                            if ($PRODUCT_DETAIL[1]['stock'] > 0) {
+                                                echo '<input type="checkbox" id="stockin" checked disabled="true"> (' . $PRODUCT_DETAIL[1]['stock'] . ')';
                                             } else {
                                                 echo '<input type="checkbox" id="stockin" disabled="true">';
                                             }
-
                                             ?>
-
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -172,16 +187,15 @@ echo '<br>' . json_encode($relateProduct);
                 <div class="col-lg-12" style="margin-top: 75px; padding-left: 30px;">
                     <div class="row">
                         <div class="col-md-2 d-flex align-items-center d-flex justify-content-center" style="padding: 0px; width: 85px; flex: 0 0 8%;">
-                            <img src="../../../img/profile/vendor.png" class="rounded-circle" width="80" height="80" />
+                            <img src="<?php echo "../../../img/profile/saler/" . $PRODUCT_DETAIL[1]["profile_shop"] ?>" class="rounded-circle" width="80" height="80" />
                         </div>
                         <div class="col-md-4 align-self-center" style="padding: 0px;">
                             <div class="col-md-12 d-flex justify-content-start">
-                                <?php echo '<span class="font-weight-bold mb-0 h6 align-self-center" id="shop-name" style="margin-right: 25px; color: #336633;">' . $data[1]['shop_name'] . '</span>'; ?>
-
+                                <span class="font-weight-bold mb-0 h6 align-self-center" id="shop-name" style="margin-right: 25px; color: #336633;"><?php echo $PRODUCT_DETAIL[1]['shop_name']; ?></span>
                             </div>
                             <div class="col-md-12 mt-3">
-                                <a href="../profile-shop/profile-shop.php">
-                                    <button type="button" class="btn btn-outline-success" style="font-size: 12px;" onclick="toShop($shopName[1]['shop_name'])">ดูร้านค้า <i class="fas fa-store"></i></button>
+                                <a href="<?php echo "../profile-shop/profile-shop.php?shop_id=" . $PRODUCT_DETAIL[1]['uid'] ?>">
+                                    <button type="button" class="btn btn-outline-success" style="font-size: 12px;" onclick="toShop($PRODUCT_DETAIL[1]['shop_name'])">ดูร้านค้า <i class="fas fa-store"></i></button>
                                 </a>
                             </div>
                         </div>
@@ -193,7 +207,7 @@ echo '<br>' . json_encode($relateProduct);
                                         <i class="fas fa-boxes"></i>
                                     </div>
                                     <div class="col-md-10">
-                                        <?php echo '<span>สินค้าทั้งหมด ' . $countProduct[1]['count_product'] . ' รายการ</span>'; ?>
+                                        <?php echo '<span>สินค้าทั้งหมด ' . $SALER_PRODUCT[0]["numrow"] . ' รายการ</span>'; ?>
                                     </div>
                                 </div>
                                 <div class="row mb-4">
@@ -225,25 +239,21 @@ echo '<br>' . json_encode($relateProduct);
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <!-- <h6>Description</h6> -->
-                                <p style="font-size: 16px;">- เสริมความยืดหยุ่น<br>
-                                    - ทำจากผ้าบรัชทวิลล์เส้นใยละเอียด<br>
-                                    - ดีไซน์งานเย็บตะเข็บให้ดูแคชชวล<br>
-                                    - ทรงหลวมพร้อมกระเป๋ามีฝาปิดจัดสไตล์เป็นเสื้อตัวนอกได้<br></p>
+                                <p style="font-size: 16px;">
+                                    <?php echo  $PRODUCT_DETAIL[1]['product_description'] ?>
+                                </p>
 
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <!-- <h6>Specification</h6> -->
-                                <p style="font-size: 16px;">รหัสสินค้า 439615<br>
-                                    โปรดทราบว่าสินค้านี้อาจมีรหัสสินค้าแตกต่างไป แม้จะเป็นสินค้าเดียวกันก็ตาม<br>
-                                    รายละเอียดเนื้อผ้า<br>
-                                    98% ผ้าคอตตอน, 2% ผ้าสแปนเดกซ์<br>
-                                    คำแนะนำในการซัก<br>
-                                    ซักเครื่อง ด้วยน้ำเย็น</p>
+                                <p style="font-size: 16px;">
+                                    <?php echo "รหัสสินค้า : " . $PRODUCT_DETAIL[1]["product_number"] . "<br>" . $PRODUCT_DETAIL[1]["product_specification"] ?>
+                                </p>
                             </div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel" style="padding-left: 80px; padding-right: 80px; padding-top: 10px;">
                                 <div class="row">
                                     <div class="col-md-2 d-flex align-items-center d-flex justify-content-center" style="padding: 0px; width: 85px; flex: 0 0 8%;">
-                                        <img src="../../../img/profile/user.png" class="rounded-circle" width="65" height="65" />
+                                        <img src="../../../img/profile/user/default_user.png" class="rounded-circle" width="65" height="65" />
                                     </div>
                                     <div class="col-md-10 align-self-center" style="padding: 0px;">
                                         <div class="col-md-12 d-flex justify-content-start">
@@ -269,7 +279,7 @@ echo '<br>' . json_encode($relateProduct);
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-2 d-flex align-items-center d-flex justify-content-center" style="padding: 0px; width: 85px; flex: 0 0 8%;">
-                                        <img src="../../../img/profile/user.png" class="rounded-circle" width="65" height="65" />
+                                        <img src="../../../img/profile/user/default_user.png" class="rounded-circle" width="65" height="65" />
                                     </div>
                                     <div class="col-md-10 align-self-center" style="padding: 0px;">
                                         <div class="col-md-12 d-flex justify-content-start">
@@ -295,7 +305,7 @@ echo '<br>' . json_encode($relateProduct);
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-2 d-flex align-items-center d-flex justify-content-center" style="padding: 0px; width: 85px; flex: 0 0 8%;">
-                                        <img src="../../../img/profile/user.png" class="rounded-circle" width="65" height="65" />
+                                        <img src="../../../img/profile/user/default_user.png" class="rounded-circle" width="65" height="65" />
                                     </div>
                                     <div class="col-md-10 align-self-center" style="padding: 0px;">
                                         <div class="col-md-12 d-flex justify-content-start">
@@ -330,19 +340,20 @@ echo '<br>' . json_encode($relateProduct);
                         </div>
 
                         <?php
-                        for ($i = 1; $i < 5; $i++) {
-                            echo ' <div class="col-lg-3 col-md-4 col-sm-6">
+                        for ($i = 1; $i < count($RELATIVE_PRODUCT) && $i < 5; $i++) {
+                        ?>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="../../../img/product/product-' . $relateProduct[$i]['product_id'] . '.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="<?php echo "../../../img/product/profile/" . $PRODUCT_DETAIL[1]["profile_product"] ?>">
                                         <div class="label new">New</div>
                                         <ul class="product__hover">
-                                            <li><a href="../../../img/product/product-' . $relateProduct[$i]['product_id'] . '.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                            <li><a href="<?php echo "../../../img/product/profile/" . $PRODUCT_DETAIL[1]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
                                             <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                             <li><a href="#"><span class="icon_bag_alt"></span></a></li>
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
-                                        <h6><a href="../product_detail/product-details.php?product_id=' . $relateProduct[$i]['product_id'] . '">' . $relateProduct[$i]['product_name'] . '</a></h6>
+                                        <h6><a href="<?php echo "../product_detail/product-details.php?product_id=" . $RELATIVE_PRODUCT[$i]['product_id'] ?>"><?php echo $RELATIVE_PRODUCT[$i]['product_name'] ?></a></h6>
                                         <div class="rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -350,10 +361,11 @@ echo '<br>' . json_encode($relateProduct);
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                         </div>
-                                        <div class="product__price">$ ' . $relateProduct[$i]['price'] . '</div>
+                                        <div class="product__price"><?php echo $RELATIVE_PRODUCT[$i]['price'] ?></div>
                                     </div>
                                 </div>
-                            </div>';
+                            </div>
+                        <?php
                         }
                         ?>
 
