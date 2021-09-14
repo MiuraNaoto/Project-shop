@@ -18,7 +18,19 @@ function getProductType()
     return $DATA;
 }
 
+function getAllProductByType($type_id)
+{
+    $sql = "SELECT * FROM `product` WHERE `product_type` = $type_id";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
 $PRODUCT_TYPE = getProductType();
+$PRODUCTBYTYPE_FOOD = getAllProductByType(1);
+$PRODUCTBYTYPE_DRINK = getAllProductByType(2);
+$PRODUCTBYTYPE_CLOTHES = getAllProductByType(3);
+$PRODUCTBYTYPE_ACCESSORIES = getAllProductByType(4);
+$PRODUCTBYTYPE_HERB = getAllProductByType(5);
 ?>
 
 
@@ -316,8 +328,9 @@ $PRODUCT_TYPE = getProductType();
                 <div class="col-lg-6 p-0">
                     <div class="categories__item categories__large__item set-bg" data-setbg="img/categories/food.png">
                         <div class="categories__text">
-                            <h1>Food</h1>
-                            <p>358 items</p>
+                            <h2><?php echo $PRODUCT_TYPE[1]["type"] ?></h2>
+                            <!-- <h1>Food</h1> -->
+                            <p><?php echo $PRODUCTBYTYPE_FOOD[0]["numrow"] . " รายการ" ?></p>
                             <!-- <p>Sitamet, consectetur adipiscing elit, sed do eiusmod tempor incidid-unt labore
                                 edolore magna aliquapendisse ultrices gravida.</p> -->
                             <a href="views/Customer/shop/shop.php?type_id=1">Shop now</a>
@@ -329,8 +342,8 @@ $PRODUCT_TYPE = getProductType();
                         <div class="col-lg-6 col-md-6 col-sm-6 p-0">
                             <div class="categories__item set-bg" data-setbg="img/categories/drink.png">
                                 <div class="categories__text">
-                                    <h4>Drink</h4>
-                                    <p>358 items</p>
+                                    <h4><?php echo $PRODUCT_TYPE[2]["type"] ?></h4>
+                                    <p><?php echo $PRODUCTBYTYPE_DRINK[0]["numrow"] . " รายการ" ?></p>
                                     <a href="views/Customer/shop/shop.php?type_id=2">Shop now</a>
                                 </div>
                             </div>
@@ -338,8 +351,8 @@ $PRODUCT_TYPE = getProductType();
                         <div class="col-lg-6 col-md-6 col-sm-6 p-0">
                             <div class="categories__item set-bg" data-setbg="img/categories/category-3.jpg">
                                 <div class="categories__text">
-                                    <h4>Clothes</h4>
-                                    <p>273 items</p>
+                                    <h4><?php echo $PRODUCT_TYPE[3]["type"] ?></h4>
+                                    <p><?php echo $PRODUCTBYTYPE_CLOTHES[0]["numrow"] . " รายการ" ?></p>
                                     <a href="views/Customer/shop/shop.php?type_id=3">Shop now</a>
                                 </div>
                             </div>
@@ -347,8 +360,8 @@ $PRODUCT_TYPE = getProductType();
                         <div class="col-lg-6 col-md-6 col-sm-6 p-0">
                             <div class="categories__item set-bg" data-setbg="img/categories/accessory.png">
                                 <div class="categories__text">
-                                    <h4>Accessories</h4>
-                                    <p>159 items</p>
+                                    <h4><?php echo $PRODUCT_TYPE[4]["type"] ?></h4>
+                                    <p><?php echo $PRODUCTBYTYPE_ACCESSORIES[0]["numrow"] . " รายการ" ?></p>
                                     <a href="views/Customer/shop/shop.php?type_id=4">Shop now</a>
                                 </div>
                             </div>
@@ -356,8 +369,8 @@ $PRODUCT_TYPE = getProductType();
                         <div class="col-lg-6 col-md-6 col-sm-6 p-0">
                             <div class="categories__item set-bg" data-setbg="img/categories/herb.png">
                                 <div class="categories__text">
-                                    <h4>Herb</h4>
-                                    <p>792 items</p>
+                                    <h4><?php echo $PRODUCT_TYPE[5]["type"] ?></h4>
+                                    <p><?php echo $PRODUCTBYTYPE_HERB[0]["numrow"] . " รายการ" ?></p>
                                     <a href="views/Customer/shop/shop.php?type_id=5">Shop now</a>
                                 </div>
                             </div>
