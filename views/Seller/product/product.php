@@ -11,9 +11,8 @@ $USER = $_SESSION[md5('user')];
 $uid = $USER[1]["uid"];
 
 $PRODUCT = getProductByShopID($uid);
-print_r($PRODUCT);
-$PRODUCT = getProductByShopID($uid);
-print_r($PRODUCT);
+// $PRODUCT = getProductByShopID($uid);
+
 ?>
 
 <head>
