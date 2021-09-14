@@ -1,4 +1,6 @@
 <?php
+// include_once("query/query.php");
+// include_once("query/function.php");
 session_start();
 
 if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isset($_SESSION[md5('user')])) {
@@ -8,7 +10,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     echo $username;
     echo print_r($USER);
 }
-
+// $PRODUCT_TYPE = getProductType();
 ?>
 
 
@@ -310,7 +312,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                             <p>358 items</p>
                             <!-- <p>Sitamet, consectetur adipiscing elit, sed do eiusmod tempor incidid-unt labore
                                 edolore magna aliquapendisse ultrices gravida.</p> -->
-                            <a href="views/Customer/shop/shop.php">Shop now</a>
+                            <a href="views/Customer/shop/shop.php?type_id=1">Shop now</a>
                         </div>
                     </div>
                 </div>
@@ -321,7 +323,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                 <div class="categories__text">
                                     <h4>Drink</h4>
                                     <p>358 items</p>
-                                    <a href="views/Customer/shop/shop.php">Shop now</a>
+                                    <a href="views/Customer/shop/shop.php?type_id=2">Shop now</a>
                                 </div>
                             </div>
                         </div>
@@ -330,7 +332,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                 <div class="categories__text">
                                     <h4>Clothes</h4>
                                     <p>273 items</p>
-                                    <a href="views/Customer/shop/shop.php">Shop now</a>
+                                    <a href="views/Customer/shop/shop.php?type_id=3">Shop now</a>
                                 </div>
                             </div>
                         </div>
@@ -339,7 +341,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                 <div class="categories__text">
                                     <h4>Accessories</h4>
                                     <p>159 items</p>
-                                    <a href="views/Customer/shop/shop.php">Shop now</a>
+                                    <a href="views/Customer/shop/shop.php?type_id=4">Shop now</a>
                                 </div>
                             </div>
                         </div>
@@ -348,7 +350,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                 <div class="categories__text">
                                     <h4>Herb</h4>
                                     <p>792 items</p>
-                                    <a href="views/Customer/shop/shop.php">Shop now</a>
+                                    <a href="views/Customer/shop/shop.php?type_id=5">Shop now</a>
                                 </div>
                             </div>
                         </div>

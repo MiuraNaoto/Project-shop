@@ -192,26 +192,6 @@ function delfunction(_productid, _code, _name) {
       });
     } else {
     }
-    // if (result.isConfirm) {
-    //   console.log(1);
-    //   Swal.fire(
-    //     {
-    //       title: "ลบข้อมูลสำเร็จ",
-    //       type: "success",
-    //       customClass: {
-    //         confirmButtonClass: "btn-danger",
-    //         confirmButtonText: "ตกลง",
-    //         closeOnConfirm: false,
-    //       },
-    //     }
-    //     //   function (isConfirm) {
-    //     //     if (isConfirm) {
-    //     //       delete_1(_uid, _title, _firstname, _lastname);
-    //     //     }
-    //     //   }
-    //   );
-    // } else {
-    // }
   });
 }
 

@@ -123,6 +123,14 @@ function getAllProduct()
     return $DATA;
 }
 
+function getAllProductByType($type_id)
+{
+    $sql = "SELECT * FROM `product` WHERE `product_type` = $type_id";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
+
 function getProductDetail($product_id)
 {
     $sql = "SELECT * FROM `product` 

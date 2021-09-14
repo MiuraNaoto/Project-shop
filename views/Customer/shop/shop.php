@@ -11,7 +11,10 @@ session_start();
 $USER = $_SESSION[md5('user')];
 $uid = $USER[1]["uid"];
 print_r($USER);
-$PRODUCT = getAllProduct();
+$type_id = $_GET["type_id"];
+$PRODUCT = getAllProductByType($type_id);
+
+echo $type_id
 /*
     echo json_encode($data);
     echo $data[1]['product_id'];
