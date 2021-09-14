@@ -133,6 +133,8 @@
     </div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <!-- Address Modal -->
 <div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" a aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -145,7 +147,7 @@
             </div>
             <form action="manage.php" method="post" enctype="multipart/form-data" id="editform" id="editForm" name="editform" role="form">
                 <div class="modal-body">
-
+                    
                     <div class="row mb-4">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
                             <span>ที่อยู่<span class="text-danger"> *</span></span>
@@ -211,8 +213,7 @@
 
                 <div class="modal-footer">
                     <input type="hidden" id="hidden_id" name="request" value="edit" />
-                    <button type="submit" id="edit" class="btn btn-danger" data-dismiss="modal" style="width: 70px;">ยกเลิก</button>
-                    <button type="submit" id="editsub" name="editsub" class="btn btn-success" style="width: 70px;">บันทึก</button>
+                    <button type="submit" id="edit" class="btn btn-danger" data-dismiss="modal" style="width: 70px;">ปิด</button>
                 </div>
             </form>
         </div>
