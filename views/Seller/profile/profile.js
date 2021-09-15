@@ -172,7 +172,6 @@ $(document).ready(function () {
 });
 
 function selectProvince() {
-  var provinceObject = document.getElementById("provice");
   var districtObject = document.getElementById("district");
   var subdistrictObject = document.getElementById("subdistrict");
   var provinceId = document.getElementById("provice").value;
@@ -200,7 +199,6 @@ function selectProvince() {
 }
 
 function selectDistrict() {
-  var districtObject = document.getElementById("district");
   var subdistrictObject = document.getElementById("subdistrict");
   var districtId = document.getElementById("district").value;
   // console.log(provinceId)

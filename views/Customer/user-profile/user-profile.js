@@ -153,8 +153,6 @@ $(document).ready(function () {
 });
 
 function selectProvinceModal() {
-  
-  var provinceObject = document.getElementById("ea_provice");
   var districtObject = document.getElementById("ea_district");
   var subdistrictObject = document.getElementById("ea_subdistrict");
   var provinceId = document.getElementById("ea_provice").value;
@@ -182,7 +180,6 @@ function selectProvinceModal() {
 }
 
 function selectDistrictModal() {
-  var districtObject = document.getElementById("ea_district");
   var subdistrictObject = document.getElementById("ea_subdistrict");
   var districtId = document.getElementById("ea_district").value;
   // console.log(provinceId)
@@ -286,8 +283,6 @@ function selectSubDis(dis_id, subdis_id, subdistricts_name_in_thai) {
 }
 
 function selectProvince() {
-  
-  var provinceObject = document.getElementById("provice");
   var districtObject = document.getElementById("district");
   var subdistrictObject = document.getElementById("subdistrict");
   var provinceId = document.getElementById("provice").value;
@@ -315,7 +310,6 @@ function selectProvince() {
 }
 
 function selectDistrict() {
-  var districtObject = document.getElementById("district");
   var subdistrictObject = document.getElementById("subdistrict");
   var districtId = document.getElementById("district").value;
   // console.log(provinceId)
