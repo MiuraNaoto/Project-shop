@@ -1,3 +1,7 @@
+<?php
+include_once("./query.php");
+$id = $_POST['sid'];
+?>
 <!-- Edit Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" a aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -149,3 +153,167 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="blockSaler" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Block Saler</h4>
+            </div>
+
+            <div class="modal-body">
+                Do you want to block saler name <b style="color: red;"></b> ?
+
+                <input type="text" id="sidBlock" name="sidBlock" hidden />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info btn" data-dismiss="modal" style="background: red; border-color:red">Cancel</button>
+                <button type="button" id="block" name="block" class="btn btn-info btn" data-dismiss="modal" style="width: 17%; background:yellowgreen; border-color:yellowgreen" data-toggle="modal" data-target="#successBlock" onclick="confirmBlock()">Yes</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="unblockSaler" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Unblock Saler</h4>
+            </div>
+
+            <div class="modal-body">
+                Do you want to unblock saler name <b style="color: red;"></b> ?
+
+                <input type="text" id="sidUnblock" name="sidUnblock" hidden />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info btn" data-dismiss="modal" style="background: red; border-color:red">Cancel</button>
+                <button type="button" class="btn btn-info btn" data-dismiss="modal" style="width: 17%; background:yellowgreen; border-color:yellowgreen" data-toggle="modal" data-target="#successUnblock" onclick="confirmUnblock()">Yes</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="delSaler" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Seler</h4>
+            </div>
+            <div class="modal-body" id="delModal">
+                Do you want to delete saler name <b style="color: red;"></b> ?
+                <input type="text" id="sidDel" name="sidDel" hidden />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info btn" data-dismiss="modal" style="background: red; border-color:red">Cancel</button>
+                <button type="button" class="btn btn-info btn" data-dismiss="modal" style="width: 17%; background:yellowgreen; border-color:yellowgreen" data-toggle="modal" data-target="#successDelete" onclick="confirmDelete()">Yes</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="successBlock" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Success</h4>
+            </div>
+            <div class="modal-body" id="delModal">
+                <p><b>Block saler sucessfully.</b></p>
+            </div>
+            <button type="button" class="btn btn-info btn" data-dismiss="modal" style="background: yellowgreen; border-color:yellowgreen" onclick="reload()">OK</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="successUnblock" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Success</h4>
+            </div>
+            <div class="modal-body" id="delModal">
+                <p><b>Unblock saler sucessfully.</b></p>
+            </div>
+            <button type="button" class="btn btn-info btn" data-dismiss="modal" style="background: yellowgreen; border-color:yellowgreen" onclick="reload()">OK</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="successDelete" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Success</h4>
+            </div>
+            <div class="modal-body" id="delModal">
+                <p><b>Delete saler sucessfully.</b></p>
+            </div>
+            <button type="button" class="btn btn-info btn" data-dismiss="modal" style="background: yellowgreen; border-color:yellowgreen" onclick="reload()">OK</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function reload() {
+        location.reload();
+    }
+
+
+    function confirmBlock() {
+        var id = document.getElementById('sidBlock').value
+
+        $.ajax({
+            url: 'query.php',
+            type: 'POST',
+            data: {
+                id: id,
+                call: "blockSaler",
+            },
+            success: function(data) {
+                console.log(data); // Inspect this in your console
+                $("#successBlock").modal(show);
+
+            }
+        });
+    }
+
+    function confirmUnblock() {
+        var id = document.getElementById('sidUnblock').value
+
+        $.ajax({
+            url: 'query.php',
+            type: 'POST',
+            data: {
+                id: id,
+                call: "unblockSaler",
+            },
+            success: function(data) {
+                console.log(data); // Inspect this in your console
+                $("#successUnblock").modal(show);
+            }
+        });
+    }
+
+    function confirmDelete() {
+        var id = document.getElementById('sidDel').value
+
+        $.ajax({
+            url: 'query.php',
+            type: 'POST',
+            data: {
+                id: id,
+                call: "deleteSaler",
+            },
+            success: function(data) {
+                console.log(data); // Inspect this in your console
+                $("#successDelete").modal(show);
+            }
+        });
+    }
+</script>
