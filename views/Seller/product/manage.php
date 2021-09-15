@@ -4,11 +4,11 @@ $USER = $_SESSION[md5('user')];
 $username =  $USER[1]["username"];
 $uid = $USER[1]["uid"];
 require "../../../dbConnect.php";
-
+require "../../../query/query.php";
 $request = $_POST['request'];
 $myConDB = connectDB();
 
-echo $request . "<br>";
+// echo $request . "<br>";
 
 switch ($request) {
     case 'insert_product':
@@ -114,5 +114,83 @@ switch ($request) {
         $sql = "DELETE FROM `product` WHERE `product_id` = $product_id";
         deleteData($sql);
         // echo $sql;
+        break;
+
+    case 'view_qrcode':
+        $product_id = $_POST["product_id"];
+        // echo $product_id;
+
+        $PRODUCT = getProductByID($product_id);
+        // print_r($PRODUCT);
+        $output = '
+        <div class="row mb-4">
+            <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                <img src="../../../img/qr-code/testqr.png" width="100%">
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class="row mb-4">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                        <span>รหัสสินค้า</span>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <input type="text" class="form-control" value="' . $PRODUCT[1]["product_number"] . '" disabled>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                        <span>ประเภทสินค้า</span>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <input type="text" class="form-control" value="' . $PRODUCT[1]["type"] . '" disabled>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                        <span>ชื่อสินค้า</span>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <input type="text" class="form-control" value="' . $PRODUCT[1]["product_name"] . '" disabled>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                        <span>ราคาต่อชิ้น</span>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <input type="text" class="form-control" value="' . number_format($PRODUCT[1]["price"], 2) . '" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        ';
+
+        echo $output;
+        break;
+    case "edit_product":
+
+        $product_id = $_POST["e_product_id"];
+        $product_code = $_POST["e_product_code"];
+        $product_name = $_POST["e_product_name"];
+        $product_description = $_POST["e_product_description"];
+        $product_specification = $_POST["e_product_specification"];
+        $type_product =  $_POST["e_type_product"];
+        $delivery_type = $_POST["e_delivery_type"];
+        $price =  $_POST["e_price"];
+        $price_transport = $_POST["e_price_transport"];
+        $stock =  $_POST["e_stock"];
+
+        $sql = "UPDATE `product` SET    `product_number`='$product_code',
+                                        `product_name`='$product_name',
+                                        `product_description`='$product_description',
+                                        `product_specification`='$product_specification',
+                                        `product_type`='$type_product',
+                                        `price`='$price',
+                                        `shipping_cost`='$price_transport',
+                                        `stock`='$stock',
+                                        `delivery_type`='$type_product'
+                WHERE `product_id`='$product_id'";
+        updateData($sql);
+        // echo $sql;
+        header("location: product.php");
         break;
 }

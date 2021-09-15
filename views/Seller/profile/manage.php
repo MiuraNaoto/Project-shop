@@ -28,6 +28,63 @@ switch ($request) {
         header("location: ./profile.php");
         break;
 
+    case 'edit_profile':
+
+        $shop_name = $_POST["e_shop_name"];
+        $title = $_POST["e_title"];
+        $firstname = $_POST["e_firstname"];
+        $lastname = $_POST["e_lastname"];
+        $tel = $_POST["e_tel"];
+        $email = $_POST["e_email"];
+        $username = $_POST["e_username"];
+        $address = $_POST["e_address"];
+        $provice = $_POST["e_provice"];
+        $district = $_POST["e_district"];
+        $subdistrict = $_POST["e_subdistrict"];
+        $time_open = $_POST["e_time_opened"];
+        $time_closed = $_POST["e_time_closed"];
+        // $fulltime
+        // $parttime
+        // $none =;
+        $amountataff = $_POST["e_amount_staff"];
+
+        if (isset($_POST["e_fulltime"])) {
+            $fulltime = 1;
+        } else {
+            $fulltime = 0;
+        }
+        if (isset($_POST["e_parttime"])) {
+            $parttime = 1;
+        } else {
+            $parttime = 0;
+        }
+        if (isset($_POST["e_none"])) {
+            $none = 1;
+        } else {
+            $none = 0;
+        }
+
+        $sql = "UPDATE `user-list` SET  `username`='$username',
+                                        `tel`='$tel',
+                                        `title_id`='$title',
+                                        `firstname`='$firstname',
+                                        `lastname`='$lastname',
+                                        `email`='$email',
+                                        `shop_name`='$shop_name',
+                                        `address_shop`='$address',
+                                        `subdistrict_shop`='$subdistrict',
+                                        `full_time_staff`='$fulltime',
+                                        `temporary_staff`='$parttime',
+                                        `donthave`='$none',
+                                        `quantity_staff`='$amountataff',
+                                        `time_open`='$time_open',
+                                        `time_closed`='$time_closed'
+                WHERE `uid`='$uid'";
+        $DATA = updateData($sql);
+
+        header("location: profile.php");
+        break;
+
     case 'change_password':
 
         $new_password = $_POST["new_password"];
