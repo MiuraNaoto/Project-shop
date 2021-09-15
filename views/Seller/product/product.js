@@ -139,6 +139,27 @@ $(document).ready(function () {
       }
     }
   });
+
+  $(document).on("click", ".view-qrcode", function () {
+    var product_id = $(this).attr("id");
+    console.log(product_id);
+    if (product_id != "") {
+      $.ajax({
+        url: "manage.php",
+        method: "POST",
+        data: {
+          product_id: product_id,
+          request: "view_qrcode",
+        },
+        success: function (data) {
+          // alert(data);
+          $("#show_data_qrcode").html(data);
+
+          // location.href = "manage.php";
+        },
+      });
+    }
+  });
 });
 
 $("#profile-product").on("change", function () {

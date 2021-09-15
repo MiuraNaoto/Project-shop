@@ -110,7 +110,7 @@ $PRODUCT = getProductByShopID($uid);
                                                 <td style="vertical-align: middle; text-align: end;">458</td>
                                                 <td style="vertical-align: middle; text-align: end;">420</td>
                                                 <td style="text-align: center; vertical-align: middle;">
-                                                    <button type="button" id="btm_qrcode" class="btn btn-primary btn-md" title='ดู qr-code สินค้า' data-toggle="modal" data-target="#showQRcodeModal">
+                                                    <button type="button" id="<?php echo $PRODUCT[$i]['product_id'] ?>" class="btn btn-primary btn-md view-qrcode" title='ดู qr-code สินค้า' data-toggle="modal" data-target="#showQRcodeModal">
                                                         <i class="fas fa-bars"></i>
                                                     </button>
                                                     <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลสินค้า' data-toggle="modal" data-target="#editModal">

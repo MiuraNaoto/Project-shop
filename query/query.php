@@ -23,6 +23,13 @@ function getUserTitleSelect($utid)
     return $DATA;
 }
 
+function getAllUser()
+{
+    $sql = "SELECT * FROM `user-list`";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
 function getUser($uid)
 {
     $sql = "SELECT * FROM `user-list` WHERE `uid` = $uid";
@@ -119,6 +126,13 @@ function getProductType()
 function getAllProduct()
 {
     $sql = "SELECT * FROM `product`";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
+function getProductByID($product_id)
+{
+    $sql = "SELECT * FROM `product` INNER JOIN `product_type` ON `product`.`product_type` = `product_type`.`id` WHERE `product_id` = $product_id";
     $DATA = selectData($sql);
     return $DATA;
 }

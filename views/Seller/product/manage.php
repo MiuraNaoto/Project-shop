@@ -4,11 +4,11 @@ $USER = $_SESSION[md5('user')];
 $username =  $USER[1]["username"];
 $uid = $USER[1]["uid"];
 require "../../../dbConnect.php";
-
+require "../../../query/query.php";
 $request = $_POST['request'];
 $myConDB = connectDB();
 
-echo $request . "<br>";
+// echo $request . "<br>";
 
 switch ($request) {
     case 'insert_product':
@@ -114,5 +114,56 @@ switch ($request) {
         $sql = "DELETE FROM `product` WHERE `product_id` = $product_id";
         deleteData($sql);
         // echo $sql;
+        break;
+
+    case 'view_qrcode':
+        $product_id = $_POST["product_id"];
+        // echo $product_id;
+
+        $PRODUCT = getProductByID($product_id);
+        // print_r($PRODUCT);
+        $output = '
+        <div class="row mb-4">
+            <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                <img src="../../../img/qr-code/testqr.png" width="100%">
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class="row mb-4">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                        <span>รหัสสินค้า</span>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <input type="text" class="form-control" value="' . $PRODUCT[1]["product_number"] . '" disabled>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                        <span>ประเภทสินค้า</span>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <input type="text" class="form-control" value="' . $PRODUCT[1]["type"] . '" disabled>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                        <span>ชื่อสินค้า</span>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <input type="text" class="form-control" value="' . $PRODUCT[1]["product_name"] . '" disabled>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                        <span>ราคาต่อชิ้น</span>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <input type="text" class="form-control" value="' . number_format($PRODUCT[1]["price"], 2) . '" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        ';
+
+        echo $output; 
         break;
 }
