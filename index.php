@@ -27,13 +27,18 @@ function getAllProductByType($type_id)
 
 function getProductTypeByDay($type_id)
 {
-    $tomorrow = strtotime("tomorrow");
-    $today = strtotime("today");
+    // $tomorrow = strtotime("tomorrow");
+    // $today = strtotime("today");
     // $threedays = strtotime('+3 days');
-    $sql = "SELECT * FROM `product` WHERE `product_type` = $type_id AND (`modify` >= $today AND `modify` <= $tomorrow) ORDER BY RAND() ";
+    // $sql = "SELECT * FROM `product` WHERE `product_type` = $type_id AND (`modify` >= $today AND `modify` <= $tomorrow) ORDER BY RAND() ";
+    $sql = "SELECT * FROM `product` WHERE `product_type` = $type_id ORDER BY RAND() ";
+
     $DATA = selectData($sql);
     return $DATA;
 }
+
+
+
 
 $PRODUCT_TYPE = getProductType();
 $PRODUCTBYTYPE_FOOD = getAllProductByType(1);
@@ -48,7 +53,12 @@ $PRODUCTBYTYPE_DRINK_N = getProductTypeByDay(2);
 $PRODUCTBYTYPE_CLOTHES_N = getProductTypeByDay(3);
 $PRODUCTBYTYPE_ACCESSORIES_N = getProductTypeByDay(4);
 $PRODUCTBYTYPE_HERB_N = getProductTypeByDay(5);
-// print_r($PRODUCTBYTYPE_FOOD_N);
+
+
+date_default_timezone_set("Asia/Bangkok");
+$current_date = date_create(date("Y-m-d H:i:s", time()));
+
+
 ?>
 
 
@@ -424,33 +434,39 @@ $PRODUCTBYTYPE_HERB_N = getProductTypeByDay(5);
             <div class="row property__gallery">
                 <?php
                 for ($i = 1; $i < count($PRODUCTBYTYPE_FOOD_N); $i++) {
+                    $timestamp_food = date_create(date("Y-m-d H:i:s",  $PRODUCTBYTYPE_FOOD_N[$i]["modify"]));
+                    $diff_food = date_diff($current_date, $timestamp_food);
+                    if ($diff_food->format("%d") <= 7) {
                 ?>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo trim($PRODUCT_TYPE[1]["type_eng"], " ") ?>">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_FOOD_N[$i]["profile_product"] ?>">
-                                <div class="label new">New</div>
-                                <ul class="product__hover">
-                                    <li><a href="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_FOOD_N[$i]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6>
-                                    <span data-toggle="modal" data-target="#product1"><?php echo $PRODUCTBYTYPE_FOOD_N[$i]["product_name"] ?></span>
-                                </h6>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo trim($PRODUCT_TYPE[1]["type_eng"], " ") ?>">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_FOOD_N[$i]["profile_product"] ?>">
+                                    <div class="label new">New</div>
+                                    <ul class="product__hover">
+                                        <li><a href="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_FOOD_N[$i]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
                                 </div>
-                                <div class="product__price"><?php echo "฿ " . $PRODUCTBYTYPE_FOOD_N[$i]["price"] ?></div>
+                                <div class="product__item__text">
+                                    <h6>
+                                        <!-- <span data-toggle="modal" data-target="#product1"><?php echo $PRODUCTBYTYPE_FOOD_N[$i]["product_name"] ?></span> -->
+                                        <a href="<?php echo "./views/Customer/product_detail/product-details.php?product_id=" . $PRODUCTBYTYPE_FOOD_N[$i]['product_id'] ?>"><?php echo $PRODUCTBYTYPE_FOOD_N[$i]["product_name"] ?></a>
+                                    </h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price"><?php echo "฿ " . $PRODUCTBYTYPE_FOOD_N[$i]["price"] ?></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 <?php
+                    } else {
+                    }
                 }
                 ?>
 
@@ -458,131 +474,155 @@ $PRODUCTBYTYPE_HERB_N = getProductTypeByDay(5);
                 // print_r($PRODUCTBYTYPE_DRINK);
                 // echo $PRODUCT_TYPE[2]["type"];
                 for ($i = 1; $i < count($PRODUCTBYTYPE_DRINK_N); $i++) {
+                    $timestamp_drink = date_create(date("Y-m-d H:i:s",  $PRODUCTBYTYPE_DRINK_N[$i]["modify"]));
+                    $diff_drink = date_diff($current_date, $timestamp_drink);
+                    if ($diff_drink->format("%d") <= 7) {
                 ?>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo trim($PRODUCT_TYPE[2]["type_eng"], " ") ?>">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_DRINK_N[$i]["profile_product"] ?>">
-                                <div class="label new">New</div>
-                                <ul class="product__hover">
-                                    <li><a href="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_DRINK_N[$i]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6>
-                                    <span data-toggle="modal" data-target="#product1"><?php echo $PRODUCTBYTYPE_DRINK_N[$i]["product_name"] ?></span>
-                                </h6>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo trim($PRODUCT_TYPE[2]["type_eng"], " ") ?>">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_DRINK_N[$i]["profile_product"] ?>">
+                                    <div class="label new">New</div>
+                                    <ul class="product__hover">
+                                        <li><a href="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_DRINK_N[$i]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
                                 </div>
-                                <div class="product__price"><?php echo "฿ " . $PRODUCTBYTYPE_DRINK_N[$i]["price"] ?></div>
+                                <div class="product__item__text">
+                                    <h6>
+                                        <a href="<?php echo "./views/Customer/product_detail/product-details.php?product_id=" . $PRODUCTBYTYPE_DRINK_N[$i]['product_id'] ?>"><?php echo $PRODUCTBYTYPE_DRINK_N[$i]["product_name"] ?></a>
+                                    </h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price"><?php echo "฿ " . $PRODUCTBYTYPE_DRINK_N[$i]["price"] ?></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 <?php
+                    } else {
+                    }
                 }
                 ?>
 
                 <?php
                 for ($i = 1; $i < count($PRODUCTBYTYPE_CLOTHES_N); $i++) {
+                    $timestamp_clothes = date_create(date("Y-m-d H:i:s",  $PRODUCTBYTYPE_CLOTHES_N[$i]["modify"]));
+
+                    $diff_clothes = date_diff($current_date, $timestamp_clothes);
+                    if ($diff_clothes->format("%d") <= 7) {
                 ?>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo trim($PRODUCT_TYPE[3]["type_eng"], " ") ?>">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_CLOTHES_N[$i]["profile_product"] ?>">
-                                <div class="label new">New</div>
-                                <ul class="product__hover">
-                                    <li><a href="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_CLOTHES_N[$i]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6>
-                                    <span data-toggle="modal" data-target="#product1"><?php echo $PRODUCTBYTYPE_CLOTHES_N[$i]["product_name"] ?></span>
-                                </h6>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo trim($PRODUCT_TYPE[3]["type_eng"], " ") ?>">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_CLOTHES_N[$i]["profile_product"] ?>">
+                                    <div class="label new">New</div>
+                                    <ul class="product__hover">
+                                        <li><a href="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_CLOTHES_N[$i]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
                                 </div>
-                                <div class="product__price"><?php echo "฿ " . $PRODUCTBYTYPE_CLOTHES_N[$i]["price"] ?></div>
+                                <div class="product__item__text">
+                                    <h6>
+                                        <a href="<?php echo "./views/Customer/product_detail/product-details.php?product_id=" . $PRODUCTBYTYPE_CLOTHES_N[$i]['product_id'] ?>"><?php echo $PRODUCTBYTYPE_CLOTHES_N[$i]["product_name"] ?></a>
+                                    </h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price"><?php echo "฿ " . $PRODUCTBYTYPE_CLOTHES_N[$i]["price"] ?></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 <?php
+                    } else {
+                    }
                 }
                 ?>
 
                 <?php
                 for ($i = 1; $i < count($PRODUCTBYTYPE_ACCESSORIES_N); $i++) {
+                    $timestamp_accessories = date_create(date("Y-m-d H:i:s",  $PRODUCTBYTYPE_ACCESSORIES_N[$i]["modify"]));
+
+                    $diff_accessories = date_diff($current_date, $timestamp_accessories);
+                    if ($diff_accessories->format("%d") <= 7) {
                 ?>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo trim($PRODUCT_TYPE[4]["type_eng"], " ") ?>">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_ACCESSORIES_N[$i]["profile_product"] ?>">
-                                <div class="label new">New</div>
-                                <ul class="product__hover">
-                                    <li><a href="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_ACCESSORIES_N[$i]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6>
-                                    <span data-toggle="modal" data-target="#product1"><?php echo $PRODUCTBYTYPE_ACCESSORIES_N[$i]["product_name"] ?></span>
-                                </h6>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo trim($PRODUCT_TYPE[4]["type_eng"], " ") ?>">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_ACCESSORIES_N[$i]["profile_product"] ?>">
+                                    <div class="label new">New</div>
+                                    <ul class="product__hover">
+                                        <li><a href="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_ACCESSORIES_N[$i]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
                                 </div>
-                                <div class="product__price"><?php echo "฿ " . $PRODUCTBYTYPE_ACCESSORIES_N[$i]["price"] ?></div>
+                                <div class="product__item__text">
+                                    <h6>
+                                        <a href="<?php echo "./views/Customer/product_detail/product-details.php?product_id=" . $PRODUCTBYTYPE_ACCESSORIES_N[$i]['product_id'] ?>"><?php echo $PRODUCTBYTYPE_ACCESSORIES_N[$i]["product_name"] ?></a>
+                                    </h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price"><?php echo "฿ " . $PRODUCTBYTYPE_ACCESSORIES_N[$i]["price"] ?></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 <?php
+                    } else {
+                    }
                 }
                 ?>
 
                 <?php
                 for ($i = 1; $i < count($PRODUCTBYTYPE_HERB_N); $i++) {
+                    $timestamp_herb = date_create(date("Y-m-d H:i:s",  $PRODUCTBYTYPE_HERB_N[$i]["modify"]));
+
+                    $diff_herb = date_diff($current_date, $timestamp_herb);
+                    if ($diff_herb->format("%d") <= 7) {
                 ?>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo trim($PRODUCT_TYPE[5]["type_eng"], " ") ?>">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_HERB_N[$i]["profile_product"] ?>">
-                                <div class="label new">New</div>
-                                <ul class="product__hover">
-                                    <li><a href="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_HERB_N[$i]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6>
-                                    <span data-toggle="modal" data-target="#product1"><?php echo $PRODUCTBYTYPE_HERB_N[$i]["product_name"] ?></span>
-                                </h6>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo trim($PRODUCT_TYPE[5]["type_eng"], " ") ?>">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_HERB_N[$i]["profile_product"] ?>">
+                                    <div class="label new">New</div>
+                                    <ul class="product__hover">
+                                        <li><a href="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_HERB_N[$i]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
                                 </div>
-                                <div class="product__price"><?php echo "฿ " . $PRODUCTBYTYPE_HERB_N[$i]["price"] ?></div>
+                                <div class="product__item__text">
+                                    <h6>
+                                        <a href="<?php echo "./views/Customer/product_detail/product-details.php?product_id=" . $PRODUCTBYTYPE_HERB_N[$i]['product_id'] ?>"><?php echo $PRODUCTBYTYPE_HERB_N[$i]["product_name"] ?></a>
+                                    </h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price"><?php echo "฿ " . $PRODUCTBYTYPE_HERB_N[$i]["price"] ?></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 <?php
+                    } else {
+                    }
                 }
                 ?>
+
             </div>
         </div>
     </section>

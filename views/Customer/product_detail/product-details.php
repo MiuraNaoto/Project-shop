@@ -16,14 +16,7 @@ $shop_id = $PRODUCT_DETAIL[1]["uid"];
 $SALER_PRODUCT = getProductByShopID($shop_id);
 $RELATIVE_PRODUCT = getRelateProducts($PRODUCT_DETAIL[1]['product_type']);
 
-echo $product_id;
-echo  "<br><br><br>";
 print_r($PRODUCT_DETAIL);
-echo  "<br><br><br>";
-echo $shop_id;
-echo  "<br><br><br>";
-// echo "product_type" . $PRODUCT_DETAIL[1]['product_type'];
-echo "<br><br><br>RELATIVE_PRODUCT : " . print_r($RELATIVE_PRODUCT);
 ?>
 
 <head>
@@ -40,7 +33,7 @@ echo "<br><br><br>RELATIVE_PRODUCT : " . print_r($RELATIVE_PRODUCT);
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="../../../index.php"><i class="fa fa-home"></i> Home</a>
-                        <a href="../shop/shop.php">Shirts </a>
+                        <a href="<?php echo "../shop/shop.php?type_id=" . $PRODUCT_DETAIL[1]['id'] ?>"><?php echo $PRODUCT_DETAIL[1]['type'] ?></a>
                         <span><?php echo $PRODUCT_DETAIL[1]['product_name'] ?></span>
                     </div>
                 </div>
@@ -344,10 +337,10 @@ echo "<br><br><br>RELATIVE_PRODUCT : " . print_r($RELATIVE_PRODUCT);
                         ?>
                             <div class="col-lg-3 col-md-4 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="<?php echo "../../../img/product/profile/" . $PRODUCT_DETAIL[1]["profile_product"] ?>">
+                                    <div class="product__item__pic set-bg" data-setbg="<?php echo "../../../img/product/profile/" . $RELATIVE_PRODUCT[$i]["profile_product"] ?>">
                                         <div class="label new">New</div>
                                         <ul class="product__hover">
-                                            <li><a href="<?php echo "../../../img/product/profile/" . $PRODUCT_DETAIL[1]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                            <li><a href="<?php echo "../../../img/product/profile/" . $RELATIVE_PRODUCT[$i]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
                                             <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                             <li><a href="#"><span class="icon_bag_alt"></span></a></li>
                                         </ul>
