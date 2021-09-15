@@ -1,10 +1,12 @@
 function banfunction(_id, _shop, _name, _username, _star) {
   // alert(_uid + " " + _title + _firstname + " " + _lastname);
-  console.log("ban: " + _id + " " + _shop + " " + _name + " " + _username + " " + _star);
+  console.log(
+    "ban: " + _id + " " + _shop + " " + _name + " " + _username + " " + _star
+  );
   swal(
     {
       title: "ยืนยันการบล็อกบัญชีนี้ใช่หรือไม่?",
-    //   text: `${_shop} หรือไม่ ?`,
+      //   text: `${_shop} หรือไม่ ?`,
       type: "warning",
       showCancelButton: true,
       confirmButtonClass: "btn-danger",
@@ -45,7 +47,9 @@ function banfunction(_id, _shop, _name, _username, _star) {
 
 function delfunction(_id, _shop, _name, _username, _star) {
   // alert(_uid + " " + _title + _firstname + " " + _lastname);
-  console.log("delete: " + _id + " " + _shop + " " + _name + " " + _username + " " + _star);
+  console.log(
+    "delete: " + _id + " " + _shop + " " + _name + " " + _username + " " + _star
+  );
   swal(
     {
       title: "ยืนยันการลบบัญชีนี้ใช่หรือไม่?",
@@ -89,19 +93,24 @@ function delfunction(_id, _shop, _name, _username, _star) {
 }
 
 $(document).ready(function () {
-  $(document).on("click", ".btn_info", function (e) {
-    e.preventDefault();
+  $(document).on("click", ".btn_province", function () {
     var uid = $(this).attr("id");
-    console.log("uid: "+uid);
+    // console.log(uid);
+    if (uid != "") {
+      $.ajax({
+        url: "manage.php",
+        method: "POST",
+        data: {
+          uid: uid,
+          request: "show_address",
+        },
+        success: function (data) {
+          // alert(data);
+          $("#show_data_address").html(data);
 
-    $.ajax({
-      url: "customerModal.php",
-      method: "POST",
-      data: { uid: uid },
-      dataType: "json",
-      success: function (data) {
-        location.reload();
-      },
-    });
+          // location.href = "manage.php";
+        },
+      });
+    }
   });
 });

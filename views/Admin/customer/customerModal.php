@@ -133,8 +133,6 @@
     </div>
 </div>
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-
 <!-- Address Modal -->
 <div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" a aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -146,67 +144,8 @@
                 </button>
             </div>
             <form action="manage.php" method="post" enctype="multipart/form-data" id="editform" id="editForm" name="editform" role="form">
-                <div class="modal-body">
+                <div class="modal-body" id="show_data_address">
                     
-                    <div class="row mb-4">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                            <span>ที่อยู่<span class="text-danger"> *</span></span>
-                        </div>
-                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="address" name="address" placeholder="กรุณากรอกที่อยู่" value="123 หมู่บ้านปลาฉลามขึ้นบก ซอย 456" disabled>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                            <span>ตำบล/แขวง<span class="text-danger"> *</span></span>
-                        </div>
-                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="กำแพงแสน" value="กำแพงแสน" required="" oninput="setCustomValidity('')" disabled>
-                            <!-- <select name="subdistrict" id="subdistrict" class="form-control">
-                                <option value="" disabled>เลือกตำบล/แขวง</option>
-                                <option value="" selected disabled>กำแพงแสน</option>
-                            </select> -->
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                            <span>อำเภอ/เขต<span class="text-danger"> *</span></span>
-                        </div>
-                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="กำแพงแสน" value="กำแพงแสน" required="" oninput="setCustomValidity('')" disabled>
-                            <!-- <select name="district" id="district" class="form-control">
-                                <option value="" disabled>เลือกอำเภอ/เขต</option>
-                                <option value="" selected disabled>กำแพงแสน</option>
-                                <option value="">เมือง</option>
-                                <option value="">สามพราน</option>
-                                <option value="">นครชัยศรี</option>
-                                <option value="">บางเลน</option>
-                            </select> -->
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                            <span>จังหวัด<span class="text-danger"> *</span></span>
-                        </div>
-                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="นครปฐม" value="นครปฐม" required="" oninput="setCustomValidity('')" disabled>
-                            <!-- <select name="provice" id="provice" class="form-control">
-                                <option value="" disabled>เลือกจังหวัด</option>
-                                <option value="" selected disabled>นครปฐม</option>
-                                <option value="">กรุงเทพมหานคร</option>
-                                <option value="">ราชบุรี</option>
-                                <option value="">กาญจนบุรี</option>
-                            </select> -->
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                            <span>รหัสไปรษณีย์ <span class="text-danger"> *</span></span>
-                        </div>
-                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="กรุณากรอกรหัสไปรษณีย์" value="73140" required="" oninput="setCustomValidity('')" disabled>
-                        </div>
-                    </div>
                 </div>
                 <input type="hidden" name="e_time" id="e_time" />
 

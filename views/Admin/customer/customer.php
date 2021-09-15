@@ -58,13 +58,6 @@ include_once("../../../query/function.php");
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <?php
-                                $user = "SELECT * FROM `user-list` LEFT OUTER JOIN `bank_account` ON `user-list`.`uid` = `bank_account`.`uid` ORDER BY `user-list`.`uid`";
-                                $u = selectData($user);
-                                $uid = "SELECT `user-list`.`uid` FROM `user-list` LEFT OUTER JOIN `bank_account` ON `user-list`.`uid` = `bank_account`.`uid` ORDER BY `user-list`.`uid`";
-                                $id = selectData($uid);
-                                // print_r($u);
-                                ?>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -89,20 +82,24 @@ include_once("../../../query/function.php");
                                     </tfoot> -->
                                     <tbody>
                                         <?php
+
+                                        $u = getAllUser();
+
+                                        // print_r($u);
                                         for ($i = 1; $i <= $u[0]['numrow']; $i++) {
-                                            echo $id[$i]['uid'];
+
                                         ?>
                                             <tr>
-                                                <td class="d-flex align-items-center d-flex justify-content-center"><?php echo $i?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo $u[$i]['firstname'].' '.$u[$i]['lastname']?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo format_phonenumber($u[$i]['tel'])?></td>
-                                                <td style="vertical-align: middle;"><?php echo $u[$i]['account_name']?></td>
+                                                <td class="d-flex align-items-center d-flex justify-content-center"><?php echo $i ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo $u[$i]['firstname'] . ' ' . $u[$i]['lastname'] ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo format_phonenumber($u[$i]['tel']) ?></td>
+                                                <td style="vertical-align: middle;"><?php echo $u[$i]['username'] ?></td>
                                                 <td style="vertical-align: middle; text-align: center;">
-                                                    <button type="button" id="btn_info" class="btn btn-info btn-md" title='ดูที่อยู่จัดส่ง' data-toggle="modal" data-target="#addressModal">
+                                                    <button type="button" id="<?php echo $u[$i]['uid'] ?>" class="btn btn-info btn-md btn_province" title='ดูที่อยู่จัดส่ง' data-toggle="modal" data-target="#addressModal">
                                                         <i class="fas fa-search"></i>
                                                     </button>
                                                 </td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo date("d-m-Y H:i:s", $u[$i]['modify_user']);?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo date("d-m-Y H:i:s", $u[$i]['modify_user']); ?></td>
                                                 <td style="text-align: center; vertical-align: middle;">
                                                     <!-- <button type="button" id="btm_qrcode" class="btn btn-primary btn-md" title='ดู qr-code สินค้า' data-toggle="modal" data-target="#showQRcodeModal">
                                                     <i class="fas fa-bars"></i>
@@ -110,12 +107,12 @@ include_once("../../../query/function.php");
                                                     <!-- <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลผู้ใช้' data-toggle="modal" data-target="#editModal">
                                                     <i class="fas fa-edit"></i>
                                                 </button> -->
-                                                    <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='บล็อคผู้ใช้' style="background-color: #e67e22; border-color: #e67e22;" 
-                                                    onclick="banfunction('<?php echo $i?>','<?php echo $u[$i]['shop_name']?>','<?php echo $u[$i]['firstname'].' '.$u[$i]['lastname']?>','<?php echo $u[$i]['username']?>','65')">
+                                                    <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='บล็อคผู้ใช้' style="background-color: #e67e22; border-color: #e67e22;" onclick="banfunction('<?php echo $i ?>','<?php echo $u[$i]['shop_name'] ?>','<?php echo $u[$i]['firstname'] . ' ' . $u[$i]['lastname'] ?>',
+                                                    '<?php echo $u[$i]['username'] ?>','65')">
                                                         <i class="fas fa-ban"></i>
                                                     </button>
-                                                    <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='ลบผู้ใช้' 
-                                                    onclick="delfunction('<?php echo $i?>','<?php echo $u[$i]['shop_name']?>','<?php echo $u[$i]['firstname'].' '.$u[$i]['lastname']?>','<?php echo $u[$i]['username']?>','65')">
+                                                    <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='ลบผู้ใช้' onclick="delfunction('<?php echo $i ?>','<?php echo $u[$i]['shop_name'] ?>','<?php echo $u[$i]['firstname'] . ' ' . $u[$i]['lastname'] ?>',
+                                                    '<?php echo $u[$i]['username'] ?>','65')">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </td>
