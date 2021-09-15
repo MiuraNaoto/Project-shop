@@ -7,8 +7,8 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     $idUT = $_SESSION[md5('typeid')];
     $username = $_SESSION[md5('username')];
     $USER = $_SESSION[md5('user')];
-    echo $username;
-    echo print_r($USER);
+    // echo $username;
+    // echo print_r($USER);
 }
 
 function getProductType()
@@ -36,9 +36,6 @@ function getProductTypeByDay($type_id)
     $DATA = selectData($sql);
     return $DATA;
 }
-
-
-
 
 $PRODUCT_TYPE = getProductType();
 $PRODUCTBYTYPE_FOOD = getAllProductByType(1);

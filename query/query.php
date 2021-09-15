@@ -139,7 +139,7 @@ function getProductByID($product_id)
 
 function getAllProductByType($type_id)
 {
-    $sql = "SELECT * FROM `product` WHERE `product_type` = $type_id";
+    $sql = "SELECT * FROM `product` INNER JOIN `product_type` ON `product`.`product_type` = `product_type`.`id` WHERE `product_type` = $type_id";
     $DATA = selectData($sql);
     return $DATA;
 }

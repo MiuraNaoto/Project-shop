@@ -6,13 +6,15 @@ $idUT = $_SESSION[md5('typeid')];
 $username = $_SESSION[md5('username')];
 $USER = $_SESSION[md5('user')];
 $uid = $USER[1]["uid"];
-print_r($USER);
+
 $INFO_SALER = getsalerInfo($uid);
 $BANK_ACCOUNT = getBankAccount($uid);
 $UTID = getUserTitleByid($uid);
 $UTID1 = getUserTitleSelect($uid);
-print_r($UTID);
-print_r($UTID1);
+
+// print_r($USER);
+// print_r($UTID);
+// print_r($UTID1);
 // echo print_r($BANK_ACCOUNT);
 ?>
 

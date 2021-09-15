@@ -1,8 +1,12 @@
  <?php
 
-    session_start();
-    $idUT = $_SESSION[md5('typeid')];
-    $username = $_SESSION[md5('username')];
+    if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isset($_SESSION[md5('user')])) {
+        $idUT = $_SESSION[md5('typeid')];
+        $username = $_SESSION[md5('username')];
+        $USER = $_SESSION[md5('user')];
+        // echo $username;
+        // echo print_r($USER);
+    }
 
     // echo $username;
     ?>
@@ -134,7 +138,7 @@
              <div class="row">
                  <div class="col-xl-3 col-lg-2 d-flex align-items-center">
                      <div class="header__logo">
-                         <a href="../../../index.php"><img src="img/icon/LOGO-OTOP-WH.png" height="38" alt=""></a>
+                         <a href="../../../index.php"><img src="../../../img/icon/LOGO-OTOP-WH.png" height="38" alt=""></a>
                      </div>
                  </div>
                  <div class="col-xl-6 col-lg-7 d-flex justify-content-center d-flex align-items-center">

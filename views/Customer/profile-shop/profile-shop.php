@@ -5,17 +5,19 @@
 include_once("../../../query/query.php");
 include_once("../../../query/function.php");
 session_start();
-// $idUT = $_SESSION[md5('typeid')];
-// $username = $_SESSION[md5('username')];
-$shop_id = $_GET['shop_id'];
-$USER = $_SESSION[md5('user')];
-$uid = $USER[1]["uid"];
+if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isset($_SESSION[md5('user')])) {
+    $idUT = $_SESSION[md5('typeid')];
+    $username = $_SESSION[md5('username')];
+    $USER = $_SESSION[md5('user')];
+    $uid = $USER[1]["uid"];
+    // echo $username;
+    // echo print_r($USER);
+}
 
+$shop_id = $_GET['shop_id'];
 $SHOP_PROFILE = getShopProfile($shop_id);
 $SHOP_PRODUCT = getProductByShopID($shop_id);
-print_r($SHOP_PROFILE);
-echo  "<br><br><br>";
-print_r($SHOP_PRODUCT);
+
 ?>
 
 <head>

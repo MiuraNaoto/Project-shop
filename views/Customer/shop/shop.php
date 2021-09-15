@@ -11,8 +11,8 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     $idUT = $_SESSION[md5('typeid')];
     $username = $_SESSION[md5('username')];
     $USER = $_SESSION[md5('user')];
-    echo $username;
-    echo print_r($USER);
+    // echo $username;
+    // echo print_r($USER);
 }
 
 // $idUT = $_SESSION[md5('typeid')];
@@ -22,15 +22,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
 // print_r($USER);
 $type_id = $_GET["type_id"];
 $PRODUCT = getAllProductByType($type_id);
-
-echo $type_id
-/*
-    echo json_encode($data);
-    echo $data[1]['product_id'];
-    echo "<br>" . count($data);
-    */
-
-
+$PRODUCT_TYPE = getProductType();
 ?>
 
 <head>
@@ -46,7 +38,7 @@ echo $type_id
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="../../../index.php"><i class="fa fa-home"></i> Home</a>
-                        <span>Shop</span>
+                        <span><?php echo $PRODUCT[1]['type'] ?></span>
                     </div>
                 </div>
             </div>
@@ -68,7 +60,7 @@ echo $type_id
                                 <div class="accordion" id="accordionExample">
                                     <div class="card">
                                         <div class="card-heading ">
-                                            <a data-toggle="collapse" data-target="#collapseOne">Food</a>
+                                            <a data-toggle="collapse" data-target="#collapseOne"><?php echo  $PRODUCT_TYPE[1]["type"] ?></a>
                                         </div>
                                         <div id="collapseOne" class="collapse" data-parent="#accordionExample">
                                             <div class="card-body">
@@ -85,7 +77,7 @@ echo $type_id
                                     </div>
                                     <div class="card">
                                         <div class="card-heading">
-                                            <a data-toggle="collapse" data-target="#collapseTwo">Drink</a>
+                                            <a data-toggle="collapse" data-target="#collapseTwo"><?php echo  $PRODUCT_TYPE[2]["type"] ?></a>
                                         </div>
                                         <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
                                             <div class="card-body">
@@ -101,7 +93,7 @@ echo $type_id
                                     </div>
                                     <div class="card">
                                         <div class="card-heading">
-                                            <a data-toggle="collapse" data-target="#collapseThree">Accessories</a>
+                                            <a data-toggle="collapse" data-target="#collapseThree"><?php echo  $PRODUCT_TYPE[3]["type"] ?></a>
                                         </div>
                                         <div id="collapseThree" class="collapse" data-parent="#accordionExample">
                                             <div class="card-body">
@@ -117,7 +109,7 @@ echo $type_id
                                     </div>
                                     <div class="card">
                                         <div class="card-heading active">
-                                            <a data-toggle="collapse" data-target="#collapseFour">Clothes</a>
+                                            <a data-toggle="collapse" data-target="#collapseFour"><?php echo  $PRODUCT_TYPE[4]["type"] ?></a>
                                         </div>
                                         <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
                                             <div class="card-body">
@@ -134,7 +126,7 @@ echo $type_id
                                     </div>
                                     <div class="card">
                                         <div class="card-heading">
-                                            <a data-toggle="collapse" data-target="#collapseFive">Herb</a>
+                                            <a data-toggle="collapse" data-target="#collapseFive"><?php echo  $PRODUCT_TYPE[5]["type"] ?></a>
                                         </div>
                                         <!-- <div id="collapseFive" class="collapse" data-parent="#accordionExample">
                                             <div class="card-body">
@@ -168,7 +160,7 @@ echo $type_id
                             </div>
                             <a href="#">Filter</a>
                         </div>
-                        <div class="sidebar__sizes">
+                        <!-- <div class="sidebar__sizes">
                             <div class="section-title">
                                 <h4>Shop by size</h4>
                             </div>
@@ -214,8 +206,8 @@ echo $type_id
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                        </div>
-                        <div class="sidebar__color">
+                        </div> -->
+                        <!-- <div class="sidebar__color">
                             <div class="section-title">
                                 <h4>Shop by size</h4>
                             </div>
@@ -261,7 +253,7 @@ echo $type_id
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 

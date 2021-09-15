@@ -1,5 +1,3 @@
-
-
 <!-- Topbar -->
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -199,7 +197,7 @@
             <!-- <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div> -->
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal" style="width: 77px;">Cancel</button>
-                <a class="btn btn-danger" href="../../../login.php" style="width: 77px;">Logout</a>
+                <a class="btn btn-danger" href="../../../logout.php" style="width: 77px;">Logout</a>
             </div>
         </div>
     </div>

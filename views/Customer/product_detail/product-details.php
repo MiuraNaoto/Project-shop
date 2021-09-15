@@ -7,8 +7,16 @@ include_once("../../../query/function.php");
 session_start();
 // $idUT = $_SESSION[md5('typeid')];
 // $username = $_SESSION[md5('username')];
-$USER = $_SESSION[md5('user')];
-$uid = $USER[1]["uid"];
+if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isset($_SESSION[md5('user')])) {
+    $idUT = $_SESSION[md5('typeid')];
+    $username = $_SESSION[md5('username')];
+    $USER = $_SESSION[md5('user')];
+    $uid = $USER[1]["uid"];
+    // echo $username;
+    // echo print_r($USER);
+}
+
+
 $product_id = $_GET['product_id'];
 
 $PRODUCT_DETAIL = getProductDetail($product_id);
@@ -16,7 +24,7 @@ $shop_id = $PRODUCT_DETAIL[1]["uid"];
 $SALER_PRODUCT = getProductByShopID($shop_id);
 $RELATIVE_PRODUCT = getRelateProducts($PRODUCT_DETAIL[1]['product_type']);
 
-print_r($PRODUCT_DETAIL);
+// print_r($PRODUCT_DETAIL);
 ?>
 
 <head>
