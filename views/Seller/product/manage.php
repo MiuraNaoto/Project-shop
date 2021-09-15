@@ -164,6 +164,33 @@ switch ($request) {
         </div>
         ';
 
-        echo $output; 
+        echo $output;
+        break;
+    case "edit_product":
+
+        $product_id = $_POST["e_product_id"];
+        $product_code = $_POST["e_product_code"];
+        $product_name = $_POST["e_product_name"];
+        $product_description = $_POST["e_product_description"];
+        $product_specification = $_POST["e_product_specification"];
+        $type_product =  $_POST["e_type_product"];
+        $delivery_type = $_POST["e_delivery_type"];
+        $price =  $_POST["e_price"];
+        $price_transport = $_POST["e_price_transport"];
+        $stock =  $_POST["e_stock"];
+
+        $sql = "UPDATE `product` SET    `product_number`='$product_code',
+                                        `product_name`='$product_name',
+                                        `product_description`='$product_description',
+                                        `product_specification`='$product_specification',
+                                        `product_type`='$type_product',
+                                        `price`='$price',
+                                        `shipping_cost`='$price_transport',
+                                        `stock`='$stock',
+                                        `delivery_type`='$type_product'
+                WHERE `product_id`='$product_id'";
+        updateData($sql);
+        // echo $sql;
+        header("location: product.php");
         break;
 }
