@@ -1,3 +1,13 @@
+<?php
+include_once("../../../query/query.php");
+include_once("../../../query/function.php");
+session_start();
+$USER = $_SESSION[md5('user')];
+$uid = $USER[1]["uid"];
+$USER = getUser($uid);
+$ADDRESS_USER = getAddressUser($uid);
+$PROVINCE = getDistricts();
+?>
 <!DOCTYPE html>
 <html lang="en">
 

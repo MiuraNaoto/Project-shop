@@ -3,7 +3,14 @@
 
 <?php
 include_once("./query.php");
+include_once("../../../query/query.php");
 include_once("../../../query/function.php");
+session_start();
+$USER = $_SESSION[md5('user')];
+$uid = $USER[1]["uid"];
+$USER = getUser($uid);
+$ADDRESS_USER = getAddressUser($uid);
+$PROVINCE = getDistricts();
 $sellerList = getAllSaler();
 //echo json_encode($sellerList);
 ?>
@@ -115,37 +122,37 @@ $sellerList = getAllSaler();
                                                 <td style="vertical-align: middle; text-align: end;"> - </td>
                                                 <td style="vertical-align: middle; text-align: end;">' . date("d/m/Y h:i:s A", $sellerList[$i]['modify_saler']) . '</td>
                                                 <td style="text-align: center; vertical-align: middle;">';
-                                            ?>
+                                        ?>
 
-                                               <?php 
-                                                if($sellerList[$i]['is-blocked-saler'] == 0){
-                                                    echo 
-                                                    ' <button type="button" class="btn btn-danger btn-md openBlockModel" title="บล็อคผู้ใช้" style="background-color: #e67e22; border-color: #e67e22;" data-toggle="modal" data-target="#blockSaler" data-sid="' . $sellerList[$i]['uid'] . '" data-name="'. $sellerList[$i]['firstname'] .' '. $sellerList[$i]['lastname'] .'" >
+                                            <?php
+                                            if ($sellerList[$i]['is-blocked-saler'] == 0) {
+                                                echo
+                                                ' <button type="button" class="btn btn-danger btn-md openBlockModel" title="บล็อคผู้ใช้" style="background-color: #e67e22; border-color: #e67e22;" data-toggle="modal" data-target="#blockSaler" data-sid="' . $sellerList[$i]['uid'] . '" data-name="' . $sellerList[$i]['firstname'] . ' ' . $sellerList[$i]['lastname'] . '" >
                                                     <i class="fas fa-ban"></i>
                                                     </button>';
-                                                }else{
-                                                    echo 
-                                                    ' <button type="button" class="btn btn-warning btn-md openBlockModel" title="ปลดบล็อคผู้ใช้" style="background-color:yellowgreen; border-color: yellowgreen;" data-toggle="modal" data-target="#unblockSaler" data-sid="' . $sellerList[$i]['uid'] . '" data-name="'. $sellerList[$i]['firstname'] .' '. $sellerList[$i]['lastname'] .'" >
+                                            } else {
+                                                echo
+                                                ' <button type="button" class="btn btn-warning btn-md openBlockModel" title="ปลดบล็อคผู้ใช้" style="background-color:yellowgreen; border-color: yellowgreen;" data-toggle="modal" data-target="#unblockSaler" data-sid="' . $sellerList[$i]['uid'] . '" data-name="' . $sellerList[$i]['firstname'] . ' ' . $sellerList[$i]['lastname'] . '" >
                                                     <i class="fas fa-unlock"></i></i>
                                                     </button>';
-                                                }
-                                               
+                                            }
 
-                                                echo '<button type="button" id="delS" class="btn btn-danger btn-md" title="ลบผู้ใช้" data-toggle="modal" data-target="#delSaler" data-sid="' . $sellerList[$i]['uid'] . '" data-name="'. $sellerList[$i]['firstname'] .' '. $sellerList[$i]['lastname'] .'">
+
+                                            echo '<button type="button" id="delS" class="btn btn-danger btn-md" title="ลบผู้ใช้" data-toggle="modal" data-target="#delSaler" data-sid="' . $sellerList[$i]['uid'] . '" data-name="' . $sellerList[$i]['firstname'] . ' ' . $sellerList[$i]['lastname'] . '">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </td>
                                             </tr>';
                                             ?>
-                                       <?php }?> 
-                                       
+                                        <?php } ?>
+
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-               
+
 
 
                 <!-- /.container-fluid -->
@@ -207,8 +214,6 @@ $sellerList = getAllSaler();
             modal.find('.modal-body input').val(id)
             //modal.find('.modal-body input').val(recipient)
         })
-
-      
     </script>
 
 

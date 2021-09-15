@@ -154,8 +154,8 @@
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
-                <img class="img-profile rounded-circle" src="../../../img/profile/vendor.png">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo  $USER[1]["username"] ?></span>
+                <img class="img-profile rounded-circle" src="<?php echo "../../../img/profile/" . $USER[1]["profile_user"] ?>">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -201,7 +201,7 @@
             <!-- <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div> -->
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal" style="width: 77px;">Cancel</button>
-                <a class="btn btn-danger" href="../../../login.php" style="width: 77px;">Logout</a>
+                <a class="btn btn-danger" href="../../../logout.php" style="width: 77px;">Logout</a>
             </div>
         </div>
     </div>

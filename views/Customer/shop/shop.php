@@ -2,15 +2,24 @@
 <html lang="en">
 
 <?php
+
 include_once("../../../query/query.php");
 include_once("../../../query/function.php");
 session_start();
 
+if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isset($_SESSION[md5('user')])) {
+    $idUT = $_SESSION[md5('typeid')];
+    $username = $_SESSION[md5('username')];
+    $USER = $_SESSION[md5('user')];
+    echo $username;
+    echo print_r($USER);
+}
+
 // $idUT = $_SESSION[md5('typeid')];
 // $username = $_SESSION[md5('username')];
-$USER = $_SESSION[md5('user')];
-$uid = $USER[1]["uid"];
-print_r($USER);
+// $USER = $_SESSION[md5('user')];
+// $uid = $USER[1]["uid"];
+// print_r($USER);
 $type_id = $_GET["type_id"];
 $PRODUCT = getAllProductByType($type_id);
 
