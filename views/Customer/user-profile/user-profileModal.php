@@ -276,7 +276,7 @@ $PROVINCE = getDistricts();
                             <span>จังหวัด<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <select name="ea_provice" id="ea_provice" class="form-control">
+                            <select name="ea_provice" id="ea_provice" onchange="selectProvinceModal();" class="form-control">
                                 <option value="" disabled>เลือกจังหวัด</option>
                                 <?php
                                 $PROVINCE = getProvince();
@@ -291,7 +291,7 @@ $PROVINCE = getDistricts();
                             <span>อำเภอ/เขต<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <select name="ea_district" id="ea_district" class="form-control">
+                            <select name="ea_district" id="ea_district" onchange="selectDistrictModal();" class="form-control">
                                 <option value="" disabled>เลือกอำเภอ/เขต</option>
                                 <?php
                                 $DISTRICTS = getDistricts();

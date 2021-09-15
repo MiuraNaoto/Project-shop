@@ -149,6 +149,9 @@ $ADDRESS_USER = getAddressUser($uid);
                                                 subdistrict="<?php echo $ADDRESS_USER[$i]["subdistrict"] ?>"
                                                 province_id="<?php echo $ADDRESS_USER[$i]["province_id"] ?>"
                                                 district_id="<?php echo $ADDRESS_USER[$i]["district_id"] ?>"
+                                                subdistrict_name = "<?php echo $ADDRESS_USER[$i]["subdistricts_name_in_thai"] ?>"
+                                                district_name = "<?php echo $ADDRESS_USER[$i]["districts_name_in_thai"] ?>"
+                                                province_name = "<?php echo $ADDRESS_USER[$i]["provinces_name_in_thai"] ?>"
                                                 class="btn btn-warning text-light edit-address" title='แก้ไขข้อมูลที่อยู่ตัดส่ง' data-toggle="modal" data-target="#edit_address_modal">
                                             <i class="fas fa-edit"></i>
                                             <span>&nbsp;<?php echo "แก้ไขที่อยู่จัดส่ง " . $i ?></span>

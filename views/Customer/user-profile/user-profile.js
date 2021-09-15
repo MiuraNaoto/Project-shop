@@ -100,18 +100,29 @@ $(document).ready(function () {
     var subdistrict = $(this).attr("subdistrict");
     var province_id = $(this).attr("province_id");
     var district_id = $(this).attr("district_id");
+    var subdistricts_name_in_thai = $(this).attr("subdistrict_name");
+    var districts_name_in_thai = $(this).attr("district_name");
+    var provinces_name_in_thai = $(this).attr("province_name");
+
+    selectSubDis(district_id, subdistrict, subdistricts_name_in_thai)
+    selectDis(province_id, district_id, districts_name_in_thai)
+    selectPro(province_id, provinces_name_in_thai)
 
     console.log(daid);
     console.log(title);
     console.log(subdistrict);
     console.log(province_id);
     console.log(district_id);
+    console.log(subdistricts_name_in_thai);
+    console.log(districts_name_in_thai);
+    console.log(provinces_name_in_thai);
+
     if (title == "นาย") {
       title = 1;
     } else if (title == "นาง") {
       title = 2;
     } else if (title == "นางสาว") {
-      title = 2;
+      title = 3;
     }
     console.log(title);
 
@@ -137,10 +148,145 @@ $(document).ready(function () {
     $("#ea_address").val();
     $("#ea_adid").val();
     $("#request").val();
+    
   });
 });
 
+function selectProvinceModal() {
+  
+  var provinceObject = document.getElementById("ea_provice");
+  var districtObject = document.getElementById("ea_district");
+  var subdistrictObject = document.getElementById("ea_subdistrict");
+  var provinceId = document.getElementById("ea_provice").value;
+  // console.log(provinceId)
+
+  districtObject.innerHTML = '<option value="" >กรุณาเลือกอำเภอ/เขต</option>';
+  subdistrictObject.innerHTML =
+    '<option value="" >กรุณาเลือกตำบล/แขวง</option>';
+  $.get("./districts.php?province_id=" + provinceId, function (data) {
+    // console.log(data)
+    var result = JSON.parse(data);
+    // console.log(result);
+    $.each(result, function (index, item) {
+      // console.log(item)
+      if (index != 0) {
+        districtObject.innerHTML +=
+          "<option value='" +
+          item.id +
+          "'> " +
+          item.districts_name_in_thai +
+          "</option>";
+      }
+    });
+  });
+}
+
+function selectDistrictModal() {
+  var districtObject = document.getElementById("ea_district");
+  var subdistrictObject = document.getElementById("ea_subdistrict");
+  var districtId = document.getElementById("ea_district").value;
+  // console.log(provinceId)
+
+  subdistrictObject.innerHTML =
+    '<option value="" >กรุณาเลือกตำบล/แขวง</option>';
+  $.get("./sub-districts.php?district_id=" + districtId, function (data) {
+    // console.log(data)
+    var result = JSON.parse(data);
+    // console.log(result);
+    $.each(result, function (index, item) {
+      // console.log(item)
+      if (index != 0) {
+        subdistrictObject.innerHTML +=
+          "<option value='" +
+          item.id +
+          "'> " +
+          item.subdistricts_name_in_thai +
+          "</option>";
+      }
+    });
+  });
+}
+
+function selectPro(pro_id, provinces_name_in_thai) {
+  console.log("pro_id"+pro_id)
+  var provinceObject = document.getElementById("ea_provice");
+  // console.log(provinceId)
+
+  provinceObject.innerHTML =
+  '<option value="" disabled>เลือกจังหวัด</option>' + 
+  "<option value='" + pro_id +"'selected> " +provinces_name_in_thai +"</option>";
+  
+  $.get("./provinces.php", function (data) {
+    // console.log(data)
+    var result = JSON.parse(data);
+    // console.log(result);
+    $.each(result, function (index, item) {
+      // console.log(item)
+      if (index != 0) {
+        if(item.id != pro_id){
+          provinceObject.innerHTML +=
+          "<option value='" + item.id +"'> "+ item.provinces_name_in_thai +"</option>";
+        }
+        
+      }
+    });
+  });
+}
+
+function selectDis(pro_id, dis_id, districts_name_in_thai) {
+  console.log("pro_id"+pro_id)
+  var districtObject = document.getElementById("ea_district");
+  // console.log(provinceId)
+
+  districtObject.innerHTML =
+  '<option value="" disabled>เลือกอำเภอ/เขต</option>' + 
+  "<option value='" + dis_id +"'selected> " +districts_name_in_thai +"</option>";
+  
+  $.get("./districts.php?province_id=" + pro_id, function (data) {
+    // console.log(data)
+    var result = JSON.parse(data);
+    // console.log(result);
+    $.each(result, function (index, item) {
+      // console.log(item)
+      if (index != 0) {
+        if(item.id != dis_id){
+          districtObject.innerHTML +=
+          "<option value='" + item.id +"'> "+ item.districts_name_in_thai +"</option>";
+        }
+        
+      }
+    });
+  });
+}
+
+function selectSubDis(dis_id, subdis_id, subdistricts_name_in_thai) {
+  console.log("dis_id"+dis_id)
+  var subdistrictObject = document.getElementById("ea_subdistrict");
+  // console.log(provinceId)
+
+  subdistrictObject.innerHTML =
+  '<option value="" disabled>กรุณาเลือกตำบล/แขวง</option>' + 
+  "<option value='" + subdis_id +"'selected> " +subdistricts_name_in_thai +"</option>";
+  
+  $.get("./sub-districts.php?district_id=" + dis_id, function (data) {
+    // console.log(data)
+    var result = JSON.parse(data);
+    // console.log(result);
+    $.each(result, function (index, item) {
+      // console.log(item)
+      if (index != 0) {
+        if(item.id != subdis_id){
+          subdistrictObject.innerHTML +=
+          "<option value='" + item.id +"'> "+ item.subdistricts_name_in_thai +"</option>";
+        }
+        
+      }
+    });
+  });
+}
+
 function selectProvince() {
+  
   var provinceObject = document.getElementById("provice");
   var districtObject = document.getElementById("district");
   var subdistrictObject = document.getElementById("subdistrict");
