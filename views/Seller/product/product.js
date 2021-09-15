@@ -142,7 +142,7 @@ $(document).ready(function () {
 
   $(document).on("click", ".view-qrcode", function () {
     var product_id = $(this).attr("id");
-    console.log(product_id);
+    // console.log(product_id);
     if (product_id != "") {
       $.ajax({
         url: "manage.php",
@@ -174,7 +174,7 @@ $(document).ready(function () {
     var shipping_cost = $(this).attr("shipping_cost");
     var stock = $(this).attr("stock");
 
-    console.log(product_id);
+    // console.log(product_id);
 
     $("#e_product_id").val(product_id);
     $("#e_product_code").val(product_number);
@@ -201,28 +201,6 @@ $(document).ready(function () {
     $("#e_price_transport").val();
     $("#e_stock").val();
     $("#request").val();
-  });
-  $(document).on("click", ".edit-product", function (e) {
-    // $("edit-product").submit(function (e) {
-    e.preventDefault();
-    var product_id = $(this).attr("product_id");
-    var form = new FormData(this);
-    console.log(product_id);
-    $.ajax({
-      url: "manage.php",
-      method: "POST",
-      data: {
-        product_id: product_id,
-        form: form,
-        request: "edit_product",
-      },
-      success: function (data) {
-        alert(data);
-        location.reload();
-
-        // location.href = "manage.php";
-      },
-    });
   });
 });
 

@@ -128,6 +128,7 @@ $ADDRESS_USER = getAddressUser($uid);
                     <hr class="hr-text" data-content="ที่อยู่จัดส่ง">
                     <?php
                     for ($i = 1; $i < count($ADDRESS_USER); $i++) {
+                        // print_r($ADDRESS_USER);
                     ?>
                         <div class="card mb-4">
                             <div class="card-header card-bg font-weight-bold" style="color:<?= $color ?>;">
@@ -138,7 +139,17 @@ $ADDRESS_USER = getAddressUser($uid);
                                         </span>
                                     </div>
                                     <div class="col-md-4 d-flex justify-content-end">
-                                        <button type="button" id="<?php echo $ADDRESS_USER[$i]["daid"] ?>" class="btn btn-warning text-light edit_address" title='เปลี่ยนข้อมูลบัญชี' data-toggle="modal" data-target="#editAddress">
+                                        <button type="button" 
+                                                daid="<?php echo $ADDRESS_USER[$i]["daid"] ?>" 
+                                                title="<?Php echo $ADDRESS_USER[$i]["title"] ?>"
+                                                firstname="<?Php echo $ADDRESS_USER[$i]["firstname"] ?>"
+                                                lastname="<?Php echo $ADDRESS_USER[$i]["lastname"] ?>"
+                                                tel="<?Php echo $ADDRESS_USER[$i]["tel"] ?>"
+                                                address="<?Php echo $ADDRESS_USER[$i]["address"] ?>"
+                                                subdistrict="<?php echo $ADDRESS_USER[$i]["subdistrict"] ?>"
+                                                province_id="<?php echo $ADDRESS_USER[$i]["province_id"] ?>"
+                                                district_id="<?php echo $ADDRESS_USER[$i]["district_id"] ?>"
+                                                class="btn btn-warning text-light edit-address" title='แก้ไขข้อมูลที่อยู่ตัดส่ง' data-toggle="modal" data-target="#edit_address_modal">
                                             <i class="fas fa-edit"></i>
                                             <span>&nbsp;<?php echo "แก้ไขที่อยู่จัดส่ง " . $i ?></span>
                                         </button>
@@ -222,6 +233,7 @@ $ADDRESS_USER = getAddressUser($uid);
     include_once("user-profileModal.php");
     ?>
     <script src="user-profile.js"></script>
+    
 </body>
 
 </html>

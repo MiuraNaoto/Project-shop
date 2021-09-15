@@ -99,9 +99,29 @@ switch ($request) {
                 echo 'invalid';
             }
         }
-
-
         // header("location: ./profile.php");
+        break;
+
+    case 'edit_address':
+        $adid = $_POST["ea_adid"];
+        $title = $_POST["ea_title"];
+        $firstname = $_POST["ea_firstname"];
+        $lastname = $_POST["ea_lastname"];
+        $tel = $_POST["ea_tel"];
+        $provice = $_POST["ea_provice"];
+        $district = $_POST["ea_district"];
+        $subdistrict = $_POST["ea_subdistrict"];
+        $address = $_POST["ea_address"];
+
+        $sql = "UPDATE `delivery_address` SET   `title`='$title',
+                                                `firstname`='$firstname',
+                                                `lastname`='$lastname',
+                                                `tel`='$tel',
+                                                `address`='$address',
+                                                `subdistrict`='$subdistrict' 
+                WHERE `daid`='$adid'";
+        updateData($sql);
+        header("location: user-profile.php");
         break;
 }
 

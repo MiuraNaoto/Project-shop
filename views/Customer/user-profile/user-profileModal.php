@@ -152,7 +152,7 @@ $PROVINCE = getDistricts();
                     <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                         <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="กรุณากรอกรหัสไปรษณีย์" required="" oninput="setCustomValidity('')">
                     </div>
-                </div> -->
+                    </div> -->
                     <div class="row mb-4">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
                             <span>จังหวัด<span class="text-danger"> *</span></span>
@@ -221,7 +221,7 @@ $PROVINCE = getDistricts();
 </div>
 
 <!-- edit Address  -->
-<div class="modal fade" id="editAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit_address_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" a aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -237,11 +237,13 @@ $PROVINCE = getDistricts();
                             <span>คำนำหน้า<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <select name="title" id="title" class="form-control">
+                            <select name="ea_title" id="ea_title" class="form-control">
                                 <option value="" disabled>เลือกคำนำหน้า</option>
-                                <option value="" selected>นาย</option>
-                                <option value="">นาง</option>
-                                <option value="">นางสาว</option>
+                                <?php
+                                $USER_TITLE = getUserTitle();
+                                for ($i = 1; $i < count($USER_TITLE); $i++) {
+                                    echo '<option value="' . $USER_TITLE[$i]["id"] . '">' . $USER_TITLE[$i]["title"] . '</option>';
+                                } ?>
                             </select>
                         </div>
                     </div>
@@ -258,7 +260,7 @@ $PROVINCE = getDistricts();
                             <span>นามสกุล <span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-xl-9 col-12">
-                            <input type="text" class="form-control" id="ea_lastname" name="ea_lastname" value="หมายปอง" placeholder="กรุณากรอกนามสกุล">
+                            <input type="text" class="form-control" id="ea_lastname" name="ea_lastname" value="" placeholder="กรุณากรอกนามสกุล">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -266,15 +268,7 @@ $PROVINCE = getDistricts();
                             <span>เบอร์โทรศัพท์ <span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-xl-9 col-12">
-                            <input type="text" class="form-control" id="ea_tel" name="ea_tel" value="089-657-1234" placeholder="กรุณากรอกเบอร์โทรศัพท์">
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                            <span>รหัสไปรษณีย์ <span class="text-danger"> *</span></span>
-                        </div>
-                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="ea_zipcode" name="ea_zipcode" placeholder="กรุณากรอกรหัสไปรษณีย์" value="73140" required="" oninput="setCustomValidity('')">
+                            <input type="text" class="form-control" id="ea_tel" name="ea_tel" value="" placeholder="กรุณากรอกเบอร์โทรศัพท์">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -282,15 +276,13 @@ $PROVINCE = getDistricts();
                             <span>จังหวัด<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            
-                            <?php echo $_POST['daid'];?>
-
                             <select name="ea_provice" id="ea_provice" class="form-control">
                                 <option value="" disabled>เลือกจังหวัด</option>
-                                <option value="" selected>นครปฐม</option>
-                                <option value="">กรุงเทพมหานคร</option>
-                                <option value="">ราชบุรี</option>
-                                <option value="">กาญจนบุรี</option>
+                                <?php
+                                $PROVINCE = getProvince();
+                                for ($i = 1; $i < count($PROVINCE); $i++) {
+                                    echo '<option value="' . $PROVINCE[$i]["id"] . '">' . $PROVINCE[$i]["provinces_name_in_thai"] . '</option>';
+                                } ?>
                             </select>
                         </div>
                     </div>
@@ -301,11 +293,11 @@ $PROVINCE = getDistricts();
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                             <select name="ea_district" id="ea_district" class="form-control">
                                 <option value="" disabled>เลือกอำเภอ/เขต</option>
-                                <option value="" selected>กำแพงแสน</option>
-                                <option value="">เมือง</option>
-                                <option value="">สามพราน</option>
-                                <option value="">นครชัยศรี</option>
-                                <option value="">บางเลน</option>
+                                <?php
+                                $DISTRICTS = getDistricts();
+                                for ($i = 1; $i < count($DISTRICTS); $i++) {
+                                    echo '<option value="' . $DISTRICTS[$i]["id"] . '">' . $DISTRICTS[$i]["districts_name_in_thai"] . '</option>';
+                                } ?>
                             </select>
                         </div>
                     </div>
@@ -316,7 +308,11 @@ $PROVINCE = getDistricts();
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                             <select name="ea_subdistrict" id="ea_subdistrict" class="form-control">
                                 <option value="" disabled>เลือกตำบล/แขวง</option>
-                                <option value="" selected>กำแพงแสน</option>
+                                <?php
+                                $SUBDISTRICTS = getSubDistricts();
+                                for ($i = 1; $i < count($SUBDISTRICTS); $i++) {
+                                    echo '<option value="' . $SUBDISTRICTS[$i]["id"] . '">' . $SUBDISTRICTS[$i]["subdistricts_name_in_thai"] . '</option>';
+                                } ?>
                             </select>
                         </div>
                     </div>
@@ -325,65 +321,18 @@ $PROVINCE = getDistricts();
                             <span>ที่อยู่ <span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-xl-9 col-12">
-                            <input type="text" class="form-control" id="ea_address" name="ea_address" value="เลขที่ 1 หมู่ 6" placeholder="กรุณากรอกที่อยู่">
+                            <input type="text" class="form-control" id="ea_address" name="ea_address" value="" placeholder="กรุณากรอกที่อยู่">
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
+                    <input type="hidden" id="ea_adid" name="ea_adid" value="" />
                     <input type="hidden" id="request" name="request" value="edit_address" />
                     <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
-                    <button type="submit" class="btn btn-succes edit_address_submit">แก้ไขอยู่จัดส่ง</button>
+                    <button type="submit" class="btn btn-success edit-address-modal">แก้ไขอยู่จัดส่ง</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<script>
-    function selectProvince() {
-        var provinceObject = document.getElementById("provice");
-        var districtObject = document.getElementById("district");
-        var subdistrictObject = document.getElementById("subdistrict");
-        var provinceId = document.getElementById("provice").value;
-        // console.log(provinceId)
-
-        districtObject.innerHTML = '<option value="" >กรุณาเลือกอำเภอ/เขต</option>';
-        subdistrictObject.innerHTML = '<option value="" >กรุณาเลือกตำบล/แขวง</option>';
-        $.get('./districts.php?province_id=' + provinceId, function(data) {
-            // console.log(data)
-            var result = JSON.parse(data);
-            // console.log(result);
-            $.each(result, function(index, item) {
-                // console.log(item)
-                if (index != 0) {
-                    districtObject.innerHTML += "<option value='" + item.id + "'> " + item.districts_name_in_thai + "</option>";
-                }
-            });
-        });
-
-    }
-
-    function selectDistrict() {
-        var districtObject = document.getElementById("district");
-        var subdistrictObject = document.getElementById("subdistrict");
-        var districtId = document.getElementById("district").value;
-        // console.log(provinceId)
-
-        subdistrictObject.innerHTML = '<option value="" >กรุณาเลือกตำบล/แขวง</option>';
-        $.get('./sub-districts.php?district_id=' + districtId, function(data) {
-            // console.log(data)
-            var result = JSON.parse(data);
-            // console.log(result);
-            $.each(result, function(index, item) {
-                // console.log(item)
-                if (index != 0) {
-                    subdistrictObject.innerHTML += "<option value='" + item.id + "'> " + item.subdistricts_name_in_thai + "</option>";
-                }
-            });
-        });
-
-    }
-</script>

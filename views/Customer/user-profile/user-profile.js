@@ -88,19 +88,108 @@ $(document).ready(function () {
     });
   });
 
-  $(document).on("click", ".edit_address", function (e) {
-    e.preventDefault();
-    var daid = $(this).attr("id");
-    console.log(daid);
+  $(".edit-address").click(function () {
+    // $("#editAddress").modal();
+    $("#edit_address_modal").modal();
+    var daid = $(this).attr("daid");
+    var title = $(this).attr("title");
+    var firstname = $(this).attr("firstname");
+    var lastname = $(this).attr("lastname");
+    var tel = $(this).attr("tel");
+    var address = $(this).attr("address");
+    var subdistrict = $(this).attr("subdistrict");
+    var province_id = $(this).attr("province_id");
+    var district_id = $(this).attr("district_id");
 
-    $.ajax({
-      url: "user-profileModal.php",
-      method: "POST",
-      data: { daid: daid },
-      dataType: "json",
-      success: function (data) {
-        location.reload();
-      },
-    });
+    console.log(daid);
+    console.log(title);
+    console.log(subdistrict);
+    console.log(province_id);
+    console.log(district_id);
+    if (title == "นาย") {
+      title = 1;
+    } else if (title == "นาง") {
+      title = 2;
+    } else if (title == "นางสาว") {
+      title = 2;
+    }
+    console.log(title);
+
+    $("#ea_title").val(title);
+    $("#ea_firstname").val(firstname);
+    $("#ea_lastname").val(lastname);
+    $("#ea_tel").val(tel);
+    $("#ea_provice").val(province_id);
+    $("#ea_district").val(district_id);
+    $("#ea_subdistrict").val(subdistrict);
+    $("#ea_address").val(address);
+    $("#ea_adid").val(daid);
+  });
+
+  $("#edit-address-modal").click(function () {
+    $("#ea_title").val();
+    $("#ea_firstname").val();
+    $("#ea_lastname").val();
+    $("#ea_tel").val();
+    $("#ea_provice").val();
+    $("#ea_district").val();
+    $("#ea_subdistrict").val();
+    $("#ea_address").val();
+    $("#ea_adid").val();
+    $("#request").val();
   });
 });
+
+function selectProvince() {
+  var provinceObject = document.getElementById("provice");
+  var districtObject = document.getElementById("district");
+  var subdistrictObject = document.getElementById("subdistrict");
+  var provinceId = document.getElementById("provice").value;
+  // console.log(provinceId)
+
+  districtObject.innerHTML = '<option value="" >กรุณาเลือกอำเภอ/เขต</option>';
+  subdistrictObject.innerHTML =
+    '<option value="" >กรุณาเลือกตำบล/แขวง</option>';
+  $.get("./districts.php?province_id=" + provinceId, function (data) {
+    // console.log(data)
+    var result = JSON.parse(data);
+    // console.log(result);
+    $.each(result, function (index, item) {
+      // console.log(item)
+      if (index != 0) {
+        districtObject.innerHTML +=
+          "<option value='" +
+          item.id +
+          "'> " +
+          item.districts_name_in_thai +
+          "</option>";
+      }
+    });
+  });
+}
+
+function selectDistrict() {
+  var districtObject = document.getElementById("district");
+  var subdistrictObject = document.getElementById("subdistrict");
+  var districtId = document.getElementById("district").value;
+  // console.log(provinceId)
+
+  subdistrictObject.innerHTML =
+    '<option value="" >กรุณาเลือกตำบล/แขวง</option>';
+  $.get("./sub-districts.php?district_id=" + districtId, function (data) {
+    // console.log(data)
+    var result = JSON.parse(data);
+    // console.log(result);
+    $.each(result, function (index, item) {
+      // console.log(item)
+      if (index != 0) {
+        subdistrictObject.innerHTML +=
+          "<option value='" +
+          item.id +
+          "'> " +
+          item.subdistricts_name_in_thai +
+          "</option>";
+      }
+    });
+  });
+}

@@ -154,7 +154,7 @@ $PRODUCT = getProductByShopID($uid);
             include_once("productModal.php");
             ?>
             <script type="text/javascript" src="product.js"></script>
-            <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         </div>
         <!-- End of Content Wrapper -->
 
