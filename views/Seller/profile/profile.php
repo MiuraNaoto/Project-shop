@@ -137,11 +137,11 @@ print_r($UTID1);
                                             <div class="row mb-2">
                                                 <div class="col-xl-12 col-12">
                                                     <center>
-                                                        <button type="button" id="btn_info" class="btn btn-warning btn-lg" title='เปลี่ยนข้อมูลบัญชี' data-toggle="modal" data-target="#editModal">
-                                                            <i class="fas fa-edit"></i>
+                                                        <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลส่วนตัว' data-toggle="modal" data-target="#editModal">
+                                                            <i class="fas fa-edit"></i>&nbsp;&nbsp;&nbsp;แก้ไขข้อมูลส่วนตัว
                                                         </button>
-                                                        <button type="button" id="btn_pass" class="btn btn-secondary btn-lg pass_edit" title='เปลี่ยนรหัสผ่าน' data-toggle="modal" data-target="#editPassModal">
-                                                            <i class="fa fa-cog"></i>
+                                                        <button type="button" id="btn_pass" class="btn btn-secondary btn-md pass_edit" title='เปลี่ยนรหัสผ่าน' data-toggle="modal" data-target="#editPassModal">
+                                                            <i class="fa fa-cog"></i>&nbsp;&nbsp;&nbsp;เปลี่ยนรหัสผ่าน
                                                         </button>
                                                     </center>
                                                 </div>
@@ -344,7 +344,7 @@ print_r($UTID1);
                                 ?>
 
                                         <div class="col-lg-3 mb-4">
-                                            <div class="card" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
+                                            <div class="card edit-bank-account" data-toggle="modal" baid="<?php echo $BANK_ACCOUNT[$i]["baid"] ?>" account_code="<?php echo $BANK_ACCOUNT[$i]["account_code"] ?>" account_name="<?php echo $BANK_ACCOUNT[$i]["account_name"] ?>" bank_id="<?php echo $BANK_ACCOUNT[$i]["id"] ?>" data-target="#edit-bank-modal" style="cursor: pointer;">
                                                 <img class="card-img-top" src='<?php echo "../../../img/payment/" . $BANK_ACCOUNT[$i]["picture"] ?>' alt="<?php echo $BANK_ACCOUNT[$i]["name"] ?>">
                                                 <div class="card-body text-center font-weight-bold">
                                                     <div class="row mt-2 mb-4 ">
@@ -396,24 +396,3 @@ print_r($UTID1);
 </body>
 
 </html>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>

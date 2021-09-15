@@ -154,4 +154,15 @@ switch ($request) {
 
         // header("location: ./profile.php");
         break;
+    case "edit_bank":
+        $baid = $_POST["e_baid"];
+        $banktype = $_POST["e_banktype"];
+        $bankname = $_POST["e_bankname"];
+        $bankcode = $_POST["e_bankcode"];
+
+        $sql = "UPDATE `bank_account` SET `account_code`='$bankcode',`account_name`='$bankname',`bankid`='$banktype' WHERE `baid`='$baid'";
+        updateData($sql);
+
+        header("location: ./profile.php");
+        break;
 }

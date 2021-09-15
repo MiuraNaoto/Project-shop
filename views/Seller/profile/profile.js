@@ -169,9 +169,35 @@ $(document).ready(function () {
       },
     });
   });
+
+  $(".edit-bank-account").click(function () {
+    $("#edit-bank-modal").modal();
+
+    var baid = $(this).attr("baid");
+    var account_code = $(this).attr("account_code");
+    var account_name = $(this).attr("account_name");
+    var bank_id = $(this).attr("bank_id");
+
+    console.log(baid);
+
+    $("#e_baid").val(baid);
+    $("#e_bankcode").val(account_code);
+    $("#e_bankname").val(account_name);
+    $("#e_banktype").val(bank_id);
+  });
+
+  $("#edit-bank").click(function () {
+    // console.log("save");
+    $("#e_baid").val();
+    $("#e_bankcode").val();
+    $("#e_bankname").val();
+    $("#e_banktype").val();
+    $("#request").val();
+  });
 });
 
 function selectProvince() {
+  var provinceObject = document.getElementById("provice");
   var districtObject = document.getElementById("district");
   var subdistrictObject = document.getElementById("subdistrict");
   var provinceId = document.getElementById("provice").value;
@@ -199,6 +225,7 @@ function selectProvince() {
 }
 
 function selectDistrict() {
+  var districtObject = document.getElementById("district");
   var subdistrictObject = document.getElementById("subdistrict");
   var districtId = document.getElementById("district").value;
   // console.log(provinceId)

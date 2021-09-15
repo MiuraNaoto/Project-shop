@@ -329,3 +329,58 @@ $UTID1 = getUserTitleSelect($USER[1]["title_id"]);
         </div>
     </div>
 </div>
+
+<!-- EDIT BANK -->
+<div class="modal fade" id="edit-bank-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">แก้ไขข้อมูลบัญชีธนาคาร</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="manage.php" method="post" enctype="multipart/form-data" id="form-insert-bank" name="form-insert-bank" role="form">
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <span>ชื่อธนาคาร<span class="text-danger"> *</span></span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <select name="e_banktype" id="e_banktype" class="form-control" required oninvalid="this.setCustomValidity('กรุณาเลือกธนาคาร')" oninput="this.setCustomValidity('')">
+                                <option value="" disabled selected>เลือกธนาคาร</option>
+                                <?php
+                                for ($i = 1; $i < count($BANK); $i++) {
+                                    echo '<option value="' . $BANK[$i]["id"] . '">' . $BANK[$i]["name"] . '</option>';
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <span>ชื่อบัญชีธนาคาร<span class="text-danger"> *</span></span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <input type="text" class="form-control" id="e_bankname" name="e_bankname" placeholder="กรุณากรอกชื่อบัญชีธนาคาร" value="" required oninvalid="this.setCustomValidity('กรุณากรอกชื่อบัญชีธนาคาร')" oninput="this.setCustomValidity('')">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <span>เลขที่บัญชีธนาคาร<span class="text-danger"> *</span></span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <input type="number" class="form-control" id="e_bankcode" name="e_bankcode" placeholder="กรุณากรอกเลขที่บัญชีธนาคาร" value="" required oninvalid="this.setCustomValidity('กรุณากรอกเลขที่บัญชีธนาคาร')" oninput="this.setCustomValidity('')">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <input type="hidden" id="e_baid" name="e_baid" value="" />
+                    <input type="hidden" id="request" name="request" value="edit_bank" />
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" style="width: 70px;">ยกเลิก</button>
+                    <button type="submit" class="btn btn-warning edit-bank">แก้ไขบัญชีธนาคาร</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
