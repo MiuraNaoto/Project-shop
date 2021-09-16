@@ -9,9 +9,9 @@ $idUT = $_SESSION[md5('typeid')];
 $username = $_SESSION[md5('username')];
 $USER = $_SESSION[md5('user')];
 $uid = $USER[1]["uid"];
-
+$CurrentMenu = "dashboard";
 $PRODUCT = getProductByShopID($uid);
-print_r($PRODUCT);
+// print_r($PRODUCT);
 ?>
 
 

@@ -207,6 +207,7 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
                                         <span class="icon_search search-switch"></span>
                                     </button>
                                     <input type="text" class="input-search" placeholder="Type to Search...">
+                                    <div id="livesearch"></div>
                                 </li>
                             </ul>
                         </nav>
@@ -294,7 +295,7 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
                                     <button class="btn-search">
                                         <span class="icon_search search-switch"></span>
                                     </button>
-                                    <input type="text" class="input-search" placeholder="Type to Search...">
+                                    <input type="text" class="input-search" placeholder="Type to Search..." onkeyup="showResult(this.value)">
                                 </li>
                             </ul>
                         </nav>
@@ -1507,6 +1508,7 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.nicescroll.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>

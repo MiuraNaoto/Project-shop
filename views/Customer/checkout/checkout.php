@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+include_once("../../../query/query.php");
+include_once("../../../query/function.php");
+session_start();
+
+if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isset($_SESSION[md5('user')])) {
+    $idUT = $_SESSION[md5('typeid')];
+    $username = $_SESSION[md5('username')];
+    $USER = $_SESSION[md5('user')];
+    // echo $username;
+    // echo print_r($USER);
+}
+?>
+
+
 <head>
     <?php include_once("../layout/header.php") ?>
 </head>
@@ -143,7 +158,7 @@
                                     <li>01. Chain buck bag <span>$ 300.0</span></li>
                                     <li>02. Zip-pockets pebbled<br /> tote briefcase <span>$ 170.0</span></li>
                                     <li>03. Black jean <span>$ 170.0</span></li>
-                                    <li>04. Cotton shirt <span>$ 110.0</span></li> 
+                                    <li>04. Cotton shirt <span>$ 110.0</span></li>
                                     <hr>
                                     <li>ค่าจัดส่ง <span>$ 45</span></li>
                                 </ul>

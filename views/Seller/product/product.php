@@ -6,9 +6,12 @@ include_once("../../../query/query.php");
 include_once("../../../query/function.php");
 session_start();
 $idUT = $_SESSION[md5('typeid')];
+$idUT = $_SESSION[md5('typeid')];
 $username = $_SESSION[md5('username')];
 $USER = $_SESSION[md5('user')];
 $uid = $USER[1]["uid"];
+
+$CurrentMenu = "product";
 
 $PRODUCT = getProductByShopID($uid);
 // $PRODUCT = getProductByShopID($uid);
@@ -154,7 +157,7 @@ $PRODUCT = getProductByShopID($uid);
             include_once("productModal.php");
             ?>
             <script type="text/javascript" src="product.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
         </div>
         <!-- End of Content Wrapper -->
 

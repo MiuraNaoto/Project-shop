@@ -1,5 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+<?
+include_once("../../../query/query.php");
+include_once("../../../query/function.php");
+session_start();
+
+if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isset($_SESSION[md5('user')])) {
+    $idUT = $_SESSION[md5('typeid')];
+    $username = $_SESSION[md5('username')];
+    $USER = $_SESSION[md5('user')];
+    // echo $username;
+    // echo print_r($USER);
+}
+?>
 
 <head>
     <?php include_once("../layout/header.php") ?>

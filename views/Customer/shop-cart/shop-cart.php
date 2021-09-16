@@ -2,7 +2,17 @@
 <html lang="en">
 
 <?php
-    
+include_once("../../../query/query.php");
+include_once("../../../query/function.php");
+session_start();
+
+if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isset($_SESSION[md5('user')])) {
+    $idUT = $_SESSION[md5('typeid')];
+    $username = $_SESSION[md5('username')];
+    $USER = $_SESSION[md5('user')];
+    // echo $username;
+    // echo print_r($USER);
+}
 ?>
 
 <head>
@@ -44,7 +54,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!--
+                              
                                 <tr>
                                     <td class="cart__product__item">
                                         <img src="../../../img/shop-cart/cp-1.jpg" alt="">
@@ -137,7 +147,7 @@
                                     <td class="cart__total">$ 110.0</td>
                                     <td class="cart__close"><span class="icon_close"></span></td>
                                 </tr>
--->
+
                             </tbody>
                         </table>
                     </div>

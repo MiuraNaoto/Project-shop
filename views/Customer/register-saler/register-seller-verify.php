@@ -6,6 +6,8 @@ require "../../../dbConnect.php";
 $time = time();
 
 if ($USER[1]["u-is-saler"] == 1) {
+    $typeid = 1;
+    $_SESSION[md5('typeid')] = $typeid;
     header("location: ../../Seller/profile/profile.php");
 } else {
     header("location: ../register-saler/register-seller.php");
@@ -136,6 +138,8 @@ if ($USER[1]["u-is-saler"] == 1) {
         $sql_user = "SELECT * FROM `user-list` WHERE `uid` = $uid";
         $DATA_USER = selectData($sql_user);
         $_SESSION[md5('user')]   = $DATA_USER;
+        $typeid = 1;
+        $_SESSION[md5('typeid')] = $typeid;
 
         header("location: ../../Seller/profile/profile.php");
     }

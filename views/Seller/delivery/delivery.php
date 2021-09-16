@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+include_once("../../../query/query.php");
+include_once("../../../query/function.php");
+session_start();
+$idUT = $_SESSION[md5('typeid')];
+$USER = $_SESSION[md5('user')];
+$uid = $USER[1]["uid"];
+$CurrentMenu = "delivery";
+
+?>
 
 <head>
     <?php

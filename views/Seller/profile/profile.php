@@ -7,6 +7,8 @@ $username = $_SESSION[md5('username')];
 $USER = $_SESSION[md5('user')];
 $uid = $USER[1]["uid"];
 
+$CurrentMenu = "profile";
+
 $INFO_SALER = getsalerInfo($uid);
 $BANK_ACCOUNT = getBankAccount($uid);
 $UTID = getUserTitleByid($uid);
@@ -135,7 +137,7 @@ $UTID1 = getUserTitleSelect($uid);
                                                     <img class='img-radius img-profile' src='<?php echo "../../../img/profile/saler/" . $USER[1]["profile_shop"] ?>' style="object-fit: cover;" />
                                                 </div>
                                             </form>
-
+                                            <br>
                                             <div class="row mb-2">
                                                 <div class="col-xl-12 col-12">
                                                     <center>

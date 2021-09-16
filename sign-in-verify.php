@@ -21,11 +21,11 @@ print_r($DATA);
 
 if (sizeof($DATA) == 2) {
     if ($DATA[1]['u-is-admin'] == 1) {
-        header("location: ./views/Admin/dashboard/dashboard.php");
-        $typeid = 1;
-    } else if ($DATA[1]['u-is-saler'] == 2) {
         header("location: ./views/Seller/dashboard/dashboard.php");
         $typeid = 2;
+    } else if ($DATA[1]['u-is-saler'] == 1) {
+        header("location: ./views/Seller/dashboard/dashboard.php");
+        $typeid = 1;
     } else {
         header("location: ./index.php");
         $typeid = 3;
