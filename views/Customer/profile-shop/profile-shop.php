@@ -9,7 +9,9 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     $idUT = $_SESSION[md5('typeid')];
     $username = $_SESSION[md5('username')];
     $USER = $_SESSION[md5('user')];
+    $SELLER = $_SESSION[md5('shop')];
     $uid = $USER[1]["uid"];
+    // $shop_id = $SELLER[1]["shop_id"];
     // echo $username;
     // echo print_r($USER);
 }
@@ -159,7 +161,7 @@ $SHOP_PRODUCT = getProductByShopID($shop_id);
                                     <div class="row">
                                         <?php
                                         $time_current = date("H:i:s", time());
-                                        $time_opened = $SHOP_PROFILE[1]["time_open"];
+                                        $time_opened = $SHOP_PROFILE[1]["time_opened"];
                                         $time_closed = $SHOP_PROFILE[1]["time_closed"];
 
                                         if ($time_current > $time_opened && $time_current < $time_closed) {

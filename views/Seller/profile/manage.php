@@ -1,8 +1,10 @@
 <?php
 session_start();
 $USER = $_SESSION[md5('user')];
+$SELLER = $_SESSION[md5('shop')];
 $username =  $USER[1]["username"];
 $uid = $USER[1]["uid"];
+$shop_id = $SELLER[1]["shop_id"];
 require "../../../dbConnect.php";
 
 $request = $_POST['request'];
@@ -20,7 +22,7 @@ switch ($request) {
         // echo $banktype . "<br>";
         // echo $bankname . "<br>";
         // echo $bankcode . "<br>";
-        $sql = "INSERT INTO `bank_account`(`account_code`, `account_name`, `bankid`, `uid`) VALUES ('$bankcode','$bankname','$banktype','$uid')";
+        $sql = "INSERT INTO `bank_account`(`account_code`, `account_name`, `bankid`, `shop_id`) VALUES ('$bankcode','$bankname','$banktype','$shop_id')";
         // echo $sql;
         $DATA = addinsertData($sql);
         // echo $DATA;
@@ -36,7 +38,6 @@ switch ($request) {
         $lastname = $_POST["e_lastname"];
         $tel = $_POST["e_tel"];
         $email = $_POST["e_email"];
-        $username = $_POST["e_username"];
         $address = $_POST["e_address"];
         $provice = $_POST["e_provice"];
         $district = $_POST["e_district"];
@@ -64,24 +65,24 @@ switch ($request) {
             $none = 0;
         }
 
-        $sql = "UPDATE `user-list` SET  `username`='$username',
-                                        `tel`='$tel',
-                                        `title_id`='$title',
-                                        `firstname`='$firstname',
-                                        `lastname`='$lastname',
-                                        `email`='$email',
-                                        `shop_name`='$shop_name',
-                                        `address_shop`='$address',
-                                        `subdistrict_shop`='$subdistrict',
-                                        `full_time_staff`='$fulltime',
-                                        `temporary_staff`='$parttime',
-                                        `donthave`='$none',
-                                        `quantity_staff`='$amountataff',
-                                        `time_open`='$time_open',
-                                        `time_closed`='$time_closed'
-                WHERE `uid`='$uid'";
+        $sql = "UPDATE `seller-list` SET    `tel`='$tel',
+                                            `title_id`='$title',
+                                            `firstname`='$firstname',
+                                            `lastname`='$lastname',
+                                            `email`='$email',
+                                            `shop_name`='$shop_name',
+                                            `address_shop`='$address',
+                                            `subdistrict_shop`='$subdistrict',
+                                            `fulltime_staff`='$fulltime',
+                                            `parttime_staff`='$parttime',
+                                            `donthave_staff`='$none',
+                                            `quantity_staff`='$amountataff',
+                                            `time_opened`='$time_open',
+                                            `time_closed`='$time_closed'
+                WHERE `shop_id`='$shop_id'";
+        // echo $sql;
         $DATA = updateData($sql);
-
+        // print_r($DATA);
         header("location: profile.php");
         break;
 
@@ -136,13 +137,13 @@ switch ($request) {
                 if (move_uploaded_file($tmp, $path)) {
                     // echo "<img src='$path" . $final_image . "' />";
                     // $profile_path_1 = "picture/profile/cow/" . $final_image;
-                    $sql = "UPDATE `user-list` SET `profile_shop`='$final_image' WHERE `uid`='$uid'";
+                    $sql = "UPDATE `seller-list` SET `profile_shop`='$final_image' WHERE `shop_id`='$shop_id'";
                     echo $sql;
                     updateData($sql);
 
-                    $sql = "SELECT * FROM `user-list` WHERE `uid` = $uid";
+                    $sql = "SELECT * FROM `seller-list` WHERE `shop_id` = $shop_id";
                     $DATA = selectData($sql);
-                    $_SESSION[md5('user')]   = $DATA;
+                    $_SESSION[md5('shop')]   = $DATA;
 
                     header("location: profile.php");
                 }

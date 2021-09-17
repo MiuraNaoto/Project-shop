@@ -1,8 +1,10 @@
 <?php
 session_start();
 $USER = $_SESSION[md5('user')];
+$SELLER = $_SESSION[md5('shop')];
 $username =  $USER[1]["username"];
 $uid = $USER[1]["uid"];
+$shop_id = $SELLER[1]["shop_id"];
 require "../../../dbConnect.php";
 require "../../../query/query.php";
 $request = $_POST['request'];
@@ -101,8 +103,8 @@ switch ($request) {
             }
         }
 
-        $sql = "INSERT INTO `product`(`product_number`, `product_name`, `product_description`, `product_specification`, `product_type`, `price`, `shipping_cost`, `stock`, `uid`, `delivery_type`, `profile_product`, `picture`, `modify`) 
-                VALUES ('$product_code','$product_name','$product_description','$product_specification','$type_product','$price','$price_transport','$stock','$uid','$delivery_type','$final_image',' $picture_path','$time')";
+        $sql = "INSERT INTO `product`(`product_number`, `product_name`, `product_description`, `product_specification`, `product_type`, `price`, `shipping_cost`, `stock`, `shop_id`, `delivery_type`, `profile_product`, `picture`, `modify`) 
+                VALUES ('$product_code','$product_name','$product_description','$product_specification','$type_product','$price','$price_transport','$stock','$shop_id','$delivery_type','$final_image',' $picture_path','$time')";
         addinsertData($sql);
         echo $sql;
         header("location: product.php");

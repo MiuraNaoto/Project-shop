@@ -296,6 +296,7 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
                                         <span class="icon_search search-switch"></span>
                                     </button>
                                     <input type="text" class="input-search" placeholder="Type to Search..." onkeyup="showResult(this.value)">
+                                    <div class="result"></div>
                                 </li>
                             </ul>
                         </nav>

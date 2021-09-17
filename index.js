@@ -1,17 +1,24 @@
-function showResult(str) {
-  if (str.length == 0) {
-    document.getElementById("livesearch").innerHTML = "";
-    document.getElementById("livesearch").style.border = "0px";
-    return;
-  }
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("livesearch").innerHTML = this.responseText;
-      console.log(this.responseText);
-      document.getElementById("livesearch").style.border = "1px solid #A5ACB2";
+$(document).ready(function () {
+  $('.search-box input[type="text"]').on("keyup input", function () {
+    /* Get input value on change */
+    var inputVal = $(this).val();
+    var resultDropdown = $(this).siblings(".result");
+    if (inputVal.length) {
+      $.get("search.php", { term: inputVal }).done(function (data) {
+        // Display the returned data in browser
+        resultDropdown.html(data);
+      });
+    } else {
+      resultDropdown.empty();
     }
-  };
-  xmlhttp.open("GET", "livesearch.php?q=" + str, true);
-  xmlhttp.send();
-}
+  });
+
+  // Set search input value on click of result item
+  $(document).on("click", ".result p", function () {
+    $(this)
+      .parents(".search-box")
+      .find('input[type="text"]')
+      .val($(this).text());
+    $(this).parent(".result").empty();
+  });
+});

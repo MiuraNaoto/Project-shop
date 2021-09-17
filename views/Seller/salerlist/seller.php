@@ -7,8 +7,11 @@ include_once("../../../query/query.php");
 include_once("../../../query/function.php");
 session_start();
 $idUT = $_SESSION[md5('typeid')];
-$USER = $_SESSION[md5('user')];
-$uid = $USER[1]["uid"];
+$username = $_SESSION[md5('username')];
+$SELLER = $_SESSION[md5('shop')];
+$uid = $SELLER[1]["uid"];
+$shop_id = $SELLER[1]["shop_id"];
+
 $USER = getUser($uid);
 $CurrentMenu = "salerlist";
 $ADDRESS_USER = getAddressUser($uid);

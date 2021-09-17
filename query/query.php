@@ -37,23 +37,31 @@ function getUser($uid)
     return $DATA;
 }
 
-function getsalerInfo($uid)
+function getSeller($shop_id)
 {
-    $sql = "SELECT * FROM `user-list` 
-                    INNER JOIN `user-title` ON `user-list`.`title_id` = `user-title`.`id`
-                    INNER JOIN `subdistricts` ON `user-list`.`subdistrict_shop` = `subdistricts`.`id`
-                    INNER JOIN `districts` ON  `subdistricts`.`district_id` = `districts`.`id`
-                    INNER JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id`
-                    WHERE `uid` = $uid";
+    $sql = "SELECT * FROM `seller-list` WHERE `shop_id` = $shop_id";
     $DATA = selectData($sql);
     return $DATA;
 }
 
-function getBankAccount($uid)
+function getsalerInfo($shop_id)
+{
+    $sql = "SELECT * FROM `seller-list` 
+                        INNER JOIN `user-list` ON `seller-list`.`shop_id` = `user-list`.`shop_id`
+                        INNER JOIN `user-title` ON `seller-list`.`title_id` = `user-title`.`id`
+                        INNER JOIN `subdistricts` ON `seller-list`.`subdistrict_shop` = `subdistricts`.`id`
+                        INNER JOIN `districts` ON  `subdistricts`.`district_id` = `districts`.`id`
+                        INNER JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id`
+            WHERE `seller-list`.`shop_id` = $shop_id";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
+function getBankAccount($shop_id)
 {
     $sql = "SELECT * FROM `bank_account` 
                     INNER JOIN `bank` ON `bank_account`.`bankid` = `bank`.`id`
-                    WHERE `uid` = $uid";
+                    WHERE `bank_account`.`shop_id` = $shop_id";
     $DATA = selectData($sql);
     return $DATA;
 }
@@ -149,7 +157,7 @@ function getProductDetail($product_id)
 {
     $sql = "SELECT * FROM `product` 
                     INNER JOIN `product_type` ON `product`.`product_type` = `product_type`.`id` 
-                    INNER JOIN `user-list` ON `product`.`uid` = `user-list`.`uid`
+                    INNER JOIN `seller-list` ON `product`.`shop_id` = `seller-list`.`shop_id`
             WHERE `product`.`product_id` = '$product_id'";
     $DATA = selectData($sql);
     return $DATA;
@@ -159,28 +167,31 @@ function getProductByShopID($shop_id)
 {
     $sql = "SELECT * FROM `product` 
                     INNER JOIN `product_type` ON `product`.`product_type` = `product_type`.`id` 
-                    INNER JOIN `user-list` ON `product`.`uid` = `user-list`.`uid` 
-            WHERE `user-list`.`uid` = '$shop_id'";
+                    INNER JOIN `seller-list` ON `product`.`shop_id` = `seller-list`.`shop_id` 
+            WHERE `seller-list`.`shop_id` = '$shop_id'";
     $DATA = selectData($sql);
     return $DATA;
 }
 
 function getRelateProducts($product_type)
 {
-    $sql = "SELECT * FROM `product` INNER JOIN `product_type` ON `product`.`product_type` = `product_type`.`id` INNER JOIN `user-list` ON `product`.`uid` = `user-list`.`uid` WHERE `product`.`product_type` = '$product_type' ORDER BY RAND()";
+    $sql = "SELECT * FROM `product` 
+                    INNER JOIN `product_type` ON `product`.`product_type` = `product_type`.`id` 
+                    INNER JOIN `seller-list` ON `product`.`shop_id` = `seller-list`.`shop_id` 
+            WHERE `product`.`product_type` = '$product_type' ORDER BY RAND()";
     $DATA = selectData($sql);
     return $DATA;
 }
 
 function getShopProfile($shop_id)
 {
-    $sql = "SELECT * FROM `user-list` 
-                    INNER JOIN  `product` ON `product`.`uid` = `user-list`.`uid` 
+    $sql = "SELECT * FROM `seller-list` 
+                    INNER JOIN  `product` ON `product`.`shop_id` = `seller-list`.`shop_id` 
                     INNER JOIN `product_type` ON `product`.`product_type` = `product_type`.`id`  
-                    INNER JOIN `subdistricts` ON `user-list`.`subdistrict_shop` = `subdistricts`.`id`
+                    INNER JOIN `subdistricts` ON `seller-list`.`subdistrict_shop` = `subdistricts`.`id`
                     INNER JOIN `districts` ON `subdistricts`.`district_id` = `districts`.`id`
                     INNER JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id`
-            WHERE `user-list`.`uid` = '$shop_id'";
+            WHERE `seller-list`.`shop_id` = '$shop_id'";
     $DATA = selectData($sql);
     return $DATA;
 }

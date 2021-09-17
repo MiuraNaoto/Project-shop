@@ -6,10 +6,10 @@ include_once("../../../query/query.php");
 include_once("../../../query/function.php");
 session_start();
 $idUT = $_SESSION[md5('typeid')];
-$idUT = $_SESSION[md5('typeid')];
 $username = $_SESSION[md5('username')];
-$USER = $_SESSION[md5('user')];
-$uid = $USER[1]["uid"];
+$SELLER = $_SESSION[md5('shop')];
+$uid = $SELLER[1]["uid"];
+$shop_id = $SELLER[1]["shop_id"];
 
 $CurrentMenu = "product";
 
@@ -116,18 +116,7 @@ $PRODUCT = getProductByShopID($uid);
                                                     <button type="button" id="<?php echo $PRODUCT[$i]['product_id'] ?>" class="btn btn-primary btn-md view-qrcode" title='ดู qr-code สินค้า' data-toggle="modal" data-target="#showQRcodeModal">
                                                         <i class="fas fa-bars"></i>
                                                     </button>
-                                                    <button type="button" 
-                                                                product_id="<?php echo $PRODUCT[$i]['product_id'] ?>"
-                                                                product_number="<?php echo $PRODUCT[$i]["product_number"] ?>"
-                                                                product_name="<?php echo $PRODUCT[$i]["product_name"] ?>"
-                                                                product_description="<?php echo $PRODUCT[$i]["product_description"] ?>"
-                                                                product_specification="<?php echo $PRODUCT[$i]["product_specification"] ?>"
-                                                                product_type= "<?php echo $PRODUCT[$i]["product_type"] ?>"
-                                                                price="<?php echo $PRODUCT[$i]["price"] ?>"
-                                                                delivery_type="<?php echo $PRODUCT[$i]["delivery_type"] ?>"
-                                                                shipping_cost="<?php echo $PRODUCT[$i]["shipping_cost"] ?>"
-                                                                stock="<?php echo $PRODUCT[$i]["stock"] ?>"
-                                                    class="btn btn-warning btn-md edit-product" title='แก้ไขข้อมูลสินค้า' data-toggle="modal" data-target="#editModal">
+                                                    <button type="button" product_id="<?php echo $PRODUCT[$i]['product_id'] ?>" product_number="<?php echo $PRODUCT[$i]["product_number"] ?>" product_name="<?php echo $PRODUCT[$i]["product_name"] ?>" product_description="<?php echo $PRODUCT[$i]["product_description"] ?>" product_specification="<?php echo $PRODUCT[$i]["product_specification"] ?>" product_type="<?php echo $PRODUCT[$i]["product_type"] ?>" price="<?php echo $PRODUCT[$i]["price"] ?>" delivery_type="<?php echo $PRODUCT[$i]["delivery_type"] ?>" shipping_cost="<?php echo $PRODUCT[$i]["shipping_cost"] ?>" stock="<?php echo $PRODUCT[$i]["stock"] ?>" class="btn btn-warning btn-md edit-product" title='แก้ไขข้อมูลสินค้า' data-toggle="modal" data-target="#editModal">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
                                                     <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='ลบสินค้า' onclick="delfunction('<?php echo $PRODUCT[$i]['product_id'] ?>',

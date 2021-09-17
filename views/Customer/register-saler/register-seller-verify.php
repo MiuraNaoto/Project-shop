@@ -51,6 +51,7 @@ if ($USER[1]["u-is-saler"] == 1) {
         $firstname = $_POST["firstname"];
         $lastname = $_POST["lastname"];
         $email = $_POST["email"];
+        $tel = $_POST["tel"];
         $fulltime = $_POST["fulltime"];
         $parttime = $_POST["parttime"];
         $none = $_POST["none"];
@@ -107,37 +108,26 @@ if ($USER[1]["u-is-saler"] == 1) {
             $none = 0;
         }
 
-        $sql = "UPDATE `user-list` SET  `title_id`='$title',
-                                        `firstname`='$firstname',
-                                        `lastname`='$lastname',
-                                        `email`='$email',
-                                        `shop_name`='$shop_name',
-                                        `address_shop`='$address',
-                                        `subdistrict_shop`='$subdistrict',
-                                        `have_product`='$have_product',
-                                        `quantity_product`='$amount_type_product',
-                                        `full_time_staff`='$fulltime',
-                                        `temporary_staff`='$parttime',
-                                        `donthave`='$none',
-                                        `quantity_staff`='$amountataff',
-                                        `time_open`='$time_open',
-                                        `time_closed`='$time_closed',
-                                        `profile_shop`='$final_image',
-                                        `u-is-saler`='1',
-                                        `modify_saler`='$time' 
-                WHERE `uid`='$uid'";
-        echo $sql;
-        $DATA = updateData($sql);
-        echo $DATA;
+        $update_shop = "INSERT INTO `seller-list`(`shop_name`, `title_id`, `firstname`, `lastname`, `email`, `tel`, `address_shop`, `subdistrict_shop`, `have_product`, `quantity_product`, `fulltime_staff`, `parttime_staff`, `donthave_staff`, `quantity_staff`, `time_opened`, `time_closed`, `profile_shop`, `is-blocked-saler`, `modify_saler`, `owner_id`) 
+                VALUES ('$shop_name','$title','$firstname','$lastname','$email','$tel','$address','$subdistrict','$have_product','$amount_type_product','$fulltime','$parttime','$none','$amountataff','$time_open','$time_closed','$final_image','0','$time','$uid')";
+        addinsertData($update_shop);
+
+
+        $sql = "SELECT `shop_id` FROM `seller-list` ORDER BY `shop_id` DESC LIMIT 1";
+        $shop_id = selectDataOne($sql)['shop_id'];
+
+        $update_shop_id = "UPDATE `user-list` SET `u-is-saler`='1', `shop_id`='$shop_id' WHERE `uid`='$uid'";
+        updateData($update_shop_id);
 
         for ($i = 0; $i < count($type_product); $i++) {
-            $sql_saledemand = "INSERT INTO `sales_demand`(`product_type`, `uid`) VALUES ('$type_product[$i]','$uid')";
+            $sql_saledemand = "INSERT INTO `sales_demand`(`product_type`, `shop_id`) VALUES ('$type_product[$i]','$shop_id')";
             $DATA = addinsertData($sql_saledemand);
+            // echo $sql_saledemand . "<br>";
         }
 
-        $sql_user = "SELECT * FROM `user-list` WHERE `uid` = $uid";
-        $DATA_USER = selectData($sql_user);
-        $_SESSION[md5('user')]   = $DATA_USER;
+        $sql_shop = "SELECT * FROM `seller-list` INNER JOIN `user-list` ON `seller-list`.`shop_id` = `user-list`.`shop_id` WHERE `uid` = $uid";
+        $DATA_SHOP = selectData($sql_shop);
+        $_SESSION[md5('shop')]   = $DATA_SHOP;
         $typeid = 1;
         $_SESSION[md5('typeid')] = $typeid;
 

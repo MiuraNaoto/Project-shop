@@ -1,9 +1,11 @@
 <?php
 include_once("../../../query/query.php");
 $USER = getUser($uid);
+$SELLER = getSeller($shop_id);
 $BANK = getBank();
-$UTID = getUserTitleByid($USER[1]["title_id"]);
-$UTID1 = getUserTitleSelect($USER[1]["title_id"]);
+$UTID = getUserTitleByid($SELLER[1]["title_id"]);
+$UTID1 = getUserTitleSelect($SELLER[1]["title_id"]);
+
 ?>
 
 <style>
@@ -31,7 +33,7 @@ $UTID1 = getUserTitleSelect($USER[1]["title_id"]);
                             <span>ชื่อร้านค้า<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="e_shop_name" name="e_shop_name" placeholder="กรุณากรอกชื่อร้าน" value="<?php echo $USER[1]["shop_name"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกชื่อร้าน')" oninput="this.setCustomValidity('')">
+                            <input type="text" class="form-control" id="e_shop_name" name="e_shop_name" placeholder="กรุณากรอกชื่อร้าน" value="<?php echo $SELLER[1]["shop_name"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกชื่อร้าน')" oninput="this.setCustomValidity('')">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -43,7 +45,8 @@ $UTID1 = getUserTitleSelect($USER[1]["title_id"]);
                                 <option value="" selected disabled>เลือกคำนำหน้า</option>
                                 <option value="<?php echo  $UTID[1]['id']; ?>" selected><?php echo  $UTID['1']['title']; ?></option>
                                 <?php
-                                for ($i = 1; $i <= $UTID1[0]['numrow']; $i++) {
+                                print_r($UTID1);
+                                for ($i = 1; $i <= count($UTID1); $i++) {
                                     // echo $fcwd[$i]['id'];
                                     echo "<option value=" . $UTID1[$i]['id'] . ">" . $UTID1[$i]['title'] . "</option>";
                                 }
@@ -57,7 +60,7 @@ $UTID1 = getUserTitleSelect($USER[1]["title_id"]);
                             <span>ชื่อ<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="e_firstname" name="e_firstname" placeholder="กรุณากรอกชื่อ" value="<?php echo $USER[1]["firstname"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกชื่อจริง')" oninput="this.setCustomValidity('')">
+                            <input type="text" class="form-control" id="e_firstname" name="e_firstname" placeholder="กรุณากรอกชื่อ" value="<?php echo $SELLER[1]["firstname"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกชื่อจริง')" oninput="this.setCustomValidity('')">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -65,7 +68,7 @@ $UTID1 = getUserTitleSelect($USER[1]["title_id"]);
                             <span>นามสกุล<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="e_lastname" name="e_lastname" placeholder="กรุณากรอกนามสกุล" value="<?php echo $USER[1]["lastname"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกนามสกุล')" oninput="this.setCustomValidity('')">
+                            <input type="text" class="form-control" id="e_lastname" name="e_lastname" placeholder="กรุณากรอกนามสกุล" value="<?php echo $SELLER[1]["lastname"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกนามสกุล')" oninput="this.setCustomValidity('')">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -73,7 +76,7 @@ $UTID1 = getUserTitleSelect($USER[1]["title_id"]);
                             <span>เบอร์โทร<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="e_tel" name="e_tel" placeholder="กรุณากรอกเบอร์โทร" value="<?php echo $USER[1]["tel"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกเบอร์โทรศัพท์')" oninput="this.setCustomValidity('')">
+                            <input type="text" class="form-control" id="e_tel" name="e_tel" placeholder="กรุณากรอกเบอร์โทร" value="<?php echo $SELLER[1]["tel"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกเบอร์โทรศัพท์')" oninput="this.setCustomValidity('')">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -81,23 +84,23 @@ $UTID1 = getUserTitleSelect($USER[1]["title_id"]);
                             <span>อีเมล<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="e_email" name="e_email" placeholder="กรุณากรอกอีเมล์" value="<?php echo $USER[1]["email"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกอีเมล')" oninput="this.setCustomValidity('')">
+                            <input type="text" class="form-control" id="e_email" name="e_email" placeholder="กรุณากรอกอีเมล์" value="<?php echo $SELLER[1]["email"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกอีเมล')" oninput="this.setCustomValidity('')">
                         </div>
                     </div>
-                    <div class="row mb-4">
+                    <!-- <div class="row mb-4">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
                             <span>ชื่อบัญชี <span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="e_username" name="e_username" placeholder="กรุณากรอกชื่อบัญชี" value="<?php echo $USER[1]["username"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกชื่อบัญชีผู้ใช้')" oninput="this.setCustomValidity('')">
+                            <input type="text" class="form-control" id="e_username" name="e_username" placeholder="กรุณากรอกชื่อบัญชี" value="<?php echo $SELLER[1]["username"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกชื่อบัญชีผู้ใช้')" oninput="this.setCustomValidity('')">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mb-4">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
                             <span>ที่อยู่<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" id="e_address" name="e_address" placeholder="กรุณากรอกที่อยู่" value="<?php echo $USER[1]["address_shop"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกที่อยู่')" oninput="this.setCustomValidity('')">
+                            <input type="text" class="form-control" id="e_address" name="e_address" placeholder="กรุณากรอกที่อยู่" value="<?php echo $SELLER[1]["address_shop"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกที่อยู่')" oninput="this.setCustomValidity('')">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -106,7 +109,7 @@ $UTID1 = getUserTitleSelect($USER[1]["title_id"]);
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                             <?php
-                            $province_id = "SELECT * FROM `subdistricts` LEFT JOIN `districts` ON `subdistricts`.`district_id` = `districts`.`id` LEFT JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id` WHERE `subdistricts`.`id` =  '" . $USER[1]['subdistrict_shop'] . "'";
+                            $province_id = "SELECT * FROM `subdistricts` LEFT JOIN `districts` ON `subdistricts`.`district_id` = `districts`.`id` LEFT JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id` WHERE `subdistricts`.`id` =  '" . $SELLER[1]['subdistrict_shop'] . "'";
                             $province = selectData($province_id);
                             // print_r($province);
                             ?>
@@ -153,7 +156,7 @@ $UTID1 = getUserTitleSelect($USER[1]["title_id"]);
                             ?>
                             <select name="e_subdistrict" id="e_subdistrict" class="form-control" required oninvalid="this.setCustomValidity('กรุณากรอกตำบล/แขวง')" oninput="this.setCustomValidity('')">
                                 <option value="" disabled>เลือกตำบล/แขวง</option>
-                                <option value="<?php echo $USER[1]["subdistrict_shop"] ?>" selected><?php echo $province[1]['subdistricts_name_in_thai'] ?></option>
+                                <option value="<?php echo $SELLER[1]["subdistrict_shop"] ?>" selected><?php echo $province[1]['subdistricts_name_in_thai'] ?></option>
                                 <?php
                                 for ($i = 1; $i < count($sdst); $i++) {
                                     echo '<option value="' . $sdst[$i]["id"] . '">' . $sdst[$i]["subdistricts_name_in_thai"] . '</option>';
@@ -168,13 +171,13 @@ $UTID1 = getUserTitleSelect($USER[1]["title_id"]);
                         <div class="col-xl-9 col-12">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <input type="time" name="e_time_opened" id="e_time_opened" class="form-control" value="<?php echo $USER[1]["time_open"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกเวลาเปิดทำการ')" oninput="this.setCustomValidity('')">
+                                    <input type="time" name="e_time_opened" id="e_time_opened" class="form-control" value="<?php echo $SELLER[1]["time_opened"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกเวลาเปิดทำการ')" oninput="this.setCustomValidity('')">
                                 </div>
                                 <div class="col-md-2" style="text-align: center;">
                                     <span> - </span>
                                 </div>
                                 <div class="col-md-5">
-                                    <input type="time" name="e_time_closed" id="e_time_closed" class="form-control" value="<?php echo $USER[1]["time_closed"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกเวลาปิดทำการ')" oninput="this.setCustomValidity('')">
+                                    <input type="time" name="e_time_closed" id="e_time_closed" class="form-control" value="<?php echo $SELLER[1]["time_closed"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกเวลาปิดทำการ')" oninput="this.setCustomValidity('')">
                                 </div>
                             </div>
 
@@ -185,7 +188,7 @@ $UTID1 = getUserTitleSelect($USER[1]["title_id"]);
                             <span>จำนวนพนักงงาน <span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-xl-9 col-12">
-                            <input type="number" name="e_amount_staff" id="e_amount_staff" class="form-control" placeholder="กรุณากรอกจำนวนพนักงงาน" value="<?php echo $USER[1]["quantity_staff"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนพนักงงาน')" oninput="this.setCustomValidity('')">
+                            <input type="number" name="e_amount_staff" id="e_amount_staff" class="form-control" placeholder="กรุณากรอกจำนวนพนักงงาน" value="<?php echo $SELLER[1]["quantity_staff"] ?>" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนพนักงงาน')" oninput="this.setCustomValidity('')">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -264,7 +267,7 @@ $UTID1 = getUserTitleSelect($USER[1]["title_id"]);
 
                 </div>
                 <input type="hidden" name="e_time" id="e_time" />
-                <input type="hidden" name="password_indb" id="password_indb" value="<?php echo $USER[1]["password"] ?>" />
+                <input type="hidden" name="password_indb" id="password_indb" value="<?php echo $SELLER[1]["password"] ?>" />
 
                 <div class="modal-footer">
                     <input type="hidden" id="hidden_id" name="request" value="change_pass" />

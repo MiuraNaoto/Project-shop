@@ -4,15 +4,17 @@ include_once("../../../query/function.php");
 session_start();
 $idUT = $_SESSION[md5('typeid')];
 $username = $_SESSION[md5('username')];
-$USER = $_SESSION[md5('user')];
-$uid = $USER[1]["uid"];
+$SELLER = $_SESSION[md5('shop')];
 
+// print_r($SELLER);
+$uid = $SELLER[1]["uid"];
+$shop_id = $SELLER[1]["shop_id"];
 $CurrentMenu = "profile";
 
-$INFO_SALER = getsalerInfo($uid);
-$BANK_ACCOUNT = getBankAccount($uid);
-$UTID = getUserTitleByid($uid);
-$UTID1 = getUserTitleSelect($uid);
+$INFO_SALER = getsalerInfo($shop_id);
+$BANK_ACCOUNT = getBankAccount($shop_id);
+// $UTID = getUserTitleByid($uid);
+// $UTID1 = getUserTitleSelect($uid);
 
 // print_r($USER);
 // print_r($UTID);
@@ -25,58 +27,9 @@ $UTID1 = getUserTitleSelect($uid);
 
 <head>
     <?php include_once("../layout/header.php") ?>
-
+    <link rel="stylesheet" href="profile.css">
 </head>
 
-<style>
-    .profile-pic {
-        color: transparent;
-        transition: all 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        transition: all 0.3s ease;
-    }
-
-    .profile-pic input {
-        display: none;
-    }
-
-    .profile-pic img {
-        position: absolute;
-        object-fit: cover;
-        width: 350px;
-        height: 350px;
-        box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
-        border-radius: 300px;
-        z-index: 0;
-    }
-
-    .profile-pic .-label {
-        cursor: pointer;
-        height: 350px;
-        width: 350px;
-    }
-
-    .profile-pic:hover .-label {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(0, 0, 0, 0.8);
-        z-index: 10000;
-        color: #fafafa;
-        transition: background-color 0.2s ease-in-out;
-        border-radius: 300px;
-        margin-bottom: 0;
-    }
-
-    .profile-pic span {
-        display: inline-flex;
-        padding: 0.2em;
-        height: 2em;
-    }
-</style>
 
 <body id="page-top">
 
@@ -128,13 +81,13 @@ $UTID1 = getUserTitleSelect($uid);
                                                 <div class="profile-pic">
                                                     <input type="text" id="uid" name="uid" value="<?php echo $uid ?>" style="display:none" />
                                                     <input type="text" id="request" name="request" value="updateprofile" style="display:none" />
-                                                    <input type="text" id="profile_shop" name="profile_shop" value="<?php echo $USER[1]["profile_shop"]; ?>" style="display:none" />
+                                                    <input type="text" id="profile_shop" name="profile_shop" value="<?php echo $SELLER[1]["profile_shop"]; ?>" style="display:none" />
                                                     <input id="uploadImage" type="file" accept="image/jpeg, image/jpg, image/png" name="image" hidden />
                                                     <label class="-label" for="uploadImage">
                                                         <span class="glyphicon glyphicon-camera"></span>
                                                         <span>เปลี่ยนรูปโปรไฟล์</span>
                                                     </label>
-                                                    <img class='img-radius img-profile' src='<?php echo "../../../img/profile/saler/" . $USER[1]["profile_shop"] ?>' style="object-fit: cover;" />
+                                                    <img class='img-radius img-profile' src='<?php echo "../../../img/profile/saler/" . $SELLER[1]["profile_shop"] ?>' style="object-fit: cover;" />
                                                 </div>
                                             </form>
                                             <br>
@@ -245,7 +198,7 @@ $UTID1 = getUserTitleSelect($uid);
                                             <span>เวลาทำการ : </span>
                                         </div>
                                         <div class="col-xl-9 col-12">
-                                            <input type="text" class="form-control" id="staff" value="<?php echo $INFO_SALER[1]["time_open"] . " - " . $INFO_SALER[1]["time_closed"] ?>" disabled>
+                                            <input type="text" class="form-control" id="staff" value="<?php echo $INFO_SALER[1]["time_opened"] . " - " . $INFO_SALER[1]["time_closed"] ?>" disabled>
                                         </div>
                                     </div>
                                     <div class="row mb-4">
@@ -254,7 +207,7 @@ $UTID1 = getUserTitleSelect($uid);
                                         </div>
                                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                                             <?php
-                                            if ($INFO_SALER[1]["full_time_staff"] == 1 && $INFO_SALER[1]["temporary_staff"] == 0 && $INFO_SALER[1]["donthave"] == 0) {
+                                            if ($INFO_SALER[1]["fulltime_staff"] == 1 && $INFO_SALER[1]["parttime_staff"] == 0 && $INFO_SALER[1]["donthave_staff"] == 0) {
                                             ?>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="admin" name="admin" value="option1" disabled checked>
@@ -269,7 +222,7 @@ $UTID1 = getUserTitleSelect($uid);
                                                     <label class="form-check-label" for="inlineCheckbox2">มีพนักงงานชั่วคราว (Part Time)</label>
                                                 </div>
                                             <?php
-                                            } else if ($INFO_SALER[1]["full_time_staff"] == 0 && $INFO_SALER[1]["temporary_staff"] == 1 && $INFO_SALER[1]["donthave"] == 0) {
+                                            } else if ($INFO_SALER[1]["fulltime_staff"] == 0 && $INFO_SALER[1]["parttime_staff"] == 1 && $INFO_SALER[1]["donthave_staff"] == 0) {
                                             ?>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="admin" name="admin" value="option1" disabled>
@@ -284,7 +237,7 @@ $UTID1 = getUserTitleSelect($uid);
                                                     <label class="form-check-label" for="inlineCheckbox2">มีพนักงงานชั่วคราว (Part Time)</label>
                                                 </div>
                                             <?php
-                                            } else if ($INFO_SALER[1]["full_time_staff"] == 1 && $INFO_SALER[1]["temporary_staff"] == 1 && $INFO_SALER[1]["donthave"] == 0) {
+                                            } else if ($INFO_SALER[1]["fulltime_staff"] == 1 && $INFO_SALER[1]["parttime_staff"] == 1 && $INFO_SALER[1]["donthave_staff"] == 0) {
                                             ?>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="admin" name="admin" value="option1" disabled checked>
@@ -299,7 +252,7 @@ $UTID1 = getUserTitleSelect($uid);
                                                     <label class="form-check-label" for="inlineCheckbox2">มีพนักงงานชั่วคราว (Part Time)</label>
                                                 </div>
                                             <?php
-                                            } else if ($INFO_SALER[1]["full_time_staff"] == 0 && $INFO_SALER[1]["temporary_staff"] == 0 && $INFO_SALER[1]["donthave"] == 1) {
+                                            } else if ($INFO_SALER[1]["fulltime_staff"] == 0 && $INFO_SALER[1]["parttime_staff"] == 0 && $INFO_SALER[1]["donthave_staff"] == 1) {
                                             ?>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="admin" name="admin" value="option1" disabled>

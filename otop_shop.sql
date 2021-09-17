@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2021 at 08:51 PM
+-- Generation Time: Sep 17, 2021 at 08:21 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.0
 
@@ -69,21 +69,15 @@ CREATE TABLE `bank_account` (
   `account_code` varchar(10) NOT NULL,
   `account_name` varchar(150) NOT NULL,
   `bankid` int(11) NOT NULL,
-  `uid` int(11) NOT NULL
+  `shop_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `bank_account`
 --
 
-INSERT INTO `bank_account` (`baid`, `account_code`, `account_name`, `bankid`, `uid`) VALUES
-(1, '0123456789', 'ขายอะไรก็ไม่รู้แต่อยากขายนะ', 5, 1),
-(3, '0987654321', 'ขายอะไรก็ไม่รู้แต่อยากขายนะ', 2, 1),
-(4, '7896543210', 'ขายอะไรก็ไม่รู้แต่อยากขายนะ', 6, 1),
-(7, '2398451670', 'Koalas March', 5, 7),
-(8, '7832169450', 'Koalas March', 1, 7),
-(9, '9845321604', 'Koalas March', 6, 7),
-(10, '5642318799', 'Koalas March', 17, 7);
+INSERT INTO `bank_account` (`baid`, `account_code`, `account_name`, `bankid`, `shop_id`) VALUES
+(1, '0123456789', 'test23', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -107,12 +101,7 @@ CREATE TABLE `delivery_address` (
 --
 
 INSERT INTO `delivery_address` (`daid`, `uid`, `title`, `firstname`, `lastname`, `tel`, `address`, `subdistrict`) VALUES
-(1, 1, 1, 'test', 'test', '0987654321', '112', 1),
-(2, 1, 1, 'ชิษณุชา', 'สุวรรณ', '0987654321', '85', 5),
-(3, 1, 1, 'ttt', 'ttt', '0123456789', 'e32', 15),
-(4, 1, 1, 'ชิษณุชา', 'สุวรรณ', '0123456789', '85', 10),
-(5, 1, 3, 'gg', 'gg', '0123456789', '321', 12),
-(6, 7, 1, 'โคอาล่า', 'มาร์ช', '0123456789', '123 ปลาฉลามขึ้บก', 217);
+(1, 1, 2, 'test343', 'test', '0123456789', '4421', 224);
 
 -- --------------------------------------------------------
 
@@ -1133,6 +1122,7 @@ CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `order_number` int(11) NOT NULL,
   `daid` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
   `type_payment` int(11) NOT NULL,
   `time_order` int(11) NOT NULL,
   `time_payment` int(11) NOT NULL,
@@ -1180,7 +1170,7 @@ CREATE TABLE `product` (
   `price` double NOT NULL,
   `shipping_cost` double NOT NULL,
   `stock` int(11) NOT NULL,
-  `uid` int(11) NOT NULL,
+  `shop_id` int(11) NOT NULL,
   `delivery_type` int(11) NOT NULL,
   `profile_product` varchar(90) DEFAULT NULL,
   `picture` varchar(90) DEFAULT NULL,
@@ -1192,14 +1182,8 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`product_id`, `product_number`, `product_name`, `product_description`, `product_specification`, `product_type`, `price`, `shipping_cost`, `stock`, `uid`, `delivery_type`, `profile_product`, `picture`, `qrcode`, `modify`) VALUES
-(1, 'K001', 'โคอะลา มาร์ช ช็อกโก บานาน่า', 'คุณค่าทางโภชนาการต่อ 1 กล่อง\r\nพลังงาน 190 กิโลแคลอรี *10%, น้ำตาล 14 กรัม *22%, ไขมัน 9 กรัม *14%, โซเดียม 90 มิลลิกรัม *4%\r\n*คิดเป็นร้อยละของปริมาณสูงสุดที่บริโภคได้ต่อวัน\r\n\r\nบริโภคแต่น้อย และออกกำลังกายเพื่อสุขภาพ', 'ส่วนผสม\r\nมิลค์ช็อกโกแลตคอมปาวน์ 60%, แป้งสาลี 18%, แป้งข้าวโพด 5%, เนยขาว 5%, น้ำตาลทราย 3%, ไข่ไก่ 2%, ผงแคลเซียมคาร์บอเนต 1%, ผงกล้วย 0.01%, สารช่วยให้ฟู : INS 503 (ii), INS 500 (ii), สีธรรมชาติ : INS 150d, และแต่งกลิ่นเลียนธรรมชาติ และแต่งกลิ่นสังเคราะห์\r\n\r\nมีแป้งสาลี นม ไข่ไก่ และถั่วเหลือง อาจมีถั่วและบาร์เลย์', 1, 20, 29, 999, 7, 1, '1_1631611616.png', ' 1/', NULL, 1631611616),
-(4, 'K002', 'เสื้อลายโคอาล่า', 'เสื้อเนื้อผ้าดีนำเข้า', 'เสื้อแท้จากขนโคอาล่า', 3, 450, 65, 50, 7, 1, '4_1631625358.png', ' 4/', NULL, 1631625358),
-(5, 'K003', 'เสื้อขนแท้จากออสเตเลีย', 'เสื้อขนแท้จากออสเตเลีย', 'เสื้อขนแท้จากออสเตเลีย', 3, 450, 29, 20, 7, 1, '5_1631625597.png', ' 5/', NULL, 1631625597),
-(6, 'K004', 'โคอะลา มาร์ช มัจฉะ ลาเต้', 'โคอะลา มาร์ช มัจฉะ ลาเต้', 'โคอะลา มาร์ช มัจฉะ ลาเต้', 1, 20, 45, 100, 7, 1, '6_1631625650.png', ' 6/', NULL, 1631625650),
-(7, 'K005', 'สมุนไพรคลายเครียด', 'สมุนไพรคลายเครียด', 'สมุนไพรคลายเครียด', 5, 5000, 45, 10, 7, 1, '7_1631625722.png', ' 7/', NULL, 1631625722),
-(8, 'K006', 'โคอะลา มาร์ช สตอเบอรี่', 'โคอะลา มาร์ช สตอเบอรี่', 'โคอะลา มาร์ช สตอเบอรี่', 1, 20, 25, 999, 7, 1, '8_1631626148.png', ' 8/', NULL, 1631626148),
-(9, 'K007', 'โคอะลา มาร์ช ช็อกโก้ วนิลา', 'โคอะลา มาร์ช ช็อกโก้ วนิลา', 'โคอะลา มาร์ช ช็อกโก้ วนิลา', 1, 20, 25, 999, 7, 1, '9_1631626217.png', ' 9/', NULL, 1631626217);
+INSERT INTO `product` (`product_id`, `product_number`, `product_name`, `product_description`, `product_specification`, `product_type`, `price`, `shipping_cost`, `stock`, `shop_id`, `delivery_type`, `profile_product`, `picture`, `qrcode`, `modify`) VALUES
+(1, '02251', 'test23', 'test32', 'test32', 1, 123, 34, 213, 1, 1, '1_1631886116.png', ' 1/', NULL, 1631886116);
 
 -- --------------------------------------------------------
 
@@ -1340,78 +1324,57 @@ CREATE TABLE `reason` (
 CREATE TABLE `sales_demand` (
   `id` int(11) NOT NULL,
   `product_type` int(11) NOT NULL,
-  `uid` int(11) NOT NULL
+  `shop_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `sales_demand`
 --
 
-INSERT INTO `sales_demand` (`id`, `product_type`, `uid`) VALUES
-(1, 1, 1),
-(2, 2, 1),
-(3, 3, 1),
-(4, 4, 1),
-(5, 2, 4),
-(6, 3, 4),
-(7, 2, 5),
-(8, 3, 5),
-(9, 2, 6),
-(10, 4, 6),
-(11, 1, 7),
-(12, 2, 7),
-(13, 3, 7),
-(14, 4, 7),
-(15, 1, 7),
-(16, 2, 7),
-(17, 3, 7),
-(18, 4, 7),
-(19, 1, 7),
-(20, 2, 7),
-(21, 3, 7),
-(22, 4, 7),
-(23, 1, 7),
-(24, 2, 7),
-(25, 3, 7),
-(26, 4, 7),
-(27, 2, 7),
-(28, 3, 7),
-(29, 1, 7),
-(30, 2, 7),
-(31, 3, 7),
-(32, 4, 7),
-(33, 5, 7),
-(34, 1, 7),
-(35, 2, 7),
-(36, 3, 7),
-(37, 4, 7),
-(38, 5, 7),
-(39, 1, 7),
-(40, 2, 7),
-(41, 3, 7),
-(42, 4, 7),
-(43, 5, 7),
-(44, 1, 7),
-(45, 2, 7),
-(46, 3, 7),
-(47, 4, 7),
-(48, 5, 7),
-(49, 2, 8),
-(50, 3, 8),
-(51, 1, 9),
-(52, 1, 10),
-(53, 1, 11),
-(54, 2, 11),
-(55, 3, 11),
-(56, 2, 12),
-(57, 2, 13),
-(58, 2, 13),
-(59, 2, 13),
-(60, 2, 14),
-(61, 3, 14),
-(62, 4, 14),
-(63, 1, 15),
-(64, 2, 16);
+INSERT INTO `sales_demand` (`id`, `product_type`, `shop_id`) VALUES
+(7, 1, 1),
+(8, 3, 1),
+(9, 1, 2),
+(10, 3, 2),
+(13, 1, 1),
+(14, 3, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `seller-list`
+--
+
+CREATE TABLE `seller-list` (
+  `shop_id` int(11) NOT NULL,
+  `shop_name` varchar(255) NOT NULL,
+  `title_id` int(11) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `tel` varchar(10) NOT NULL,
+  `address_shop` varchar(255) NOT NULL,
+  `subdistrict_shop` int(11) NOT NULL,
+  `have_product` tinyint(1) NOT NULL,
+  `quantity_product` int(11) NOT NULL,
+  `fulltime_staff` tinyint(1) NOT NULL,
+  `parttime_staff` tinyint(1) NOT NULL,
+  `donthave_staff` tinyint(1) NOT NULL,
+  `quantity_staff` int(11) NOT NULL,
+  `time_opened` varchar(20) NOT NULL,
+  `time_closed` varchar(20) NOT NULL,
+  `profile_shop` varchar(150) NOT NULL,
+  `is-blocked-saler` tinyint(1) NOT NULL,
+  `modify_saler` int(11) NOT NULL,
+  `owner_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `seller-list`
+--
+
+INSERT INTO `seller-list` (`shop_id`, `shop_name`, `title_id`, `firstname`, `lastname`, `email`, `tel`, `address_shop`, `subdistrict_shop`, `have_product`, `quantity_product`, `fulltime_staff`, `parttime_staff`, `donthave_staff`, `quantity_staff`, `time_opened`, `time_closed`, `profile_shop`, `is-blocked-saler`, `modify_saler`, `owner_id`) VALUES
+(1, 'test_shop', 2, 'test', 'test', 'test@gmail.com', '0123456789', '2133', 1029, 1, 2, 1, 0, 0, 32, '23:00', '03:00', '1_1631878916.png', 0, 1631878916, 1);
 
 -- --------------------------------------------------------
 
@@ -8857,53 +8820,21 @@ CREATE TABLE `user-list` (
   `username` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
   `tel` varchar(10) NOT NULL,
-  `title_id` int(11) DEFAULT NULL,
-  `firstname` varchar(90) DEFAULT NULL,
-  `lastname` varchar(90) DEFAULT NULL,
-  `email` varchar(90) DEFAULT NULL,
-  `shop_name` varchar(150) DEFAULT NULL,
-  `address_shop` varchar(255) DEFAULT NULL,
-  `subdistrict_shop` int(11) DEFAULT NULL,
-  `have_product` tinyint(1) DEFAULT NULL,
-  `quantity_product` int(11) DEFAULT NULL,
-  `full_time_staff` tinyint(1) DEFAULT NULL,
-  `temporary_staff` tinyint(1) DEFAULT NULL,
-  `donthave` tinyint(1) DEFAULT NULL,
-  `quantity_staff` int(11) DEFAULT NULL,
-  `time_open` time DEFAULT NULL,
-  `time_closed` time DEFAULT NULL,
-  `profile_user` varchar(50) DEFAULT NULL,
-  `profile_shop` varchar(50) DEFAULT NULL,
+  `profile_user` varchar(255) NOT NULL,
   `u-is-admin` tinyint(1) NOT NULL,
-  `u-is-user` tinyint(1) DEFAULT NULL,
-  `u-is-saler` tinyint(1) DEFAULT NULL,
+  `u-is-user` tinyint(1) NOT NULL,
+  `u-is-saler` tinyint(1) NOT NULL,
   `is-blocked-user` tinyint(1) DEFAULT NULL,
-  `is-blocked-saler` tinyint(1) DEFAULT NULL,
   `modify_user` int(11) DEFAULT NULL,
-  `modify_saler` int(11) DEFAULT NULL
+  `shop_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user-list`
 --
 
-INSERT INTO `user-list` (`uid`, `username`, `password`, `tel`, `title_id`, `firstname`, `lastname`, `email`, `shop_name`, `address_shop`, `subdistrict_shop`, `have_product`, `quantity_product`, `full_time_staff`, `temporary_staff`, `donthave`, `quantity_staff`, `time_open`, `time_closed`, `profile_user`, `profile_shop`, `u-is-admin`, `u-is-user`, `u-is-saler`, `is-blocked-user`, `is-blocked-saler`, `modify_user`, `modify_saler`) VALUES
-(1, 'test1', '098f6bcd4621d373cade4e832627b4f6', '0123445678', 2, 'test', 'test', 'test@gmail.com', 'ขายอะไรก็ไม่รู็แต่อยากขายนะ', '132', 64, 1, 4, 1, 1, 0, 22, '08:00:00', '21:00:00', 'default_user.png', '1_1631470254.png', 0, 1, 1, 0, 0, 1631367575, 1631438554),
-(2, 'admin', 'f6fdffe48c908deb0f4c3bd36c032e72', '0987654321', 1, 'admin', 'admin', 'admin@shop.com', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin.png', 'admin.png', 1, 1, 1, 0, 0, 1631367692, 1631367692),
-(4, 'a', 'cff3494a11b75cfc0675771d91a6a47b', '0123456789', 1, 'a', 'a', 'a@gmail.com', 'shop1', '85', 1354, 1, 1, 1, 1, 0, 1, '21:23:00', '21:23:00', 'default_user.png', '4_1631453022.png', 0, 1, 1, 0, 0, 1631451241, 1631453022),
-(5, 'b', '7f40abd95c4b17df26a0fd78cb814bdd', '0555555555', 2, 'b', 'b', 'b@gmail.com', 'b', '3434', 1114, 1, 2, 1, 1, 0, 2, '20:27:00', '20:28:00', 'default_user.png', '5_1631453248.png', 0, 1, 1, 0, 0, 1631452506, 1631453248),
-(6, 'c', '0726d5975d4b4d5d136fb4f81891fc1c', '9999999999', 1, 'c', 'c', 'c@gmail.com', 'c', '231', 1168, 1, 2, 1, 1, 0, 1, '23:30:00', '02:30:00', 'default_user.png', '6_1631453417.png', 0, 1, 1, 0, 0, 1631453378, 1631453417),
-(7, 'koara', 'e8f9615895edd6d5a7be3a43c9f3f0a8', '0123456789', 2, 'โคอาล่า', 'มาร์ช', 'koara@march.com', 'Koalas March', '123 ปลาฉลามขึ้บก', 4260, 1, 1, 1, 0, 0, 1, '09:00:00', '18:00:00', '7_1631550950.png', '7_1631474688.png', 0, 1, 1, 0, 0, 1631473624, 1631474359),
-(8, 'panda', '8af6b645a395d0fb88801ed7190b84d5', '0987654321', 3, 'แพนแพน', 'ด้า', 'panpanda@mail.com', 'panpanda', '1234', 228, 1, 2, 1, 0, 0, 1, '14:00:00', '14:01:00', 'default_user.png', '8_1631474663.png', 0, 1, 1, 0, 0, 1631474492, 1631474617),
-(9, 'test', '811cb34edaf1f230f587a368cd0ca6c2', '0123456789', 1, 'test', 'test', 'test@gmail.com', 'shop1', '123', 910, 1, 1, 1, 0, 0, 1, '08:00:00', '18:00:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 0, 0, 1631510780, 1631510813),
-(10, 'd', '29b3038f5d604acfd4fd26d0ffb6957b', '0123456789', 1, 'd', 'd', 'test@gmail.com', 'shop2', '1231', 1259, 1, 1, 1, 0, 0, 1, '08:00:00', '04:01:00', 'default_user.png', '10_1631510939.png', 0, 1, 1, 0, 0, 1631510908, 1631510939),
-(11, 'e', '81d3ab7d96f938faf4d3b3cc56ff998a', '0123456789', 1, 'e', 'e', 'test@gmail.com', 'shop2', '123', 1260, 1, 1, 1, 0, 0, 1, '08:00:00', '08:01:00', 'default_user.png', '11_1631511069.png', 0, 1, 1, 0, 0, 1631511027, 1631511069),
-(12, 'f', '24f66f4f39a722a15933dcf9ba991080', '0123456789', 2, 'f', 'f', 'test@gmail.com', 'shop3', '123', 1325, 1, 1, 1, 0, 0, 1, '08:00:00', '09:00:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 0, 0, 1631511128, 1631511158),
-(13, 'g', 'fd995fc6d0238301375d48fbf16f19d3', '0123456789', 1, 'g', 'g', 'test@gmail.com', 'shop4', '3423', 1120, 1, 1, 1, 0, 0, 123, '12:33:00', '13:34:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 0, 0, 1631511209, 1631511296),
-(14, 'h', 'f35211d5f4e385d39c3a64f4cebca824', '0123456789', 1, 'h', 'h', 'test@gmail.com', 'shoph', '231', 1040, 1, 1, 1, 0, 0, 1, '09:01:00', '09:02:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 0, 0, 1631511432, 1631511477),
-(15, 'i', '3b7423011265ea6694f6d6b4d969c76f', '0123456789', 1, 'i', 'i', 'test@gmail.com', 'shopi', '23', 1047, 1, 1, 1, 0, 0, 1, '21:01:00', '12:21:00', 'default_user.png', 'default_saler.png', 0, 1, 1, 0, 0, 1631511908, 1631511941),
-(16, 'j', '3762358607a2e5c5fa3688729ff3680a', '0123456789', 1, 'j', 'j', 'test@gmail.com', 'shop1', '123 ปลาฉลามขึ้บก', 1266, 1, 1, 1, 0, 0, 1, '16:11:00', '17:11:00', 'default_user.png', '16_1631610727.png', 0, 1, 1, 0, 0, 1631610690, 1631610727),
-(17, 'k', 'ee34a2e01833b297994a9314c8108371', '0123456789', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'default_user.png', NULL, 0, 1, 0, NULL, NULL, 1631808338, NULL);
+INSERT INTO `user-list` (`uid`, `username`, `password`, `tel`, `profile_user`, `u-is-admin`, `u-is-user`, `u-is-saler`, `is-blocked-user`, `modify_user`, `shop_id`) VALUES
+(1, 'test', '811cb34edaf1f230f587a368cd0ca6c2', '7896543210', 'default_user.png', 0, 1, 1, 0, 1631874804, 1);
 
 -- --------------------------------------------------------
 
@@ -8994,7 +8925,7 @@ ALTER TABLE `bank_account`
   ADD PRIMARY KEY (`baid`,`account_code`),
   ADD UNIQUE KEY `account_code` (`account_code`),
   ADD KEY `bankid` (`bankid`),
-  ADD KEY `uid` (`uid`);
+  ADD KEY `shop_id` (`shop_id`);
 
 --
 -- Indexes for table `delivery_address`
@@ -9044,7 +8975,8 @@ ALTER TABLE `orders`
   ADD KEY `daid` (`daid`),
   ADD KEY `type_payment` (`type_payment`),
   ADD KEY `reason_id` (`reason_id`),
-  ADD KEY `status_order` (`status_order`);
+  ADD KEY `status_order` (`status_order`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Indexes for table `orders_detail`
@@ -9061,7 +8993,7 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`product_id`),
   ADD KEY `product_type` (`product_type`),
   ADD KEY `delivery_type` (`delivery_type`),
-  ADD KEY `uid` (`uid`);
+  ADD KEY `uid` (`shop_id`);
 
 --
 -- Indexes for table `product_type`
@@ -9088,7 +9020,16 @@ ALTER TABLE `reason`
 ALTER TABLE `sales_demand`
   ADD PRIMARY KEY (`id`),
   ADD KEY `product_type` (`product_type`),
-  ADD KEY `uid` (`uid`);
+  ADD KEY `shop_id` (`shop_id`);
+
+--
+-- Indexes for table `seller-list`
+--
+ALTER TABLE `seller-list`
+  ADD PRIMARY KEY (`shop_id`),
+  ADD KEY `title_id` (`title_id`),
+  ADD KEY `subdistrict_shop` (`subdistrict_shop`),
+  ADD KEY `owner_id` (`owner_id`);
 
 --
 -- Indexes for table `shopping_cart`
@@ -9125,8 +9066,7 @@ ALTER TABLE `type_payment`
 ALTER TABLE `user-list`
   ADD PRIMARY KEY (`uid`),
   ADD UNIQUE KEY `username` (`username`),
-  ADD KEY `subdistrict_shop` (`subdistrict_shop`),
-  ADD KEY `title_id` (`title_id`);
+  ADD KEY `shop_id` (`shop_id`);
 
 --
 -- Indexes for table `user-title`
@@ -9161,13 +9101,13 @@ ALTER TABLE `bank`
 -- AUTO_INCREMENT for table `bank_account`
 --
 ALTER TABLE `bank_account`
-  MODIFY `baid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `baid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `delivery_address`
 --
 ALTER TABLE `delivery_address`
-  MODIFY `daid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `daid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `delivery_type`
@@ -9203,7 +9143,7 @@ ALTER TABLE `orders_detail`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `product_type`
@@ -9227,7 +9167,13 @@ ALTER TABLE `reason`
 -- AUTO_INCREMENT for table `sales_demand`
 --
 ALTER TABLE `sales_demand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `seller-list`
+--
+ALTER TABLE `seller-list`
+  MODIFY `shop_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `shopping_cart`
@@ -9257,7 +9203,7 @@ ALTER TABLE `type_payment`
 -- AUTO_INCREMENT for table `user-list`
 --
 ALTER TABLE `user-list`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user-title`
@@ -9285,8 +9231,8 @@ ALTER TABLE `web-menu`
 -- Constraints for table `bank_account`
 --
 ALTER TABLE `bank_account`
-  ADD CONSTRAINT `bank_account_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user-list` (`uid`),
-  ADD CONSTRAINT `bank_account_ibfk_2` FOREIGN KEY (`bankid`) REFERENCES `bank` (`id`);
+  ADD CONSTRAINT `bank_account_ibfk_2` FOREIGN KEY (`bankid`) REFERENCES `bank` (`id`),
+  ADD CONSTRAINT `bank_account_ibfk_3` FOREIGN KEY (`shop_id`) REFERENCES `seller-list` (`shop_id`);
 
 --
 -- Constraints for table `delivery_address`
@@ -9316,14 +9262,8 @@ ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`type_payment`) REFERENCES `type_payment` (`tpid`),
   ADD CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`reason_id`) REFERENCES `reason` (`id`),
   ADD CONSTRAINT `orders_ibfk_5` FOREIGN KEY (`daid`) REFERENCES `delivery_address` (`daid`),
-  ADD CONSTRAINT `orders_ibfk_6` FOREIGN KEY (`status_order`) REFERENCES `status_order` (`so_id`);
-
---
--- Constraints for table `orders_detail`
---
-ALTER TABLE `orders_detail`
-  ADD CONSTRAINT `orders_detail_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
-  ADD CONSTRAINT `orders_detail_ibfk_2` FOREIGN KEY (`orders_id`) REFERENCES `orders` (`order_id`);
+  ADD CONSTRAINT `orders_ibfk_6` FOREIGN KEY (`status_order`) REFERENCES `status_order` (`so_id`),
+  ADD CONSTRAINT `orders_ibfk_7` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
 
 --
 -- Constraints for table `product`
@@ -9331,14 +9271,22 @@ ALTER TABLE `orders_detail`
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`product_type`) REFERENCES `product_type` (`id`),
   ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`delivery_type`) REFERENCES `delivery_type` (`id`),
-  ADD CONSTRAINT `product_ibfk_3` FOREIGN KEY (`uid`) REFERENCES `user-list` (`uid`);
+  ADD CONSTRAINT `product_ibfk_3` FOREIGN KEY (`shop_id`) REFERENCES `seller-list` (`shop_id`);
 
 --
 -- Constraints for table `sales_demand`
 --
 ALTER TABLE `sales_demand`
-  ADD CONSTRAINT `sales_demand_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user-list` (`uid`),
-  ADD CONSTRAINT `sales_demand_ibfk_2` FOREIGN KEY (`product_type`) REFERENCES `product_type` (`id`);
+  ADD CONSTRAINT `sales_demand_ibfk_2` FOREIGN KEY (`product_type`) REFERENCES `product_type` (`id`),
+  ADD CONSTRAINT `sales_demand_ibfk_3` FOREIGN KEY (`shop_id`) REFERENCES `seller-list` (`shop_id`);
+
+--
+-- Constraints for table `seller-list`
+--
+ALTER TABLE `seller-list`
+  ADD CONSTRAINT `seller-list_ibfk_1` FOREIGN KEY (`title_id`) REFERENCES `user-title` (`id`),
+  ADD CONSTRAINT `seller-list_ibfk_2` FOREIGN KEY (`subdistrict_shop`) REFERENCES `subdistricts` (`id`),
+  ADD CONSTRAINT `seller-list_ibfk_3` FOREIGN KEY (`owner_id`) REFERENCES `user-list` (`uid`);
 
 --
 -- Constraints for table `shopping_cart`
@@ -9357,8 +9305,7 @@ ALTER TABLE `subdistricts`
 -- Constraints for table `user-list`
 --
 ALTER TABLE `user-list`
-  ADD CONSTRAINT `user-list_ibfk_1` FOREIGN KEY (`title_id`) REFERENCES `user-title` (`id`),
-  ADD CONSTRAINT `user-list_ibfk_2` FOREIGN KEY (`subdistrict_shop`) REFERENCES `subdistricts` (`id`);
+  ADD CONSTRAINT `user-list_ibfk_1` FOREIGN KEY (`shop_id`) REFERENCES `seller-list` (`shop_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -159,8 +159,8 @@
             if ($idUT == 2) {
             ?>
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $USER[1]["username"] ?></span>
-                    <img class="img-profile rounded-circle" src='<?php echo "../../../img/profile/" . $USER[1]["profile_user"] ?>'>
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $SELLER[1]["username"] ?></span>
+                    <img class="img-profile rounded-circle" src='<?php echo "../../../img/profile/" . $SELLER[1]["profile_user"] ?>'>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                     <div class="dropdown-divider"></div>
@@ -173,8 +173,8 @@
             } elseif ($idUT == 1) {
             ?>
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $USER[1]["shop_name"] ?></span>
-                    <img class="img-profile rounded-circle" src='<?php echo "../../../img/profile/saler/" . $USER[1]["profile_shop"] ?>'>
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $SELLER[1]["shop_name"] ?></span>
+                    <img class="img-profile rounded-circle" src='<?php echo "../../../img/profile/saler/" . $SELLER[1]["profile_shop"] ?>'>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                     <a class="dropdown-item" href="../profile/profile.php">
@@ -186,7 +186,7 @@
                         หน้าลูกค้า
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" onclick="delfunction('<?php echo $USER[1]['shop_name'] ?>'">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" onclick="delfunction('<?php echo $SELLER[1]['shop_name'] ?>'">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Logout
                     </a>

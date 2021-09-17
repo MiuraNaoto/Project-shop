@@ -11,7 +11,9 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     $idUT = $_SESSION[md5('typeid')];
     $username = $_SESSION[md5('username')];
     $USER = $_SESSION[md5('user')];
+    $SELLER = $_SESSION[md5('shop')];
     $uid = $USER[1]["uid"];
+    $shop_id = $SELLER[1]["shop_id"];
     // echo $username;
     // echo print_r($USER);
 }
@@ -20,7 +22,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
 $product_id = $_GET['product_id'];
 
 $PRODUCT_DETAIL = getProductDetail($product_id);
-$shop_id = $PRODUCT_DETAIL[1]["uid"];
+
 $SALER_PRODUCT = getProductByShopID($shop_id);
 $RELATIVE_PRODUCT = getRelateProducts($PRODUCT_DETAIL[1]['product_type']);
 
@@ -195,8 +197,8 @@ $RELATIVE_PRODUCT = getRelateProducts($PRODUCT_DETAIL[1]['product_type']);
                                 <span class="font-weight-bold mb-0 h6 align-self-center" id="shop-name" style="margin-right: 25px; color: #336633;"><?php echo $PRODUCT_DETAIL[1]['shop_name']; ?></span>
                             </div>
                             <div class="col-md-12 mt-3">
-                                <a href="<?php echo "../profile-shop/profile-shop.php?shop_id=" . $PRODUCT_DETAIL[1]['uid'] ?>">
-                                    <button type="button" class="btn btn-outline-success" style="font-size: 12px;" onclick="toShop($PRODUCT_DETAIL[1]['shop_name'])">ดูร้านค้า <i class="fas fa-store"></i></button>
+                                <a href="<?php echo "../profile-shop/profile-shop.php?shop_id=" . $PRODUCT_DETAIL[1]['shop_id'] ?>">
+                                    <button type="button" class="btn btn-outline-success" style="font-size: 12px;">ดูร้านค้า <i class="fas fa-store"></i></button>
                                 </a>
                             </div>
                         </div>
