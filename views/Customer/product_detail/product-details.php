@@ -23,7 +23,7 @@ $product_id = $_GET['product_id'];
 
 $PRODUCT_DETAIL = getProductDetail($product_id);
 
-$SALER_PRODUCT = getProductByShopID($shop_id);
+$SALER_PRODUCT = getProductByShopID($product_id);
 $RELATIVE_PRODUCT = getRelateProducts($PRODUCT_DETAIL[1]['product_type']);
 
 // print_r($PRODUCT_DETAIL);

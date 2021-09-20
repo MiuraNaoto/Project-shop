@@ -152,6 +152,14 @@ function getAllProductByType($type_id)
     return $DATA;
 }
 
+function getTypeProduct($type_id)
+{
+    $sql = "SELECT * FROM `product_type` WHERE `id` = $type_id";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
+
 
 function getProductDetail($product_id)
 {
@@ -163,12 +171,12 @@ function getProductDetail($product_id)
     return $DATA;
 }
 
-function getProductByShopID($shop_id)
+function getProductByShopID($product_id)
 {
     $sql = "SELECT * FROM `product` 
                     INNER JOIN `product_type` ON `product`.`product_type` = `product_type`.`id` 
                     INNER JOIN `seller-list` ON `product`.`shop_id` = `seller-list`.`shop_id` 
-            WHERE `seller-list`.`shop_id` = '$shop_id'";
+            WHERE `product`.`product_id` = '$product_id'";
     $DATA = selectData($sql);
     return $DATA;
 }

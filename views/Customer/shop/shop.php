@@ -22,6 +22,10 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
 // print_r($USER);
 $type_id = $_GET["type_id"];
 $PRODUCT = getAllProductByType($type_id);
+$TYPE = getTypeProduct($type_id);
+
+// print_r($TYPE);
+
 $PRODUCT_TYPE = getProductType();
 ?>
 
@@ -38,7 +42,7 @@ $PRODUCT_TYPE = getProductType();
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="../../../index.php"><i class="fa fa-home"></i> Home</a>
-                        <span><?php echo $PRODUCT[1]['type'] ?></span>
+                        <span><?php echo $TYPE[1]['type'] ?></span>
                     </div>
                 </div>
             </div>

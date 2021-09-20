@@ -19,7 +19,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
 $shop_id = $_GET['shop_id'];
 $SHOP_PROFILE = getShopProfile($shop_id);
 $SHOP_PRODUCT = getProductByShopID($shop_id);
-
+date_default_timezone_set("Asia/Bangkok");
 ?>
 
 <head>
@@ -77,20 +77,25 @@ $SHOP_PRODUCT = getProductByShopID($shop_id);
                             <h6 class="h5 mb-2 mt-3 font-weight-bold"><?php echo $SHOP_PROFILE[1]["shop_name"] ?> <a href="#"><img src="../../../img/icon/line.png" width="22" height="22" style="margin-left: 10px;" /></a></h6>
                             <hr>
                             <div class="row">
-                                <div class="col-sm-3" style="padding: 0px;">
-                                    <span class="mt-3 text-muted font-weight-bold">เบอร์ติดต่อ :</span>
+                                <div class="col-sm-4">
+                                    <span class="mt-3 text-muted font-weight-bold">เบอร์ติดต่อ</span>
                                 </div>
-                                <div class="col-md-9">
+                                <div class="col-sm-1">
+                                    <span class="mt-3 text-muted font-weight-bold">:</span>
+                                </div>
+                                <div class="col-md-7">
                                     <span class="text-muted"><?php echo format_phonenumber($SHOP_PROFILE[1]["tel"]) ?></span>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-3" style="padding: 0px;">
-                                    <span class="mt-3 text-muted font-weight-bold">ที่อยู่ :</span>
+                                <div class="col-sm-4">
+                                    <span class="mt-3 text-muted font-weight-bold">ที่อยู่</span>
                                 </div>
-                                <div class="col-md-9">
-                                    <span class="text-muted"><?php
-                                                                echo $SHOP_PROFILE[1]["address_shop"] . "<br>" . "ต." . $SHOP_PROFILE[1]["subdistricts_name_in_thai"] ?>
+                                <div class="col-sm-1">
+                                    <span class="mt-3 text-muted font-weight-bold">:</span>
+                                </div>
+                                <div class="col-md-7">
+                                    <span class="text-muted">
                                         <?Php
                                         if ($SHOP_PROFILE[1]["provinces_name_in_thai"] == "กรุงเทพมหานคร") {
                                             echo $SHOP_PROFILE[1]["address_shop"] . "<br>" .
@@ -106,7 +111,6 @@ $SHOP_PRODUCT = getProductByShopID($shop_id);
                                                 ", " . $SHOP_PROFILE[1]["zip_code"];
                                         }
                                         ?>
-
                                     </span>
                                 </div>
                             </div>
@@ -133,7 +137,7 @@ $SHOP_PRODUCT = getProductByShopID($shop_id);
                                 <div class="col-md-10">
                                     <span>
                                         <?php
-                                        date_default_timezone_set("Asia/Bangkok");
+
                                         $current_date = date_create(date("Y-m-d H:i:s", time()));
                                         $reigster_saler_date = date_create(date("Y-m-d H:i:s", $SHOP_PROFILE[1]["modify_saler"]));
 
@@ -160,17 +164,18 @@ $SHOP_PRODUCT = getProductByShopID($shop_id);
                                 <div class="col-md-11">
                                     <div class="row">
                                         <?php
-                                        $time_current = date("H:i:s", time());
-                                        $time_opened = $SHOP_PROFILE[1]["time_opened"];
-                                        $time_closed = $SHOP_PROFILE[1]["time_closed"];
+                                        $time_current = time();
+                                        $time_opened = strtotime($SHOP_PROFILE[1]["time_opened"]);
+                                        $time_closed = strtotime($SHOP_PROFILE[1]["time_closed"]);
+                                        // echo $time_opened <= $time_closed;
 
-                                        if ($time_current > $time_opened && $time_current < $time_closed) {
+                                        if ($time_current >= $time_opened && $time_current <= $time_closed) {
                                         ?>
                                             <div class="col-md-4 align-self-center text-center">
                                                 <span class="text-success">เปิดอยู่</span>
                                             </div>
                                             <div class="col-md-6 align-self-center">
-                                                <span><?php $time_opened  . " - " . $time_closed; ?></span>
+                                                <span><?php echo date('H:i', $time_opened)  . " - " .  date('H:i', $time_closed); ?></span>
                                             </div>
                                         <?php
                                         } else {
@@ -179,7 +184,7 @@ $SHOP_PRODUCT = getProductByShopID($shop_id);
                                                 <span class="text-danger">ปิดอยู่</span>
                                             </div>
                                             <div class="col-md-8 align-self-center">
-                                                <span><?php echo date('H:i', strtotime($time_opened))  . " - " .  date('H:i', strtotime($time_closed)); ?></span>
+                                                <span><?php echo date('H:i', $time_opened)  . " - " .  date('H:i', $time_closed); ?></span>
                                             </div>
                                         <?php
                                         }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2021 at 08:21 PM
+-- Generation Time: Sep 20, 2021 at 05:09 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.0
 
@@ -82,6 +82,19 @@ INSERT INTO `bank_account` (`baid`, `account_code`, `account_name`, `bankid`, `s
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `delivery`
+--
+
+CREATE TABLE `delivery` (
+  `did` int(11) NOT NULL,
+  `tracking_code` varchar(20) NOT NULL,
+  `time_delivery` int(11) NOT NULL,
+  `delivery_type` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `delivery_address`
 --
 
@@ -101,7 +114,7 @@ CREATE TABLE `delivery_address` (
 --
 
 INSERT INTO `delivery_address` (`daid`, `uid`, `title`, `firstname`, `lastname`, `tel`, `address`, `subdistrict`) VALUES
-(1, 1, 2, 'test343', 'test', '0123456789', '4421', 224);
+(1, 1, 1, 'test343', 'test', '0123456789', '4421', 224);
 
 -- --------------------------------------------------------
 
@@ -1121,20 +1134,21 @@ INSERT INTO `main-menu-list` (`ut-id`, `mm-mainmenu`, `mm-submenu`, `wm-id`) VAL
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `order_number` int(11) NOT NULL,
+  `shop_id` int(11) NOT NULL,
   `daid` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
   `type_payment` int(11) NOT NULL,
   `time_order` int(11) NOT NULL,
   `time_payment` int(11) NOT NULL,
-  `total` int(11) NOT NULL,
+  `total_unit` int(11) NOT NULL,
+  `total_price` int(11) NOT NULL,
   `picture_payment` varchar(50) NOT NULL,
   `status_order` int(11) DEFAULT NULL,
   `reason_id` int(11) DEFAULT NULL,
   `reason_desc` varchar(255) DEFAULT NULL,
   `status_refund` tinyint(1) DEFAULT NULL,
   `picture_refund` int(11) DEFAULT NULL,
-  `tracking_code` varchar(20) DEFAULT NULL,
-  `time_delivery` int(11) DEFAULT NULL
+  `delivery` int(11) NOT NULL,
+  `review_shop` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1151,7 +1165,9 @@ CREATE TABLE `orders_detail` (
   `quantity_product` int(11) NOT NULL,
   `status_review` tinyint(1) NOT NULL,
   `quantity_star` int(11) NOT NULL,
-  `review_desc` varchar(255) NOT NULL
+  `review_desc` varchar(255) NOT NULL,
+  `status_order` int(11) NOT NULL,
+  `review_product` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1318,6 +1334,30 @@ CREATE TABLE `reason` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `review_product`
+--
+
+CREATE TABLE `review_product` (
+  `rpid` int(11) NOT NULL,
+  `quantity_star` tinyint(1) NOT NULL,
+  `review_desc` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `review_shop`
+--
+
+CREATE TABLE `review_shop` (
+  `rsid` int(11) NOT NULL,
+  `quantity_star` tinyint(1) NOT NULL,
+  `review_desc` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sales_demand`
 --
 
@@ -1374,7 +1414,7 @@ CREATE TABLE `seller-list` (
 --
 
 INSERT INTO `seller-list` (`shop_id`, `shop_name`, `title_id`, `firstname`, `lastname`, `email`, `tel`, `address_shop`, `subdistrict_shop`, `have_product`, `quantity_product`, `fulltime_staff`, `parttime_staff`, `donthave_staff`, `quantity_staff`, `time_opened`, `time_closed`, `profile_shop`, `is-blocked-saler`, `modify_saler`, `owner_id`) VALUES
-(1, 'test_shop', 2, 'test', 'test', 'test@gmail.com', '0123456789', '2133', 1029, 1, 2, 1, 0, 0, 32, '23:00', '03:00', '1_1631878916.png', 0, 1631878916, 1);
+(1, 'test_shop', 2, 'test', 'test', 'test@gmail.com', '0123456789', '2133', 1029, 1, 2, 1, 0, 0, 32, '21:00', '08:00', '1_1631878916.png', 0, 1631878916, 1);
 
 -- --------------------------------------------------------
 
@@ -8928,6 +8968,13 @@ ALTER TABLE `bank_account`
   ADD KEY `shop_id` (`shop_id`);
 
 --
+-- Indexes for table `delivery`
+--
+ALTER TABLE `delivery`
+  ADD PRIMARY KEY (`did`),
+  ADD KEY `delivery_type` (`delivery_type`);
+
+--
 -- Indexes for table `delivery_address`
 --
 ALTER TABLE `delivery_address`
@@ -8976,7 +9023,9 @@ ALTER TABLE `orders`
   ADD KEY `type_payment` (`type_payment`),
   ADD KEY `reason_id` (`reason_id`),
   ADD KEY `status_order` (`status_order`),
-  ADD KEY `product_id` (`product_id`);
+  ADD KEY `delivery` (`delivery`),
+  ADD KEY `shop_id` (`shop_id`),
+  ADD KEY `review_shop` (`review_shop`);
 
 --
 -- Indexes for table `orders_detail`
@@ -8984,7 +9033,9 @@ ALTER TABLE `orders`
 ALTER TABLE `orders_detail`
   ADD PRIMARY KEY (`od_id`),
   ADD KEY `product_id` (`product_id`),
-  ADD KEY `orders_id` (`orders_id`);
+  ADD KEY `orders_id` (`orders_id`),
+  ADD KEY `status_order` (`status_order`),
+  ADD KEY `review_product` (`review_product`);
 
 --
 -- Indexes for table `product`
@@ -9013,6 +9064,18 @@ ALTER TABLE `provinces`
 --
 ALTER TABLE `reason`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `review_product`
+--
+ALTER TABLE `review_product`
+  ADD PRIMARY KEY (`rpid`);
+
+--
+-- Indexes for table `review_shop`
+--
+ALTER TABLE `review_shop`
+  ADD PRIMARY KEY (`rsid`);
 
 --
 -- Indexes for table `sales_demand`
@@ -9104,6 +9167,12 @@ ALTER TABLE `bank_account`
   MODIFY `baid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `delivery`
+--
+ALTER TABLE `delivery`
+  MODIFY `did` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `delivery_address`
 --
 ALTER TABLE `delivery_address`
@@ -9162,6 +9231,18 @@ ALTER TABLE `provinces`
 --
 ALTER TABLE `reason`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `review_product`
+--
+ALTER TABLE `review_product`
+  MODIFY `rpid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `review_shop`
+--
+ALTER TABLE `review_shop`
+  MODIFY `rsid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sales_demand`
@@ -9235,6 +9316,12 @@ ALTER TABLE `bank_account`
   ADD CONSTRAINT `bank_account_ibfk_3` FOREIGN KEY (`shop_id`) REFERENCES `seller-list` (`shop_id`);
 
 --
+-- Constraints for table `delivery`
+--
+ALTER TABLE `delivery`
+  ADD CONSTRAINT `delivery_ibfk_1` FOREIGN KEY (`delivery_type`) REFERENCES `delivery_type` (`id`);
+
+--
 -- Constraints for table `delivery_address`
 --
 ALTER TABLE `delivery_address`
@@ -9259,11 +9346,22 @@ ALTER TABLE `favourite`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_10` FOREIGN KEY (`shop_id`) REFERENCES `seller-list` (`shop_id`),
+  ADD CONSTRAINT `orders_ibfk_11` FOREIGN KEY (`review_shop`) REFERENCES `review_shop` (`rsid`),
   ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`type_payment`) REFERENCES `type_payment` (`tpid`),
   ADD CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`reason_id`) REFERENCES `reason` (`id`),
   ADD CONSTRAINT `orders_ibfk_5` FOREIGN KEY (`daid`) REFERENCES `delivery_address` (`daid`),
   ADD CONSTRAINT `orders_ibfk_6` FOREIGN KEY (`status_order`) REFERENCES `status_order` (`so_id`),
-  ADD CONSTRAINT `orders_ibfk_7` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
+  ADD CONSTRAINT `orders_ibfk_8` FOREIGN KEY (`delivery`) REFERENCES `delivery` (`did`);
+
+--
+-- Constraints for table `orders_detail`
+--
+ALTER TABLE `orders_detail`
+  ADD CONSTRAINT `orders_detail_ibfk_1` FOREIGN KEY (`status_order`) REFERENCES `status_order` (`so_id`),
+  ADD CONSTRAINT `orders_detail_ibfk_2` FOREIGN KEY (`orders_id`) REFERENCES `orders` (`order_id`),
+  ADD CONSTRAINT `orders_detail_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
+  ADD CONSTRAINT `orders_detail_ibfk_4` FOREIGN KEY (`review_product`) REFERENCES `review_product` (`rpid`);
 
 --
 -- Constraints for table `product`
