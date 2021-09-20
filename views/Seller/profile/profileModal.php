@@ -1,6 +1,6 @@
 <?php
 include_once("../../../query/query.php");
-$USER = getUser($uid);
+// $USER = getUser($uid);
 $SELLER = getSeller($shop_id);
 $BANK = getBank();
 $UTID = getUserTitleByid($SELLER[1]["title_id"]);

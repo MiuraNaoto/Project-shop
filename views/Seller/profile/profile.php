@@ -7,7 +7,7 @@ $username = $_SESSION[md5('username')];
 $SELLER = $_SESSION[md5('shop')];
 
 // print_r($SELLER);
-$uid = $SELLER[1]["uid"];
+// $uid = $SELLER[1]["uid"];
 $shop_id = $SELLER[1]["shop_id"];
 $CurrentMenu = "profile";
 
@@ -79,7 +79,7 @@ $BANK_ACCOUNT = getBankAccount($shop_id);
                                         <div class="card-body align-self-center mt-2" style="height: 100%; ">
                                             <form name="uploadpic" id="uploadpic" method="POST" action="manage.php" enctype="multipart/form-data">
                                                 <div class="profile-pic">
-                                                    <input type="text" id="uid" name="uid" value="<?php echo $uid ?>" style="display:none" />
+                                                    <input type="text" id="uid" name="uid" value="<?php echo $shop_id ?>" style="display:none" />
                                                     <input type="text" id="request" name="request" value="updateprofile" style="display:none" />
                                                     <input type="text" id="profile_shop" name="profile_shop" value="<?php echo $SELLER[1]["profile_shop"]; ?>" style="display:none" />
                                                     <input id="uploadImage" type="file" accept="image/jpeg, image/jpg, image/png" name="image" hidden />
