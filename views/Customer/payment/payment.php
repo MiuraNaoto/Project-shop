@@ -42,9 +42,9 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="../../../index.php"><i class="fa fa-home"></i> Home</a>
-                        <a href="../shop-cart/shop-cart.php">Shopping cart</a>
-                        <a href="../checkout/checkout.php">Checkout</a>
-                        <span>Payment</span>
+                        <a href="../shop-cart/shop-cart.php">ตระกร้าสินค้า</a>
+                        <a href="../checkout/checkout.php">ยืนยันคำสั่งซื้อ</a>
+                        <span>การจ่ายเงิน</span>
                     </div>
                 </div>
             </div>
@@ -256,6 +256,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
 
     <!-- Js Plugins -->
     <?php include_once("../layout/js.php"); ?>
+    <script src="payment.js"></script>
 </body>
 
 </html>

@@ -7,9 +7,19 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     $idUT = $_SESSION[md5('typeid')];
     $username = $_SESSION[md5('username')];
     $USER = $_SESSION[md5('user')];
+    $uid = $USER[1]["uid"];
     // echo $username;
     // echo print_r($USER);
+    function countShopingCart($uid)
+    {
+        $sql = "SELECT COUNT(*) AS `count_cart` FROM `shopping_cart` WHERE `uid` = '$uid'";
+        $DATA = selectDataOne($sql);
+        return $DATA;
+    }
+    $COUNT_SHOPING_CART = countShopingCart($uid)["count_cart"];
 }
+
+
 
 function getProductType()
 {
@@ -230,7 +240,12 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
                                     <li>
                                         <a href="views/Customer/shop-cart/shop-cart.php">
                                             <span class="icon_cart_alt"></span>
-                                            <div class="tip">2</div>
+                                            <?php
+                                            if ($COUNT_SHOPING_CART == 0) {
+                                            } else {
+                                                echo '<div class="tip">' . $COUNT_SHOPING_CART . "</div>";
+                                            }
+                                            ?>
                                         </a>
                                     </li>
                                     <li>

@@ -9,7 +9,8 @@ session_start();
 $idUT = $_SESSION[md5('typeid')];
 $username = $_SESSION[md5('username')];
 $SELLER = $_SESSION[md5('shop')];
-$uid = $SELLER[1]["uid"];
+$USER = $_SESSION[md5('user')];
+$uid = $USER[1]["uid"];
 $shop_id = $SELLER[1]["shop_id"];
 
 $USER = getUser($uid);

@@ -1,12 +1,17 @@
  <?php
+    include_once("../../../query/query.php");
 
     if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isset($_SESSION[md5('user')])) {
         $idUT = $_SESSION[md5('typeid')];
         $username = $_SESSION[md5('username')];
         $USER = $_SESSION[md5('user')];
+        $uid = $USER[1]["uid"];
         // echo $username;
         // echo print_r($USER);
+
+        $COUNT_SHOPING_CART = countShopingCart($uid)["count_cart"];
     }
+
 
     // echo $username;
     ?>
@@ -83,7 +88,12 @@
                                  <li>
                                      <a href="../shop-cart/shop-cart.php">
                                          <span class="icon_cart_alt"></span>
-                                         <div class="tip">2</div>
+                                         <?php
+                                            if ($COUNT_SHOPING_CART == 0) {
+                                            } else {
+                                                echo '<div class="tip">' . $COUNT_SHOPING_CART . "</div>";
+                                            }
+                                            ?>
                                      </a>
                                  </li>
                                  <li>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2021 at 05:09 PM
+-- Generation Time: Sep 21, 2021 at 10:37 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.0
 
@@ -77,7 +77,8 @@ CREATE TABLE `bank_account` (
 --
 
 INSERT INTO `bank_account` (`baid`, `account_code`, `account_name`, `bankid`, `shop_id`) VALUES
-(1, '0123456789', 'test23', 1, 1);
+(1, '0123456789', 'test23', 1, 1),
+(2, '4537893210', 'ขายอะไรก็ไม่รู้แต่อยากขายนะ', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -1414,7 +1415,7 @@ CREATE TABLE `seller-list` (
 --
 
 INSERT INTO `seller-list` (`shop_id`, `shop_name`, `title_id`, `firstname`, `lastname`, `email`, `tel`, `address_shop`, `subdistrict_shop`, `have_product`, `quantity_product`, `fulltime_staff`, `parttime_staff`, `donthave_staff`, `quantity_staff`, `time_opened`, `time_closed`, `profile_shop`, `is-blocked-saler`, `modify_saler`, `owner_id`) VALUES
-(1, 'test_shop', 2, 'test', 'test', 'test@gmail.com', '0123456789', '2133', 1029, 1, 2, 1, 0, 0, 32, '21:00', '08:00', '1_1631878916.png', 0, 1631878916, 1);
+(1, 'test_shop', 2, 'test', 'test', 'test@gmail.com', '0123456789', '2133', 1029, 1, 2, 1, 0, 0, 32, '21:00', '08:00', '1_1632152533.png', 0, 1631878916, 1);
 
 -- --------------------------------------------------------
 
@@ -1427,8 +1428,15 @@ CREATE TABLE `shopping_cart` (
   `uid` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `feature` int(11) NOT NULL
+  `feature` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `shopping_cart`
+--
+
+INSERT INTO `shopping_cart` (`scid`, `uid`, `product_id`, `quantity`, `feature`) VALUES
+(1, 1, 1, 7, NULL);
 
 -- --------------------------------------------------------
 
@@ -8874,7 +8882,7 @@ CREATE TABLE `user-list` (
 --
 
 INSERT INTO `user-list` (`uid`, `username`, `password`, `tel`, `profile_user`, `u-is-admin`, `u-is-user`, `u-is-saler`, `is-blocked-user`, `modify_user`, `shop_id`) VALUES
-(1, 'test', '811cb34edaf1f230f587a368cd0ca6c2', '7896543210', 'default_user.png', 0, 1, 1, 0, 1631874804, 1);
+(1, 'test', '811cb34edaf1f230f587a368cd0ca6c2', '7896543210', '1_1632152358.png', 0, 1, 1, 0, 1631874804, 1);
 
 -- --------------------------------------------------------
 
@@ -9164,7 +9172,7 @@ ALTER TABLE `bank`
 -- AUTO_INCREMENT for table `bank_account`
 --
 ALTER TABLE `bank_account`
-  MODIFY `baid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `baid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `delivery`
@@ -9260,7 +9268,7 @@ ALTER TABLE `seller-list`
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `scid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `scid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `status_order`

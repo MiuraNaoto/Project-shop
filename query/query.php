@@ -210,3 +210,19 @@ function getDeliveryType()
     $DATA = selectData($sql);
     return $DATA;
 }
+
+function getShopingCart($uid)
+{
+    $sql = "SELECT * FROM `shopping_cart` 
+                    INNER JOIN `product` ON `shopping_cart`.`product_id` = `product`.`product_id` 
+            WHERE `uid` = '$uid'";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
+function countShopingCart($uid)
+{
+    $sql = "SELECT COUNT(*) AS `count_cart` FROM `shopping_cart` WHERE `uid` = '$uid'";
+    $DATA = selectDataOne($sql);
+    return $DATA;
+}

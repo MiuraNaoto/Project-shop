@@ -7,6 +7,7 @@ session_start();
 $idUT = $_SESSION[md5('typeid')];
 $username = $_SESSION[md5('username')];
 $USER = $_SESSION[md5('user')];
+$USER = $_SESSION[md5('user')];
 $uid = $USER[1]["uid"];
 $SELLER = $_SESSION[md5('shop')];
 $shop_id = $SELLER[1]["shop_id"];

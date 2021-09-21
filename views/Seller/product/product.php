@@ -7,13 +7,14 @@ include_once("../../../query/function.php");
 session_start();
 $idUT = $_SESSION[md5('typeid')];
 $username = $_SESSION[md5('username')];
+$USER = $_SESSION[md5('user')];
 $SELLER = $_SESSION[md5('shop')];
-$uid = $SELLER[1]["uid"];
+$uid = $USER[1]["uid"];
 $shop_id = $SELLER[1]["shop_id"];
 
 $CurrentMenu = "product";
 
-$PRODUCT = getProductByShopID($uid);
+$PRODUCT = getProductByShopID($shop_id);
 // $PRODUCT = getProductByShopID($uid);
 
 ?>

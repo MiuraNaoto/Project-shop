@@ -116,13 +116,15 @@ $RELATIVE_PRODUCT = getRelateProducts($PRODUCT_DETAIL[1]['product_type']);
                             <div class="quantity">
                                 <span>Quantity:</span>
                                 <div class="pro-qty">
-                                    <input type="text" value="1">
+                                    <input type="text" id="quantity" name="quantity" value="1">
                                 </div>
                             </div>
-                            <button class="cart-btn" id="addToCart" onclick="addToCart(<?php echo $PRODUCT_DETAIL[1]['product_id']; ?>)"><span class="icon_bag_alt"></span>Add to cart</button>
+                            <button class="cart-btn  btn btn-danger" id="addToCart" onclick="addToCart('<?php echo $PRODUCT_DETAIL[1]['product_id']; ?>','<?php echo $PRODUCT_DETAIL[1]['shop_id'] ?>')">
+                                <span class="icon_bag_alt">&nbsp;&nbsp;เพิ่มลงตระกร้าสินค้า</span>
+                            </button>
                             <ul>
                                 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
+                                <!-- <li><a href="#"><span class="icon_adjust-horiz"></span></a></li> -->
                             </ul>
                         </div>
                         <div class="product__details__widget">
@@ -405,38 +407,7 @@ $RELATIVE_PRODUCT = getRelateProducts($PRODUCT_DETAIL[1]['product_type']);
 
     <!-- Js Plugins -->
     <?php include_once("../layout/js.php"); ?>
+    <script src="product-detail.js"></script>
 </body>
 
 </html>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<script>
-    function addToCart(id) {
-
-        console.log("Add complet...");
-        console.log(id);
-        $.ajax({
-            type: 'POST',
-            url: 'addToCart.php',
-            //data: s.concat(id),
-            data: {
-                product_id: id,
-            },
-
-            //dataType: 'html', 
-            //dataType: "json",
-            success: function(output) {
-                // location.reload();
-                console.log(output);
-                //location.href = "./addToCart.php"
-            }
-        });
-
-
-    }
-
-    function toShop(shopname) {
-
-    }
-</script>

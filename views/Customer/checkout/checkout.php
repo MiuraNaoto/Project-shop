@@ -10,26 +10,22 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     $idUT = $_SESSION[md5('typeid')];
     $username = $_SESSION[md5('username')];
     $USER = $_SESSION[md5('user')];
+    $uid = $USER[1]["uid"];
     // echo $username;
     // echo print_r($USER);
+    $ADDRESS_DELIVERTY = getAddressUser($uid);
+    $SHOPING_CART = getShopingCart($uid);
+    // print_r($ADDRESS_DELIVERTY);
 }
 ?>
 
 
 <head>
     <?php include_once("../layout/header.php") ?>
+    <link rel="stylesheet" href="checkout.css">
 </head>
 <style>
-    .drowdown-checkout {
-        height: 50px;
-        width: 100%;
-        border: 1px solid #e1e1e1;
-        border-radius: 2px;
-        margin-bottom: 25px;
-        font-size: 14px;
-        padding-left: 20px;
-        color: #666666;
-    }
+
 </style>
 
 <body>
@@ -42,8 +38,8 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="../../../index.php"><i class="fa fa-home"></i> Home</a>
-                        <a href="../shop-cart/shop-cart.php">Shopping cart</a>
-                        <span>Checkout</span>
+                        <a href="../shop-cart/shop-cart.php">ตระกร้าสินค้า</a>
+                        <span>ยืนยันคำสั่งซื้อ</span>
                     </div>
                 </div>
             </div>
@@ -65,6 +61,31 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                     <div class="col-lg-8">
                         <h5>ที่อยู่จัดส่ง</h5>
                         <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="card mb-3">
+                                    <!-- <div class="card-header">Header</div> -->
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $ADDRESS_DELIVERTY[1]["title"] . $ADDRESS_DELIVERTY[1]["firstname"] . " " . $ADDRESS_DELIVERTY[1]["lastname"] ?></h5>
+                                        <h6 class="card-text"><?php
+                                                                if ($ADDRESS_DELIVERTY[1]["provinces_name_in_thai"] == "กรุงเทพมหานคร") {
+                                                                    echo "เลขที่ " . $ADDRESS_DELIVERTY[1]["address"] .
+                                                                        " แขวง" . $ADDRESS_DELIVERTY[1]["subdistricts_name_in_thai"] .
+                                                                        " " . $ADDRESS_DELIVERTY[1]["districts_name_in_thai"] .
+                                                                        " " . $ADDRESS_DELIVERTY[1]["provinces_name_in_thai"] .
+                                                                        ", " . $ADDRESS_DELIVERTY[1]["zip_code"];
+                                                                } else {
+                                                                    echo "เลขที่" . $ADDRESS_DELIVERTY[1]["address"] .
+                                                                        " ต." . $ADDRESS_DELIVERTY[1]["subdistricts_name_in_thai"] .
+                                                                        " อ." . $ADDRESS_DELIVERTY[1]["districts_name_in_thai"] .
+                                                                        " จ." . $ADDRESS_DELIVERTY[1]["provinces_name_in_thai"] .
+                                                                        ", " . $ADDRESS_DELIVERTY[1]["zip_code"];
+                                                                }
+                                                                ?></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="checkout__form__input">
                                     <p>ชื่อ <span>*</span></p>
@@ -98,7 +119,6 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="checkout__form__input">
                                     <p>จังหวัด <span>*</span></p>
-                                    <!-- <input type="text" name="province" class="form-control" placeholder="กรุณากรอกจังหวัด"> -->
                                     <select name="zipcode" class="form-control drowdown-checkout">
                                         <option disabled selected>กรุณาเลือกจังหวัด</option>
                                         <option>กรุงเทพมหานคร</option>
@@ -112,7 +132,6 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="checkout__form__input">
                                     <p>อำเภอ/เขต <span>*</span></p>
-                                    <!-- <input type="text" name="province" class="form-control" placeholder="กรุณากรอกจังหวัด"> -->
                                     <select name="zipcode" class="form-control drowdown-checkout">
                                         <option disabled selected>กรุณาเลือกอำเภอ/เขต</option>
                                         <option>เมืองนครปฐม</option>
@@ -128,7 +147,6 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="checkout__form__input">
                                     <p>ตำบล/แขวง <span>*</span></p>
-                                    <!-- <input type="text" name="province" class="form-control" placeholder="กรุณากรอกจังหวัด"> -->
                                     <select name="zipcode" class="form-control drowdown-checkout">
                                         <option disabled selected>กรุณาเลือกตำบล/แขวง </option>
                                         <option>กำแพงแสน</option>
@@ -144,13 +162,39 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-lg-4">
-                        <div class="checkout__order" style="padding-bottom: 100px; ">
-                            <h5>รายการสินค้า</h5>
-                            <div class="checkout__order__product">
-                                <ul>
+                        <?php
+                        for ($i = 1; $i < count($SHOPING_CART); $i++) {
+                        ?>
+                            <div class="checkout__order" style="padding-bottom: 100px; ">
+                                <h5>รายการสินค้า</h5>
+                                <div class="checkout__order__product">
+                                    <table style="width: 100%;">
+
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center;"></th>
+                                                <th style="text-align: left;">สินค้า</th>
+                                                <th style="text-align: center;"></th>
+                                                <th style="text-align: right;">ราคา</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td style="text-align: left;"><?php echo  $i; ?></td>
+                                                <td style="text-align: left;"><?php echo  $SHOPING_CART[$i]["product_name"]; ?></td>
+                                                <td style="text-align: left;"><?php echo  "x" . $SHOPING_CART[$i]["quantity"]; ?></td>
+                                                <td style="text-align: right;"><?php echo  "฿ " . number_format($SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"], 2); ?></td>
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+
+                                    <!-- <ul>
                                     <li>
                                         <span class="top__text">สินค้า</span>
                                         <span class="top__text__right">ราคา</span>
@@ -161,22 +205,32 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                     <li>04. Cotton shirt <span>$ 110.0</span></li>
                                     <hr>
                                     <li>ค่าจัดส่ง <span>$ 45</span></li>
-                                </ul>
+                                </ul> -->
+                                </div>
+                                <div class="checkout__order__total">
+                                    <ul>
+                                        <li id='total_price'>ราคารวม <span>
+                                                <?php
+                                                $price = $SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"];
+                                                $PRICES = [];
+                                                array_push($PRICES, $price);
+                                                echo number_format(array_sum($PRICES), 2);
+                                                ?>
+                                            </span></li>
+                                    </ul>
+                                </div>
+                                <!-- <div class="checkout__order__widget">
+                                    <label for="paypal">
+                                        โอนผ่านบัญชีธนาคาร
+                                        <input type="checkbox" id="paypal">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div> -->
+                                <button type="button" class="btn btn-danger" style="border-radius: 50px; width: 300px;" onclick="payment('<?php echo $SHOPING_CART[$i]['product_id']; ?>')">ชำระเงิน</button>
+                            <?php
+                        }
+                            ?>
                             </div>
-                            <div class="checkout__order__total">
-                                <ul>
-                                    <li>ราคารวม <span>& 750.0</span></li>
-                                </ul>
-                            </div>
-                            <div class="checkout__order__widget">
-                                <label for="paypal">
-                                    โอนผ่านบัญชีธนาคาร
-                                    <input type="checkbox" id="paypal">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <a href="../payment/payment.php"><button type="button" class="btn btn-danger" style="border-radius: 50px; width: 300px;">ชำระเงิน</button></a>
-                        </div>
                     </div>
                 </div>
             </form>
@@ -186,6 +240,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
 
     <!-- Js Plugins -->
     <?php include_once("../layout/js.php"); ?>
+    <script src="checkout.js"></script>
 </body>
 
 </html>
