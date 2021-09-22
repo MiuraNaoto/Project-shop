@@ -171,12 +171,12 @@ function getProductDetail($product_id)
     return $DATA;
 }
 
-function getProductByShopID($product_id)
+function getProductByShopID($shop_id)
 {
     $sql = "SELECT * FROM `product` 
                     INNER JOIN `product_type` ON `product`.`product_type` = `product_type`.`id` 
                     INNER JOIN `seller-list` ON `product`.`shop_id` = `seller-list`.`shop_id` 
-            WHERE `product`.`product_id` = '$product_id'";
+            WHERE `seller-list`.`shop_id` = '$shop_id'";
     $DATA = selectData($sql);
     return $DATA;
 }
@@ -225,4 +225,26 @@ function countShopingCart($uid)
     $sql = "SELECT COUNT(*) AS `count_cart` FROM `shopping_cart` WHERE `uid` = '$uid'";
     $DATA = selectDataOne($sql);
     return $DATA;
+}
+
+
+// ORDER
+function getAllOrder()
+{
+    $sql = "SELECT * FROM `orders` 
+                    INNER JOIN `orders_detail` ON `orders`.`order_id` = `orders_detail`.`od_id` 
+                    INNER JOIN `product` ON `orders_detail`.`product_id` = `product`.`product_id`
+                    INNER JOIN `review_product` ON `orders_detail`.`review_product` = `review_product`.`rpid`
+                    INNER JOIN `review_shop` ON `orders`.`review_shop` = `review_shop`.`rsid`
+                    INNER JOIN `delivery` ON `orders`.`delivery` = `delivery`.`did`
+                    INNER JOIN `delivery_address` ON `orders`.`daid` = `delivery_address`.`daid`
+                    INNER JOIN `subdistricts` ON `delivery_address`.`subdistrict` = `subdistricts`.`id`
+                    INNER JOIN `districts` ON `subdistricts`.`district_id` = `districts`.`id`
+                    INNER JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id`
+                    INNER JOIN `user-list` ON `delivery_address`.`uid` = `user-list`.`uid`
+                    INNER JOIN `user-title` ON `delivery_address`.`title` = `user-title`.`id`
+                    INNER JOIN `type_payment` ON `orders`.`type_payment` = `type_payment`.`tpid`
+                    INNER JOIN `status_order` ON `orders`.`status_order` = `status_order`.`so_id` AND `orders_detail`.`status_order` = `status_order`.`so_id`";
+    $DATA = selectData($sql);
+    return ($DATA);
 }

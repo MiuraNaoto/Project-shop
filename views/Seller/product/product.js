@@ -1,6 +1,6 @@
 $(document).ready(function () {
   // $("#insert-product").submit(function (e) {
-  $("register-saler-form").submit(function (e) {
+  $("form-insert-product").submit(function (e) {
     // $(document).on("click", ".insert-product", function (event) {
     e.preventDefault();
     var product_code = $("#product_code").val();
@@ -123,8 +123,8 @@ $(document).ready(function () {
                             success: function (data) {
                               console.log(data);
                               alert(data);
-                              location.reload();
-                              // location.href = "./manage.php";
+                              // location.reload();
+                              location.href = "./manage.php";
                             },
                           });
                         }

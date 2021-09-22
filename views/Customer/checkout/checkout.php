@@ -165,36 +165,37 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                         </div> -->
                     </div>
                     <div class="col-lg-4">
-                        <?php
-                        for ($i = 1; $i < count($SHOPING_CART); $i++) {
-                        ?>
-                            <div class="checkout__order" style="padding-bottom: 100px; ">
-                                <h5>รายการสินค้า</h5>
-                                <div class="checkout__order__product">
-                                    <table style="width: 100%;">
+                        <div class="checkout__order" style="padding-bottom: 100px; ">
+                            <h5>รายการสินค้า</h5>
+                            <div class="checkout__order__product">
+                                <table style="width: 100%;">
 
-                                        <thead>
-                                            <tr>
-                                                <th style="text-align: center;"></th>
-                                                <th style="text-align: left;">สินค้า</th>
-                                                <th style="text-align: center;"></th>
-                                                <th style="text-align: right;">ราคา</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center;"></th>
+                                            <th style="text-align: left;">สินค้า</th>
+                                            <th style="text-align: center;"></th>
+                                            <th style="text-align: right;">ราคา</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for ($i = 1; $i < count($SHOPING_CART); $i++) {
+                                        ?>
                                             <tr>
                                                 <td style="text-align: left;"><?php echo  $i; ?></td>
                                                 <td style="text-align: left;"><?php echo  $SHOPING_CART[$i]["product_name"]; ?></td>
                                                 <td style="text-align: left;"><?php echo  "x" . $SHOPING_CART[$i]["quantity"]; ?></td>
                                                 <td style="text-align: right;"><?php echo  "฿ " . number_format($SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"], 2); ?></td>
                                             </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
 
-                                        </tbody>
+                                </table>
 
-                                    </table>
-
-                                    <!-- <ul>
+                                <!-- <ul>
                                     <li>
                                         <span class="top__text">สินค้า</span>
                                         <span class="top__text__right">ราคา</span>
@@ -206,31 +207,32 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                     <hr>
                                     <li>ค่าจัดส่ง <span>$ 45</span></li>
                                 </ul> -->
-                                </div>
-                                <div class="checkout__order__total">
-                                    <ul>
-                                        <li id='total_price'>ราคารวม <span>
-                                                <?php
+                            </div>
+                            <div class="checkout__order__total">
+                                <ul>
+                                    <li id='total_price'>ราคารวม <span>
+                                            <?php
+                                            for ($i = 1; $i < count($SHOPING_CART); $i++) {
                                                 $price = $SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"];
+                                                // echo $price;
                                                 $PRICES = [];
                                                 array_push($PRICES, $price);
-                                                echo number_format(array_sum($PRICES), 2);
-                                                ?>
-                                            </span></li>
-                                    </ul>
-                                </div>
-                                <!-- <div class="checkout__order__widget">
+                                            }
+                                            echo number_format(array_sum($PRICES), 2);
+                                            ?>
+                                        </span></li>
+                                </ul>
+                            </div>
+                            <!-- <div class="checkout__order__widget">
                                     <label for="paypal">
                                         โอนผ่านบัญชีธนาคาร
                                         <input type="checkbox" id="paypal">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div> -->
-                                <button type="button" class="btn btn-danger" style="border-radius: 50px; width: 300px;" onclick="payment('<?php echo $SHOPING_CART[$i]['product_id']; ?>')">ชำระเงิน</button>
-                            <?php
-                        }
-                            ?>
-                            </div>
+                            <button type="button" class="btn btn-danger" style="border-radius: 50px; width: 300px;" onclick="payment('<?php echo $SHOPING_CART[$i]['product_id']; ?>')">ชำระเงิน</button>
+
+                        </div>
                     </div>
                 </div>
             </form>

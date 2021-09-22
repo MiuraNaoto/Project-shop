@@ -107,7 +107,7 @@ switch ($request) {
                 VALUES ('$product_code','$product_name','$product_description','$product_specification','$type_product','$price','$price_transport','$stock','$shop_id','$delivery_type','$final_image',' $picture_path','$time')";
         addinsertData($sql);
         echo $sql;
-        header("location: product.php");
+        // header("location: product.php");
         break;
     case 'delete':
         $product_id = $_POST["product_id"];

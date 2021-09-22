@@ -14,6 +14,8 @@ $shop_id = $SELLER[1]["shop_id"];
 
 $CurrentMenu = "order";
 
+$ORDER = getAllOrder();
+print_r($ORDER);
 ?>
 
 <head>
@@ -100,13 +102,17 @@ $CurrentMenu = "order";
                                         </thead>
                                         <tbody>
                                             <?php
-                                            for ($i = 1; $i < 101; $i++) {
+                                            for ($i = 1; $i < count($ORDER); $i++) {
                                             ?>
                                                 <tr>
                                                     <td style="vertical-align: middle; text-align: center;"><?php echo $i; ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo rand() ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;">นายก ขคง</td>
-                                                    <td style="vertical-align: middle; text-align: end;">ชุดอิ่มคุ้ม</td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER[$i]["order_number"] ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER[$i]["title"] . $ORDER[$i]["firstname"] . " " . $ORDER[$i]["lastname"] ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;">
+                                                        <button type="button" id="show" class="btn btn-primary btn-md" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#viewModal">
+                                                            <i class="fas fa-search"></i>
+                                                        </button>
+                                                    </td>
                                                     <td style="vertical-align: middle; text-align: end;">20</td>
                                                     <td style="vertical-align: middle; text-align: end;">2,400.00</td>
                                                     <td style="vertical-align: middle; text-align: end;">11/07/2564 17:30:14</td>
@@ -203,12 +209,12 @@ $CurrentMenu = "order";
                                         </thead>
                                         <tbody>
                                             <?php
-                                            for ($i = 1; $i < 5; $i++) {
+                                            for ($i = 1; $i < count($ORDER); $i++) {
                                             ?>
                                                 <tr>
                                                     <td style="vertical-align: middle; text-align: center;"><?php echo $i; ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo rand() ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;">นายก ขคง</td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER[$i]["order_number"] ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER[$i]["title"] . $ORDER[$i]["firstname"] . " " . $ORDER[$i]["lastname"] ?></td>
                                                     <td style="vertical-align: middle; text-align: end;">ชุดอิ่มคุ้ม</td>
                                                     <td style="vertical-align: middle; text-align: end;">20</td>
                                                     <td style="vertical-align: middle; text-align: end;">2,400.00</td>
