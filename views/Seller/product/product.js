@@ -123,8 +123,8 @@ $(document).ready(function () {
                             success: function (data) {
                               console.log(data);
                               alert(data);
-                              // location.reload();
-                              location.href = "./manage.php";
+                              location.reload();
+                              // location.href = "./manage.php";
                             },
                           });
                         }
