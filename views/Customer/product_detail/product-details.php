@@ -7,6 +7,8 @@ include_once("../../../query/function.php");
 session_start();
 // $idUT = $_SESSION[md5('typeid')];
 // $username = $_SESSION[md5('username')];
+$product_id = $_GET['product_id'];
+
 if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isset($_SESSION[md5('user')])) {
     $idUT = $_SESSION[md5('typeid')];
     $username = $_SESSION[md5('username')];
@@ -20,7 +22,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
 }
 
 
-$product_id = $_GET['product_id'];
+
 
 $PRODUCT_DETAIL = getProductDetail($product_id);
 
