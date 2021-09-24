@@ -16,6 +16,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     // $shop_id = $SELLER[1]["shop_id"];
     // echo $username;
     // echo print_r($USER);
+    $FAVOURITE = favourite_product($product_id, $uid);
 }
 
 
@@ -25,7 +26,7 @@ $PRODUCT_DETAIL = getProductDetail($product_id);
 
 $SALER_PRODUCT = getProductByShopID($product_id);
 $RELATIVE_PRODUCT = getRelateProducts($PRODUCT_DETAIL[1]['product_type']);
-$FAVOURITE = favourite_product($product_id, $uid);
+
 // print_r($PRODUCT_DETAIL);
 ?>
 

@@ -11,7 +11,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     $username = $_SESSION[md5('username')];
     $USER = $_SESSION[md5('user')];
     $uid = $USER[1]["uid"];
-    
+
     // echo print_r($USER);
 
 }
@@ -84,7 +84,13 @@ $SHOPING_CART = getShopingCart($uid);
                                             </div>
                                         </td>
                                         <td class="cart__total" id="cart__total" name="cart__total"><?php echo  "฿ " . number_format($SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"], 2); ?></td>
-                                        <td class="cart__close"><span class="icon_close"></span></td>
+
+                                        <td class="cart__close">
+                                            <button type="button" class="btn btn-secondary btn-lg rounded-circle" onclick="">
+                                                <!-- <span class="icon_close"></span> -->
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
                                     </tr>
                                 <?php
                                 }

@@ -36,3 +36,5 @@ function updateCart(productId, shopId) {
     },
   });
 }
+
+
