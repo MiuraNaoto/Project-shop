@@ -13,7 +13,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     $USER = $_SESSION[md5('user')];
     $SELLER = $_SESSION[md5('shop')];
     $uid = $USER[1]["uid"];
-    $shop_id = $SELLER[1]["shop_id"];
+    // $shop_id = $SELLER[1]["shop_id"];
     // echo $username;
     // echo print_r($USER);
 }
@@ -25,7 +25,7 @@ $PRODUCT_DETAIL = getProductDetail($product_id);
 
 $SALER_PRODUCT = getProductByShopID($product_id);
 $RELATIVE_PRODUCT = getRelateProducts($PRODUCT_DETAIL[1]['product_type']);
-
+$FAVOURITE = favourite_product($product_id, $uid);
 // print_r($PRODUCT_DETAIL);
 ?>
 
@@ -122,10 +122,23 @@ $RELATIVE_PRODUCT = getRelateProducts($PRODUCT_DETAIL[1]['product_type']);
                             <button class="cart-btn  btn btn-danger" id="addToCart" onclick="addToCart('<?php echo $PRODUCT_DETAIL[1]['product_id']; ?>','<?php echo $PRODUCT_DETAIL[1]['shop_id'] ?>')">
                                 <span class="icon_bag_alt">&nbsp;&nbsp;เพิ่มลงตระกร้าสินค้า</span>
                             </button>
-                            <ul>
-                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                <!-- <li><a href="#"><span class="icon_adjust-horiz"></span></a></li> -->
-                            </ul>
+
+                            <?php
+                            if (isset($FAVOURITE[1]["product_id"]) && isset($FAVOURITE[1]["uid"])) {
+                            ?>
+                                <button class="btn btn-danger btn-lg rounded-circle" id="favourtie" onclick="favouriteP('<?php echo $PRODUCT_DETAIL[1]['product_id']; ?>')">
+                                    <span class="icon_heart_alt"></span>
+                                </button>
+                            <?php
+                            } else {
+                            ?>
+                                <button class="btn btn-outline-danger btn-lg rounded-circle" id="favourtie" onclick="favouriteP('<?php echo $PRODUCT_DETAIL[1]['product_id']; ?>')">
+                                    <span class="icon_heart_alt"></span>
+                                </button>
+                            <?php
+                            }
+                            ?>
+
                         </div>
                         <div class="product__details__widget">
                             <ul>

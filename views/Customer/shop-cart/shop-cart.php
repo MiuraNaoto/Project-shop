@@ -11,10 +11,11 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     $username = $_SESSION[md5('username')];
     $USER = $_SESSION[md5('user')];
     $uid = $USER[1]["uid"];
-    // echo $username;
+    
     // echo print_r($USER);
-    $SHOPING_CART = getShopingCart($uid);
+
 }
+$SHOPING_CART = getShopingCart($uid);
 ?>
 
 <head>

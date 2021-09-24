@@ -248,3 +248,29 @@ function getAllOrder()
     $DATA = selectData($sql);
     return ($DATA);
 }
+
+
+// FAVOURITE
+function favourite_product($product_id, $uid) {
+    $sql = "SELECT * FROM `favourite` WHERE `product_id` = '$product_id' AND `uid` = '$uid'";
+    $DATA = selectData($sql);
+    return ($DATA);
+}
+
+
+function countFavouriteByUser($uid)
+{
+    $sql = "SELECT COUNT(*) AS `count_fav` FROM `favourite` WHERE `uid` = '$uid'";
+    $DATA = selectDataOne($sql);
+    return $DATA;
+}
+
+function FavouriteByUser($uid)
+{
+    $sql = "SELECT * FROM `favourite` 
+                    INNER JOIN `product` ON `favourite`.`product_id` = `product`.`product_id`
+                    INNER JOIN `seller-list` ON `product`.`shop_id` = `seller-list`.`shop_id`
+            WHERE `uid` = '$uid'";
+    $DATA = selectData($sql);
+    return $DATA;
+}

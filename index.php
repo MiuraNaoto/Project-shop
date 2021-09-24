@@ -16,7 +16,17 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
         $DATA = selectDataOne($sql);
         return $DATA;
     }
+
+    function countFavouriteByUser($uid)
+    {
+        $sql = "SELECT COUNT(*) AS `count_fav` FROM `favourite` WHERE `uid` = '$uid'";
+        $DATA = selectDataOne($sql);
+        return $DATA;
+    }
+
+
     $COUNT_SHOPING_CART = countShopingCart($uid)["count_cart"];
+    $COUNT_FAVOURITE = countFavouriteByUser($uid)["count_fav"];
 }
 
 
@@ -233,8 +243,14 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="views/Customer/favorite/favorite.php"><span class="icon_heart_alt"></span>
-                                            <div class="tip">2</div>
+                                        <a href="views/Customer/favorite/favorite.php">
+                                            <span class="icon_heart_alt"></span>
+                                            <?php
+                                            if ($COUNT_FAVOURITE == 0) {
+                                            } else {
+                                                echo '<div class="tip">' . $COUNT_FAVOURITE . "</div>";
+                                            }
+                                            ?>
                                         </a>
                                     </li>
                                     <li>

@@ -8,8 +8,10 @@
         $uid = $USER[1]["uid"];
         // echo $username;
         // echo print_r($USER);
-
+        // echo $uid;
         $COUNT_SHOPING_CART = countShopingCart($uid)["count_cart"];
+        $COUNT_FAVOURITE = countFavouriteByUser($uid)["count_fav"];
+        // echo $COUNT_SHOPING_CART;
     }
 
 
@@ -81,8 +83,14 @@
                                      </a>
                                  </li>
                                  <li>
-                                     <a href="../favorite/favorite.php"><span class="icon_heart_alt"></span>
-                                         <div class="tip">2</div>
+                                     <a href="../favorite/favorite.php">
+                                         <span class="icon_heart_alt"></span>
+                                         <?php
+                                            if ($COUNT_FAVOURITE == 0) {
+                                            } else {
+                                                echo '<div class="tip">' . $COUNT_FAVOURITE . "</div>";
+                                            }
+                                            ?>
                                      </a>
                                  </li>
                                  <li>
