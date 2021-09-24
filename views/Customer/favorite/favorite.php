@@ -66,15 +66,15 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                             </div>
                                             <hr>
                                             <div class="cart__product__item__title">
-                                                <img src="../../../img/shop-cart/cp-1.jpg" alt="">
+                                                <img src="<?php echo "../../../img/product/profile/" . $FAVOURITE[$i]["profile_product"] ?>" width="100px" height="100px" alt="">
                                                 <div class="col-lg-12">
-                                                    <h6>Chain bucket bag</h6>
+                                                    <h6><?php echo $FAVOURITE[$i]['product_name']; ?></h6>
                                                 </div>
                                                 <div class="col-lg-12 mt-2 ">
-                                                    <span class="h5" style="color: #FF6633;">฿1,834</span>
+                                                    <span class="h5" style="color: #FF6633;"><?php echo "฿ ".$FAVOURITE[$i]['price']; ?></span>
                                                 </div>
                                                 <div class="col-lg-12 mt-2 ">
-                                                    <span class="text-muted" style="font-size: 14px;">ขายได้ 1234 ชิ้น</span>
+                                                    <!-- <span class="text-muted" style="font-size: 14px;">ขายได้ 1234 ชิ้น</span> -->
                                                 </div>
                                             </div>
                                             <br>
