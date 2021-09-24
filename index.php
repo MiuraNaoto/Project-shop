@@ -383,58 +383,74 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
     <section class="categories">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6 p-0">
-                    <div class="categories__item categories__large__item set-bg" data-setbg="img/categories/food.png">
-                        <div class="categories__text">
-                            <h2><?php echo $PRODUCT_TYPE[1]["type"] ?></h2>
-                            <!-- <h1>Food</h1> -->
-                            <p><?php echo $PRODUCTBYTYPE_FOOD[0]["numrow"] . " รายการ" ?></p>
-                            <!-- <p>Sitamet, consectetur adipiscing elit, sed do eiusmod tempor incidid-unt labore
+                <?php
+                for ($i = 1; $i < count($PRODUCT_TYPE); $i++) {
+                    if ($i == 1) {
+                ?>
+                        <div class="col-lg-6 p-0">
+                            <div class="categories__item categories__large__item set-bg" data-setbg="img/categories/food.png">
+                                <div class="categories__text">
+                                    <h2><?php echo $PRODUCT_TYPE[$i]["type"] ?></h2>
+                                    <!-- <h1>Food</h1> -->
+                                    <p><?php echo $PRODUCTBYTYPE_FOOD[0]["numrow"] . " รายการ" ?></p>
+                                    <!-- <p>Sitamet, consectetur adipiscing elit, sed do eiusmod tempor incidid-unt labore
                                 edolore magna aliquapendisse ultrices gravida.</p> -->
-                            <a href="views/Customer/shop/shop.php?type_id=1">Shop now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" data-setbg="img/categories/drink.png">
-                                <div class="categories__text">
-                                    <h4><?php echo $PRODUCT_TYPE[2]["type"] ?></h4>
-                                    <p><?php echo $PRODUCTBYTYPE_DRINK[0]["numrow"] . " รายการ" ?></p>
-                                    <a href="views/Customer/shop/shop.php?type_id=2">Shop now</a>
+                                    <a href="views/Customer/shop/shop.php?type_id=1">Shop now</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" data-setbg="img/categories/category-3.jpg">
-                                <div class="categories__text">
-                                    <h4><?php echo $PRODUCT_TYPE[3]["type"] ?></h4>
-                                    <p><?php echo $PRODUCTBYTYPE_CLOTHES[0]["numrow"] . " รายการ" ?></p>
-                                    <a href="views/Customer/shop/shop.php?type_id=3">Shop now</a>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                                    <div class="categories__item set-bg" data-setbg="img/categories/drink.png">
+                                        <div class="categories__text">
+                                            <h4><?php echo $PRODUCT_TYPE[$i]["type"] ?></h4>
+                                            <p><?php echo $PRODUCTBYTYPE_DRINK[0]["numrow"] . " รายการ" ?></p>
+                                            <a href="views/Customer/shop/shop.php?type_id=2">Shop now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                                    <div class="categories__item set-bg" data-setbg="img/categories/category-3.jpg">
+                                        <div class="categories__text">
+                                            <h4><?php echo $PRODUCT_TYPE[$i]["type"] ?></h4>
+                                            <p><?php echo $PRODUCTBYTYPE_CLOTHES[0]["numrow"] . " รายการ" ?></p>
+                                            <a href="views/Customer/shop/shop.php?type_id=3">Shop now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                                    <div class="categories__item set-bg" data-setbg="img/categories/accessory.png">
+                                        <div class="categories__text">
+                                            <h4><?php echo $PRODUCT_TYPE[$i]["type"] ?></h4>
+                                            <p><?php echo $PRODUCTBYTYPE_ACCESSORIES[0]["numrow"] . " รายการ" ?></p>
+                                            <a href="views/Customer/shop/shop.php?type_id=4">Shop now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                                    <div class="categories__item set-bg" data-setbg="img/categories/herb.png">
+                                        <div class="categories__text">
+                                            <h4><?php echo $PRODUCT_TYPE[$i]["type"] ?></h4>
+                                            <p><?php echo $PRODUCTBYTYPE_HERB[0]["numrow"] . " รายการ" ?></p>
+                                            <a href="views/Customer/shop/shop.php?type_id=5">Shop now</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" data-setbg="img/categories/accessory.png">
-                                <div class="categories__text">
-                                    <h4><?php echo $PRODUCT_TYPE[4]["type"] ?></h4>
-                                    <p><?php echo $PRODUCTBYTYPE_ACCESSORIES[0]["numrow"] . " รายการ" ?></p>
-                                    <a href="views/Customer/shop/shop.php?type_id=4">Shop now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" data-setbg="img/categories/herb.png">
-                                <div class="categories__text">
-                                    <h4><?php echo $PRODUCT_TYPE[5]["type"] ?></h4>
-                                    <p><?php echo $PRODUCTBYTYPE_HERB[0]["numrow"] . " รายการ" ?></p>
-                                    <a href="views/Customer/shop/shop.php?type_id=5">Shop now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <?php
+                    } elseif($i == 4) {
+
+                    }
+                    ?>
+
+                <?php
+                }
+
+                ?>
+
+
             </div>
         </div>
     </section>
