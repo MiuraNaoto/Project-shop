@@ -161,7 +161,7 @@ $RELATIVE_PRODUCT = getRelateProducts($PRODUCT_DETAIL[1]['product_type']);
                                         </label>
                                     </div>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <span>Available color:</span>
                                     <div class="color__checkbox">
                                         <label for="red">
@@ -198,7 +198,7 @@ $RELATIVE_PRODUCT = getRelateProducts($PRODUCT_DETAIL[1]['product_type']);
                                             l
                                         </label>
                                     </div>
-                                </li>
+                                </li> -->
 
                             </ul>
                         </div>
