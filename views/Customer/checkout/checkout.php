@@ -66,110 +66,104 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                 <div class="card mb-3">
                                     <!-- <div class="card-header">Header</div> -->
                                     <div class="card-body">
-                                        <?php
-                                        if (isset($ADDRESS_DELIVERTY)) {
-                                        ?>
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <div class="checkout__form__input">
-                                                        <p>ชื่อ <span>*</span></p>
-                                                        <input type="text" name="firstname" class="form-control" placeholder="กรุณากรอกชื่อจริง">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <div class="checkout__form__input">
-                                                        <p>นามสกุล<span>*</span></p>
-                                                        <input type="text" name="lastname" class="form-control" placeholder="กรุณากรอกนามสกุล">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12 col-md-6 col-sm-6">
-                                                    <div class="checkout__form__input">
-                                                        <p>เบอร์โทรศัพท์<span>*</span></p>
-                                                        <input type="text" name="lastname" class="form-control" placeholder="กรุณากรอกเบอร์โทรศัพท์">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="checkout__form__input">
-                                                        <p>ที่อยู่ <span>*</span></p>
-                                                        <input type="text" name="address" class="form-control" placeholder="กรุณากรอกที่อยู่">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <div class="checkout__form__input">
-                                                        <p>รหัสไปรษณีย์ <span>*</span></p>
-                                                        <input type="text" name="zipcode" class="form-control" placeholder="กรุณากรอกรหัสไปรษณีย์">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <div class="checkout__form__input">
-                                                        <p>จังหวัด <span>*</span></p>
-                                                        <select name="zipcode" class="form-control drowdown-checkout">
-                                                            <option disabled selected>กรุณาเลือกจังหวัด</option>
-                                                            <option>กรุงเทพมหานคร</option>
-                                                            <option>นครปฐม</option>
-                                                            <option>กาญจนบุรี</option>
-                                                            <option>ราชบุรี</option>
-                                                            <option>สุพรรณบุรี</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <div class="checkout__form__input">
-                                                        <p>อำเภอ/เขต <span>*</span></p>
-                                                        <select name="zipcode" class="form-control drowdown-checkout">
-                                                            <option disabled selected>กรุณาเลือกอำเภอ/เขต</option>
-                                                            <option>เมืองนครปฐม</option>
-                                                            <option>นครชัยศรี</option>
-                                                            <option>สามพราน</option>
-                                                            <option>ดอนตูม</option>
-                                                            <option>บางเลน</option>
-                                                            <option>กำแพงแสน</option>
-                                                            <option>พุทธมณฑล</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <div class="checkout__form__input">
-                                                        <p>ตำบล/แขวง <span>*</span></p>
-                                                        <select name="zipcode" class="form-control drowdown-checkout">
-                                                            <option disabled selected>กรุณาเลือกตำบล/แขวง </option>
-                                                            <option>กำแพงแสน</option>
-                                                            <option>กระตีบ</option>
-                                                            <option>ทุ่งกระพังโหม</option>
-                                                            <option>รางพิกุล</option>
-                                                            <option>วังน้ำเขียว</option>
-                                                            <option>สระพัฒนา</option>
-                                                            <option>สระสี่มุม</option>
-                                                            <option>หนองกระทุ่ม</option>
-                                                            <option>ห้วยขวาง</option>
-                                                            <option>ห้วยม่วง</option>
-                                                        </select>
-                                                    </div>
+
+                                        <!-- <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <div class="checkout__form__input">
+                                                    <p>ชื่อ <span>*</span></p>
+                                                    <input type="text" name="firstname" class="form-control" placeholder="กรุณากรอกชื่อจริง">
                                                 </div>
                                             </div>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <h5 class="card-title"><?php echo $ADDRESS_DELIVERTY[1]["title"] . $ADDRESS_DELIVERTY[1]["firstname"] . " " . $ADDRESS_DELIVERTY[1]["lastname"] ?></h5>
-                                            <h6 class="card-text"><?php
-                                                                    if ($ADDRESS_DELIVERTY[1]["provinces_name_in_thai"] == "กรุงเทพมหานคร") {
-                                                                        echo "เลขที่ " . $ADDRESS_DELIVERTY[1]["address"] .
-                                                                            " แขวง" . $ADDRESS_DELIVERTY[1]["subdistricts_name_in_thai"] .
-                                                                            " " . $ADDRESS_DELIVERTY[1]["districts_name_in_thai"] .
-                                                                            " " . $ADDRESS_DELIVERTY[1]["provinces_name_in_thai"] .
-                                                                            ", " . $ADDRESS_DELIVERTY[1]["zip_code"];
-                                                                    } else {
-                                                                        echo "เลขที่" . $ADDRESS_DELIVERTY[1]["address"] .
-                                                                            " ต." . $ADDRESS_DELIVERTY[1]["subdistricts_name_in_thai"] .
-                                                                            " อ." . $ADDRESS_DELIVERTY[1]["districts_name_in_thai"] .
-                                                                            " จ." . $ADDRESS_DELIVERTY[1]["provinces_name_in_thai"] .
-                                                                            ", " . $ADDRESS_DELIVERTY[1]["zip_code"];
-                                                                    }
-                                                                    ?>
-                                            </h6>
-                                        <?php
-                                        }
-                                        ?>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <div class="checkout__form__input">
+                                                    <p>นามสกุล<span>*</span></p>
+                                                    <input type="text" name="lastname" class="form-control" placeholder="กรุณากรอกนามสกุล">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-6 col-sm-6">
+                                                <div class="checkout__form__input">
+                                                    <p>เบอร์โทรศัพท์<span>*</span></p>
+                                                    <input type="text" name="lastname" class="form-control" placeholder="กรุณากรอกเบอร์โทรศัพท์">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="checkout__form__input">
+                                                    <p>ที่อยู่ <span>*</span></p>
+                                                    <input type="text" name="address" class="form-control" placeholder="กรุณากรอกที่อยู่">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <div class="checkout__form__input">
+                                                    <p>รหัสไปรษณีย์ <span>*</span></p>
+                                                    <input type="text" name="zipcode" class="form-control" placeholder="กรุณากรอกรหัสไปรษณีย์">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <div class="checkout__form__input">
+                                                    <p>จังหวัด <span>*</span></p>
+                                                    <select name="zipcode" class="form-control drowdown-checkout">
+                                                        <option disabled selected>กรุณาเลือกจังหวัด</option>
+                                                        <option>กรุงเทพมหานคร</option>
+                                                        <option>นครปฐม</option>
+                                                        <option>กาญจนบุรี</option>
+                                                        <option>ราชบุรี</option>
+                                                        <option>สุพรรณบุรี</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <div class="checkout__form__input">
+                                                    <p>อำเภอ/เขต <span>*</span></p>
+                                                    <select name="zipcode" class="form-control drowdown-checkout">
+                                                        <option disabled selected>กรุณาเลือกอำเภอ/เขต</option>
+                                                        <option>เมืองนครปฐม</option>
+                                                        <option>นครชัยศรี</option>
+                                                        <option>สามพราน</option>
+                                                        <option>ดอนตูม</option>
+                                                        <option>บางเลน</option>
+                                                        <option>กำแพงแสน</option>
+                                                        <option>พุทธมณฑล</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <div class="checkout__form__input">
+                                                    <p>ตำบล/แขวง <span>*</span></p>
+                                                    <select name="zipcode" class="form-control drowdown-checkout">
+                                                        <option disabled selected>กรุณาเลือกตำบล/แขวง </option>
+                                                        <option>กำแพงแสน</option>
+                                                        <option>กระตีบ</option>
+                                                        <option>ทุ่งกระพังโหม</option>
+                                                        <option>รางพิกุล</option>
+                                                        <option>วังน้ำเขียว</option>
+                                                        <option>สระพัฒนา</option>
+                                                        <option>สระสี่มุม</option>
+                                                        <option>หนองกระทุ่ม</option>
+                                                        <option>ห้วยขวาง</option>
+                                                        <option>ห้วยม่วง</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                                        <h5 class="card-title"><?php echo $ADDRESS_DELIVERTY[1]["title"] . $ADDRESS_DELIVERTY[1]["firstname"] . " " . $ADDRESS_DELIVERTY[1]["lastname"] ?></h5>
+                                        <h6 class="card-text"><?php
+                                                                if ($ADDRESS_DELIVERTY[1]["provinces_name_in_thai"] == "กรุงเทพมหานคร") {
+                                                                    echo "เลขที่ " . $ADDRESS_DELIVERTY[1]["address"] .
+                                                                        " แขวง" . $ADDRESS_DELIVERTY[1]["subdistricts_name_in_thai"] .
+                                                                        " " . $ADDRESS_DELIVERTY[1]["districts_name_in_thai"] .
+                                                                        " " . $ADDRESS_DELIVERTY[1]["provinces_name_in_thai"] .
+                                                                        ", " . $ADDRESS_DELIVERTY[1]["zip_code"];
+                                                                } else {
+                                                                    echo "เลขที่" . $ADDRESS_DELIVERTY[1]["address"] .
+                                                                        " ต." . $ADDRESS_DELIVERTY[1]["subdistricts_name_in_thai"] .
+                                                                        " อ." . $ADDRESS_DELIVERTY[1]["districts_name_in_thai"] .
+                                                                        " จ." . $ADDRESS_DELIVERTY[1]["provinces_name_in_thai"] .
+                                                                        ", " . $ADDRESS_DELIVERTY[1]["zip_code"];
+                                                                }
+                                                                ?>
+                                        </h6>
+
 
                                     </div>
                                 </div>
