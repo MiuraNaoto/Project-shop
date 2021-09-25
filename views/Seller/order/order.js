@@ -25,52 +25,6 @@ $(document).ready(function () {
   });
 });
 
-function cancelfunction(_id, _name, _type, _price, _count) {
-  // alert(_uid + " " + _title + _firstname + " " + _lastname);
-  console.log("cancel");
-
-  swal(
-    {
-      title: "คุณต้องการยกเลิกคำสั่งซื้อ",
-      text: `${_id} หรือไม่ ?`,
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonClass: "btn-danger",
-      cancelButtonClass: "btn-secondary",
-      confirmButtonText: "ยืนยัน",
-      cancelButtonText: "ยกเลิก",
-      closeOnConfirm: false,
-      closeOnCancel: function () {
-        $("[data-toggle=tooltip]").tooltip({
-          boundary: "window",
-          trigger: "hover",
-        });
-        return true;
-      },
-    },
-    function (isConfirm) {
-      if (isConfirm) {
-        console.log(1);
-        swal(
-          {
-            title: "ลบข้อมูลสำเร็จ",
-            type: "success",
-            confirmButtonClass: "btn-danger",
-            confirmButtonText: "ตกลง",
-            closeOnConfirm: false,
-          }
-          //   function (isConfirm) {
-          //     if (isConfirm) {
-          //       delete_1(_uid, _title, _firstname, _lastname);
-          //     }
-          //   }
-        );
-      } else {
-      }
-    }
-  );
-}
-
 function approved(order_id, order_number) {
   console.log(order_id);
   console.log(order_number);
@@ -121,6 +75,9 @@ function confirm_order(order_id, order_number) {
 function disapproved(order_id, order_number) {
   $("#etc").hide();
 
+  $("#order_id").val(order_id);
+  $("#order_number").val(order_number);
+
   $("#reason").on("change", function () {
     var reason = $(this).val();
     console.log(reason);
@@ -131,29 +88,118 @@ function disapproved(order_id, order_number) {
     }
   });
 
-  
+  var reason_id = $("#reason").val();
 
-  $("#disapproved-modal").click(function () {
+  var formData = new FormData();
+  $("#form-disapproved").submit(function () {
     console.log("save");
     console.log(order_id);
     console.log(order_number);
     console.log(reason_desc);
-
     $.ajax({
       type: "POST",
       url: "manage.php",
-      data: {
-        order_id: order_id,
-        order_number: order_number,
-        reason_desc: reason_desc,
-        request: "disapproved_order",
-      },
+      data: $("form#form-disapproved").serialize(),
 
       success: function (data) {
-        // location.reload();
+        location.reload();
         console.log(data);
+        // alert(data);
         //location.href = "./manage.php"
       },
     });
+  });
+}
+
+function cancelfunction(order_id, order_number) {
+  // alert(_uid + " " + _title + _firstname + " " + _lastname);
+  console.log("cancel");
+
+  Swal.fire({
+    title: `คุณต้องการยกเลิกคำสั่งซื้อ`,
+    text: `${order_number} หรือไม่ ?`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#e74a3b",
+    cancelButtonColor: "#858796",
+    confirmButtonText: "ยืนยัน",
+    cancelButtonText: "ยกเลิก",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "ยกเลิกคำสั่งซื้อสำเร็จ",
+        icon: "success",
+        confirmButtonColor: "#858796",
+        confirmButtonText: "ยืนยัน",
+      }).then((result) => {
+        this.cancel_order(order_id, order_number);
+      });
+    } else {
+    }
+  });
+}
+
+function cancel_order(order_id, order_number) {
+  $.ajax({
+    type: "POST",
+    url: "manage.php",
+    data: {
+      order_id: order_id,
+      order_number: order_number,
+      request: "cancel_order",
+    },
+
+    success: function (data) {
+      location.reload();
+      console.log(data);
+      //location.href = "./manage.php"
+    },
+  });
+}
+
+function refund(order_id, order_number) {
+  console.log(order_id);
+  console.log(order_number);
+
+  Swal.fire({
+    title: `คุณต้องการยืนยันการคืนเงิน`,
+    text: `${order_number} หรือไม่ ?`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#1cc88a",
+    cancelButtonColor: "#858796",
+    confirmButtonText: "ยืนยัน",
+    cancelButtonText: "ยกเลิก",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "ยืนยันการคืนเงินสำเร็จ",
+        icon: "success",
+        confirmButtonColor: "#1cc88a",
+        confirmButtonText: "ยืนยัน",
+      }).then((result) => {
+        this.confirm_refund(order_id, order_number);
+      });
+    } else {
+    }
+  });
+}
+
+function confirm_refund(order_id, order_number) {
+  $.ajax({
+    type: "POST",
+    url: "manage.php",
+    //data: s.concat(id),
+    data: {
+      order_id: order_id,
+      order_number: order_number,
+      request: "confirm_refund",
+    },
+
+    success: function (data) {
+      location.reload();
+      console.log(data);
+      //location.href = "./manage.php"
+    },
   });
 }

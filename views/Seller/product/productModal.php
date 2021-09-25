@@ -160,7 +160,7 @@ $DELIVERY_TYPE = getDeliveryType();
                 <div class="modal-footer">
                     <input type="hidden" id="request" name="request" value="insert_product" />
                     <button type="submit" class="btn btn-danger" data-dismiss="modal" style="width: 70px;">ยกเลิก</button>
-                    <button type="submit" id="insert" name="insert" class="btn btn-success insert-product">เพิ่มสินค้า</button>
+                    <button type="submit" id="insert" name="insert" class="btn btn-success insert-payment">เพิ่มสินค้า</button>
                 </div>
             </form>
         </div>
