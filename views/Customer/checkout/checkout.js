@@ -31,7 +31,7 @@ function payment(obj, total_unit) {
       success: function (data) {
         // location.reload();
         console.log(data);
-        // location.href = "../payment/payment.php";
+        location.href = "../payment/payment.php";
       },
     });
   }
