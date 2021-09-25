@@ -61,35 +61,48 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                         here to enter your code.</h6>
                 </div>
             </div> -->
-            <form action="#" class="checkout__form">
+            <form action="manage.php" method="post" class="checkout__form" enctype="multipart/form-data" id="form-payment" name="form-payment" role="form">
                 <div class="row">
                     <div class="col-lg-12">
                         <h5>การชำระเงิน</h5>
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="card" style="width: 19rem;">
-                                    <img class="card-img-top" src="../../../img/payment/SCB.png" alt="Card image cap">
-                                    <div class="card-body text-center font-weight-bold">
-                                        <div class="row mt-2 mb-4 ">
-                                            <div class="col-md-5">
-                                                <h6 class="font-weight-bold d-flex justify-content-start" style="font-size: 18px;">เลขบัญชี</h6>
+                            <?php
+                            $bank_account = "SELECT * FROM `orders` LEFT OUTER JOIN `bank_account` 
+                                            ON `orders`.`shop_id` = `bank_account`.`shop_id` LEFT OUTER JOIN `bank` 
+                                            ON `bank_account`.`bankid` = `bank`.`id` WHERE `orders`.`shop_id` = `bank_account`.`shop_id`";
+                            $account = selectData($bank_account);
+                            // print_r($account);
+                            for ($i = 1; $i < count($account); $i++) {
+
+                            ?>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="card">
+                                        <img class="card-img-top" src="../../../img/payment/<?php echo $account[$i]['picture'] ?>" alt="Card image cap">
+                                        <div class="card-body text-center font-weight-bold">
+                                            <div class="row mt-2 mb-4 ">
+
+                                                <div class="col-md-5">
+                                                    <h6 class="font-weight-bold d-flex justify-content-start" style="font-size: 18px;">เลขบัญชี</h6>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <h6 class="d-flex justify-content-start"><?php echo $account[$i]['account_code'] ?></h6>
+                                                </div>
                                             </div>
-                                            <div class="col-md-7">
-                                                <h6 class="d-flex justify-content-start">097-0-44XXX-X</h6>
-                                            </div>
-                                        </div>
-                                        <div class="row  mt-4">
-                                            <div class="col-md-5">
-                                                <h6 class="font-weight-bold d-flex justify-content-start" style="font-size: 18px;">ชื่อบัญชี</h6>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <h6 class="d-flex justify-content-star">ขายอะไรก็ไม่รู้ แต่อยากขายนะ</h6>
+                                            <div class="row  mt-4">
+                                                <div class="col-md-5">
+                                                    <h6 class="font-weight-bold d-flex justify-content-start" style="font-size: 18px;">ชื่อบัญชี</h6>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <h6 class="d-flex justify-content-star"><?php echo $account[$i]['account_name'] ?></h6>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <?php
+                            }
+                            ?>
+                            <!-- <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card" style="width: 19rem;">
                                     <img class="card-img-top" src="../../../img/payment/กรุงไทย-1.jpg" alt="Card image cap">
                                     <div class="card-body text-center font-weight-bold">
@@ -111,8 +124,8 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            </div> -->
+                            <!-- <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card" style="width: 19rem;">
                                     <img class="card-img-top" src="../../../img/payment/promptpay.jpg" alt="Card image cap">
                                     <div class="card-body text-center font-weight-bold">
@@ -134,7 +147,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -151,7 +164,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                 <span>หมายเลขคำสั่งซื้อ</span>
                                             </div>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="ordernumber" name="ordernumber" value="17500859897465" disabled>
+                                                <input type="text" class="form-control" id="ordernumber" name="ordernumber" value="<?php echo $account[1]['order_number'] ?>" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -161,11 +174,11 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                 <span>ช่องทางชำระเงิน</span>
                                             </div>
                                             <div class="col-md-7">
-                                                <select class="form-control" id="exampleFormControlSelect1">
-                                                    <option disabled selected>กรุณาเลือกช่องทางชำระเงิน</option>
-                                                    <option>ATM</option>
-                                                    <option>Internet Banking</option>
-                                                    <option>ชำระผ่านเค้าท์เตอร์ธนาคาร</option>
+                                                <select class="form-control" id="payment_method" required oninvalid="this.setCustomValidity('กรุณาเลือกช่องทางชำระเงิน')" oninput="this.setCustomValidity('')">
+                                                    <option disabled selected value="">กรุณาเลือกช่องทางชำระเงิน</option>
+                                                    <option value="1">ATM</option>
+                                                    <option value="2">Internet Banking</option>
+                                                    <option value="3">ชำระผ่านเค้าท์เตอร์ธนาคาร</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -176,15 +189,16 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                 <span>ชำระเงินผ่านธนาคาร</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <select class="form-control" id="exampleFormControlSelect1">
-                                                    <option disabled selected>กรุณาเลือกธนาคาร</option>
-                                                    <option>ธนาคารไทยพาณิชย์</option>
-                                                    <option>ธนาคารกรุงไทย</option>
-                                                    <option>ธนาคารทหารไทย</option>
-                                                    <option>ธนาคารกรุงเทพ</option>
-                                                    <option>ธนาคารทหารไทย</option>
-                                                    <option>ธนาคารกสิกร</option>
-                                                    <option>ธนาคารออมสิน</option>
+                                                <select class="form-control" id="select_bank" required oninvalid="this.setCustomValidity('กรุณาเลือกธนาคาร')" oninput="this.setCustomValidity('')">
+                                                    <option disabled selected value="">กรุณาเลือกธนาคาร</option>
+                                                    <?php
+                                                    for ($i = 1; $i < count($account); $i++) {
+
+                                                    ?>
+                                                        <option value="<?php echo $account[$i]['bankid'] ?>"><?php echo $account[$i]['name'] ?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -194,9 +208,10 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                 <div class="row mb-4">
                                     <div class="col-lg-12">
                                         <div class="checkout__form__input">
+                                            <span id="propro"></span>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                                                <label class="custom-file-label" for="validatedCustomFile">กรุณาแนหลักฐานการโอนเงิน</label>
+                                                <input type="file" class="custom-file-input" id="picture-payment" name="picture-payment" accept="image/png, image/jpeg, image/jpg" onchange="loadImage(event)" required oninvalid="this.setCustomValidity('กรุณาใส่ภาพหลักฐานการโอนเงิน')" oninput="this.setCustomValidity('')">
+                                                <label class="custom-file-label" for="customFile">กรุณาแนบหลักฐานการโอนเงิน</label>
                                             </div>
                                         </div>
                                     </div>
@@ -209,7 +224,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                 <span>จำนวนเงิน</span>
                                             </div>
                                             <div class="col-md-7">
-                                                <input type="number" class="form-control" id="price" name="price" step="0.1">
+                                                <input type="number" class="form-control" id="price" name="price" step="0.1" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนเงิน')" oninput="this.setCustomValidity('')">
                                             </div>
                                         </div>
                                     </div>
@@ -219,7 +234,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                 <span>วัน/เดือน/ปี</span>
                                             </div>
                                             <div class="col-md-7">
-                                                <input type="date" class="form-control" id="date" name="date">
+                                                <input type="date" class="form-control" id="date" name="date" required oninvalid="this.setCustomValidity('กรุณากรอกวันที่ชำระเงิน')" oninput="this.setCustomValidity('')">
                                             </div>
                                         </div>
                                     </div>
@@ -229,13 +244,15 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                 <span>เวลาที่ชำระเงิน</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="time" class="form-control" id="time" name="time">
+                                                <input type="time" class="form-control" id="time" name="time" required oninvalid="this.setCustomValidity('กรุณากรอกเวลาที่ชำระเงิน')" oninput="this.setCustomValidity('')">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="checkout__form__input text-center">
-                                            <a href="../purchase/purchase.php"><button type="button" class="btn btn-success" style="width: 165px;">ยืนยัน</button></a>
+                                        <!-- <a href="../purchase/purchase.php"></a> -->
+                                            <input type="hidden" name="request" id="request" value="payment"/>
+                                            <button type="submit" id="insert" name="insert" class="btn btn-success insert-payment" style="width: 165px;">ยืนยัน</button>
                                         </div>
                                     </div>
                                 </div>
