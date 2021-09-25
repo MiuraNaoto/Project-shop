@@ -16,7 +16,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     $ADDRESS_DELIVERTY = getAddressUser($uid);
     // print_r($ADDRESS_DELIVERTY);
     $SHOPING_CART = getShopingCart($uid);
-    // print_r($ADDRESS_DELIVERTY);
+    // print_r($SHOPING_CART);
 }
 ?>
 
@@ -145,31 +145,57 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                 </div>
                                             </div>
                                         </div> -->
+                                        <?php
+                                        for ($i = 1; $i < count($ADDRESS_DELIVERTY); $i++) {
+                                            if ($i == 1) {
+                                        ?>
 
-                                        <h5 class="card-title"><?php echo $ADDRESS_DELIVERTY[1]["title"] . $ADDRESS_DELIVERTY[1]["firstname"] . " " . $ADDRESS_DELIVERTY[1]["lastname"] ?></h5>
-                                        <h6 class="card-text"><?php
-                                                                if ($ADDRESS_DELIVERTY[1]["provinces_name_in_thai"] == "กรุงเทพมหานคร") {
-                                                                    echo "เลขที่ " . $ADDRESS_DELIVERTY[1]["address"] .
-                                                                        " แขวง" . $ADDRESS_DELIVERTY[1]["subdistricts_name_in_thai"] .
-                                                                        " " . $ADDRESS_DELIVERTY[1]["districts_name_in_thai"] .
-                                                                        " " . $ADDRESS_DELIVERTY[1]["provinces_name_in_thai"] .
-                                                                        ", " . $ADDRESS_DELIVERTY[1]["zip_code"];
-                                                                } else {
-                                                                    echo "เลขที่" . $ADDRESS_DELIVERTY[1]["address"] .
-                                                                        " ต." . $ADDRESS_DELIVERTY[1]["subdistricts_name_in_thai"] .
-                                                                        " อ." . $ADDRESS_DELIVERTY[1]["districts_name_in_thai"] .
-                                                                        " จ." . $ADDRESS_DELIVERTY[1]["provinces_name_in_thai"] .
-                                                                        ", " . $ADDRESS_DELIVERTY[1]["zip_code"];
-                                                                }
-                                                                ?>
-                                        </h6>
+                                                <h5 class="card-title"><?php echo $ADDRESS_DELIVERTY[$i]["title"] . $ADDRESS_DELIVERTY[$i]["firstname"] . " " . $ADDRESS_DELIVERTY[$i]["lastname"] ?></h5>
+                                            <?php } ?>
+                                            <!-- <div class="card mb-4">
+                                                <div class="card-header card-bg font-weight-bold" style="color:<?= $color ?>;">
+                                                    <div class="row">
+                                                        <div class="col-md-4 d-flex justify-content-end">
+                                                            <button type="button" daid="<?php echo $ADDRESS_USER[$i]["daid"] ?>" title="<?Php echo $ADDRESS_USER[$i]["title"] ?>" firstname="<?Php echo $ADDRESS_USER[$i]["firstname"] ?>" lastname="<?Php echo $ADDRESS_USER[$i]["lastname"] ?>" tel="<?Php echo $ADDRESS_USER[$i]["tel"] ?>" address="<?Php echo $ADDRESS_USER[$i]["address"] ?>" subdistrict="<?php echo $ADDRESS_USER[$i]["subdistrict"] ?>" province_id="<?php echo $ADDRESS_USER[$i]["province_id"] ?>" district_id="<?php echo $ADDRESS_USER[$i]["district_id"] ?>" subdistrict_name="<?php echo $ADDRESS_USER[$i]["subdistricts_name_in_thai"] ?>" district_name="<?php echo $ADDRESS_USER[$i]["districts_name_in_thai"] ?>" province_name="<?php echo $ADDRESS_USER[$i]["provinces_name_in_thai"] ?>" class="btn btn-warning text-light edit-address" title='แก้ไขข้อมูลที่อยู่ตัดส่ง' data-toggle="modal" data-target="#edit_address_modal">
+                                                                <i class="fas fa-edit"></i>
+                                                                <span>&nbsp;<?php echo "แก้ไขที่อยู่จัดส่ง " . $i ?></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                            <div class="card mb-4">
+                                                <div class="card-header card-bg font-weight-bold" style="color:<?= $color ?>;">
+                                                    <div class="row">
+                                                        <h6 class="card-text"><?php
+                                                                                if ($ADDRESS_DELIVERTY[$i]["provinces_name_in_thai"] == "กรุงเทพมหานคร") {
+                                                                                    echo "เลขที่ " . $ADDRESS_DELIVERTY[$i]["address"] .
+                                                                                        " แขวง" . $ADDRESS_DELIVERTY[$i]["subdistricts_name_in_thai"] .
+                                                                                        " " . $ADDRESS_DELIVERTY[$i]["districts_name_in_thai"] .
+                                                                                        " " . $ADDRESS_DELIVERTY[$i]["provinces_name_in_thai"] .
+                                                                                        ", " . $ADDRESS_DELIVERTY[$i]["zip_code"];
+                                                                                } else {
+                                                                                    echo "เลขที่" . $ADDRESS_DELIVERTY[$i]["address"] .
+                                                                                        " ต." . $ADDRESS_DELIVERTY[$i]["subdistricts_name_in_thai"] .
+                                                                                        " อ." . $ADDRESS_DELIVERTY[$i]["districts_name_in_thai"] .
+                                                                                        " จ." . $ADDRESS_DELIVERTY[$i]["provinces_name_in_thai"] .
+                                                                                        ", " . $ADDRESS_DELIVERTY[$i]["zip_code"];
+                                                                                }
+                                                                                ?>
+                                                        </h6>
+                                                        <div class="col-md d-flex justify-content-end">
+                                                            <input type="radio" name="selected_address" id="selected_address" value="<?php echo $ADDRESS_DELIVERTY[$i]["daid"] ?>" onclick="selected_add('<?php echo $ADDRESS_DELIVERTY[$i]['daid'] ?>')" class="form-check-input" title='เลือกที่อยู่จัดส่ง' />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php
 
-
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="col-lg-4">
                         <div class="checkout__order" style="padding-bottom: 100px; ">
@@ -222,14 +248,27 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                             for ($i = 1; $i < count($SHOPING_CART); $i++) {
                                                 $price = $SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"];
                                                 // echo $price;
-                                                $PRICES = [];
-                                                array_push($PRICES, $price);
+                                                $PRICES[] = $price;
+                                                $ORDER_DETAIL[] = array(
+                                                    "product_id" => $SHOPING_CART[$i]['product_id'],
+                                                    "shop_id" => $SHOPING_CART[$i]['shop_id'],
+                                                    "quantity" => $SHOPING_CART[$i]['quantity']
+                                                );
+                                                // array_push($PRICES, $price);
                                             }
+                                            $ORDER_DETAIL_json = json_encode($ORDER_DETAIL);
                                             echo number_format(array_sum($PRICES), 2);
+                                            // print_r($PRICES);
+                                            // print_r($ORDER_DETAIL_json)
+
                                             ?>
                                         </span></li>
                                 </ul>
                             </div>
+                            <script type="text/javascript">
+                                var obj = JSON.parse('<?= $ORDER_DETAIL_json; ?>');
+                                // console.log(obj)
+                            </script>
                             <!-- <div class="checkout__order__widget">
                                     <label for="paypal">
                                         โอนผ่านบัญชีธนาคาร
@@ -237,8 +276,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                         <span class="checkmark"></span>
                                     </label>
                                 </div> -->
-                            <button type="button" class="btn btn-danger" style="border-radius: 50px; width: 300px;" onclick="payment('<?php echo $SHOPING_CART[$i]['product_id']; ?>')">ชำระเงิน</button>
-
+                            <button type="button" class="btn btn-danger" style="border-radius: 50px; width: 300px;" onclick="payment(obj)">ชำระเงิน</button>
                         </div>
                     </div>
                 </div>
