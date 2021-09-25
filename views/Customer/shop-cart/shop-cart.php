@@ -10,12 +10,13 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     $idUT = $_SESSION[md5('typeid')];
     $username = $_SESSION[md5('username')];
     $USER = $_SESSION[md5('user')];
-    $uid = $USER[1]["uid"];
+    $uid = $USER[1]['uid'];
 
-    // echo print_r($USER);
-
+    //echo print_r($USER);
+    //echo $USER[0]['numrow'];
+    //echo "<br><br>" . $uid[0];
 }
-$SHOPING_CART = getShopingCart($uid);
+$SHOPING_CART = getShopingCart($uid[0]);
 ?>
 
 <head>
@@ -58,6 +59,7 @@ $SHOPING_CART = getShopingCart($uid);
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <?php
                                 for ($i = 1; $i < count($SHOPING_CART); $i++) {
                                 ?>
@@ -67,7 +69,8 @@ $SHOPING_CART = getShopingCart($uid);
                                         </td>
                                         <td class="cart__product__item">
                                             <div class="cart__product__item__title">
-                                                <h6><?php echo  $SHOPING_CART[$i]["product_name"]; ?></h6>
+
+                                                <h6><a href='<?php echo "../product_detail/product-details.php?product_id=" . $SHOPING_CART[$i]["product_id"]; ?>' style="color: inherit;"><?php echo  $SHOPING_CART[$i]["product_name"]; ?></a></h6>
                                                 <div class="rating">
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
@@ -78,15 +81,17 @@ $SHOPING_CART = getShopingCart($uid);
                                             </div>
                                         </td>
                                         <td class="cart__price"><?php echo  "฿ " . number_format($SHOPING_CART[$i]["price"], 2); ?></td>
-                                        <td class="cart__quantity">
+                                        <input type="text" id="sumProduct" name="sumProduct" value=<?php echo number_format($SHOPING_CART[$i]["price"], 2); ?> hidden>
+
+                                        <td class="cart__quantity" id="cart__quantity" name="cart__quantity" min="1">
                                             <div class="pro-qty" id="pro-qty" name="pro-qty">
-                                                <input type="number" id="quantity" name="quantity" value="<?php echo  $SHOPING_CART[$i]["quantity"]; ?>">
+                                                <input type="text" id="quantity" name="quantity" value="<?php echo $SHOPING_CART[$i]["quantity"]; ?>" disabled>
                                             </div>
                                         </td>
-                                        <td class="cart__total" id="cart__total" name="cart__total"><?php echo  "฿ " . number_format($SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"], 2); ?></td>
-
+                                        <td class="cart__total" id="cart__total<?php echo $SHOPING_CART[$i]['scid']; ?>" name="cart__total<?php echo $SHOPING_CART[$i]['scid']; ?>" value="<?php echo number_format($SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"], 2); ?>"><?php echo  "฿ " . number_format($SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"], 2); ?></td>
+                                        <input type="text" id="scid" name="scid" value="<?php echo $SHOPING_CART[$i]["scid"]; ?>" hidden>
                                         <td class="cart__close">
-                                            <button type="button" class="btn btn-secondary btn-lg rounded-circle" onclick="">
+                                            <button type="button" class="btn btn-secondary btn-lg rounded-circle" id="removeProduct" onclick="removeProduct('<?php echo $SHOPING_CART[$i]['scid']; ?>')">
                                                 <!-- <span class="icon_close"></span> -->
                                                 <i class="fa fa-times"></i>
                                             </button>
@@ -95,6 +100,7 @@ $SHOPING_CART = getShopingCart($uid);
                                 <?php
                                 }
                                 ?>
+
                             </tbody>
                         </table>
                     </div>
@@ -108,7 +114,13 @@ $SHOPING_CART = getShopingCart($uid);
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="cart__btn update__btn" style="cursor: pointer;">
-                        <a><span class="icon_loading"></span> Update cart</a>
+                        <?php
+                        $json = json_encode($SHOPING_CART);
+                        //echo $json;
+                        ?>
+
+                        <a onclick="updateCart(obj)"><span class="icon_loading"></span> Update cart</a>
+
                     </div>
                 </div>
             </div>
@@ -128,18 +140,35 @@ $SHOPING_CART = getShopingCart($uid);
                         <ul>
                             <!-- <li>Subtotal <span>$ 750.0</span></li> -->
                             <li>ราคารวม <span>
+
                                     <?php
-                                    for ($i = 1; $i < count($SHOPING_CART); $i++) {
-                                        $price = $SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"];
-                                        $PRICES = [];
-                                        array_push($PRICES, $price);
+                                    //echo $SHOPING_CART[0]['numrow'] ;
+                                    //echo print_r($SHOPING_CART);
+
+                                    if ($SHOPING_CART[0]['numrow'] > 0) {
+                                        for ($i = 1; $i < count($SHOPING_CART); $i++) {
+                                            $price = $SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"];
+                                            $PRICES = [];
+                                            array_push($PRICES, $price);
+                                        }
+                                        echo number_format(array_sum($PRICES), 2);
+                                    } else {
+                                        echo number_format(0, 2);
                                     }
-                                    echo number_format(array_sum($PRICES), 2);
+
                                     ?>
 
                                 </span></li>
                         </ul>
-                        <a href="../checkout/checkout.php" class="primary-btn btn btn-danger" style="width: 280px;">ยืนยันคำสั่งซื้อ</a>
+                        <?php
+
+                        $getProductStock = "SELECT * FROM `product` INNER JOIN `shopping_cart` WHERE uid = '$uid'";
+                        $getProductStockJSON = selectData($getProductStock);
+                        $jsonCheckCart = json_encode($getProductStockJSON);
+                        //echo $jsonCheckCart;
+
+                        ?>
+                        <a class="primary-btn btn btn-danger" style="width: 280px;" onclick="checkCart(objCheckCart)">ยืนยันคำสั่งซื้อ</a>
                         <!-- <a href="../checkout/checkout.php" class="primary-btn"></a> -->
                     </div>
                 </div>
@@ -151,6 +180,40 @@ $SHOPING_CART = getShopingCart($uid);
     <!-- Js Plugins -->
     <?php include_once("../layout/js.php"); ?>
     <script src="shop-cart.js"></script>
+
+    <!-- Modal -->
+    <!--
+    <div class="modal fade" id="modalCheck" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ไม่สามารถดำเนินการต่อได้</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p style="font-size: 16px;">ไม่สามารถดำเนินการต่อไปยังการยืนยันคำสั่งซื้อได้ </p>
+                    <p style="font-size: 16px;">เนื่องจากสินค้าบางชิ้นอาจได้ <b>หมดคลังไปเเล้ว</b> หรือ <b>มีจำนวนสินค้าไม่เพียงพอต่อการสั่งซื้อ</b></p>
+                    <p style="font-size: 16px;">โปรดตรวจสอบรายระเอียดการซื้ออีกรอบ</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+     -->
+
 </body>
 
 </html>
+
+
+
+<script>
+    var obj = JSON.parse('<?= $json; ?>');
+    var objCheckCart = JSON.parse('<?= $jsonCheckCart; ?>');
+    //console.log(obj)
+</script>

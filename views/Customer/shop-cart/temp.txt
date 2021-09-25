@@ -1,0 +1,130 @@
+<?php
+                                for ($i = 1; $i < count($SHOPING_CART); $i++) {
+                                ?>
+                                    <tr>
+                                        <td style="width: 120px; text-align: center;">
+                                            <img src="<?php echo "../../../img/product/profile/" . $SHOPING_CART[$i]["profile_product"]; ?>" width="70px" height="70px" alt="">
+                                        </td>
+                                        <td class="cart__product__item">
+                                            <div class="cart__product__item__title">
+                                                <h6><?php echo  $SHOPING_CART[$i]["product_name"]; ?></h6>
+                                                <div class="rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="cart__price"><?php echo  "฿ " . number_format($SHOPING_CART[$i]["price"], 2); ?></td>
+                                        <td class="cart__quantity">
+                                            <div class="pro-qty" id="pro-qty" name="pro-qty">
+                                                <input type="number" id="quantity" name="quantity" value="<?php echo  $SHOPING_CART[$i]["quantity"]; ?>">
+                                            </div>
+                                        </td>
+                                        <td class="cart__total" id="cart__total" name="cart__total"><?php echo  "฿ " . number_format($SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"], 2); ?></td>
+
+                                        <td class="cart__close">
+                                            <button type="button" class="btn btn-secondary btn-lg rounded-circle" onclick="">
+                                                <!-- <span class="icon_close"></span> -->
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+
+
+
+
+                                <?php
+                                    for ($i = 1; $i < count($SHOPING_CART); $i++) {
+                                        $price = $SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"];
+                                        $PRICES = [];
+                                        array_push($PRICES, $price);
+                                    }
+                                    echo number_format(array_sum($PRICES), 2);
+                                    ?>
+
+
+
+                                    <?php
+                                for ($i = 1; $i < count($SHOPING_CART); $i++) {
+                                ?>
+                                    <tr>
+                                        <td style="width: 120px; text-align: center;">
+                                            <img src="<?php echo "../../../img/product/profile/" . $SHOPING_CART[$i]["profile_product"]; ?>" width="70px" height="70px" alt="">
+                                        </td>
+                                        <td class="cart__product__item">
+                                            <div class="cart__product__item__title">
+                                            
+                                                <h6><a href='<?php echo "../product_detail/product-details.php?product_id=" . $SHOPING_CART[$i]["product_id"]; ?>' style="color: inherit;"><?php echo  $SHOPING_CART[$i]["product_name"]; ?></a></h6>
+                                                <div class="rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="cart__price"><?php echo  "฿ " . number_format($SHOPING_CART[$i]["price"], 2); ?></td>
+                                        <input type="text" id="sumProduct" name="sumProduct" value=<?php echo number_format($SHOPING_CART[$i]["price"], 2); ?> hidden>
+                                        <td class="cart__quantity">
+                                            <div class="pro-qty" id="pro-qty" name="pro-qty">
+                                                <input type="text" id="quantity" name="quantity" value="<?php echo $SHOPING_CART[$i]["quantity"]; ?>">
+                                            </div>
+                                        </td>
+                                        <td class="cart__total" id="cart__total<?php echo $SHOPING_CART[$i]['scid']; ?>" name="cart__total<?php echo $SHOPING_CART[$i]['scid']; ?>" value="<?php echo number_format($SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"], 2); ?>"><?php echo  "฿ " . number_format($SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"], 2); ?></td>
+                                        <input type="text" id="scid" name="scid" value="<?php echo $SHOPING_CART[$i]["scid"]; ?>" hidden>
+                                        <td class="cart__close">
+                                            <button type="button" class="btn btn-secondary btn-lg rounded-circle" id="removeProduct" onclick="removeProduct('<?php echo $SHOPING_CART[$i]['scid']; ?>')">
+                                                <!-- <span class="icon_close"></span> -->
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>            
+                                <?php
+                                }
+                                ?>
+
+
+                                 echo 
+                                     '<tr>
+                                        <td style="width: 120px; text-align: center;">
+                                            <img src="../../../img/product/profile/' . $SHOPING_CART[$i]["profile_product"] .'" width="70px" height="70px" alt="">
+                                        </td>
+                                        <td class="cart__product__item">
+                                            <div class="cart__product__item__title">
+                                            
+                                                <h6><a href="../product_detail/product-details.php?product_id="' . $SHOPING_CART[$i]["product_id"] .'" style="color: inherit;">' .  $SHOPING_CART[$i]["product_name"] . '</a></h6>
+                                                <div class="rating">
+
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="cart__price">฿ ' . number_format($SHOPING_CART[$i]["price"], 2) . '</td>
+                                        <input type="text" id="sumProduct" name="sumProduct" value=' . number_format($SHOPING_CART[$i]["price"], 2) .' hidden>
+                                        <td class="cart__quantity">
+                                            <div class="pro-qty" id="pro-qty" name="pro-qty">
+                                                <input type="text" id="quantity" name="quantity" value="' . $SHOPING_CART[$i]["quantity"] . '">
+                                            </div>
+                                        </td>
+                                        <td class="cart__total" id="cart__total' . $SHOPING_CART[$i]['scid'] . '" name="cart__total' . $SHOPING_CART[$i]['scid'] . '" value="'. number_format($SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"], 2).'">฿ ' . number_format($SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"], 2) . '</td>
+                                        <input type="text" id="scid" name="scid" value="' . $SHOPING_CART[$i]["scid"] .'" hidden>
+                                        <td class="cart__close">
+                                            <button type="button" class="btn btn-secondary btn-lg rounded-circle" id="removeProduct" onclick="removeProduct('. $SHOPING_CART[$i]['scid'] .')">
+                                                <!-- <span class="icon_close"></span> -->
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>';
+                              
