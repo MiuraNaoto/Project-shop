@@ -183,7 +183,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                                                 ?>
                                                         </h6>
                                                         <div class="col-md d-flex justify-content-end">
-                                                            <input type="radio" name="selected_address" id="selected_address" value="<?php echo $ADDRESS_DELIVERTY[$i]["daid"] ?>" onclick="selected_add('<?php echo $ADDRESS_DELIVERTY[$i]['daid'] ?>')" class="form-check-input" title='เลือกที่อยู่จัดส่ง' />
+                                                            <input type="radio" name="selected_address" id="selected_address" value="<?php echo $ADDRESS_DELIVERTY[$i]["daid"] ?>" onclick="selected_add('<?php echo $ADDRESS_DELIVERTY[$i]['daid'] ?>')" class="form-check-input" title='เลือกที่อยู่จัดส่ง' required/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -249,6 +249,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                 $price = $SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"];
                                                 // echo $price;
                                                 $PRICES[] = $price;
+                                                $QUANTITY[] = $SHOPING_CART[$i]["quantity"];
                                                 $ORDER_DETAIL[] = array(
                                                     "product_id" => $SHOPING_CART[$i]['product_id'],
                                                     "shop_id" => $SHOPING_CART[$i]['shop_id'],
@@ -258,6 +259,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                             }
                                             $ORDER_DETAIL_json = json_encode($ORDER_DETAIL);
                                             echo number_format(array_sum($PRICES), 2);
+                                            $QUANTITY_json = json_encode(number_format(array_sum($QUANTITY), 2));
                                             // print_r($PRICES);
                                             // print_r($ORDER_DETAIL_json)
 
@@ -267,6 +269,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                             </div>
                             <script type="text/javascript">
                                 var obj = JSON.parse('<?= $ORDER_DETAIL_json; ?>');
+                                var total_unit = JSON.parse('<?= $QUANTITY_json; ?>');
                                 // console.log(obj)
                             </script>
                             <!-- <div class="checkout__order__widget">
@@ -276,7 +279,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                         <span class="checkmark"></span>
                                     </label>
                                 </div> -->
-                            <button type="button" class="btn btn-danger" style="border-radius: 50px; width: 300px;" onclick="payment(obj)">ชำระเงิน</button>
+                            <button type="button" class="btn btn-danger" style="border-radius: 50px; width: 300px;" onclick="payment(obj, total_unit)">ชำระเงิน</button>
                         </div>
                     </div>
                 </div>
