@@ -257,12 +257,112 @@ function getAllOrderDetail()
                     INNER JOIN `user-list` ON `delivery_address`.`uid` = `user-list`.`uid`
                     INNER JOIN `user-title` ON `delivery_address`.`title` = `user-title`.`id`
                     INNER JOIN `type_payment` ON `orders`.`type_payment` = `type_payment`.`tpid`
+                    INNER JOIN `reason` ON `orders`.`reason_id` = `reason`.`id`
                     INNER JOIN `status_order` ON `orders`.`status_order` = `status_order`.`so_id` AND `orders_detail`.`status_order` = `status_order`.`so_id`";
     $DATA = selectData($sql);
     return ($DATA);
 }
 
+function getOrderDisapproved()
+{
+    $sql = "SELECT * FROM `orders`
+                    INNER JOIN `delivery_address` ON `orders`.`daid` = `delivery_address`.`daid`
+                    INNER JOIN `subdistricts` ON `delivery_address`.`subdistrict` = `subdistricts`.`id`
+                    INNER JOIN `districts` ON `subdistricts`.`district_id` = `districts`.`id`
+                    INNER JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id`
+                    INNER JOIN `user-list` ON `delivery_address`.`uid` = `user-list`.`uid`
+                    INNER JOIN `user-title` ON `delivery_address`.`title` = `user-title`.`id`
+                    INNER JOIN `type_payment` ON `orders`.`type_payment` = `type_payment`.`tpid`
+                    INNER JOIN `status_order` ON `orders`.`status_order` = `status_order`.`so_id`
+                    INNER JOIN `reason` ON `orders`.`reason_id` = `reason`.`id`
+            WHERE `orders`.`status_order` = 4";
+    $DATA = selectData($sql);
+    return ($DATA);
+}
 
+function getOrderCancel()
+{
+    $sql = "SELECT * FROM `orders`
+                    INNER JOIN `delivery_address` ON `orders`.`daid` = `delivery_address`.`daid`
+                    INNER JOIN `subdistricts` ON `delivery_address`.`subdistrict` = `subdistricts`.`id`
+                    INNER JOIN `districts` ON `subdistricts`.`district_id` = `districts`.`id`
+                    INNER JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id`
+                    INNER JOIN `user-list` ON `delivery_address`.`uid` = `user-list`.`uid`
+                    INNER JOIN `user-title` ON `delivery_address`.`title` = `user-title`.`id`
+                    INNER JOIN `type_payment` ON `orders`.`type_payment` = `type_payment`.`tpid`
+                    INNER JOIN `status_order` ON `orders`.`status_order` = `status_order`.`so_id`
+                    INNER JOIN `reason` ON `orders`.`reason_id` = `reason`.`id`
+            WHERE `orders`.`status_order` = 5";
+    $DATA = selectData($sql);
+    return ($DATA);
+}
+
+function getOrderRefund()
+{
+    $sql = "SELECT * FROM `orders`
+                    INNER JOIN `delivery_address` ON `orders`.`daid` = `delivery_address`.`daid`
+                    INNER JOIN `subdistricts` ON `delivery_address`.`subdistrict` = `subdistricts`.`id`
+                    INNER JOIN `districts` ON `subdistricts`.`district_id` = `districts`.`id`
+                    INNER JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id`
+                    INNER JOIN `user-list` ON `delivery_address`.`uid` = `user-list`.`uid`
+                    INNER JOIN `user-title` ON `delivery_address`.`title` = `user-title`.`id`
+                    INNER JOIN `type_payment` ON `orders`.`type_payment` = `type_payment`.`tpid`
+                    INNER JOIN `status_order` ON `orders`.`status_order` = `status_order`.`so_id`
+                    INNER JOIN `reason` ON `orders`.`reason_id` = `reason`.`id`
+            WHERE `orders`.`status_order` = 5 AND `orders`.`status_refund` = 0";
+    $DATA = selectData($sql);
+    return ($DATA);
+}
+
+function getOrderIsRefund()
+{
+    $sql = "SELECT * FROM `orders`
+                    INNER JOIN `delivery_address` ON `orders`.`daid` = `delivery_address`.`daid`
+                    INNER JOIN `subdistricts` ON `delivery_address`.`subdistrict` = `subdistricts`.`id`
+                    INNER JOIN `districts` ON `subdistricts`.`district_id` = `districts`.`id`
+                    INNER JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id`
+                    INNER JOIN `user-list` ON `delivery_address`.`uid` = `user-list`.`uid`
+                    INNER JOIN `user-title` ON `delivery_address`.`title` = `user-title`.`id`
+                    INNER JOIN `type_payment` ON `orders`.`type_payment` = `type_payment`.`tpid`
+                    INNER JOIN `status_order` ON `orders`.`status_order` = `status_order`.`so_id`
+                    INNER JOIN `reason` ON `orders`.`reason_id` = `reason`.`id`
+            WHERE `orders`.`status_order` = 5 AND `orders`.`status_refund` = 1";
+    $DATA = selectData($sql);
+    return ($DATA);
+}
+
+function getOrderConfirm()
+{
+    $sql = "SELECT * FROM `orders`
+                    INNER JOIN `delivery_address` ON `orders`.`daid` = `delivery_address`.`daid`
+                    INNER JOIN `subdistricts` ON `delivery_address`.`subdistrict` = `subdistricts`.`id`
+                    INNER JOIN `districts` ON `subdistricts`.`district_id` = `districts`.`id`
+                    INNER JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id`
+                    INNER JOIN `user-list` ON `delivery_address`.`uid` = `user-list`.`uid`
+                    INNER JOIN `user-title` ON `delivery_address`.`title` = `user-title`.`id`
+                    INNER JOIN `type_payment` ON `orders`.`type_payment` = `type_payment`.`tpid`
+                    INNER JOIN `status_order` ON `orders`.`status_order` = `status_order`.`so_id`
+            WHERE `orders`.`status_order` = 3";
+    $DATA = selectData($sql);
+    return ($DATA);
+}
+
+function getOrderSuccess()
+{
+    $sql = "SELECT * FROM `orders`
+                    INNER JOIN `delivery_address` ON `orders`.`daid` = `delivery_address`.`daid`
+                    INNER JOIN `subdistricts` ON `delivery_address`.`subdistrict` = `subdistricts`.`id`
+                    INNER JOIN `districts` ON `subdistricts`.`district_id` = `districts`.`id`
+                    INNER JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id`
+                    INNER JOIN `user-list` ON `delivery_address`.`uid` = `user-list`.`uid`
+                    INNER JOIN `user-title` ON `delivery_address`.`title` = `user-title`.`id`
+                    INNER JOIN `type_payment` ON `orders`.`type_payment` = `type_payment`.`tpid`
+                    INNER JOIN `status_order` ON `orders`.`status_order` = `status_order`.`so_id`
+                    INNER JOIN `delivery_type` ON `orders`.`delivery_type` = `delivery_type`.`id`
+            WHERE `orders`.`status_order` = 6";
+    $DATA = selectData($sql);
+    return ($DATA);
+}
 
 // FAVOURITE
 function favourite_product($product_id, $uid)
@@ -295,6 +395,14 @@ function FavouriteByUser($uid)
 function getAllReason()
 {
     $sql = "SELECT * FROM `reason`";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
+// DELIVERY
+function getAllDelivery()
+{
+    $sql = "SELECT * FROM `delivery_type`";
     $DATA = selectData($sql);
     return $DATA;
 }

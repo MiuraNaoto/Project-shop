@@ -16,7 +16,8 @@ $CurrentMenu = "sales";
 
 $PRODUCT = getProductByShopID($uid);
 // $PRODUCT = getProductByShopID($uid);
-
+$ORDER_SUCCESS = getOrderSuccess();
+print_r($ORDER_SUCCESS);
 ?>
 
 <head>
@@ -70,57 +71,40 @@ $PRODUCT = getProductByShopID($uid);
                                     <thead>
                                         <tr>
                                             <th style="text-align: center;">ลำดับ</th>
-                                            <th style="text-align: center;">หมายเลขคำสั่งซื้อ</th>
-                                            <th style="text-align: center;">รายการสินค้า</th>
+                                            <th style="text-align: center;">หมายเลข<br>คำสั่งซื้อ</th>
+                                            <th style="text-align: center;">ชื่อ-นามสกุล</th>
                                             <th style="text-align: center;">จำนวน</th>
                                             <th style="text-align: center;">ยอดรวม</th>
-                                            <th style="text-align: center;">วันที่สั่งซื้อ</th>
-                                            <th style="text-align: center;">วิธีการชำระเงิน</th>
-                                            <th style="text-align: center;">สถานะการชำระ</th>
-                                            <th style="width: 15%; text-align: center;">เลขพัสดุ</th>
-
+                                            <th style="text-align: center;">วัน-เวลาสั่งซื้อ</th>
+                                            <th style="text-align: center;">วัน-เวลาจัดส่ง</th>
+                                            <th style="text-align: center;">ประเภทการจัดส่ง</th>
+                                            <th style="width: 18%; text-align: center;">เลขพัสดุ</th>
                                         </tr>
                                     </thead>
-                                    <!-- <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot> -->
                                     <tbody>
-                                        <tr>
-                                            <td class="d-flex align-items-center d-flex justify-content-center">1</td>
-                                            <td style="vertical-align: middle; text-align: end;">2103254</td>
-                                            <td style="vertical-align: middle; text-align: end;">ชุดอิ่มคุ้ม</td>
-                                            <td style="vertical-align: middle; text-align: end;">20</td>
-                                            <td style="vertical-align: middle; text-align: end;">2400.00</td>
-                                            <td style="vertical-align: middle; text-align: end;">11/07/2564</td>
-                                            <td style="vertical-align: middle; text-align: end;">โอนผ่านธนาคาร</td>
-                                            <td style="vertical-align: middle; text-align: end;">ชำระแล้ว</td>
-                                            <td style="text-align: center; vertical-align: middle;">A1270995656554</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="d-flex align-items-center d-flex justify-content-center">2</td>
-                                            <td style="vertical-align: middle; text-align: end;">2103255</td>
-                                            <td style="vertical-align: middle; text-align: end;">น้ำส้ม</td>
-                                            <td style="vertical-align: middle; text-align: end;">5</td>
-                                            <td style="vertical-align: middle; text-align: end;">75.00</td>
-                                            <td style="vertical-align: middle; text-align: end;">11/07/2564</td>
-                                            <td style="vertical-align: middle; text-align: end;">โอนผ่านธนาคาร</td>
-                                            <td style="vertical-align: middle; text-align: end;">ชำระแล้ว</td>
-                                            <td style="text-align: center; vertical-align: middle;">A1270991586425</td>
-                                        </tr>
+                                        <?php
+                                        for ($i = 1; $i < count($ORDER_SUCCESS); $i++) {
+                                        ?>
+                                            <tr>
+                                                <td class="d-flex align-items-center d-flex justify-content-center"><?php echo $i; ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_SUCCESS[$i]["order_number"] ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_SUCCESS[$i]["title"] . $ORDER_SUCCESS[$i]["firstname"] . " " . $ORDER_SUCCESS[$i]["lastname"] ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_SUCCESS[$i]["total_unit"] ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo number_format($ORDER_SUCCESS[$i]["total_price"], 2) ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $ORDER_SUCCESS[$i]["time_order"])  ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $ORDER_SUCCESS[$i]["time_delivery"])  ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_SUCCESS[$i]["delivery_name"] ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_SUCCESS[$i]["tracking_code"] ?></td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <!-- /.container-fluid -->
 
             </div>

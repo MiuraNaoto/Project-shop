@@ -12,7 +12,8 @@ $uid = $USER[1]["uid"];
 $shop_id = $SELLER[1]["shop_id"];
 
 $CurrentMenu = "delivery";
-
+$ORDER_CONFIRM = getOrderConfirm();
+// print_r($ORDER_CONFIRM);
 ?>
 
 <head>
@@ -77,29 +78,25 @@ $CurrentMenu = "delivery";
                                             <th style="text-align: center;">ลำดับ</th>
                                             <th style="text-align: center;">หมายเลข<br>คำสั่งซื้อ</th>
                                             <th style="text-align: center;">ชื่อ-นามสกุล</th>
-                                            <th style="text-align: center;">รายการสินค้า</th>
                                             <th style="text-align: center;">จำนวน</th>
                                             <th style="text-align: center;">ยอดรวม</th>
                                             <th style="text-align: center;">วัน-เวลาสั่งซื้อ</th>
-                                            <th style="text-align: center;">สถานะการชำระ</th>
                                             <th style="width: 18%; text-align: center;">เพิ่มเลขพัสดุ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        for ($i = 1; $i < 5; $i++) {
+                                        for ($i = 1; $i < count($ORDER_CONFIRM); $i++) {
                                         ?>
                                             <tr>
                                                 <td class="d-flex align-items-center d-flex justify-content-center"><?php echo $i; ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo rand() ?></td>
-                                                <td style="vertical-align: middle; text-align: end;">นายก ขคง</td>
-                                                <td style="vertical-align: middle; text-align: end;">ชุดอิ่มคุ้ม</td>
-                                                <td style="vertical-align: middle; text-align: end;">20</td>
-                                                <td style="vertical-align: middle; text-align: end;">2,400.00</td>
-                                                <td style="vertical-align: middle; text-align: end;">11/07/2564 17:30:14</td>
-                                                <td style="vertical-align: middle; text-align: center;">ชำระแล้ว</td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_CONFIRM[$i]["order_number"] ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_CONFIRM[$i]["title"] . $ORDER_CONFIRM[$i]["firstname"] . " " . $ORDER_CONFIRM[$i]["lastname"] ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_CONFIRM[$i]["total_unit"] ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo number_format($ORDER_CONFIRM[$i]["total_price"], 2) ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $ORDER_CONFIRM[$i]["time_order"])  ?></td>
                                                 <td style="text-align: center; vertical-align: middle;">
-                                                    <button type="button" id="show" class="btn btn-warning btn-md" title='เพิ่มเลขพัสดุ' data-toggle="modal" data-target="#transportModal">
+                                                    <button type="button" id="show" onclick="delivery('<?php echo $ORDER_CONFIRM[$i]['order_id'] ?>', '<?php echo $ORDER_CONFIRM[$i]['order_number'] ?>')" class="btn btn-warning btn-md" title='เพิ่มเลขพัสดุ' data-toggle="modal" data-target="#transportModal">
                                                         <i class="fas fa-plus"></i>
                                                     </button>
                                                 </td>
@@ -123,7 +120,7 @@ $CurrentMenu = "delivery";
             include_once("deliveryModal.php");
             ?>
 
-            <script type="text/javascript" src="order.js"></script>
+            <script src="delivery.js"></script>
         </div>
         <!-- End of Content Wrapper -->
 

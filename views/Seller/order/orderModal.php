@@ -74,6 +74,7 @@ $REASON = getAllReason();
 <!-- disapproved -->
 <div class="modal fade" id="disapprovedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalCenterTitle">เหตุผลที่ไม่อนุมัติ</h5>
@@ -81,8 +82,8 @@ $REASON = getAllReason();
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body text-center">
-                <form action="manage.php" method="post" enctype="multipart/form-data" id="form-disapproved" name="form-disapproved">
+            <form action="manage.php" method="post" enctype="multipart/form-data" id="form-disapproved" name="form-disapproved">
+                <div class="modal-body text-center">
                     <div class="row mb-4">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
                             <span>เหตุผล <span class="text-danger"> *</span></span>
@@ -105,15 +106,19 @@ $REASON = getAllReason();
                             <span>รายละเอียด</span>
                         </div>
                         <div class="col-xl-9 col-12">
-                            <textarea class="form-control" id="reason_desc" name="reason_desc" placeholder="กรุณากรอกรายละเอียด" rows="3"></textarea>
+                            <textarea class="form-control reason_desc" id="reason_desc" name="reason_desc" placeholder="กรุณากรอกรายละเอียด" rows="3"></textarea>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button type="submit" name="disapproved-modal" id="disapproved-modal" class="btn btn-success disapproved-modal">บันทึก</button>
-            </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="request" name="request" value="disapproved_order">
+                    <input type="hidden" id="order_id" name="order_id" value="">
+                    <input type="hidden" id="order_number" name="order_number" value="">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" name="disapproved-modal" id="disapproved-modal" class="btn btn-success disapproved-modal">บันทึก</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
