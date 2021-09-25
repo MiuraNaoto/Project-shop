@@ -162,7 +162,7 @@ $SHOPING_CART = getShopingCart($uid[0]);
                         </ul>
                         <?php
 
-                        $getProductStock = "SELECT * FROM `product` INNER JOIN `shopping_cart` WHERE uid = '$uid'";
+                        $getProductStock = "SELECT * FROM `product` INNER JOIN `shopping_cart` ON `product`.`product_id`=`shopping_cart`.`product_id` WHERE uid = '$uid'";
                         $getProductStockJSON = selectData($getProductStock);
                         $jsonCheckCart = json_encode($getProductStockJSON);
                         //echo $jsonCheckCart;
