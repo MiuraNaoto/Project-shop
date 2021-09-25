@@ -58,12 +58,34 @@ $PRODUCT_TYPE = getProductType();
                     <div class="shop__sidebar">
                         <div class="sidebar__categories">
                             <div class="section-title">
-                                <h4>Categories</h4>
+                                <h4>หมวดหมู่สินค้า</h4>
                             </div>
                             <div class="categories__accordion">
                                 <div class="accordion" id="accordionExample">
-                                    <div class="card">
-                                        <div class="card-heading ">
+                                    <?php
+                                    for ($i = 1; $i < count($PRODUCT_TYPE); $i++) {
+                                    ?>
+                                        <div class="card">
+                                            <div class="card-title">
+                                                <?php
+                                                if ($PRODUCT_TYPE[$i]["id"] == $type_id) {
+                                                ?>
+                                                    <a href="<?php echo 'shop.php?type_id=' . $PRODUCT_TYPE[$i]["id"] ?>"><span class="mb-0"><?php echo  $PRODUCT_TYPE[$i]["type"] ?></span></a>
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <a href="<?php echo 'shop.php?type_id=' . $PRODUCT_TYPE[$i]["id"] ?>"><span class="mb-0 text-muted"><?php echo  $PRODUCT_TYPE[$i]["type"] ?></span></a>
+                                                <?php
+                                                }
+                                                ?>
+
+                                            </div>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                    <!-- <div class="card">
+                                        <div class="card-title">
                                             <a data-toggle="collapse" data-target="#collapseOne"><?php echo  $PRODUCT_TYPE[1]["type"] ?></a>
                                         </div>
                                         <div id="collapseOne" class="collapse" data-parent="#accordionExample">
@@ -132,7 +154,7 @@ $PRODUCT_TYPE = getProductType();
                                         <div class="card-heading">
                                             <a data-toggle="collapse" data-target="#collapseFive"><?php echo  $PRODUCT_TYPE[5]["type"] ?></a>
                                         </div>
-                                        <!-- <div id="collapseFive" class="collapse" data-parent="#accordionExample">
+                                        <div id="collapseFive" class="collapse" data-parent="#accordionExample">
                                             <div class="card-body">
                                                 <ul>
                                                     <li><a href="#">Coats</a></li>
@@ -143,26 +165,32 @@ $PRODUCT_TYPE = getProductType();
                                                     <li><a href="#">Jeans</a></li>
                                                 </ul>
                                             </div>
-                                        </div> -->
-                                    </div>
+                                        </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
                         <div class="sidebar__filter">
                             <div class="section-title">
-                                <h4>Shop by price</h4>
+                                <h4>ค้นหาขั้นสูง</h4>
                             </div>
                             <div class="filter-range-wrap">
-                                <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content" data-min="33" data-max="99"></div>
+                                <!-- <label for="customRange2" class="form-label">Example range</label> -->
+
+                                <!-- <input type="range" class="form-range" min="0" max="999999" id="customRange2" data-filter-group="weight" style="width: 262.5px;"> -->
+
+
+
+                                <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content" data-min="0" data-max="999999"></div>
                                 <div class="range-slider">
                                     <div class="price-input">
                                         <p>Price:</p>
-                                        <input type="text" id="minamount">
-                                        <input type="text" id="maxamount">
+                                        <input type="text" min="0" id="minamount">
+                                        <input type="text" min="0" id="maxamount">
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">Filter</a>
+                            <a href="#">ค้นหา</a>
                         </div>
                         <!-- <div class="sidebar__sizes">
                             <div class="section-title">

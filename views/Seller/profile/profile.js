@@ -80,73 +80,73 @@ $(document).ready(function () {
     });
   });
 
-  $(document).on("click", ".change-passowrd", function (event) {
-    event.preventDefault();
+  // $(document).on("click", ".change-passowrd", function (event) {
+  //   event.preventDefault();
 
-    var password_indb = $("#password_indb").val();
-    var current_password = $("#current_password").val();
-    var new_password = $("#new_password").val();
-    var confirm_new_password = $("#confirm_new_password").val();
+  //   var password_indb = $("#password_indb").val();
+  //   var current_password = $("#current_password").val();
+  //   var new_password = $("#new_password").val();
+  //   var confirm_new_password = $("#confirm_new_password").val();
 
-    console.log(current_password);
-    console.log(new_password);
-    console.log(confirm_new_password);
-    console.log(password_indb);
+  //   console.log(current_password);
+  //   console.log(new_password);
+  //   console.log(confirm_new_password);
+  //   console.log(password_indb);
 
-    if (current_password == "") {
-      Swal.fire({
-        icon: "warning",
-        title: "กรุณากรอกรหัสผ่านปัจจุบัน",
-      });
-    } else {
-      if (new_password == "") {
-        Swal.fire({
-          icon: "warning",
-          title: "กรุณากรอกรหัสผ่านใหม่",
-        });
-      } else {
-        if (confirm_new_password == "") {
-          Swal.fire({
-            icon: "warning",
-            title: "กรุณากรอกรหัสผ่านยืนยัน",
-          });
-        } else {
-          if (current_password == new_password) {
-            Swal.fire({
-              icon: "error",
-              title: "รหัสผ่านใหม่ตรงกับรหัสผ่านปัจจุบัน",
-            });
-          } else {
-            if (new_password == confirm_new_password) {
-              $.ajax({
-                url: "manage.php",
-                method: "POST",
-                data: {
-                  current_password: current_password,
-                  new_password: new_password,
-                  confirm_new_password: confirm_new_password,
-                  request: "change_password",
-                },
-                datatype: "json",
-                async: false,
+  //   if (current_password == "") {
+  //     Swal.fire({
+  //       icon: "warning",
+  //       title: "กรุณากรอกรหัสผ่านปัจจุบัน",
+  //     });
+  //   } else {
+  //     if (new_password == "") {
+  //       Swal.fire({
+  //         icon: "warning",
+  //         title: "กรุณากรอกรหัสผ่านใหม่",
+  //       });
+  //     } else {
+  //       if (confirm_new_password == "") {
+  //         Swal.fire({
+  //           icon: "warning",
+  //           title: "กรุณากรอกรหัสผ่านยืนยัน",
+  //         });
+  //       } else {
+  //         if (current_password == new_password) {
+  //           Swal.fire({
+  //             icon: "error",
+  //             title: "รหัสผ่านใหม่ตรงกับรหัสผ่านปัจจุบัน",
+  //           });
+  //         } else {
+  //           if (new_password == confirm_new_password) {
+  //             $.ajax({
+  //               url: "manage.php",
+  //               method: "POST",
+  //               data: {
+  //                 current_password: current_password,
+  //                 new_password: new_password,
+  //                 confirm_new_password: confirm_new_password,
+  //                 request: "change_password",
+  //               },
+  //               datatype: "json",
+  //               async: false,
 
-                success: function (data) {
-                  // console.log(data);
-                  // alert(data);
-                  location.reload();
-                },
-              });
-            } else {
-              Swal.fire({
-                icon: "warning",
-                title: "รหัสผ่านไม่ตรงกัน กรุณากรอกใหม่",
-              });
-            }
-          }
-        }
-      }
-    }
-  });
+  //               success: function (data) {
+  //                 // console.log(data);
+  //                 // alert(data);
+  //                 location.reload();
+  //               },
+  //             });
+  //           } else {
+  //             Swal.fire({
+  //               icon: "warning",
+  //               title: "รหัสผ่านไม่ตรงกัน กรุณากรอกใหม่",
+  //             });
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // });
 
   $("#uploadpic").on("change", function (e) {
     e.preventDefault();
@@ -170,30 +170,30 @@ $(document).ready(function () {
     });
   });
 
-  $(".edit-bank-account").click(function () {
-    $("#edit-bank-modal").modal();
+  // $(".edit-bank-account").click(function () {
+  //   $("#edit-bank-modal").modal();
 
-    var baid = $(this).attr("baid");
-    var account_code = $(this).attr("account_code");
-    var account_name = $(this).attr("account_name");
-    var bank_id = $(this).attr("bank_id");
+  //   var baid = $(this).attr("baid");
+  //   var account_code = $(this).attr("account_code");
+  //   var account_name = $(this).attr("account_name");
+  //   var bank_id = $(this).attr("bank_id");
 
-    console.log(baid);
+  //   console.log(baid);
 
-    $("#e_baid").val(baid);
-    $("#e_bankcode").val(account_code);
-    $("#e_bankname").val(account_name);
-    $("#e_banktype").val(bank_id);
-  });
+  //   $("#e_baid").val(baid);
+  //   $("#e_bankcode").val(account_code);
+  //   $("#e_bankname").val(account_name);
+  //   $("#e_banktype").val(bank_id);
+  // });
 
-  $("#edit-bank").click(function () {
-    // console.log("save");
-    $("#e_baid").val();
-    $("#e_bankcode").val();
-    $("#e_bankname").val();
-    $("#e_banktype").val();
-    $("#request").val();
-  });
+  // $("#edit-bank").click(function () {
+  //   // console.log("save");
+  //   $("#e_baid").val();
+  //   $("#e_bankcode").val();
+  //   $("#e_bankname").val();
+  //   $("#e_banktype").val();
+  //   $("#request").val();
+  // });
 });
 
 function selectProvince() {
@@ -247,5 +247,86 @@ function selectDistrict() {
           "</option>";
       }
     });
+  });
+}
+
+function delfunction(_baid, _accountcode, _accountname) {
+  // alert(_productid + " " + _code + " " + _name);
+  Swal.fire({
+    title: `คุณต้องการลบ ${_accountcode}`,
+    text: `${_accountname} หรือไม่ ?`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#e74a3b",
+    cancelButtonColor: "#858796",
+    confirmButtonText: "ยืนยัน",
+    cancelButtonText: "ยกเลิก",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "ลบข้อมูลสำเร็จ",
+        icon: "success",
+        confirmButtonColor: "#e74a3b",
+        confirmButtonText: "ยืนยัน",
+      }).then((result) => {
+        this.delete_1(_baid, _accountcode, _accountname);
+      });
+    } else {
+    }
+  });
+}
+
+function delete_1(_baid, _accountcode, _accountname) {
+  // alert(_baid + " " + _accountcode + " " + _accountname);
+  $.ajax({
+    type: "POST",
+    url: "manage.php",
+    //data: s.concat(id),
+    data: {
+      baid: _baid,
+      bank_code: _accountcode,
+      account_name: _accountname,
+      request: "delete_bank",
+    },
+
+    success: function (data) {
+      location.reload();
+      console.log(data);
+      //location.href = "./manage.php"
+    },
+  });
+}
+
+function change_password(userid) {
+  var current_password = $("#current_password").val();
+  var new_password = $("#new_password").val();
+  var confirm_new_password = $("#confirm_new_password").val();
+  var uid = $("#uid").val();
+  var data = {
+    uid: userid,
+    current_password: current_password,
+    new_password: new_password,
+    confirm_new_password: confirm_new_password,
+    request: "change_password",
+  };
+
+  console.log(uid);
+  console.log(passowrd);
+
+  $.ajax({
+    type: "POST",
+    url: "manage.php",
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
+    data: JSON.stringify(data),
+    // data: {
+    //  ,
+    // },
+
+    success: function (data) {
+      // location.reload();
+      console.log(data);
+      //location.href = "./manage.php"
+    },
   });
 }

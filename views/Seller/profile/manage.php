@@ -88,17 +88,40 @@ switch ($request) {
 
     case 'change_password':
 
-        $new_password = $_POST["new_password"];
-        $new_password = md5($username . $new_password);
-        echo $new_password . "<br>";
+        $uid = $SELLER[1]["uid"];
+        $passowrd = $SELLER[1]["password"];
+        $username = $SELLER[1]["username"];
+        $current_password = md5($username . $_POST["current_password"]);
+        $new_password = md5($username . $_POST["new_password"]);
+        $confirm_new_password = md5($username . $_POST["confirm_new_password"]);
 
-        $sql = "UPDATE `user-list` SET `password`='$new_password' WHERE `uid`='$uid'";
-        // echo $sql;
-        $DATA = updateData($sql);
-        // echo $DATA;
 
-        // session_destroy();
-        header("location: ../../../index.php");
+        if ($passowrd != $current_password) {
+            echo '  <script>
+                        alert("รหัสผ่านไม่ตรงกับรหัสผ่านปัจจุบัน");
+                        location.href = "./profile.php"
+                    </script>';
+        } else {
+            if ($passowrd == $new_password) {
+                echo '  <script>
+                            alert("รหัสผ่านใหม่ตรงกับรหัสผ่านปัจจุบัน");
+                            location.href = "./profile.php"
+                        </script>';
+            } else {
+                if ($new_password != $confirm_new_password) {
+                    echo '  <script>
+                                alert("รหัสผ่านใหม่ไม่ตรงกับรหัสผ่านยืนยัน");
+                                location.href = "./profile.php"
+                            </script>';
+                } else {
+                    $sql = "UPDATE `user-list` SET `password`='$new_password' WHERE `uid`='$uid'";
+                    updateData($sql);
+                    // echo $sql;
+                    header("location: ../../../logout.php");
+                }
+            }
+        }
+
         break;
 
     case 'updateprofile':
@@ -165,5 +188,15 @@ switch ($request) {
         updateData($sql);
 
         header("location: ./profile.php");
+        break;
+
+    case "delete_bank":
+        $baid = $_POST["baid"];
+        $bank_code = $_POST["bank_code"];
+        $account_name = $_POST["account_name"];
+        echo $baid . " " . $bank_code . " " . $account_name;
+
+        $sql = "DELETE FROM `bank_account` WHERE `bank_account`.`baid` = '$baid' AND `bank_account`.`account_code` = '$bank_code'";
+        deleteData($sql);
         break;
 }

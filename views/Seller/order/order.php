@@ -15,6 +15,8 @@ $shop_id = $SELLER[1]["shop_id"];
 $CurrentMenu = "order";
 
 $ORDER = getAllOrder();
+$ORDER_DETAIL = getAllOrderDetail();
+date_default_timezone_set("asia/bangkok");
 print_r($ORDER);
 ?>
 
@@ -88,16 +90,18 @@ print_r($ORDER);
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th style="text-align: center;">ลำดับ</th>
+                                                <!-- <th style="text-align: center;">ลำดับ</th> -->
                                                 <th style="text-align: center;">หมายเลข<br>คำสั่งซื้อ</th>
                                                 <th style="text-align: center;">ชื่อ-นามสกุล</th>
-                                                <th style="text-align: center;">รายการสินค้า</th>
-                                                <th style="text-align: center;">จำนวน</th>
+                                                <!-- <th style="text-align: center;">รายการสินค้า</th> -->
+                                                <th style="text-align: center;">จำนวนรวม</th>
                                                 <th style="text-align: center;">ยอดรวม</th>
                                                 <th style="text-align: center;">วัน-เวลาสั่งซื้อ</th>
-                                                <th style="width: 9%; text-align: center;">วิธีการ<br>ชำระเงิน</th>
+                                                <th style="text-align: center;">วิธีการ<br>ชำระเงิน</th>
+                                                <th style="text-align: center;">ยอดชำระ</th>
+                                                <th style="text-align: center;">วัน-เวลาชำระ</th>
                                                 <th style="text-align: center;">สถานะการชำระ</th>
-                                                <th style="width: 18%; text-align: center;">จัดการ</th>
+                                                <th style="width: 13%; text-align: center;">จัดการ</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -105,32 +109,85 @@ print_r($ORDER);
                                             for ($i = 1; $i < count($ORDER); $i++) {
                                             ?>
                                                 <tr>
-                                                    <td style="vertical-align: middle; text-align: center;"><?php echo $i; ?></td>
+                                                    <!-- <td style="vertical-align: middle; text-align: center;"><?php echo $i; ?></td> -->
                                                     <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER[$i]["order_number"] ?></td>
                                                     <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER[$i]["title"] . $ORDER[$i]["firstname"] . " " . $ORDER[$i]["lastname"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;">
+                                                    <!-- <td style="vertical-align: middle; text-align: center;">
                                                         <button type="button" id="show" class="btn btn-primary btn-md" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#viewModal">
                                                             <i class="fas fa-search"></i>
                                                         </button>
-                                                    </td>
-                                                    <td style="vertical-align: middle; text-align: end;">20</td>
-                                                    <td style="vertical-align: middle; text-align: end;">2,400.00</td>
-                                                    <td style="vertical-align: middle; text-align: end;">11/07/2564 17:30:14</td>
-                                                    <td style="vertical-align: middle; text-align: end;">โอนผ่านธนาคาร</td>
-                                                    <td style="vertical-align: middle; text-align: center;">กำลังตรวจสอบ</td>
+                                                    </td> -->
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER[$i]["total_unit"] ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo number_format($ORDER[$i]["total_price"], 2) ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $ORDER[$i]["time_order"])  ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER[$i]["type_payment"] ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo number_format($ORDER[$i]["total_price_user"], 2) ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $ORDER[$i]["time_payment"])  ?></td>
+                                                    <td style="vertical-align: middle; text-align: center;"><?php echo $ORDER[$i]["status_order"] ?></td>
                                                     <td style="text-align: center; vertical-align: middle;">
-                                                        <button type="button" id="show" class="btn btn-primary btn-md" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#detailOderModal">
-                                                            <i class="fas fa-bars"></i>
-                                                        </button>
-                                                        <button type="button" id="show" class="btn btn-primary btn-md" title='หลักฐานการโอนเงิน' data-toggle="modal" data-target="#paymentModal">
-                                                            <i class="fas fa-image"></i>
-                                                        </button>
-                                                        <button type="button" id="show" class="btn btn-success btn-md" title='ยืนยันการซื้อ'>
-                                                            <i class="fas fa-check"></i>
-                                                        </button>
-                                                        <button type="button" id="show" class="btn btn-danger btn-md" title='ไม่ยืนยันการซื้อ' data-toggle="modal" data-target="#disapprovedModal">
-                                                            <i class="fas fa-ban"></i>
-                                                        </button>
+                                                        <?php
+                                                        if ($ORDER[$i]["status_order"] == "รอชำระเงิน") {
+                                                        ?>
+                                                            <button type="button" id="show" order_number='<?php echo $ORDER[$i]["order_number"] ?>' fullname='<?php echo $ORDER[$i]["title"] . $ORDER[$i]["firstname"] . " " . $ORDER[$i]["lastname"] ?>' address='<?php
+                                                                                                                                                                                                                                                                    if ($ORDER[1]["provinces_name_in_thai"] == "กรุงเทพมหานคร") {
+                                                                                                                                                                                                                                                                        echo "เลขที่ " . $ORDER[1]["address"] .
+                                                                                                                                                                                                                                                                            " แขวง" . $ORDER[1]["subdistricts_name_in_thai"] .
+                                                                                                                                                                                                                                                                            " " . $ORDER[1]["districts_name_in_thai"] .
+                                                                                                                                                                                                                                                                            " " . $ORDER[1]["provinces_name_in_thai"] .
+                                                                                                                                                                                                                                                                            ", " . $ORDER[1]["zip_code"];
+                                                                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                                                                        echo "เลขที่ " . $ORDER[1]["address"] .
+                                                                                                                                                                                                                                                                            " ต." . $ORDER[1]["subdistricts_name_in_thai"] .
+                                                                                                                                                                                                                                                                            " อ." . $ORDER[1]["districts_name_in_thai"] .
+                                                                                                                                                                                                                                                                            " จ." . $ORDER[1]["provinces_name_in_thai"] .
+                                                                                                                                                                                                                                                                            ", " . $ORDER[1]["zip_code"];
+                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                    ?>' tel='<?php echo format_phonenumber($ORDER[$i]["tel"]) ?>' status_order='<?php echo $ORDER[$i]["status_order"] ?>' total='<?php echo number_format($ORDER[$i]["total_price"], 2) ?>' class="btn btn-primary btn-md detail-order" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#detailOderModal">
+                                                                <i class="fas fa-bars"></i>
+                                                            </button>
+                                                            <!-- <button type="button" id="show" class="btn btn-primary btn-md" title='หลักฐานการโอนเงิน' data-toggle="modal" data-target="#paymentModal">
+                                                                <i class="fas fa-image"></i>
+                                                            </button>
+                                                            <button type="button" id="show" class="btn btn-success btn-md" title='ยืนยันการซื้อ' disabled>
+                                                                <i class="fas fa-check"></i>
+                                                            </button>
+                                                            <button type="button" id="show" class="btn btn-danger btn-md" title='ไม่ยืนยันการซื้อ' data-toggle="modal" data-target="#disapprovedModal" disabled>
+                                                                <i class="fas fa-ban"></i>
+                                                            </button> -->
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <button type="button" id="show" order_number='<?php echo $ORDER[$i]["order_number"] ?>' fullname='<?php echo $ORDER[$i]["title"] . $ORDER[$i]["firstname"] . " " . $ORDER[$i]["lastname"] ?>' address='<?php
+                                                                                                                                                                                                                                                                    if ($ORDER[1]["provinces_name_in_thai"] == "กรุงเทพมหานคร") {
+                                                                                                                                                                                                                                                                        echo "เลขที่ " . $ORDER[1]["address"] .
+                                                                                                                                                                                                                                                                            " แขวง" . $ORDER[1]["subdistricts_name_in_thai"] .
+                                                                                                                                                                                                                                                                            " " . $ORDER[1]["districts_name_in_thai"] .
+                                                                                                                                                                                                                                                                            " " . $ORDER[1]["provinces_name_in_thai"] .
+                                                                                                                                                                                                                                                                            ", " . $ORDER[1]["zip_code"];
+                                                                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                                                                        echo "เลขที่ " . $ORDER[1]["address"] .
+                                                                                                                                                                                                                                                                            " ต." . $ORDER[1]["subdistricts_name_in_thai"] .
+                                                                                                                                                                                                                                                                            " อ." . $ORDER[1]["districts_name_in_thai"] .
+                                                                                                                                                                                                                                                                            " จ." . $ORDER[1]["provinces_name_in_thai"] .
+                                                                                                                                                                                                                                                                            ", " . $ORDER[1]["zip_code"];
+                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                    ?>' tel='<?php echo format_phonenumber($ORDER[$i]["tel"]) ?>' status_order='<?php echo $ORDER[$i]["status_order"] ?>' total='<?php echo number_format($ORDER[$i]["total_price"], 2) ?>' class="btn btn-primary btn-md detail-order" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#detailOderModal">
+                                                                <i class="fas fa-bars"></i>
+                                                            </button>
+                                                            <button type="button" id="show" payment='<?php echo $ORDER[$i]["picture_payment"] ?>' class="btn btn-primary btn-md payment" title='หลักฐานการโอนเงิน' data-toggle="modal" data-target="#paymentModal">
+                                                                <i class="fas fa-image"></i>
+                                                            </button>
+                                                            <button type="button" id="success" name="success" onclick="approved('<?php echo $ORDER[$i]['order_id'] ?>', '<?php echo $ORDER[$i]['order_number'] ?>')" class="btn btn-success btn-md" title='ยืนยันการซื้อ'>
+                                                                <i class="fas fa-check"></i>
+                                                            </button>
+                                                            <button type="button" id="show" class="btn btn-danger btn-md" onclick="disapproved('<?php echo $ORDER[$i]['order_id'] ?>', '<?php echo $ORDER[$i]['order_number'] ?>')" title='ไม่ยืนยันการซื้อ' data-toggle="modal" data-target="#disapprovedModal">
+                                                                <i class="fas fa-ban"></i>
+                                                            </button>
+                                                        <?php
+                                                        }
+
+                                                        ?>
+
                                                     </td>
                                                 </tr>
                                             <?php
@@ -346,7 +403,7 @@ print_r($ORDER);
             include_once("orderModal.php");
             ?>
 
-            <script type="text/javascript" src="order.js"></script>
+            <script src="order.js"></script>
         </div>
         <!-- End of Content Wrapper -->
 

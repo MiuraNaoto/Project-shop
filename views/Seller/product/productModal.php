@@ -95,7 +95,7 @@ $DELIVERY_TYPE = getDeliveryType();
                             <span>ราคาสินค้าต่อชิ้น (บาท) <span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="กรุณากรอกราคาสินค้า" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสสินค้า')" oninput="this.setCustomValidity('')">
+                            <input type="number" step="0.01" class="form-control" min="0" id="price" name="price" placeholder="กรุณากรอกราคาสินค้า" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสสินค้า')" oninput="this.setCustomValidity('')">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -103,7 +103,7 @@ $DELIVERY_TYPE = getDeliveryType();
                             <span>จำนวนสินค้า (ชิ้น) <span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="number" class="form-control" id="stock" name="stock" placeholder="กรุณากรอกจำนวนสินค้า" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสสินค้า')" oninput="this.setCustomValidity('')">
+                            <input type="number" class="form-control" id="stock" name="stock" min="0" placeholder="กรุณากรอกจำนวนสินค้า" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสสินค้า')" oninput="this.setCustomValidity('')">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -127,7 +127,7 @@ $DELIVERY_TYPE = getDeliveryType();
                             <span>ค่าจัดส่งสินค้า (บาท) <span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="number" step="0.01" class="form-control" id="price_transport" name="price_transport" placeholder="กรุณากรอกราคาค่าจัดส่งสินค้าสินค้า" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสสินค้า')" oninput="this.setCustomValidity('')">
+                            <input type="number" step="0.01" min="0" class="form-control" id="price_transport" name="price_transport" placeholder="กรุณากรอกราคาค่าจัดส่งสินค้าสินค้า" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสสินค้า')" oninput="this.setCustomValidity('')">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -234,7 +234,7 @@ $DELIVERY_TYPE = getDeliveryType();
                             <span>ราคาสินค้าต่อชิ้น (บาท) <span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="number" step="0.01" class="form-control" id="e_price" name="e_price" placeholder="กรุณากรอกราคาสินค้า" value="" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสสินค้า')" oninput="this.setCustomValidity('')">
+                            <input type="number" step="0.01" min="0" class="form-control" id="e_price" name="e_price" placeholder="กรุณากรอกราคาสินค้า" value="" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสสินค้า')" oninput="this.setCustomValidity('')">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -242,7 +242,7 @@ $DELIVERY_TYPE = getDeliveryType();
                             <span>จำนวนสินค้า (ชิ้น) <span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="number" class="form-control" id="e_stock" name="e_stock" placeholder="กรุณากรอกจำนวนสินค้า" value="" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสสินค้า')" oninput="this.setCustomValidity('')">
+                            <input type="number" class="form-control" min="0" id="e_stock" name="e_stock" placeholder="กรุณากรอกจำนวนสินค้า" value="" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสสินค้า')" oninput="this.setCustomValidity('')">
                         </div>
                     </div>
                     <div class="row mb-4">
@@ -266,7 +266,7 @@ $DELIVERY_TYPE = getDeliveryType();
                             <span>ค่าจัดส่งสินค้า (บาท) <span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="number" step="0.01" class="form-control" id="e_price_transport" name="e_price_transport" value="" placeholder="กรุณากรอกราคาค่าจัดส่งสินค้าสินค้า" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสสินค้า')" oninput="this.setCustomValidity('')">
+                            <input type="number" step="0.01" min="0" class="form-control" id="e_price_transport" name="e_price_transport" value="" placeholder="กรุณากรอกราคาค่าจัดส่งสินค้าสินค้า" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสสินค้า')" oninput="this.setCustomValidity('')">
                         </div>
                     </div>
 

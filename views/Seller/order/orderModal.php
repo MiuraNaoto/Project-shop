@@ -1,3 +1,11 @@
+<?php
+include_once("../../../query/query.php");
+
+$USER = $_SESSION[md5('user')];
+$uid = $USER[1]["uid"];
+$REASON = getAllReason();
+?>
+
 <!-- Modal -->
 <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -8,8 +16,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body text-center">
-                <img src="../../../img/payment/bill/transfer-6.png" width="75%" />
+            <div class="modal-body text-center" id="payment-m">
+
             </div>
             <!-- <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -74,64 +82,41 @@
                 </button>
             </div>
             <div class="modal-body text-center">
-                <div class="row mb-4">
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                        <span>เหตุผล <span class="text-danger"> *</span></span>
-                    </div>
-                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> -->
-                        <select name="title" id="title" class="form-control">
-                            <option value="" selected>เลือกเหตุผลที่ไม่อนุมัติ</option>
-                            <option value="">โอนเงินเกินจำนวน</option>
-                            <option value="">โอนเงินไม่ครบจำนวน</option>
-                            <option value="">อื่นๆ</option>
-                        </select>
-                    </div>
-                </div>
+                <form action="manage.php" method="post" enctype="multipart/form-data" id="form-disapproved" name="form-disapproved">
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <span>เหตุผล <span class="text-danger"> *</span></span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> -->
+                            <select name="reason" id="reason" class="form-control">
+                                <option value="" selected disabled>เลือกเหตุผลที่ไม่อนุมัติ</option>
+                                <?php
+                                for ($i = 1; $i <  count($REASON); $i++) {
+                                    echo '<option value="' . $REASON[$i]["id"] . '">' . $REASON[$i]["reason"] . '</option>';
+                                }
+                                ?>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">บันทึก</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- AddbillOderModal -->
-<div class="modal fade" id="AddbillOderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">เพิ่มหลักฐานการโอนเงิน</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row mb-4">
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                        <span>หลักฐานการโอนเงิน <span class="text-danger"> *</span></span>
-                    </div>
-                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                            </select>
                         </div>
                     </div>
-                </div>
-
+                    <div class="row mb-4" id="etc">
+                        <div class="col-xl-3 col-12 text-right" style="align-self: center;">
+                            <span>รายละเอียด</span>
+                        </div>
+                        <div class="col-xl-9 col-12">
+                            <textarea class="form-control" id="reason_desc" name="reason_desc" placeholder="กรุณากรอกรายละเอียด" rows="3"></textarea>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">บันทึก</button>
+                <button type="submit" name="disapproved-modal" id="disapproved-modal" class="btn btn-success disapproved-modal">บันทึก</button>
             </div>
         </div>
     </div>
 </div>
-
 
 <!-- Detail Oder Modal -->
 <div class="modal fade" id="detailOderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -149,52 +134,16 @@
                         <span>หมายเลขคำสั่งซื้อ</span>
                     </div>
                     <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <input type="text" class="form-control" value="2103254" disabled>
+                        <input type="text" class="form-control" id="d_order_number" name="d_order_number" value="" disabled>
                     </div>
                 </div>
+
                 <div class="row mb-4">
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                        <span>คำนำหน้า</span>
+                        <span>ชื่อผู้สั่ง</span>
                     </div>
                     <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <select name="title" id="title" class="form-control" disabled>
-                            <option value="">เลือกคำนำหน้า</option>
-                            <option value="" selected>นาย</option>
-                            <option value="">นาง</option>
-                            <option value="">นางสาว</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                        <span>ชื่อ</span>
-                    </div>
-                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <input type="text" class="form-control" value="ก" disabled>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                        <span>นามสกุล</span>
-                    </div>
-                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <input type="text" class="form-control" value="ขคง" disabled>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                        <span>รายการสินค้า</span>
-                    </div>
-                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <input type="text" class="form-control" value="ชุดอิ่มคุ้ม" disabled>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                        <span>ยอดรวม</span>
-                    </div>
-                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <input type="text" class="form-control" value="2,400.00" disabled>
+                        <input type="text" class="form-control" id="d_fullname" name="d_fullname" value="" disabled>
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -202,7 +151,7 @@
                         <span>ที่อยู่จัดส่ง</span>
                     </div>
                     <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <input type="text" class="form-control" value="1 หมู่ 6 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140" disabled>
+                        <input type="text" class="form-control" id="d_address" name="d_address" value="" disabled>
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -210,7 +159,32 @@
                         <span>เบอร์โทรศัพท์</span>
                     </div>
                     <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <input type="text" class="form-control" value="019-998-3211" disabled>
+                        <input type="text" class="form-control" id="d_tel" name="d_tel" value="" disabled>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                        <span>สถานะการชำระ</span>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <input type="text" class="form-control" id="d_status_order" name="d_status_order" value="" disabled>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                        <span>ยอดรวม</span>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <input type="text" class="form-control" id="d_total" name="d_total" value="" disabled>
+                    </div>
+                </div>
+                <hr>
+                <div class="row mb-4">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                        <span>รายการสินค้า</span>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <input type="text" class="form-control" value="ชุดอิ่มคุ้ม" disabled>
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -229,14 +203,9 @@
                         <input type="text" class="form-control" value="โอนผ่านธนาคาร" disabled>
                     </div>
                 </div>
-                <div class="row mb-4">
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                        <span>สถานะการชำระ</span>
-                    </div>
-                    <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <input type="text" class="form-control" value="กำลังตรวจสอบ" disabled>
-                    </div>
-                </div>
+
+
+
             </div>
         </div>
     </div>

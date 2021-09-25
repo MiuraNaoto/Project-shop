@@ -231,12 +231,25 @@ function countShopingCart($uid)
 // ORDER
 function getAllOrder()
 {
-    $sql = "SELECT * FROM `orders` 
-                    INNER JOIN `orders_detail` ON `orders`.`order_id` = `orders_detail`.`od_id` 
+    $sql = "SELECT * FROM `orders`
+                    INNER JOIN `delivery_address` ON `orders`.`daid` = `delivery_address`.`daid`
+                    INNER JOIN `subdistricts` ON `delivery_address`.`subdistrict` = `subdistricts`.`id`
+                    INNER JOIN `districts` ON `subdistricts`.`district_id` = `districts`.`id`
+                    INNER JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id`
+                    INNER JOIN `user-list` ON `delivery_address`.`uid` = `user-list`.`uid`
+                    INNER JOIN `user-title` ON `delivery_address`.`title` = `user-title`.`id`
+                    INNER JOIN `type_payment` ON `orders`.`type_payment` = `type_payment`.`tpid`
+                    INNER JOIN `status_order` ON `orders`.`status_order` = `status_order`.`so_id`
+            WHERE `orders`.`status_order` = 1 OR `orders`.`status_order` = 2";
+    $DATA = selectData($sql);
+    return ($DATA);
+}
+
+function getAllOrderDetail()
+{
+    $sql = "SELECT * FROM `orders`
+                    INNER JOIN `orders_detail` ON `orders`.`order_id` = `orders_detail`.`orders_id`
                     INNER JOIN `product` ON `orders_detail`.`product_id` = `product`.`product_id`
-                    INNER JOIN `review_product` ON `orders_detail`.`review_product` = `review_product`.`rpid`
-                    INNER JOIN `review_shop` ON `orders`.`review_shop` = `review_shop`.`rsid`
-                    INNER JOIN `delivery` ON `orders`.`delivery` = `delivery`.`did`
                     INNER JOIN `delivery_address` ON `orders`.`daid` = `delivery_address`.`daid`
                     INNER JOIN `subdistricts` ON `delivery_address`.`subdistrict` = `subdistricts`.`id`
                     INNER JOIN `districts` ON `subdistricts`.`district_id` = `districts`.`id`
@@ -250,8 +263,10 @@ function getAllOrder()
 }
 
 
+
 // FAVOURITE
-function favourite_product($product_id, $uid) {
+function favourite_product($product_id, $uid)
+{
     $sql = "SELECT * FROM `favourite` WHERE `product_id` = '$product_id' AND `uid` = '$uid'";
     $DATA = selectData($sql);
     return ($DATA);
@@ -271,6 +286,15 @@ function FavouriteByUser($uid)
                     INNER JOIN `product` ON `favourite`.`product_id` = `product`.`product_id`
                     INNER JOIN `seller-list` ON `product`.`shop_id` = `seller-list`.`shop_id`
             WHERE `uid` = '$uid'";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
+
+// REASON 
+function getAllReason()
+{
+    $sql = "SELECT * FROM `reason`";
     $DATA = selectData($sql);
     return $DATA;
 }

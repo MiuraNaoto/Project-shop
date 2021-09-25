@@ -267,11 +267,10 @@ $UTID1 = getUserTitleSelect($SELLER[1]["title_id"]);
 
                 </div>
                 <input type="hidden" name="e_time" id="e_time" />
-                <input type="hidden" name="password_indb" id="password_indb" value="<?php echo $SELLER[1]["password"] ?>" />
 
                 <div class="modal-footer">
-                    <input type="hidden" id="hidden_id" name="request" value="change_pass" />
-                    <button type="submit" id="edit" class="btn btn-danger" data-dismiss="modal" style="width: 70px;">ยกเลิก</button>
+                    <input type="hidden" id="hidden_id" name="request" value="change_password" />
+                    <button type="button" id="edit" class="btn btn-danger" data-dismiss="modal" style="width: 70px;">ยกเลิก</button>
                     <button type="submit" class="btn btn-success change-passowrd">แก้ไขรหัสผ่าน</button>
                 </div>
             </form>

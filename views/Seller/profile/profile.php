@@ -16,7 +16,7 @@ $BANK_ACCOUNT = getBankAccount($shop_id);
 // $UTID = getUserTitleByid($uid);
 // $UTID1 = getUserTitleSelect($uid);
 
-// print_r($USER);
+// print_r($SELLER);
 // print_r($UTID);
 // print_r($UTID1);
 // echo print_r($BANK_ACCOUNT);
@@ -97,7 +97,7 @@ $BANK_ACCOUNT = getBankAccount($shop_id);
                                                         <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลส่วนตัว' data-toggle="modal" data-target="#editModal">
                                                             <i class="fas fa-edit"></i>&nbsp;&nbsp;&nbsp;แก้ไขข้อมูลส่วนตัว
                                                         </button>
-                                                        <button type="button" id="btn_pass" class="btn btn-secondary btn-md pass_edit" title='เปลี่ยนรหัสผ่าน' data-toggle="modal" data-target="#editPassModal">
+                                                        <button type="button" id="btn_pass" class="btn btn-secondary btn-md pass_edit" title='เปลี่ยนรหัสผ่าน' data-toggle="modal" data-target="#editPassModal" onclick="change_password('<?php echo $SELLER[1]['uid'] ?>','<?php echo $SELLER[1]['password'] ?>')">
                                                             <i class="fa fa-cog"></i>&nbsp;&nbsp;&nbsp;เปลี่ยนรหัสผ่าน
                                                         </button>
                                                     </center>
@@ -159,7 +159,7 @@ $BANK_ACCOUNT = getBankAccount($shop_id);
                                             <span>ที่อยู่ :</span>
                                         </div>
                                         <div class="col-xl-9 col-12">
-                                            <input type="text" class="form-control" id="mail" value="<?Php
+                                            <input type="text" class="form-control" id="mail" value="<?php
                                                                                                         if ($INFO_SALER[1]["provinces_name_in_thai"] == "กรุงเทพมหานคร") {
                                                                                                             echo "เลขที่ " . $INFO_SALER[1]["address_shop"] .
                                                                                                                 " แขวง" . $INFO_SALER[1]["subdistricts_name_in_thai"] .
@@ -301,7 +301,7 @@ $BANK_ACCOUNT = getBankAccount($shop_id);
                                 ?>
 
                                         <div class="col-lg-3 mb-4">
-                                            <div class="card edit-bank-account" data-toggle="modal" baid="<?php echo $BANK_ACCOUNT[$i]["baid"] ?>" account_code="<?php echo $BANK_ACCOUNT[$i]["account_code"] ?>" account_name="<?php echo $BANK_ACCOUNT[$i]["account_name"] ?>" bank_id="<?php echo $BANK_ACCOUNT[$i]["id"] ?>" data-target="#edit-bank-modal" style="cursor: pointer;">
+                                            <div class="card edit-bank-account" data-toggle="modal" onclick="delfunction('<?php echo $BANK_ACCOUNT[$i]['baid'] ?>', '<?php echo $BANK_ACCOUNT[$i]['account_code'] ?>', '<?php echo $BANK_ACCOUNT[$i]['account_name'] ?>')" baid="<?php echo $BANK_ACCOUNT[$i]["baid"] ?>" account_code="<?php echo $BANK_ACCOUNT[$i]["account_code"] ?>" account_name="<?php echo $BANK_ACCOUNT[$i]["account_name"] ?>" bank_id="<?php echo $BANK_ACCOUNT[$i]["id"] ?>" style="cursor: pointer;">
                                                 <img class="card-img-top" src='<?php echo "../../../img/payment/" . $BANK_ACCOUNT[$i]["picture"] ?>' alt="<?php echo $BANK_ACCOUNT[$i]["name"] ?>">
                                                 <div class="card-body text-center font-weight-bold">
                                                     <div class="row mt-2 mb-4 ">

@@ -15,14 +15,14 @@ switch ($request) {
         $obj = $_POST["obj"];
         $daid = $_POST["daid"];
         $total = $_POST["total"];
-        $rand = rand(1000000000,9999999999);
+        $rand = rand((int)1000000000, (int) 9999999999);
         $time = time();
         $shopId = $obj[0]['shop_id'];
         // print_r($obj);
         // echo $daid." ".$total." ".$shopId;
 
-        $sql_orders = "INSERT INTO `orders`(`order_number`, `shop_id`, `daid`, `total_price`, `time_order`)
-        VALUES ('$rand','$shopId','$daid','$total','$time')";
+        $sql_orders = "INSERT INTO `orders`(`order_number`, `shop_id`, `daid`, `total_price`, `time_order`, `status_order`)
+        VALUES ('$rand', '$shopId', '$daid', '$total', '$time', '1')";
         addinsertData($sql_orders);
         // print_r($DATA);
 

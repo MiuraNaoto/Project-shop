@@ -98,7 +98,7 @@ $PROVINCE = getDistricts();
                                         <div class="col-sm-12 mb-3 mb-sm-0">
                                             <label>ร้านค้าของคุณมีสินค้ากี่ชนิด <span class="text-danger">*</span></label>
                                             <label style="font-size: 12px;">(เช่น ร้านของคุณขาย เสื้อเชิ้ตแขนสั้น, เสื้อยืดพิมพ์ลาย, กางเกงยีนส์ขาตรง และกางเกงยีนส์ทรงบอย นับเป็น 4 ชนิด สินค้ารุ่นเดียวกัน ต่างสี/ไซส์ นับเป็นชนิดเดียวกัน)</label>
-                                            <input type="number" class="form-control" id="amount_type_product" name="amount_type_product" placeholder="กรุณากรอกจำนวนสินค้า" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนสินค้า')" oninput="this.setCustomValidity('')">
+                                            <input type="number" min="0" class="form-control" id="amount_type_product" name="amount_type_product" placeholder="กรุณากรอกจำนวนสินค้า" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนสินค้า')" oninput="this.setCustomValidity('')">
                                         </div>
                                     </div>
 
@@ -127,7 +127,7 @@ $PROVINCE = getDistricts();
                                     <div class="form-group row">
                                         <div class="col-sm-6">
                                             <label>เบอร์โทรศัพท์ <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="tel" name="tel" placeholder="กรุณากรอกอีเมล" required oninvalid="this.setCustomValidity('กรุณากรอกอีเมล')" oninput="this.setCustomValidity('')">
+                                            <input type="number" min="0" class="form-control" id="tel" name="tel" placeholder="กรุณากรอกอีเมล" required oninvalid="this.setCustomValidity('กรุณากรอกอีเมล')" oninput="this.setCustomValidity('')">
                                         </div>
                                         <div class="col-sm-6">
                                             <label>อีเมล <span class="text-danger">*</span></label>
@@ -161,7 +161,7 @@ $PROVINCE = getDistricts();
                                                         <div class="col-6">
                                                             <div class="row d-flex align-items-center">
                                                                 <div class="col-lg-12">
-                                                                    <input type="number" class="form-control" id="amountataff" name="amountataff" placeholder="กรุณากรอกจำนวน (คน)" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวน (คน)')" oninput="this.setCustomValidity('')">
+                                                                    <input type="number" min="0" class="form-control" id="amountataff" name="amountataff" placeholder="กรุณากรอกจำนวน (คน)" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวน (คน)')" oninput="this.setCustomValidity('')">
                                                                 </div>
 
                                                             </div>
