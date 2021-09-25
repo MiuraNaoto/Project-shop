@@ -39,7 +39,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="../../../index.php"><i class="fa fa-home"></i> Home</a>
-                        <a href="../shop-cart/shop-cart.php">ตระกร้าสินค้า</a>
+                        <span>ตระกร้าสินค้า</span>
                         <span>ยืนยันคำสั่งซื้อ</span>
                     </div>
                 </div>

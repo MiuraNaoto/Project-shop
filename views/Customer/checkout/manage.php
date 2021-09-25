@@ -40,6 +40,6 @@ switch ($request) {
             // print_r($DATA);
             // echo $sql_orders_detail . "<br>";
         }
-
+        header("location: ../payment/payment.php?order_number=$rand");
         break;
 }

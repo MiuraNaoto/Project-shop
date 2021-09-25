@@ -66,6 +66,16 @@ function getBankAccount($shop_id)
     return $DATA;
 }
 
+function getBankShop()
+{
+    $sql = "SELECT * FROM `orders` 
+                    INNER JOIN `bank_account` ON `orders`.`shop_id` = `bank_account`.`shop_id` 
+                    INNER JOIN `bank` ON `bank_account`.`bankid` = `bank`.`id`
+            GROUP BY `bank`.`id`";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
 function chackBankCode($account_code)
 {
     $sql = "SELECT * FROM `bank_account` 
@@ -229,6 +239,20 @@ function countShopingCart($uid)
 
 
 // ORDER
+function OrderPayment($uid)
+{
+    $sql = "SELECT * FROM `orders`
+                    INNER JOIN `delivery_address` ON `orders`.`daid` = `delivery_address`.`daid`
+                    INNER JOIN `subdistricts` ON `delivery_address`.`subdistrict` = `subdistricts`.`id`
+                    INNER JOIN `districts` ON `subdistricts`.`district_id` = `districts`.`id`
+                    INNER JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id`
+                    INNER JOIN `user-list` ON `delivery_address`.`uid` = `user-list`.`uid`
+                    INNER JOIN `user-title` ON `delivery_address`.`title` = `user-title`.`id`
+            WHERE `user-list`.`uid` = $uid";
+    $DATA = selectData($sql);
+    return ($DATA);
+}
+
 function getAllOrder()
 {
     $sql = "SELECT * FROM `orders`

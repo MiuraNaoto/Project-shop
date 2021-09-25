@@ -10,8 +10,13 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     $idUT = $_SESSION[md5('typeid')];
     $username = $_SESSION[md5('username')];
     $USER = $_SESSION[md5('user')];
+    $uid = $USER[1]["uid"];
     // echo $username;
     // echo print_r($USER);
+    $order_number = $_GET["order_number"];
+    $ACCOUNT_SHOP = getBankShop();
+    $ORDER_PAYMENT = OrderPayment($order_number);
+    print_r($ORDER_PAYMENT);
 }
 
 ?>
@@ -67,17 +72,17 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                         <h5>การชำระเงิน</h5>
                         <div class="row">
                             <?php
-                            $bank_account = "SELECT * FROM `orders` LEFT OUTER JOIN `bank_account` 
-                                            ON `orders`.`shop_id` = `bank_account`.`shop_id` LEFT OUTER JOIN `bank` 
-                                            ON `bank_account`.`bankid` = `bank`.`id` WHERE `orders`.`shop_id` = `bank_account`.`shop_id`";
-                            $account = selectData($bank_account);
+                            // $bank_account = "SELECT * FROM `orders` LEFT OUTER JOIN `bank_account` 
+                            //                 ON `orders`.`shop_id` = `bank_account`.`shop_id` LEFT OUTER JOIN `bank` 
+                            //                 ON `bank_account`.`bankid` = `bank`.`id` WHERE `orders`.`shop_id` = `bank_account`.`shop_id`";
+                            // $account = selectData($bank_account);
                             // print_r($account);
-                            for ($i = 1; $i < count($account); $i++) {
+                            for ($i = 1; $i < count($ACCOUNT_SHOP); $i++) {
 
                             ?>
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="card">
-                                        <img class="card-img-top" src="../../../img/payment/<?php echo $account[$i]['picture'] ?>" alt="Card image cap">
+                                        <img class="card-img-top" src="<?php echo '../../../img/payment/' . $ACCOUNT_SHOP[$i]['picture'] ?>" alt="Card image cap">
                                         <div class="card-body text-center font-weight-bold">
                                             <div class="row mt-2 mb-4 ">
 
@@ -85,7 +90,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                     <h6 class="font-weight-bold d-flex justify-content-start" style="font-size: 18px;">เลขบัญชี</h6>
                                                 </div>
                                                 <div class="col-md-7">
-                                                    <h6 class="d-flex justify-content-start"><?php echo $account[$i]['account_code'] ?></h6>
+                                                    <h6 class="d-flex justify-content-start"><?php echo $ACCOUNT_SHOP[$i]['account_code'] ?></h6>
                                                 </div>
                                             </div>
                                             <div class="row  mt-4">
@@ -93,7 +98,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                     <h6 class="font-weight-bold d-flex justify-content-start" style="font-size: 18px;">ชื่อบัญชี</h6>
                                                 </div>
                                                 <div class="col-md-7">
-                                                    <h6 class="d-flex justify-content-star"><?php echo $account[$i]['account_name'] ?></h6>
+                                                    <h6 class="d-flex justify-content-star"><?php echo $ACCOUNT_SHOP[$i]['account_name'] ?></h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -164,7 +169,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                 <span>หมายเลขคำสั่งซื้อ</span>
                                             </div>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="ordernumber" name="ordernumber" value="<?php echo $account[1]['order_number'] ?>" disabled>
+                                                <input type="text" class="form-control" id="ordernumber" name="ordernumber" value="<?php echo $D[1]['order_number'] ?>" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -250,8 +255,8 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                     </div>
                                     <div class="col-md-3">
                                         <div class="checkout__form__input text-center">
-                                        <!-- <a href="../purchase/purchase.php"></a> -->
-                                            <input type="hidden" name="request" id="request" value="payment"/>
+                                            <!-- <a href="../purchase/purchase.php"></a> -->
+                                            <input type="hidden" name="request" id="request" value="payment" />
                                             <button type="submit" id="insert" name="insert" class="btn btn-success insert-payment" style="width: 165px;">ยืนยัน</button>
                                         </div>
                                     </div>
