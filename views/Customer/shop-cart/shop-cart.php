@@ -170,7 +170,7 @@ $SHOPING_CART = getShopingCart($uid[0]);
                         //echo $jsonCheckCart;
 
                         ?>
-                        <a class="primary-btn btn btn-danger" style="width: 280px;" onclick="checkCart(objCheckCart)">ยืนยันคำสั่งซื้อ</a>
+                        <a class="primary-btn btn btn-danger text-light" style="width: 280px;" onclick="checkCart(objCheckCart)">ยืนยันคำสั่งซื้อ</a>
                         <!-- <a href="../checkout/checkout.php" class="primary-btn"></a> -->
                     </div>
                 </div>
