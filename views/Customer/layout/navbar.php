@@ -11,6 +11,7 @@
         // echo $uid;
         $COUNT_SHOPING_CART = countShopingCart($uid)["count_cart"];
         $COUNT_FAVOURITE = countFavouriteByUser($uid)["count_fav"];
+        $COUNT_NOTIFICATION = countNotification($uid)["count_noti"];
         // echo $COUNT_SHOPING_CART;
     }
 
@@ -79,7 +80,12 @@
                                  <li>
                                      <a href="../notification/notification.php">
                                          <i class="fa fa-bell-o" aria-hidden="true"></i>
-                                         <div class="tip">1</div>
+                                         <?php
+                                            if ($COUNT_NOTIFICATION == 0) {
+                                            } else {
+                                                echo '<div class="tip">' . $COUNT_NOTIFICATION . "</div>";
+                                            }
+                                            ?>
                                      </a>
                                  </li>
                                  <li>

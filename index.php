@@ -10,7 +10,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     $uid = $USER[1]["uid"];
     // echo $username;
     // echo print_r($USER);
-    
+
     function countShopingCart($uid)
     {
         $sql = "SELECT COUNT(*) AS `count_cart` FROM `shopping_cart` WHERE `uid` = '$uid'";
@@ -24,10 +24,21 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
         $DATA = selectDataOne($sql);
         return $DATA;
     }
-
+    function countNotification($uid)
+    {
+        $sql = "SELECT  COUNT(*) AS `count_noti` FROM `orders` 
+                    INNER JOIN `status_order` ON `orders`.`status_order` = `status_order`.`so_id` 
+                    INNER JOIN `delivery_address` ON `orders`.`daid` = `delivery_address`.`daid` 
+                    INNER JOIN `user-list` ON `delivery_address`.`uid` = `user-list`.`uid`
+                WHERE `user-list`.`uid` = '$uid'";
+        $DATA = selectDataOne($sql);
+        return $DATA;
+    }
 
     $COUNT_SHOPING_CART = countShopingCart($uid)["count_cart"];
     $COUNT_FAVOURITE = countFavouriteByUser($uid)["count_fav"];
+    $COUNT_NOTIFICATION = countNotification($uid)["count_noti"];
+    // echo $COUNT_NOTIFICATION;
 }
 
 
@@ -240,7 +251,12 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
                                     <li>
                                         <a href="./views/Customer/notification/notification.php">
                                             <i class="fa fa-bell-o" aria-hidden="true"></i>
-                                            <div class="tip">1</div>
+                                            <?php
+                                            if ($COUNT_NOTIFICATION == 0) {
+                                            } else {
+                                                echo '<div class="tip">' . $COUNT_NOTIFICATION . "</div>";
+                                            }
+                                            ?>
                                         </a>
                                     </li>
                                     <li>
@@ -441,8 +457,7 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
                             </div>
                         </div>
                     <?php
-                    } elseif($i == 4) {
-
+                    } elseif ($i == 4) {
                     }
                     ?>
 

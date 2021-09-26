@@ -393,6 +393,18 @@ function getOrderSuccess()
     return ($DATA);
 }
 
+
+function getNotification($uid)
+{
+    $sql = "SELECT * FROM `orders` 
+                    INNER JOIN `status_order` ON `orders`.`status_order` = `status_order`.`so_id` 
+                    INNER JOIN `delivery_address` ON `orders`.`daid` = `delivery_address`.`daid` 
+                    INNER JOIN `user-list` ON `delivery_address`.`uid` = `user-list`.`uid`
+                WHERE `user-list`.`uid` = '$uid'";
+    $DATA = selectData($sql);
+    return ($DATA);
+}
+
 // FAVOURITE
 function favourite_product($product_id, $uid)
 {
@@ -416,6 +428,17 @@ function FavouriteByUser($uid)
                     INNER JOIN `seller-list` ON `product`.`shop_id` = `seller-list`.`shop_id`
             WHERE `uid` = '$uid'";
     $DATA = selectData($sql);
+    return $DATA;
+}
+
+function countNotification($uid)
+{
+    $sql = "SELECT  COUNT(*) AS `count_noti` FROM `orders` 
+                    INNER JOIN `status_order` ON `orders`.`status_order` = `status_order`.`so_id` 
+                    INNER JOIN `delivery_address` ON `orders`.`daid` = `delivery_address`.`daid` 
+                    INNER JOIN `user-list` ON `delivery_address`.`uid` = `user-list`.`uid`
+                WHERE `user-list`.`uid` = '$uid'";
+    $DATA = selectDataOne($sql);
     return $DATA;
 }
 
