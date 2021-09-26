@@ -17,9 +17,9 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     $ACCOUNT_SHOP = getBankShop();
     $ORDER_PAYMENT = OrderByOrdernumber($order_number);
     $BANK = getBank();
-    print_r($ORDER_PAYMENT);
+    // print_r($ORDER_PAYMENT);
 
-    echo $order_number;
+    // echo $order_number;
 }
 
 ?>
@@ -172,7 +172,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                 <span>หมายเลขคำสั่งซื้อ</span>
                                             </div>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="order_number" name="order_number" value="<?php echo $ORDER_PAYMENT[1]['order_number'] ?>" disabled>
+                                                <input type="text" class="form-control" id="order_number" name="order_number" value="<?php echo $order_number ?>" readonly>
                                             </div>
                                         </div>
                                     </div>

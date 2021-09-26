@@ -249,24 +249,19 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                 $price = $SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"];
                                                 // echo $price;
                                                 $PRICES[] = $price;
-                                                // $QUANTITY[] = $SHOPING_CART[$i]["quantity"];
-                                                // $ORDER_DETAIL[] = array(
-                                                //     "product_id" => $SHOPING_CART[$i]['product_id'],
-                                                //     "shop_id" => $SHOPING_CART[$i]['shop_id'],
-                                                //     "quantity" => $SHOPING_CART[$i]['quantity']
-                                                // );
-                                                echo "<input type='hidden' name='product_id[]' value='" . $SHOPING_CART[$i]["product_id"] . "'/>";
-                                                echo "<input type='hidden' name='shop_id[]' value='" . $SHOPING_CART[$i]['shop_id'] . "'/>";
-                                                echo "<input type='hidden' name='quantity[]' value='" . $SHOPING_CART[$i]['quantity'] . "'/>";
-                                                echo "<input type='hidden' name='price[]' value='" . $price . "'/>";
-                                                // array_push($PRICES, $price);
-
+                                                $QUANTITY[] = $SHOPING_CART[$i]["quantity"];
+                                                $ORDER_DETAIL[] = array(
+                                                    "product_id" => $SHOPING_CART[$i]['product_id'],
+                                                    "shop_id" => $SHOPING_CART[$i]['shop_id'],
+                                                    "quantity" => $SHOPING_CART[$i]['quantity']
+                                                );
+                                                //print_r($PRICES);
                                             }
                                             // $postvalue = array("a", "b", "c");
-                                            // $ORDER_DETAIL_json = json_encode($ORDER_DETAIL);
+                                            $ORDER_DETAIL_json = json_encode($ORDER_DETAIL);
 
-                                            // echo number_format(array_sum($PRICES), 2);
-                                            // $QUANTITY_json = json_encode(number_format(array_sum($QUANTITY), 2));
+                                            echo number_format(array_sum($PRICES), 2);
+                                            $QUANTITY_json = json_encode(number_format(array_sum($QUANTITY), 2));
                                             // print_r($PRICES);
 
 
@@ -274,11 +269,11 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                         </span></li>
                                 </ul>
                             </div>
-                            <!-- <script type="text/javascript">
+                            <script type="text/javascript">
                                 var obj = JSON.parse('<?= $ORDER_DETAIL_json; ?>');
                                 var total_unit = JSON.parse('<?= $QUANTITY_json; ?>');
-                                console.log(obj)
-                            </script> -->
+                                //console.log(obj)
+                            </script>
                             <!-- <div class="checkout__order__widget">
                                     <label for="paypal">
                                         โอนผ่านบัญชีธนาคาร
@@ -286,9 +281,11 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                         <span class="checkmark"></span>
                                     </label>
                                 </div> -->
-
-                            <input type="hidden" name="request" id="request" value="order_detal" />
-                            <button type="submit" class="btn btn-danger" style="border-radius: 50px; width: 300px;">ชำระเงิน</button>
+                            <input type="hidden" name="order_details" />
+                            <input type="hidden" name="total_units" />
+                            <input type="hidden" name="total" />
+                            <input type="hidden" name="request" id="request" value="order_detail" />
+                            <button type="submit" class="btn btn-danger" style="border-radius: 50px; width: 300px;" onclick="order(obj, total_unit)">ชำระเงิน</button>
                         </div>
                     </div>
                 </div>
