@@ -57,7 +57,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                         here to enter your code.</h6>
                 </div>
             </div> -->
-            <form action="#" class="checkout__form">
+            <form action="manage.php" class="checkout__form" method="post" enctype="multipart/form-data" id="form-checkout" name="form-checkout" role="form">
                 <div class="row">
                     <div class="col-lg-8">
                         <h5>ที่อยู่จัดส่ง</h5>
@@ -183,7 +183,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                                                 ?>
                                                         </h6>
                                                         <div class="col-md d-flex justify-content-end">
-                                                            <input type="radio" name="selected_address" id="selected_address" value="<?php echo $ADDRESS_DELIVERTY[$i]["daid"] ?>" onclick="selected_add('<?php echo $ADDRESS_DELIVERTY[$i]['daid'] ?>')" class="form-check-input" title='เลือกที่อยู่จัดส่ง' required/>
+                                                            <input type="radio" name="selected_address" id="selected_address" value="<?php echo $ADDRESS_DELIVERTY[$i]["daid"] ?>" onclick="selected_add('<?php echo $ADDRESS_DELIVERTY[$i]['daid'] ?>')" class="form-check-input" title='เลือกที่อยู่จัดส่ง' required />
                                                         </div>
                                                     </div>
                                                 </div>
