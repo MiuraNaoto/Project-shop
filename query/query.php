@@ -169,8 +169,6 @@ function getTypeProduct($type_id)
     return $DATA;
 }
 
-
-
 function getProductDetail($product_id)
 {
     $sql = "SELECT * FROM `product` 

@@ -14,6 +14,8 @@ $shop_id = $SELLER[1]["shop_id"];
 
 $CurrentMenu = "dashboard";
 $PRODUCT = getProductByShopID($shop_id);
+$ORDER = getAllOrder();
+$ORDER_CONFIRM = getOrderConfirm();
 // print_r($PRODUCT);
 ?>
 
@@ -76,7 +78,15 @@ $PRODUCT = getProductByShopID($shop_id);
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xl font-weight-bold text-success text-uppercase mb-1">สินค้าทั้งหมด</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $PRODUCT[0]["numrow"] ?> </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php
+                        if ($PRODUCT[0]["numrow"] == 0) {
+                          echo "0 ชิ้น";
+                        } else {
+                          echo $PRODUCT[0]["numrow"] . "ชิ้น";
+                        }
+                        ?>
+                      </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-boxes fa-2x text-gray-300"></i>
@@ -93,7 +103,15 @@ $PRODUCT = getProductByShopID($shop_id);
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xl font-weight-bold text-info text-uppercase mb-1">คำสั่งซื้อ</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                          <?php
+                          if ($ORDER[0]["numrow"] == 0) {
+                            echo "0 รายการ";
+                          } else {
+                            echo $ORDER[0]["numrow"] . "รายการ";
+                          }
+                          ?>
+                        </div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-file-contract fa-2x text-gray-300"></i>
@@ -111,7 +129,15 @@ $PRODUCT = getProductByShopID($shop_id);
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xl font-weight-bold text-warning text-uppercase mb-1">ที่ต้องจัดส่ง</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                          <?php
+                          if ($ORDER_CONFIRM[0]["numrow"] == 0) {
+                            echo "0 รายการ";
+                          } else {
+                            echo $ORDER_CONFIRM[0]["numrow"] . "รายการ";
+                          }
+                          ?>
+                        </div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
