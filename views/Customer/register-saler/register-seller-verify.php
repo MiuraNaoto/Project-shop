@@ -108,7 +108,7 @@ if ($USER[1]["u-is-saler"] == 1) {
             $none = 0;
         }
 
-        $update_shop = "INSERT INTO `seller-list`(`shop_name`, `title_id`, `firstname`, `lastname`, `email`, `tel`, `address_shop`, `subdistrict_shop`, `have_product`, `quantity_product`, `fulltime_staff`, `parttime_staff`, `donthave_staff`, `quantity_staff`, `time_opened`, `time_closed`, `profile_shop`, `is-blocked-saler`, `modify_saler`, `owner_id`) 
+        $update_shop = "INSERT INTO `seller-list`(`shop_name`, `title_id`, `firstname`, `lastname`, `email`, `tel`, `address_shop`, `subdistrict_shop`, `have_product`, `seller_quantity_product`, `fulltime_staff`, `parttime_staff`, `donthave_staff`, `quantity_staff`, `time_opened`, `time_closed`, `profile_shop`, `is-blocked-saler`, `modify_saler`, `owner_id`) 
                 VALUES ('$shop_name','$title','$firstname','$lastname','$email','$tel','$address','$subdistrict','$have_product','$amount_type_product','$fulltime','$parttime','$none','$amountataff','$time_open','$time_closed','$final_image','0','$time','$uid')";
         addinsertData($update_shop);
 

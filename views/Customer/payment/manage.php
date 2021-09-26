@@ -12,8 +12,19 @@ echo $request . "<br>";
 switch ($request) {
 
     case 'payment':
-        $ordernumber = $_POST["ordernumber"] ;
-        echo $ordernumber;
+        $order_number = $_POST["order_number"];
+        $payment_method = $_POST["payment_method"];
+        $select_bank = $_POST["select_bank"];
+        $price = $_POST["price"];
+        $date_payment = $_POST["date_payment"];
+        $time_payment = $_POST["time_payment"];
+
+        echo $order_number . " " . $payment_method . " " . $select_bank . " " . $price . " " . $date_payment . " " . $time_payment . " ";
+
+        $datetime_payment = strtotime($date_payment . " " . $time_payment);
+
+        echo strtotime($date_payment . " " . $time_payment) . " ";
+        echo date("Y-m-d H:i:s", strtotime($date_payment . " " . $time_payment));
 
         $time = time();
         $sql = "SELECT `order_id` FROM `orders` ORDER BY `order_id` DESC LIMIT 1";
@@ -38,19 +49,38 @@ switch ($request) {
             }
 
             echo $final_image;
+
+
             // check's valid format
-            if (in_array($ext, $valid_extensions)) {
-                $profile_path = $profile_path . strtolower($final_image);
-                echo  $profile_path;
-                if (move_uploaded_file($tmp, $profile_path)) {
-                    echo "profile success";
-                }
-            } else {
-                echo 'invalid';
-            }
+
+            // if (in_array($ext, $valid_extensions)) {
+            //     $profile_path = $profile_path . strtolower($final_image);
+            //     echo  $profile_path;
+            //     if (move_uploaded_file($tmp, $profile_path)) {
+            //         echo "profile success";
+            //     }
+            // } else {
+            //     echo 'invalid';
+            // }
         }
 
-        $update_pic_payment = "UPDATE `orders` SET `picture_payment`='[value-11]' WHERE ";
+        $sql_order = "UPDATE `orders` SET `total_price_user`='$price',`type_payment`='$payment_method',`time_payment`='$datetime_payment',`picture_payment`='$final_image',`status_order`='2' 
+                        WHERE `order_number`='$order_number'";
+
+
+
+        $sql_order_detail = "UPDATE `orders_detail` SET `status_order`='2'
+                                WHERE `orders_id`='[value-2]'";
+        echo $sql_order;
+        echo $sql_order_detail;
+
+        $sql = "SELECT * FROM `orders_detail` 
+                                INNER JOIN `orders` ON `orders_detail`.`orders_id` = `orders`.`order_id` 
+                                WHERE `orders`.`order_number` = '$order_number' 
+                                ORDER BY `orders_detail`.`orders_id` DESC LIMIT 1";
+        $DATA = selectDataOne($sql)["orders_id"];
+
+        echo $DATA;
 
         break;
 }

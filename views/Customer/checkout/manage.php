@@ -18,15 +18,16 @@ switch ($request) {
         $shop_id = $_POST['shop_id'];
         $quantity = $_POST['quantity'];
         $price = $_POST['price'];
-        // print_r($product_id);
-        // print_r($shop_id);
-        // print_r($quantity);
-        // print_r($price);
-        // $obj = $_POST["obj"];
-        // $daid = $_POST["daid"];
+        print_r($product_id);
+        print_r($shop_id);
+        print_r($quantity);
+        print_r($price);
+        $obj = $_POST["obj"];
+        $daid = $_POST["daid"];
+
         $total = 0;
         $total_unit = 0;
-        for ($j = 0; $j < count($product_id); $j++){
+        for ($j = 0; $j < count($product_id); $j++) {
             $total = $total + $price[$j];
             $total_unit = $total_unit + $quantity[$j];
         }
@@ -35,12 +36,14 @@ switch ($request) {
         $rand = rand((int) 1000000000, (int) 9999999999);
         $time = time();
         $shopId = $shop_id[0];
-        
+
         // print_r($obj);
         // echo $daid." ".$total." ".$shopId;
 
         $sql_orders = "INSERT INTO `orders` (`order_number`, `shop_id`, `daid`, `total_price`, `time_order`, `total_unit`, `status_order`)
-        VALUES ('$rand', '$shopId', '$selected_address', '$total', '$time', $total_unit, '1')";
+                        VALUES ('$rand', '$shopId', '$selected_address', '$total', '$time', $total_unit, '1')";
+
+        // echo $sql_orders;
         addinsertData($sql_orders);
         // print_r($DATA);
 
@@ -57,6 +60,6 @@ switch ($request) {
         //     // print_r($DATA);
         //     // echo $sql_orders_detail . "<br>";
         // }
-        // header("location: ../payment/payment.php?order_number=".$rand);
+        header("location: ../payment/payment.php?order_number=".$rand);
         break;
 }

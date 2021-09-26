@@ -29,7 +29,7 @@ $(document).ready(function () {
       success: function (data) {
         // location.reload();
         console.log(data);
-        // location.href = "../payment/payment.php";
+        // location.href = "manage.php";
       },
     });
   });

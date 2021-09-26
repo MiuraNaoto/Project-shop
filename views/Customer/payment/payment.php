@@ -15,8 +15,10 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     // echo print_r($USER);
     $order_number = $_GET["order_number"];
     $ACCOUNT_SHOP = getBankShop();
-    $ORDER_PAYMENT = OrderPayment($order_number);
-    // print_r($ORDER_PAYMENT);
+    $ORDER_PAYMENT = OrderByOrdernumber($order_number);
+    $BANK = getBank();
+    print_r($ORDER_PAYMENT);
+
     echo $order_number;
 }
 
@@ -170,7 +172,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                 <span>หมายเลขคำสั่งซื้อ</span>
                                             </div>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="ordernumber" name="ordernumber" value="<?php echo $D[1]['order_number'] ?>" disabled>
+                                                <input type="text" class="form-control" id="order_number" name="order_number" value="<?php echo $ORDER_PAYMENT[1]['order_number'] ?>" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -180,7 +182,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                 <span>ช่องทางชำระเงิน</span>
                                             </div>
                                             <div class="col-md-7">
-                                                <select class="form-control" id="payment_method" required oninvalid="this.setCustomValidity('กรุณาเลือกช่องทางชำระเงิน')" oninput="this.setCustomValidity('')">
+                                                <select class="form-control" id="payment_method" name="payment_method" required oninvalid="this.setCustomValidity('กรุณาเลือกช่องทางชำระเงิน')" oninput="this.setCustomValidity('')">
                                                     <option disabled selected value="">กรุณาเลือกช่องทางชำระเงิน</option>
                                                     <option value="1">ATM</option>
                                                     <option value="2">Internet Banking</option>
@@ -195,13 +197,13 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                 <span>ชำระเงินผ่านธนาคาร</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <select class="form-control" id="select_bank" required oninvalid="this.setCustomValidity('กรุณาเลือกธนาคาร')" oninput="this.setCustomValidity('')">
+                                                <select class="form-control" id="select_bank" name="select_bank" required oninvalid="this.setCustomValidity('กรุณาเลือกธนาคาร')" oninput="this.setCustomValidity('')">
                                                     <option disabled selected value="">กรุณาเลือกธนาคาร</option>
                                                     <?php
-                                                    for ($i = 1; $i < count($account); $i++) {
+                                                    for ($i = 1; $i < count($BANK); $i++) {
 
                                                     ?>
-                                                        <option value="<?php echo $account[$i]['bankid'] ?>"><?php echo $account[$i]['name'] ?></option>
+                                                        <option value="<?php echo $BANK[$i]['id'] ?>"><?php echo $BANK[$i]['name'] ?></option>
                                                     <?php
                                                     }
                                                     ?>
@@ -230,17 +232,17 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                 <span>จำนวนเงิน</span>
                                             </div>
                                             <div class="col-md-7">
-                                                <input type="number" class="form-control" id="price" name="price" step="0.1" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนเงิน')" oninput="this.setCustomValidity('')">
+                                                <input type="number" class="form-control" id="price" name="price" step="0.01" min="0" required oninvalid="this.setCustomValidity('กรุณากรอกจำนวนเงิน')" oninput="this.setCustomValidity('')">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="row d-flex align-items-center">
                                             <div class="col-md-5">
                                                 <span>วัน/เดือน/ปี</span>
                                             </div>
                                             <div class="col-md-7">
-                                                <input type="date" class="form-control" id="date" name="date" required oninvalid="this.setCustomValidity('กรุณากรอกวันที่ชำระเงิน')" oninput="this.setCustomValidity('')">
+                                                <input type="date" class="form-control" id="date_payment" name="date_payment" required oninvalid="this.setCustomValidity('กรุณากรอกวันที่ชำระเงิน')" oninput="this.setCustomValidity('')">
                                             </div>
                                         </div>
                                     </div>
@@ -250,11 +252,11 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                                 <span>เวลาที่ชำระเงิน</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="time" class="form-control" id="time" name="time" required oninvalid="this.setCustomValidity('กรุณากรอกเวลาที่ชำระเงิน')" oninput="this.setCustomValidity('')">
+                                                <input type="time" class="form-control" id="time_payment" name="time_payment" required oninvalid="this.setCustomValidity('กรุณากรอกเวลาที่ชำระเงิน')" oninput="this.setCustomValidity('')">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="checkout__form__input text-center">
                                             <!-- <a href="../purchase/purchase.php"></a> -->
                                             <input type="hidden" name="request" id="request" value="payment" />

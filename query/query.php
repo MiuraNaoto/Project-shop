@@ -253,6 +253,13 @@ function OrderPayment($uid)
     return ($DATA);
 }
 
+function OrderByOrdernumber($order_number)
+{
+    $sql = "SELECT * FROM `orders` WHERE `orders`.`order_number` = '$order_number'";
+    $DATA = selectData($sql);
+    return ($DATA);
+}
+
 function getAllOrder()
 {
     $sql = "SELECT * FROM `orders`
