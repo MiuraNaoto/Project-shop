@@ -146,12 +146,14 @@ $SHOPING_CART = getShopingCart($uid[0]);
                                     //echo print_r($SHOPING_CART);
 
                                     if ($SHOPING_CART[0]['numrow'] > 0) {
+                                        $price = 0;
                                         for ($i = 1; $i < count($SHOPING_CART); $i++) {
-                                            $price = $SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"];
-                                            $PRICES = [];
-                                            array_push($PRICES, $price);
+                                            $price = $price + ($SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"]);
+                                            //$PRICES = [];
+                                            //array_push($PRICES, $price);
                                         }
-                                        echo number_format(array_sum($PRICES), 2);
+                                        //echo number_format(array_sum($PRICES), 2);
+                                        echo number_format($price,2);
                                     } else {
                                         echo number_format(0, 2);
                                     }
