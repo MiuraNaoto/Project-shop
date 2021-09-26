@@ -1,25 +1,50 @@
+/*
 $(document).ready(function () {
   $("#pro-qty").on("click", function (e) {
-    var quantity = $("#quantity").val();
+    
 
     //var price = document.getElementById("cart__total").value;
-    var price = $("#sumProduct").val();
+    var price = $("#productPrice").val();
     var scid = $("#scid").val();
+    var quantity = $("#quantity"+scid).val();
     // $("#cart__total ").innerHTML =
     //   '<td class="cart__total" id="cart__total" name="cart__total">' +
     //   quantity * price +
     //   "</td>";
+    console.log("scid = " + scid)
     if(quantity==0){
-      document.getElementById("quantity").value = 1
+      document.getElementById("quantity"+scid).value = 1
       document.getElementById("cart__total"+scid).innerHTML = "฿ " + (price*1).toFixed(2);
     }
     else{
       document.getElementById("cart__total"+scid).innerHTML = "฿ " + (price*quantity).toFixed(2);
     }
-    console.log(quantity);
-    console.log(price*quantity);
+    console.log("quantity = " + quantity);
+    console.log("total price = " + price*quantity);
   });
 });
+*/
+
+function changeQuantity(scid,price){
+  console.log("Success...")
+  
+
+  console.log("scid = " + scid)
+  console.log("price = " + price)
+  var quantity = $("#quantity"+scid).val();
+  console.log("quantity = " + quantity)
+  
+  if(quantity==0){
+    document.getElementById("quantity"+scid).value = 1
+    document.getElementById("cart__total"+scid).innerHTML = "฿ " + (price*1).toFixed(2);
+  }
+  else{
+    document.getElementById("cart__total"+scid).innerHTML = "฿ " + (price*quantity).toFixed(2);
+  }
+  console.log("quantity = " + quantity);
+  console.log("total price = " + price*quantity);
+  
+}
 
 
 
@@ -46,14 +71,17 @@ function removeProduct(scid) {
 
 //function updateCart(productId, shopId, scid) {
 function updateCart(data) {
-  quantity = $("#quantity").val();
+  let quantity = ["0"]
   console.log("Add complet...");
-  /*
-  console.log(productId);
-  console.log(shopId);
-  console.log(quantity);
-  */
-  console.log(data);
+  for(let i=1 ; i<Object.keys(data).length ; i++){
+    //console.log(i + ":" +data[i]['quantity']);
+    quantity.push($("#quantity"+data[i]['scid']).val());
+    //console.log(data[i]['scid'] + ":" + quantity[i]);
+  }
+
+  
+  //console.log(data);
+  
   
   $.ajax({
     type: "POST",
@@ -71,7 +99,7 @@ function updateCart(data) {
       //location.href = "./manage.php"
     },
   });
-  
+
 }
 
 function checkCart(objCheckCart){

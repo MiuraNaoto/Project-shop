@@ -17,7 +17,10 @@ $allProductInCart = $_POST['data'];
 echo $scid;
 //echo print_r($USER);
 echo "...........";
-//echo print_r($allProductInCart);
+echo print_r($allProductInCart);
+//echo print_r($quantity);
+echo "...".$quantity[1];
+echo $request;
 //echo 'scid='.$allProductInCart[1]['scid'];
 //echo 'count='.count($allProductInCart);
 
@@ -38,16 +41,15 @@ switch ($request) {
             $data = selectData($getStock);
            // echo '<script>' . $data . '</script>';
             
-            if((int)$data[1]['stock']-(int)$quantity >= 0){
-                $sql ="UPDATE `shopping_cart` SET `quantity`='$quantity' WHERE `scid`='$sc_id'";
+            if((int)$data[1]['stock']-(int)$quantity[$i] >= 0){
+                $sql ="UPDATE `shopping_cart` SET `quantity`='$quantity[$i]' WHERE `scid`='$sc_id'";
                 updateData($sql);
             }
         }
-        break;
-    
-    case 'checkCart':
         
         break;
+    
+    
         
         
 }

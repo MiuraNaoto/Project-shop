@@ -81,11 +81,11 @@ $SHOPING_CART = getShopingCart($uid[0]);
                                             </div>
                                         </td>
                                         <td class="cart__price"><?php echo  "฿ " . number_format($SHOPING_CART[$i]["price"], 2); ?></td>
-                                        <input type="text" id="sumProduct" name="sumProduct" value=<?php echo number_format($SHOPING_CART[$i]["price"], 2); ?> hidden>
+                                        <input type="text" id="productPrice" name="productPrice" value=<?php echo number_format($SHOPING_CART[$i]["price"], 2); ?> hidden>
 
-                                        <td class="cart__quantity" id="cart__quantity" name="cart__quantity" min="1">
+                                        <td class="cart__quantity" id="cart__quantity" name="cart__quantity" onclick="changeQuantity(<?php echo $SHOPING_CART[$i]['scid'] . ',' .  $SHOPING_CART[$i]['price']; ?>)">
                                             <div class="pro-qty" id="pro-qty" name="pro-qty">
-                                                <input type="text" id="quantity" name="quantity" value="<?php echo $SHOPING_CART[$i]["quantity"]; ?>" disabled>
+                                                <input type="text" id="quantity<?php echo $SHOPING_CART[$i]["scid"]; ?>" name="quantity" value="<?php echo $SHOPING_CART[$i]["quantity"]; ?>" disabled>
                                             </div>
                                         </td>
                                         <td class="cart__total" id="cart__total<?php echo $SHOPING_CART[$i]['scid']; ?>" name="cart__total<?php echo $SHOPING_CART[$i]['scid']; ?>" value="<?php echo number_format($SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"], 2); ?>"><?php echo  "฿ " . number_format($SHOPING_CART[$i]["price"] * $SHOPING_CART[$i]["quantity"], 2); ?></td>
