@@ -15,6 +15,7 @@ switch ($request) {
         $order_details = json_decode( $_POST[ 'order_details' ], true );
         $total_unit = json_decode( $_POST[ 'total_units' ], true );
         $total = json_decode( $_POST[ 'total' ], true );
+
         // print_r($order_details);
         // echo count($order_details);
         // echo "<br>";
@@ -33,7 +34,7 @@ switch ($request) {
                         VALUES ('$rand','$shopId','$daid','$total_unit','$total','$time','1')";
         // echo $sql_orders . "<br>";
         addinsertData($sql_orders);
-        // print_r($DATA. "<br>");
+        // echo $DATA;
 
         $sql = "SELECT `order_id` FROM `orders` ORDER BY `order_id` DESC LIMIT 1";
         $orderId = selectDataOne($sql)['order_id'];
@@ -42,12 +43,24 @@ switch ($request) {
         for ($i = 0; $i < count($order_details); $i++) {
             $product_id = $order_details[$i]['product_id'];
             $quantity_product = $order_details[$i]['quantity'];
+            // echo $quantity_product;
             $sql_orders_detail = "INSERT INTO `orders_detail` (`orders_id`, `product_id`, `quantity_product`,`status_order`) 
             VALUES ('$orderId','$product_id','$quantity_product','1')";
             addinsertData($sql_orders_detail);
             // print_r($DATA);
             // echo $sql_orders_detail . "<br>";
         }
+
+        $detail = "SELECT * FROM `orders_detail`";
+        $DETAIL = selectData($detail);
+        // print_r($DETAIL);
+
+        for ($i = 1; $i < count($DETAIL); $i++) { 
+            # code...
+            $delete_order = "DELETE FROM `shopping_cart` WHERE `uid` = '$uid' AND `product_id` = '".$DETAIL[$i]['product_id']."' AND `quantity` = '".$DETAIL[$i]['quantity_product']."'";
+            deleteData($delete_order);
+        }
+
         header("location: ../payment/payment.php?order_number=".$rand);
         break;
 }

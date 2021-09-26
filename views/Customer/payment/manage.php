@@ -84,16 +84,7 @@ switch ($request) {
         WHERE `orders_id`='$orders_id'";
         updateData($sql_order_detail);
         // echo $sql_order_detail . "<br>";
-
-        $detail = "SELECT * FROM `orders_detail`";
-        selectData($detail);
-        // print_r($DETAIL);
-
-        for ($i = 1; $i < count($DETAIL); $i++) { 
-            # code...
-            $delete_order = "DELETE FROM `shopping_cart` WHERE `uid` = '$uid' AND `product_id` = '".$DETAIL[$i]['product_id']."' AND `quantity` = '".$DETAIL[$i]['quantity_product']."'";
-            deleteData($delete_order);
-        }
-
+        
+        header("location: ../purchase/purchase.php");
         break;
 }
