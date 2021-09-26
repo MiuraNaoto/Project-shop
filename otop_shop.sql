@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2021 at 05:18 AM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 7.4.22
+-- Generation Time: Sep 26, 2021 at 02:48 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -78,7 +78,7 @@ CREATE TABLE `bank_account` (
 
 INSERT INTO `bank_account` (`baid`, `account_code`, `account_name`, `bankid`, `shop_id`) VALUES
 (1, '0123456789', 'test23', 1, 1),
-(2, '4537893210', 'ขายอะไรก็ไม่รู้แต่อยากขายนะ', 4, 1);
+(3, '9876453215', 'test', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -116,7 +116,7 @@ CREATE TABLE `delivery_address` (
 
 INSERT INTO `delivery_address` (`daid`, `uid`, `title`, `firstname`, `lastname`, `tel`, `address`, `subdistrict`) VALUES
 (1, 1, 1, 'test343', 'test', '0123456789', '4421', 224),
-(2, 1, 1, 'test343', 'test', '0123456789', '4421', 6218);
+(2, 3, 1, 'ccc', 'ccc', '0123456789', '123 ปลาฉลามขึ้บก', 171);
 
 -- --------------------------------------------------------
 
@@ -1135,31 +1135,26 @@ INSERT INTO `main-menu-list` (`ut-id`, `mm-mainmenu`, `mm-submenu`, `wm-id`) VAL
 
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
-  `order_number` int(11) NOT NULL,
+  `order_number` varchar(10) NOT NULL,
   `shop_id` int(11) NOT NULL,
   `daid` int(11) NOT NULL,
-  `type_payment` int(11) DEFAULT NULL,
-  `time_order` int(11) DEFAULT NULL,
-  `time_payment` int(11) DEFAULT NULL,
   `total_unit` int(11) DEFAULT NULL,
   `total_price_user` double DEFAULT NULL,
   `total_price` double DEFAULT NULL,
+  `type_payment` int(11) DEFAULT NULL,
+  `time_order` int(11) DEFAULT NULL,
+  `time_payment` int(11) DEFAULT NULL,
   `picture_payment` varchar(50) DEFAULT NULL,
   `status_order` int(11) DEFAULT NULL,
   `reason_id` int(11) DEFAULT NULL,
   `reason_desc` varchar(255) DEFAULT NULL,
   `status_refund` tinyint(1) DEFAULT NULL,
   `picture_refund` int(11) DEFAULT NULL,
-  `delivery` int(11) DEFAULT NULL,
+  `tracking_code` varchar(20) DEFAULT NULL,
+  `time_delivery` int(11) DEFAULT NULL,
+  `delivery_type` int(11) DEFAULT NULL,
   `review_shop` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`order_id`, `order_number`, `shop_id`, `daid`, `type_payment`, `time_order`, `time_payment`, `total_unit`, `total_price_user`, `total_price`, `picture_payment`, `status_order`, `reason_id`, `reason_desc`, `status_refund`, `picture_refund`, `delivery`, `review_shop`) VALUES
-(1, 2147483647, 1, 1, NULL, 1632588690, NULL, 10, NULL, 906, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1178,14 +1173,6 @@ CREATE TABLE `orders_detail` (
   `status_order` int(11) DEFAULT NULL,
   `review_product` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `orders_detail`
---
-
-INSERT INTO `orders_detail` (`od_id`, `orders_id`, `product_id`, `quantity_product`, `status_review`, `quantity_star`, `review_desc`, `status_order`, `review_product`) VALUES
-(1, 1, 1, 7, NULL, NULL, NULL, 1, NULL),
-(2, 1, 3, 3, NULL, NULL, NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -1217,7 +1204,8 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`product_id`, `product_number`, `product_name`, `product_description`, `product_specification`, `product_type`, `price`, `shipping_cost`, `stock`, `shop_id`, `delivery_type`, `profile_product`, `picture`, `qrcode`, `modify`) VALUES
 (1, '02251', 'test23', 'test32', 'test32', 1, 123, 34, 213, 1, 1, '1_1631886116.png', ' 1/', NULL, 1631886116),
-(3, 'asd', 'ggg', 'ggggg', '5454', 3, 15, 50, 10, 1, 1, '2_1632543784.png', ' 2/', NULL, 1632543784);
+(3, '02245', 'rrr', 'rewe', 'werwe', 4, 231, 43, 123, 1, 1, '2_1632300149.png', ' 2/', NULL, 1632300149),
+(4, '442343', 'rewrer', 'rewrewr', 'ewrrwer', 2, 34, 342, 324, 1, 1, '4_1632300272.png', ' 4/', NULL, 1632300272);
 
 -- --------------------------------------------------------
 
@@ -1349,6 +1337,15 @@ CREATE TABLE `reason` (
   `reason` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `reason`
+--
+
+INSERT INTO `reason` (`id`, `reason`) VALUES
+(1, 'โอนเงินเกินจำนวน'),
+(2, 'โอนเงินไม่ครบจำนวน'),
+(3, 'อื่นๆ');
+
 -- --------------------------------------------------------
 
 --
@@ -1395,7 +1392,8 @@ INSERT INTO `sales_demand` (`id`, `product_type`, `shop_id`) VALUES
 (9, 1, 2),
 (10, 3, 2),
 (13, 1, 1),
-(14, 3, 1);
+(14, 3, 1),
+(15, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -1414,7 +1412,7 @@ CREATE TABLE `seller-list` (
   `address_shop` varchar(255) NOT NULL,
   `subdistrict_shop` int(11) NOT NULL,
   `have_product` tinyint(1) NOT NULL,
-  `quantity_product` int(11) NOT NULL,
+  `seller_quantity_product` int(11) NOT NULL,
   `fulltime_staff` tinyint(1) NOT NULL,
   `parttime_staff` tinyint(1) NOT NULL,
   `donthave_staff` tinyint(1) NOT NULL,
@@ -1431,8 +1429,9 @@ CREATE TABLE `seller-list` (
 -- Dumping data for table `seller-list`
 --
 
-INSERT INTO `seller-list` (`shop_id`, `shop_name`, `title_id`, `firstname`, `lastname`, `email`, `tel`, `address_shop`, `subdistrict_shop`, `have_product`, `quantity_product`, `fulltime_staff`, `parttime_staff`, `donthave_staff`, `quantity_staff`, `time_opened`, `time_closed`, `profile_shop`, `is-blocked-saler`, `modify_saler`, `owner_id`) VALUES
-(1, 'test_shop', 2, 'test', 'test', 'test@gmail.com', '0123456789', '2133', 1029, 1, 2, 1, 0, 0, 32, '21:00', '08:00', '1_1632152533.png', 0, 1631878916, 1);
+INSERT INTO `seller-list` (`shop_id`, `shop_name`, `title_id`, `firstname`, `lastname`, `email`, `tel`, `address_shop`, `subdistrict_shop`, `have_product`, `seller_quantity_product`, `fulltime_staff`, `parttime_staff`, `donthave_staff`, `quantity_staff`, `time_opened`, `time_closed`, `profile_shop`, `is-blocked-saler`, `modify_saler`, `owner_id`) VALUES
+(1, 'test_shop', 2, 'test', 'test', 'test@gmail.com', '0123456789', '2133', 1029, 1, 2, 1, 0, 0, 32, '21:00', '08:00', '1_1632152533.png', 0, 1631878916, 1),
+(2, 'a', 1, 'a', 'a', 'a@gmail.com', '0123456789', '213 a', 735, 1, 21, 1, 1, 0, 2, '21:21', '03:23', 'default_saler.png', 0, 1632499336, 2);
 
 -- --------------------------------------------------------
 
@@ -1454,7 +1453,9 @@ CREATE TABLE `shopping_cart` (
 
 INSERT INTO `shopping_cart` (`scid`, `uid`, `product_id`, `quantity`, `feature`) VALUES
 (1, 1, 1, 7, NULL),
-(2, 1, 3, 3, NULL);
+(2, 1, 4, 1, NULL),
+(3, 3, 1, 4, NULL),
+(5, 3, 4, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -1474,10 +1475,10 @@ CREATE TABLE `status_order` (
 INSERT INTO `status_order` (`so_id`, `status_order`) VALUES
 (1, 'รอชำระเงิน'),
 (2, 'ชำระเงินแล้ว'),
-(3, 'รอยืนยัน'),
-(4, 'ยืนยันแล้ว'),
-(5, 'ไม่อนุมัติ'),
-(6, 'ยกเลิก');
+(3, 'ยืนยันการชำระ'),
+(4, 'ไม่อนุมัติคำสั่งซื้อ'),
+(5, 'ยกเลิกคำสั่งซื้อ'),
+(6, 'กำลังจัดส่ง');
 
 -- --------------------------------------------------------
 
@@ -8887,6 +8888,14 @@ CREATE TABLE `type_payment` (
   `type_payment` varchar(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `type_payment`
+--
+
+INSERT INTO `type_payment` (`tpid`, `type_payment`) VALUES
+(1, 'ชำระผ่าน mobile banking'),
+(2, 'ชำระผ่านเค้าเตอร์ธนาคาร');
+
 -- --------------------------------------------------------
 
 --
@@ -8912,7 +8921,9 @@ CREATE TABLE `user-list` (
 --
 
 INSERT INTO `user-list` (`uid`, `username`, `password`, `tel`, `profile_user`, `u-is-admin`, `u-is-user`, `u-is-saler`, `is-blocked-user`, `modify_user`, `shop_id`) VALUES
-(1, 'test', '811cb34edaf1f230f587a368cd0ca6c2', '7896543210', '1_1632152358.png', 0, 1, 1, 0, 1631874804, 1);
+(1, 'test', '811cb34edaf1f230f587a368cd0ca6c2', '7896543210', '1_1632152358.png', 0, 1, 1, 0, 1631874804, 1),
+(2, 'a', 'cff3494a11b75cfc0675771d91a6a47b', '0123456789', 'default_user.png', 0, 1, 1, 0, 1632409373, 2),
+(3, 'ccc', '41fcba09f2bdcdf315ba4119dc7978dd', '0326456987', 'default_user.png', 0, 1, 0, 0, 1632491448, NULL);
 
 -- --------------------------------------------------------
 
@@ -9061,9 +9072,9 @@ ALTER TABLE `orders`
   ADD KEY `type_payment` (`type_payment`),
   ADD KEY `reason_id` (`reason_id`),
   ADD KEY `status_order` (`status_order`),
-  ADD KEY `delivery` (`delivery`),
   ADD KEY `shop_id` (`shop_id`),
-  ADD KEY `review_shop` (`review_shop`);
+  ADD KEY `review_shop` (`review_shop`),
+  ADD KEY `delivery_type` (`delivery_type`);
 
 --
 -- Indexes for table `orders_detail`
@@ -9202,7 +9213,7 @@ ALTER TABLE `bank`
 -- AUTO_INCREMENT for table `bank_account`
 --
 ALTER TABLE `bank_account`
-  MODIFY `baid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `baid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `delivery`
@@ -9232,25 +9243,25 @@ ALTER TABLE `districts`
 -- AUTO_INCREMENT for table `favourite`
 --
 ALTER TABLE `favourite`
-  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `orders_detail`
 --
 ALTER TABLE `orders_detail`
-  MODIFY `od_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `od_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `product_type`
@@ -9268,7 +9279,7 @@ ALTER TABLE `provinces`
 -- AUTO_INCREMENT for table `reason`
 --
 ALTER TABLE `reason`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `review_product`
@@ -9286,19 +9297,19 @@ ALTER TABLE `review_shop`
 -- AUTO_INCREMENT for table `sales_demand`
 --
 ALTER TABLE `sales_demand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `seller-list`
 --
 ALTER TABLE `seller-list`
-  MODIFY `shop_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `shop_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `scid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `scid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `status_order`
@@ -9316,13 +9327,13 @@ ALTER TABLE `subdistricts`
 -- AUTO_INCREMENT for table `type_payment`
 --
 ALTER TABLE `type_payment`
-  MODIFY `tpid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tpid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user-list`
 --
 ALTER TABLE `user-list`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user-title`
@@ -9386,11 +9397,11 @@ ALTER TABLE `favourite`
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_10` FOREIGN KEY (`shop_id`) REFERENCES `seller-list` (`shop_id`),
   ADD CONSTRAINT `orders_ibfk_11` FOREIGN KEY (`review_shop`) REFERENCES `review_shop` (`rsid`),
+  ADD CONSTRAINT `orders_ibfk_12` FOREIGN KEY (`delivery_type`) REFERENCES `delivery_type` (`id`),
   ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`type_payment`) REFERENCES `type_payment` (`tpid`),
   ADD CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`reason_id`) REFERENCES `reason` (`id`),
   ADD CONSTRAINT `orders_ibfk_5` FOREIGN KEY (`daid`) REFERENCES `delivery_address` (`daid`),
-  ADD CONSTRAINT `orders_ibfk_6` FOREIGN KEY (`status_order`) REFERENCES `status_order` (`so_id`),
-  ADD CONSTRAINT `orders_ibfk_8` FOREIGN KEY (`delivery`) REFERENCES `delivery` (`did`);
+  ADD CONSTRAINT `orders_ibfk_6` FOREIGN KEY (`status_order`) REFERENCES `status_order` (`so_id`);
 
 --
 -- Constraints for table `orders_detail`
@@ -9410,12 +9421,38 @@ ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_3` FOREIGN KEY (`shop_id`) REFERENCES `seller-list` (`shop_id`);
 
 --
+-- Constraints for table `sales_demand`
+--
+ALTER TABLE `sales_demand`
+  ADD CONSTRAINT `sales_demand_ibfk_2` FOREIGN KEY (`product_type`) REFERENCES `product_type` (`id`),
+  ADD CONSTRAINT `sales_demand_ibfk_3` FOREIGN KEY (`shop_id`) REFERENCES `seller-list` (`shop_id`);
+
+--
 -- Constraints for table `seller-list`
 --
 ALTER TABLE `seller-list`
   ADD CONSTRAINT `seller-list_ibfk_1` FOREIGN KEY (`title_id`) REFERENCES `user-title` (`id`),
   ADD CONSTRAINT `seller-list_ibfk_2` FOREIGN KEY (`subdistrict_shop`) REFERENCES `subdistricts` (`id`),
   ADD CONSTRAINT `seller-list_ibfk_3` FOREIGN KEY (`owner_id`) REFERENCES `user-list` (`uid`);
+
+--
+-- Constraints for table `shopping_cart`
+--
+ALTER TABLE `shopping_cart`
+  ADD CONSTRAINT `shopping_cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
+  ADD CONSTRAINT `shopping_cart_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `user-list` (`uid`);
+
+--
+-- Constraints for table `subdistricts`
+--
+ALTER TABLE `subdistricts`
+  ADD CONSTRAINT `fk_subdistricts_districts` FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`);
+
+--
+-- Constraints for table `user-list`
+--
+ALTER TABLE `user-list`
+  ADD CONSTRAINT `user-list_ibfk_1` FOREIGN KEY (`shop_id`) REFERENCES `seller-list` (`shop_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
