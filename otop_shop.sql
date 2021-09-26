@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2021 at 10:37 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: Sep 26, 2021 at 05:18 AM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 7.4.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -115,7 +115,8 @@ CREATE TABLE `delivery_address` (
 --
 
 INSERT INTO `delivery_address` (`daid`, `uid`, `title`, `firstname`, `lastname`, `tel`, `address`, `subdistrict`) VALUES
-(1, 1, 1, 'test343', 'test', '0123456789', '4421', 224);
+(1, 1, 1, 'test343', 'test', '0123456789', '4421', 224),
+(2, 1, 1, 'test343', 'test', '0123456789', '4421', 6218);
 
 -- --------------------------------------------------------
 
@@ -1137,20 +1138,28 @@ CREATE TABLE `orders` (
   `order_number` int(11) NOT NULL,
   `shop_id` int(11) NOT NULL,
   `daid` int(11) NOT NULL,
-  `type_payment` int(11) NOT NULL,
-  `time_order` int(11) NOT NULL,
-  `time_payment` int(11) NOT NULL,
-  `total_unit` int(11) NOT NULL,
-  `total_price` int(11) NOT NULL,
-  `picture_payment` varchar(50) NOT NULL,
+  `type_payment` int(11) DEFAULT NULL,
+  `time_order` int(11) DEFAULT NULL,
+  `time_payment` int(11) DEFAULT NULL,
+  `total_unit` int(11) DEFAULT NULL,
+  `total_price_user` double DEFAULT NULL,
+  `total_price` double DEFAULT NULL,
+  `picture_payment` varchar(50) DEFAULT NULL,
   `status_order` int(11) DEFAULT NULL,
   `reason_id` int(11) DEFAULT NULL,
   `reason_desc` varchar(255) DEFAULT NULL,
   `status_refund` tinyint(1) DEFAULT NULL,
   `picture_refund` int(11) DEFAULT NULL,
-  `delivery` int(11) NOT NULL,
-  `review_shop` int(11) NOT NULL
+  `delivery` int(11) DEFAULT NULL,
+  `review_shop` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `order_number`, `shop_id`, `daid`, `type_payment`, `time_order`, `time_payment`, `total_unit`, `total_price_user`, `total_price`, `picture_payment`, `status_order`, `reason_id`, `reason_desc`, `status_refund`, `picture_refund`, `delivery`, `review_shop`) VALUES
+(1, 2147483647, 1, 1, NULL, 1632588690, NULL, 10, NULL, 906, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1162,14 +1171,21 @@ CREATE TABLE `orders_detail` (
   `od_id` int(11) NOT NULL,
   `orders_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `feature` int(11) NOT NULL,
   `quantity_product` int(11) NOT NULL,
-  `status_review` tinyint(1) NOT NULL,
-  `quantity_star` int(11) NOT NULL,
-  `review_desc` varchar(255) NOT NULL,
-  `status_order` int(11) NOT NULL,
-  `review_product` int(11) NOT NULL
+  `status_review` tinyint(1) DEFAULT NULL,
+  `quantity_star` int(11) DEFAULT NULL,
+  `review_desc` varchar(255) DEFAULT NULL,
+  `status_order` int(11) DEFAULT NULL,
+  `review_product` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orders_detail`
+--
+
+INSERT INTO `orders_detail` (`od_id`, `orders_id`, `product_id`, `quantity_product`, `status_review`, `quantity_star`, `review_desc`, `status_order`, `review_product`) VALUES
+(1, 1, 1, 7, NULL, NULL, NULL, 1, NULL),
+(2, 1, 3, 3, NULL, NULL, NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -1200,7 +1216,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_number`, `product_name`, `product_description`, `product_specification`, `product_type`, `price`, `shipping_cost`, `stock`, `shop_id`, `delivery_type`, `profile_product`, `picture`, `qrcode`, `modify`) VALUES
-(1, '02251', 'test23', 'test32', 'test32', 1, 123, 34, 213, 1, 1, '1_1631886116.png', ' 1/', NULL, 1631886116);
+(1, '02251', 'test23', 'test32', 'test32', 1, 123, 34, 213, 1, 1, '1_1631886116.png', ' 1/', NULL, 1631886116),
+(3, 'asd', 'ggg', 'ggggg', '5454', 3, 15, 50, 10, 1, 1, '2_1632543784.png', ' 2/', NULL, 1632543784);
 
 -- --------------------------------------------------------
 
@@ -1436,7 +1453,8 @@ CREATE TABLE `shopping_cart` (
 --
 
 INSERT INTO `shopping_cart` (`scid`, `uid`, `product_id`, `quantity`, `feature`) VALUES
-(1, 1, 1, 7, NULL);
+(1, 1, 1, 7, NULL),
+(2, 1, 3, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -1448,6 +1466,18 @@ CREATE TABLE `status_order` (
   `so_id` int(11) NOT NULL,
   `status_order` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `status_order`
+--
+
+INSERT INTO `status_order` (`so_id`, `status_order`) VALUES
+(1, 'รอชำระเงิน'),
+(2, 'ชำระเงินแล้ว'),
+(3, 'รอยืนยัน'),
+(4, 'ยืนยันแล้ว'),
+(5, 'ไม่อนุมัติ'),
+(6, 'ยกเลิก');
 
 -- --------------------------------------------------------
 
@@ -9184,7 +9214,7 @@ ALTER TABLE `delivery`
 -- AUTO_INCREMENT for table `delivery_address`
 --
 ALTER TABLE `delivery_address`
-  MODIFY `daid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `daid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `delivery_type`
@@ -9208,19 +9238,19 @@ ALTER TABLE `favourite`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `orders_detail`
 --
 ALTER TABLE `orders_detail`
-  MODIFY `od_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `od_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `product_type`
@@ -9268,13 +9298,13 @@ ALTER TABLE `seller-list`
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `scid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `scid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `status_order`
 --
 ALTER TABLE `status_order`
-  MODIFY `so_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `so_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `subdistricts`
@@ -9380,38 +9410,12 @@ ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_3` FOREIGN KEY (`shop_id`) REFERENCES `seller-list` (`shop_id`);
 
 --
--- Constraints for table `sales_demand`
---
-ALTER TABLE `sales_demand`
-  ADD CONSTRAINT `sales_demand_ibfk_2` FOREIGN KEY (`product_type`) REFERENCES `product_type` (`id`),
-  ADD CONSTRAINT `sales_demand_ibfk_3` FOREIGN KEY (`shop_id`) REFERENCES `seller-list` (`shop_id`);
-
---
 -- Constraints for table `seller-list`
 --
 ALTER TABLE `seller-list`
   ADD CONSTRAINT `seller-list_ibfk_1` FOREIGN KEY (`title_id`) REFERENCES `user-title` (`id`),
   ADD CONSTRAINT `seller-list_ibfk_2` FOREIGN KEY (`subdistrict_shop`) REFERENCES `subdistricts` (`id`),
   ADD CONSTRAINT `seller-list_ibfk_3` FOREIGN KEY (`owner_id`) REFERENCES `user-list` (`uid`);
-
---
--- Constraints for table `shopping_cart`
---
-ALTER TABLE `shopping_cart`
-  ADD CONSTRAINT `shopping_cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
-  ADD CONSTRAINT `shopping_cart_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `user-list` (`uid`);
-
---
--- Constraints for table `subdistricts`
---
-ALTER TABLE `subdistricts`
-  ADD CONSTRAINT `fk_subdistricts_districts` FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`);
-
---
--- Constraints for table `user-list`
---
-ALTER TABLE `user-list`
-  ADD CONSTRAINT `user-list_ibfk_1` FOREIGN KEY (`shop_id`) REFERENCES `seller-list` (`shop_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
