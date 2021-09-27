@@ -59,21 +59,21 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                             <div class="cart__product__item__title">
                                                 <!-- <img src="../../../img/shop-cart/cp-1.jpg" alt=""> -->
                                                 <div class="col-lg-12">
-                                                   
-                                                    <?php 
-                                                    if($NOTIFICATION[$i]["status_order"] == "ชำระเงินแล้ว") {
+
+                                                    <?php
+                                                    if ($NOTIFICATION[$i]["status_order"] == "ชำระเงินแล้ว") {
                                                         echo '  <h6>รอการยืนยัน</h6>
-                                                                <div class="col-lg-12 mt-2 ">
-                                                                    <span class="h6 text-muted">หมายเลขพัสดุ <span class="h6" style="color: green; font-size: 15px;">'.$NOTIFICATION[$i]["order_number"].'</span> ของหมายเลขคำสั่งซื้อ <span class="h6" style="color: green; font-size: 15px;">A652165546441</span></span>
+                                                                <div class="col-lg-12 mt-2">
+                                                                    หมายเลขคำสั่งซื้อ <span class="h6" style="color: green; font-size: 15px;">' . $NOTIFICATION[$i]["order_number"] . '</span></span>
                                                                 </div>
                                                         ';
                                                     } else {
-                                                        echo "<h6>".$NOTIFICATION[$i]["status_order"]."</h6>";
+                                                        echo "<h6>" . $NOTIFICATION[$i]["status_order"] . "</h6>";
                                                     }
                                                     ?>
-                                                   
+
                                                 </div>
-                                               
+
                                                 <div class="col-lg-12 mt-2 ">
                                                     <span class="h6 text-muted">รอยืนยัน</span>
                                                 </div>

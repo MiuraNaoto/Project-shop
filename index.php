@@ -507,7 +507,7 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
                                     <ul class="product__hover">
                                         <li><a href="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_FOOD_N[$i]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
                                         <li><a href="index.php" onclick="favouriteP('<?php echo $PRODUCTBYTYPE_FOOD_N[$i]['product_id']; ?>')"><span class="icon_heart_alt"></span></a></li>
-                                        <li><a href="#" onclick="addToCart('<?php echo $PRODUCTBYTYPE_FOOD_N[$i]['product_id']; ?>','<?php echo $PRODUCTBYTYPE_FOOD_N[$i]['shop_id'] ?>')"><span class="icon_bag_alt"></span></a></li>
+                                        <li><a href="<?php echo 'views/Customer/product_detail/product-details.php?product_id=' . $PRODUCTBYTYPE_FOOD_N[$i]['product_id'] ?>"><span class="icon_bag_alt"></span></a></li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
@@ -547,7 +547,7 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
                                     <ul class="product__hover">
                                         <li><a href="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_DRINK_N[$i]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
                                         <li><a href="index.php" onclick="favouriteP('<?php echo $PRODUCTBYTYPE_DRINK_N[$i]['product_id']; ?>')"><span class="icon_heart_alt"></span></a></li>
-                                        <li><a href="index.php" onclick="addToCart('<?php echo $PRODUCTBYTYPE_DRINK_N[$i]['product_id']; ?>','<?php echo $PRODUCTBYTYPE_DRINK_N[$i]['shop_id'] ?>')"><span class="icon_bag_alt"></span></a></li>
+                                        <li><a href="<?php echo 'views/Customer/product_detail/product-details.php?product_id=' . $PRODUCTBYTYPE_DRINK_N[$i]['product_id'] ?>"><span class="icon_bag_alt"></span></a></li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
@@ -585,7 +585,7 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
                                     <ul class="product__hover">
                                         <li><a href="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_CLOTHES_N[$i]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
                                         <li><a href="index.php" onclick="favouriteP('<?php echo $PRODUCTBYTYPE_CLOTHES_N[$i]['product_id']; ?>')"><span class="icon_heart_alt"></span></a></li>
-                                        <li><a href="index.php" onclick="addToCart('<?php echo $PRODUCTBYTYPE_CLOTHES_N[$i]['product_id']; ?>','<?php echo $PRODUCTBYTYPE_CLOTHES_N[$i]['shop_id'] ?>')"><span class="icon_bag_alt"></span></a></li>
+                                        <li><a href="<?php echo 'views/Customer/product_detail/product-details.php?product_id=' . $PRODUCTBYTYPE_CLOTHES_N[$i]['product_id'] ?>"><span class="icon_bag_alt"></span></a></li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
@@ -623,7 +623,8 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
                                     <ul class="product__hover">
                                         <li><a href="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_ACCESSORIES_N[$i]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
                                         <li><a href="index.php" onclick="favouriteP('<?php echo $PRODUCTBYTYPE_ACCESSORIES_N[$i]['product_id']; ?>')"><span class="icon_heart_alt"></span></a></li>
-                                        <li><a href="index.php" onclick="addToCart('<?php echo $PRODUCTBYTYPE_ACCESSORIES_N[$i]['product_id']; ?>','<?php echo $PRODUCTBYTYPE_ACCESSORIES_N[$i]['shop_id'] ?>')"><span class="icon_bag_alt"></span></a></li>
+                                        <li><a href="<?php echo 'views/Customer/product_detail/product-details.php?product_id=' . $PRODUCTBYTYPE_ACCESSORIES_N[$i]['product_id'] ?>"><span class="icon_bag_alt"></span></a></li>
+
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
@@ -661,7 +662,7 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
                                     <ul class="product__hover">
                                         <li><a href="<?php echo "./img/product/profile/" . $PRODUCTBYTYPE_HERB_N[$i]["profile_product"] ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
                                         <li><a href="index.php" onclick="favouriteP('<?php echo $PRODUCTBYTYPE_HERB_N[$i]['product_id']; ?>')"><span class="icon_heart_alt"></span></a></li>
-                                        <li><a href="index.php" onclick="addToCart('<?php echo $PRODUCTBYTYPE_HERB_N[$i]['product_id']; ?>','<?php echo $PRODUCTBYTYPE_HERB_N[$i]['shop_id'] ?>')"><span class="icon_bag_alt"></span></a></li>
+                                        <li><a href="<?php echo 'views/Customer/product_detail/product-details.php?product_id=' . $PRODUCTBYTYPE_HERB_N[$i]['product_id'] ?>"><span class="icon_bag_alt"></span></a></li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
