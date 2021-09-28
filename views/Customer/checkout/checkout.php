@@ -262,7 +262,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
 
                                             echo array_sum($PRICES);
                                             $QUANTITY_json = json_encode(number_format(array_sum($QUANTITY), 2));
-                                            // print_r($PRICES);
+                                            // print_r($ORDER_DETAIL_json);
 
 
                                             ?>

@@ -16,7 +16,8 @@
                     "product_name": "เสื้อยืดลายการ์ตูน",
                     "product_type": "เครื่องนุ่งห่ม",
                     "product_unit": 5,
-                    "price": 5.00
+                    "price_unit": 5.00,
+                    "total_price": 231
                 },
                 "2": {
                     "product_id": 1,

@@ -12,11 +12,11 @@ $myConDB = connectDB();
 switch ($request) {
 
     case 'order_detail':
-        $order_details = json_decode( $_POST[ 'order_details' ], true );
-        $total_unit = json_decode( $_POST[ 'total_units' ], true );
-        $total = json_decode( $_POST[ 'total' ], true );
+        $order_details = json_decode($_POST['order_details'], true);
+        $total_unit = json_decode($_POST['total_units'], true);
+        $total = json_decode($_POST['total'], true);
+        // print_r(json_encode($order_details) ."<br>");
 
-        // print_r($order_details);
         // echo count($order_details);
         // echo "<br>";
         // echo $total;
@@ -29,7 +29,7 @@ switch ($request) {
 
         // // print_r($obj);
         // // echo $daid." ".$total." ".$shopId;
- 
+
         $sql_orders = "INSERT INTO `orders`(`order_number`, `shop_id`, `daid`, `total_unit`, `total_price`, `time_order`, `status_order`) 
                         VALUES ('$rand','$shopId','$daid','$total_unit','$total','$time','1')";
         // echo $sql_orders . "<br>";
@@ -40,20 +40,23 @@ switch ($request) {
         $orderId = selectDataOne($sql)['order_id'];
         // echo $orderId . "<br>";
 
+        $sql_or = "SELECT `uid`, `username`, `firstname`, `lastname`, `user-list`.`tel`, `profile_user` FROM `user-list` 
+        INNER JOIN `seller-list` ON `user-list`.`shop_id` = `seller-list`.`shop_id` ";
+        $DATA_OR = selectDataOne($sql_or);
+
+        // print_r(json_encode($t) . "<br>");
+        // print_r(json_encode($arrT2) . "<br>");
+
         for ($i = 0; $i < count($order_details); $i++) {
             $product_id = $order_details[$i]['product_id'];
-            $quantity_product = $order_details[$i]['quantity'];
+            $product_unit = $order_details[$i]['quantity'];
             // echo $quantity_product;
             $sql_orders_detail = "INSERT INTO `orders_detail` (`orders_id`, `product_id`, `quantity_product`,`status_order`) 
-            VALUES ('$orderId','$product_id','$quantity_product','1')";
+            VALUES ('$orderId','$product_id','$product_unit','1')";
             addinsertData($sql_orders_detail);
             // print_r($DATA);
-            // echo $sql_orders_detail . "<br>";
+            // print_r(json_encode($or_detail, JSON_UNESCAPED_UNICODE) . "<br>");
         }
-
-        $detail = "SELECT * FROM `orders_detail`";
-        $DETAIL = selectData($detail);
-        // print_r($DETAIL);
 
         for ($i = 1; $i < count($DETAIL); $i++) { 
             # code...

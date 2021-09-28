@@ -184,9 +184,8 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                             <div class="col-md-7">
                                                 <select class="form-control" id="payment_method" name="payment_method" required oninvalid="this.setCustomValidity('กรุณาเลือกช่องทางชำระเงิน')" oninput="this.setCustomValidity('')">
                                                     <option disabled selected value="">กรุณาเลือกช่องทางชำระเงิน</option>
-                                                    <option value="1">ATM</option>
-                                                    <option value="2">Internet Banking</option>
-                                                    <option value="3">ชำระผ่านเค้าท์เตอร์ธนาคาร</option>
+                                                    <option value="1">ชำระผ่าน mobile banking</option>
+                                                    <option value="2">ชำระผ่านเค้าเตอร์ธนาคาร</option>
                                                 </select>
                                             </div>
                                         </div>
