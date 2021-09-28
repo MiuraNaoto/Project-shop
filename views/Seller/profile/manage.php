@@ -199,4 +199,17 @@ switch ($request) {
         $sql = "DELETE FROM `bank_account` WHERE `bank_account`.`baid` = '$baid' AND `bank_account`.`account_code` = '$bank_code'";
         deleteData($sql);
         break;
+
+    case 'insert_shipping_method':
+        $type_delivery = $_POST["type_delivery"];
+        $weight = $_POST["weight"];
+        $price_w = $_POST["price_w"];
+
+        echo $type_delivery . " " . $weight . " " . $price_w;
+
+        $sql = "INSERT INTO `shipping_method`(`delivery_type`, `price_per_unit`, `weight_product`, `seller_id`) VALUES ('$type_delivery','$weight','$price_w','$shop_id')";
+        addinsertData($sql);
+        // echo $sql;
+        header("location: ./profile.php");
+        break;
 }

@@ -5,6 +5,7 @@ $USER = $_SESSION[md5('user')];
 $uid = $USER[1]["uid"];
 $PRODUCT_TYPE = getProductType();
 $DELIVERY_TYPE = getDeliveryType();
+$SHIPPING_METHD = getShippingMethod($shop_id);
 ?>
 
 <!-- SHOW QR-CODE Modal -->
@@ -108,26 +109,18 @@ $DELIVERY_TYPE = getDeliveryType();
                     </div>
                     <div class="row mb-4">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                            <span>ประเภทการจัดส่ง<span class="text-danger"> *</span></span>
+                            <span>การจัดส่ง<span class="text-danger"> *</span></span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                             <select name="delivery_type" id="delivery_type" class="form-control" required oninvalid="this.setCustomValidity('กรุณาเลือกประเภทการจัดส่ง')" oninput="this.setCustomValidity('')">
-                                <option value="">กรุณาเลือกประเภทการจัดส่ง</option>
+                                <option value="">กรุณาเลือกการจัดส่ง</option>
                                 <?php
-                                for ($i = 1; $i < count($DELIVERY_TYPE); $i++) {
-                                    echo '<option value="' . $DELIVERY_TYPE[$i]["id"] . '">' . $DELIVERY_TYPE[$i]["delivery_name"] . '</option>';
+                                for ($i = 1; $i < count($SHIPPING_METHD); $i++) {
+                                    echo '<option value="' . $SHIPPING_METHD[$i]["sm_id"] . '">' . $SHIPPING_METHD[$i]["delivery_name"] ." ราคา ". $SHIPPING_METHD[$i]["price_per_unit"] . " น้ำหนัก ".$SHIPPING_METHD[$i]["weight_product"]. '</option>';
                                 }
 
                                 ?>
                             </select>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                            <span>ค่าจัดส่งสินค้า (บาท) <span class="text-danger"> *</span></span>
-                        </div>
-                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                            <input type="number" step="0.01" min="0" class="form-control" id="price_transport" name="price_transport" placeholder="กรุณากรอกราคาค่าจัดส่งสินค้าสินค้า" required oninvalid="this.setCustomValidity('กรุณากรอกรหัสสินค้า')" oninput="this.setCustomValidity('')">
                         </div>
                     </div>
                     <div class="row mb-4">

@@ -184,6 +184,8 @@ function getProductByShopID($shop_id)
     $sql = "SELECT * FROM `product` 
                     INNER JOIN `product_type` ON `product`.`product_type` = `product_type`.`id` 
                     INNER JOIN `seller-list` ON `product`.`shop_id` = `seller-list`.`shop_id` 
+                    INNER JOIN `shipping_method` ON `product`.`delivery_type` = `shipping_method`.`sm_id`
+                    INNER JOIN `delivery_type`ON `shipping_method`.`delivery_type` = `delivery_type`.`id` 
             WHERE `seller-list`.`shop_id` = '$shop_id'";
     $DATA = selectData($sql);
     return $DATA;
@@ -454,6 +456,13 @@ function getAllReason()
 function getAllDelivery()
 {
     $sql = "SELECT * FROM `delivery_type`";
+    $DATA = selectData($sql);
+    return $DATA;
+}
+
+function getShippingMethod($shop_id)
+{
+    $sql = "SELECT * FROM `shipping_method` INNER JOIN `delivery_type`ON `shipping_method`.`delivery_type` = `delivery_type`.`id` WHERE `seller_id` = '$shop_id'";
     $DATA = selectData($sql);
     return $DATA;
 }

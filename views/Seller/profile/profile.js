@@ -43,6 +43,42 @@ $(document).ready(function () {
     }
   });
 
+  $("form-insert-shipping-method").submit(function (e) {
+    event.preventDefault();
+    var formdata = new FormData();
+    // var e_shop_name = $("#e_shop_name").val();
+    // var e_title = $("#e_title").val();
+    // var e_firstname = $("#e_firstname").val();
+    // var e_lastname = $("#e_lastname").val();
+    // var e_tel = $("#e_tel").val();
+    // var e_email = $("#e_email").val();
+    // var e_username = $("#e_username").val();
+    // var e_address = $("#e_address").val();
+    // var e_provice = $("#e_provice").val();
+    // var e_district = $("#e_district").val();
+    // var e_subdistrict = $("#e_subdistrict").val();
+    // var e_time_opened = $("#e_time_opened").val();
+    // var e_time_closed = $("#e_time_closed").val();
+    // var e_amount_staff = $("#e_amount_staff").val();
+    // var e_fulltime = $("#e_fulltime").val();
+    // var e_parttime = $("#e_parttime").val();
+    // var e_none = $("#e_none").val();
+
+    $.ajax({
+      url: "manage.php",
+      method: "POST",
+      data: { formdata: formdata },
+      datatype: "json",
+      async: false,
+      success: function (data) {
+        console.log(data);
+        alert(data);
+        // location.reload();
+        // location.href = "./manage.php";
+      },
+    });
+  });
+
   // $(document).on("click", ".edit-profile", function (event) {
   $("form-edit-profile").submit(function (e) {
     event.preventDefault();

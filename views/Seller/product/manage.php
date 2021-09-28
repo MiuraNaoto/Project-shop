@@ -103,8 +103,8 @@ switch ($request) {
             }
         }
 
-        $sql = "INSERT INTO `product`(`product_number`, `product_name`, `product_description`, `product_specification`, `product_type`, `price`, `shipping_cost`, `stock`, `shop_id`, `delivery_type`, `profile_product`, `picture`, `modify`) 
-                VALUES ('$product_code','$product_name','$product_description','$product_specification','$type_product','$price','$price_transport','$stock','$shop_id','$delivery_type','$final_image',' $picture_path','$time')";
+        $sql = "INSERT INTO `product`(`product_number`, `product_name`, `product_description`, `product_specification`, `product_type`, `price`, `stock`, `shop_id`, `delivery_type`, `profile_product`, `picture`, `modify`) 
+                VALUES ('$product_code','$product_name','$product_description','$product_specification','$type_product','$price','$stock','$shop_id','$delivery_type','$final_image',' $picture_path','$time')";
         addinsertData($sql);
         echo $sql;
         header("location: product.php");

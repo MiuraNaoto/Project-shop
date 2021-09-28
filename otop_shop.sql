@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2021 at 08:56 AM
+-- Generation Time: Sep 28, 2021 at 04:56 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.0
 
@@ -1216,7 +1216,6 @@ CREATE TABLE `product` (
   `product_specification` text NOT NULL,
   `product_type` int(11) NOT NULL,
   `price` double NOT NULL,
-  `shipping_cost` double NOT NULL,
   `stock` int(11) NOT NULL,
   `shop_id` int(11) NOT NULL,
   `delivery_type` int(11) NOT NULL,
@@ -1230,10 +1229,11 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`product_id`, `product_number`, `product_name`, `product_description`, `product_specification`, `product_type`, `price`, `shipping_cost`, `stock`, `shop_id`, `delivery_type`, `profile_product`, `picture`, `qrcode`, `modify`) VALUES
-(1, '02251', 'test23', 'test32', 'test32', 1, 123, 34, 213, 1, 1, '1_1631886116.png', ' 1/', NULL, 1631886116),
-(3, '02245', 'rrr', 'rewe', 'werwe', 4, 231, 43, 123, 1, 1, '2_1632300149.png', ' 2/', NULL, 1632300149),
-(4, '442343', 'rewrer', 'rewrewr', 'ewrrwer', 2, 34, 342, 324, 1, 1, '4_1632300272.png', ' 4/', NULL, 1632300272);
+INSERT INTO `product` (`product_id`, `product_number`, `product_name`, `product_description`, `product_specification`, `product_type`, `price`, `stock`, `shop_id`, `delivery_type`, `profile_product`, `picture`, `qrcode`, `modify`) VALUES
+(1, '02251', 'test23', 'test32', 'test32', 1, 123, 213, 1, 1, '1_1631886116.png', ' 1/', NULL, 1631886116),
+(3, '02245', 'rrr', 'rewe', 'werwe', 4, 231, 123, 1, 1, '2_1632300149.png', ' 2/', NULL, 1632300149),
+(4, '442343', 'rewrer', 'rewrewr', 'ewrrwer', 2, 34, 324, 1, 1, '4_1632300272.png', ' 4/', NULL, 1632300272),
+(5, 'fwr', 'ererwrere', 'wrerwer', 'wererwrewr', 1, 123213, 21312, 1, 1, '5_1632841006.png', ' 5/', NULL, 1632841006);
 
 -- --------------------------------------------------------
 
@@ -1464,6 +1464,27 @@ INSERT INTO `seller-list` (`shop_id`, `shop_name`, `title_id`, `firstname`, `las
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `shipping_method`
+--
+
+CREATE TABLE `shipping_method` (
+  `sm_id` int(11) NOT NULL,
+  `delivery_type` int(11) NOT NULL,
+  `price_per_unit` double NOT NULL,
+  `weight_product` double NOT NULL,
+  `seller_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `shipping_method`
+--
+
+INSERT INTO `shipping_method` (`sm_id`, `delivery_type`, `price_per_unit`, `weight_product`, `seller_id`) VALUES
+(1, 1, 12.5, 50.2, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `shopping_cart`
 --
 
@@ -1482,7 +1503,8 @@ CREATE TABLE `shopping_cart` (
 INSERT INTO `shopping_cart` (`scid`, `uid`, `product_id`, `quantity`, `feature`) VALUES
 (3, 3, 1, 5, NULL),
 (5, 3, 4, 5, NULL),
-(6, 3, 3, 5, NULL);
+(6, 3, 3, 5, NULL),
+(11, 1, 3, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -9171,6 +9193,14 @@ ALTER TABLE `seller-list`
   ADD KEY `owner_id` (`owner_id`);
 
 --
+-- Indexes for table `shipping_method`
+--
+ALTER TABLE `shipping_method`
+  ADD PRIMARY KEY (`sm_id`),
+  ADD KEY `delivery_type` (`delivery_type`),
+  ADD KEY `seller_id` (`seller_id`);
+
+--
 -- Indexes for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
@@ -9288,7 +9318,7 @@ ALTER TABLE `orders_detail`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `product_type`
@@ -9333,10 +9363,16 @@ ALTER TABLE `seller-list`
   MODIFY `shop_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `shipping_method`
+--
+ALTER TABLE `shipping_method`
+  MODIFY `sm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `scid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `scid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `status_order`
@@ -9444,7 +9480,7 @@ ALTER TABLE `orders_detail`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`product_type`) REFERENCES `product_type` (`id`),
-  ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`delivery_type`) REFERENCES `delivery_type` (`id`),
+  ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`delivery_type`) REFERENCES `shipping_method` (`sm_id`),
   ADD CONSTRAINT `product_ibfk_3` FOREIGN KEY (`shop_id`) REFERENCES `seller-list` (`shop_id`);
 
 --
@@ -9461,6 +9497,13 @@ ALTER TABLE `seller-list`
   ADD CONSTRAINT `seller-list_ibfk_1` FOREIGN KEY (`title_id`) REFERENCES `user-title` (`id`),
   ADD CONSTRAINT `seller-list_ibfk_2` FOREIGN KEY (`subdistrict_shop`) REFERENCES `subdistricts` (`id`),
   ADD CONSTRAINT `seller-list_ibfk_3` FOREIGN KEY (`owner_id`) REFERENCES `user-list` (`uid`);
+
+--
+-- Constraints for table `shipping_method`
+--
+ALTER TABLE `shipping_method`
+  ADD CONSTRAINT `shipping_method_ibfk_1` FOREIGN KEY (`delivery_type`) REFERENCES `delivery_type` (`id`),
+  ADD CONSTRAINT `shipping_method_ibfk_2` FOREIGN KEY (`seller_id`) REFERENCES `seller-list` (`shop_id`);
 
 --
 -- Constraints for table `shopping_cart`

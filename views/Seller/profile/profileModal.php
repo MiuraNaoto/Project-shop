@@ -5,17 +5,18 @@ $SELLER = getSeller($shop_id);
 $BANK = getBank();
 $UTID = getUserTitleByid($SELLER[1]["title_id"]);
 $UTID1 = getUserTitleSelect($SELLER[1]["title_id"]);
-
+$DELIVERY = getDeliveryType();
+// print_r($DELIVERY);
 ?>
 
-<style>
+<!-- <style>
     input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button {
 
         opacity: 0;
 
     }
-</style>
+</style> -->
 <!-- Edit Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" a aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -326,6 +327,61 @@ $UTID1 = getUserTitleSelect($SELLER[1]["title_id"]);
                     <input type="hidden" id="request" name="request" value="insert_bank" />
                     <button type="button" class="btn btn-danger" data-dismiss="modal" style="width: 70px;">ยกเลิก</button>
                     <button type="submit" id="add_bank" name="add_bank" class="btn btn-success add_bank">เพิ่มบัญชีธนาคาร</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ADD shipping method -->
+<div class="modal fade" id="addShippingMethod" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" a aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">เพิ่มประเภทการจัดส่ง</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="manage.php" method="post" enctype="multipart/form-data" id="form-insert-shipping-method" name="form-insert-shipping-method" role="form">
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <span>ชื่อธนาคาร<span class="text-danger"> *</span></span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <select name="type_delivery" id="type_delivery" class="form-control" required oninvalid="this.setCustomValidity('เลือกประเภทการจัดส่ง')" oninput="this.setCustomValidity('')">
+                                <option value="" disabled selected>เลือกประเภทการจัดส่ง</option>
+                                <?php
+
+                                for ($i = 1; $i < count($DELIVERY); $i++) {
+                                    echo '<option value="' . $DELIVERY[$i]["id"] . '">' . $DELIVERY[$i]["delivery_name"] . '</option>';
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <span>น้ำหนักสินค้า<span class="text-danger"> *</span></span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <input type="number" class="form-control" min="0" step="0.01" id="weight" name="weight" placeholder="กรุณากรอกชื่อบัญชีธนาคาร" required oninvalid="this.setCustomValidity('กรุณากรอกชื่อบัญชีธนาคาร')" oninput="this.setCustomValidity('')">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <span>ราคาต่อหน่วย (จากน้ำหนักสินค้า)<span class="text-danger"> *</span></span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <input type="number" class="form-control" min="0" step="0.01" id="price_w" name="price_w" placeholder="กรุณากรอกราคาต่อหน่วย (น้ำหนักสินค้า)" required oninvalid="this.setCustomValidity('กรุณากรอกราคาต่อหน่วย (น้ำหนักสินค้า)')" oninput="this.setCustomValidity('')">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <input type="hidden" id="request" name="request" value="insert_shipping_method" />
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" style="width: 70px;">ยกเลิก</button>
+                    <button type="submit" id="add_shipping_method" name="add_shipping_method" class="btn btn-success add_shipping_method">เพิ่มประเภทการจัดส่ง</button>
                 </div>
             </form>
         </div>

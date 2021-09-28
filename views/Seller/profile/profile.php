@@ -13,6 +13,7 @@ $CurrentMenu = "profile";
 
 $INFO_SALER = getsalerInfo($shop_id);
 $BANK_ACCOUNT = getBankAccount($shop_id);
+$SHIPPING_METHOD = getShippingMethod($shop_id)
 // $UTID = getUserTitleByid($uid);
 // $UTID1 = getUserTitleSelect($uid);
 
@@ -334,6 +335,71 @@ $BANK_ACCOUNT = getBankAccount($shop_id);
                         </div>
                     </div>
 
+
+                    <div class="row">
+                        <div class="col-xl-12 col-12 mb-4">
+                            <div class="card">
+                                <div class="card-header card-bg font-weight-bold" style="color: #006664;">
+                                    <div class="row">
+                                        <div class="col-md-8 d-flex align-items-center">
+                                            ประเภทการจัดส่ง
+                                        </div>
+                                        <div class="col-md-4 d-flex align-items-center d-flex justify-content-end">
+                                            <button type="button" id="add_shipping_method" class="btn btn-success btn-md" title='เพิ่มประเภทการจัดส่ง' data-toggle="modal" data-target="#addShippingMethod">
+                                                <i class="fas fa-money-check-alt"></i>&nbsp;&nbsp;&nbsp;เพิ่มประเภทการจัดส่ง
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <?php if ($SHIPPING_METHOD[0]['numrow']) {
+                                    echo '<div class="card-body">
+                                             <div class="row">';
+                                    for ($i = 1; $i < count($SHIPPING_METHOD); $i++) {
+                                        // print_r($SHIPPING_METHOD);
+                                ?>
+
+                                        <div class="col-lg-3 mb-4">
+                                            <div class="card edit-bank-account" data-toggle="modal" onclick="delfunction('<?php echo $SHIPPING_METHOD[$i]['baid'] ?>', '<?php echo $BANK_ACCOUNT[$i]['account_code'] ?>', '<?php echo $BANK_ACCOUNT[$i]['account_name'] ?>')" baid="<?php echo $BANK_ACCOUNT[$i]["baid"] ?>" account_code="<?php echo $BANK_ACCOUNT[$i]["account_code"] ?>" account_name="<?php echo $BANK_ACCOUNT[$i]["account_name"] ?>" bank_id="<?php echo $BANK_ACCOUNT[$i]["id"] ?>" style="cursor: pointer;">
+                                                <!-- <img class="card-img-top" src='<?php echo "../../../img/payment/" . $SHIPPING_METHOD[$i]["picture"] ?>' alt="<?php echo $SHIPPING_METHOD[$i]["name"] ?>"> -->
+                                                <div class="card-body text-center font-weight-bold">
+                                                    <div class="row mt-2 mb-4 ">
+                                                        <div class="col-md-5">
+                                                            <h6 class="font-weight-bold d-flex justify-content-start">ประเภทการจัดส่ง</h6>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <h6 class="d-flex justify-content-start"><?php echo $SHIPPING_METHOD[$i]["delivery_name"] ?></h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row  mt-4">
+                                                        <div class="col-md-5">
+                                                            <h6 class="font-weight-bold d-flex justify-content-start">ราคา</h6>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <h6 class="text-left"><?php echo $SHIPPING_METHOD[$i]["price_per_unit"] ?></h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row  mt-4">
+                                                        <div class="col-md-5">
+                                                            <h6 class="font-weight-bold d-flex justify-content-start">น้ำหนัก</h6>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <h6 class="text-left"><?php echo $SHIPPING_METHOD[$i]["weight_product"] ?></h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                <?php
+                                    }
+
+                                    echo '</div>
+                                        </div>';
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
                     <!-- /.container-fluid -->
 
                 </div>
