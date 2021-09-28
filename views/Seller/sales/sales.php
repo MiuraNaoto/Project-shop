@@ -17,7 +17,7 @@ $CurrentMenu = "sales";
 $PRODUCT = getProductByShopID($uid);
 // $PRODUCT = getProductByShopID($uid);
 $ORDER_SUCCESS = getOrderSuccess();
-print_r($ORDER_SUCCESS);
+// print_r($ORDER_SUCCESS);
 ?>
 
 <head>
