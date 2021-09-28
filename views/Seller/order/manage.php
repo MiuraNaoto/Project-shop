@@ -39,7 +39,7 @@ switch ($request) {
         $disapproved_order = "UPDATE `orders` SET `status_order`='4',`reason_id`='$reason',`reason_desc`='$reason_desc' WHERE `order_id`='$order_id' AND `order_number`='$order_number'";
         updateData($disapproved_order);
 
-        $disapproved_order_detail = "UPDATE `orders_detail` SET `status_order`='4' WHERE  WHERE `order_id`='$order_id'";
+        $disapproved_order_detail = "UPDATE `orders_detail` SET `status_order`='4' WHERE `orders_id`='$order_id'";
         updateData($disapproved_order_detail);
 
         break;

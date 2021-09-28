@@ -112,6 +112,7 @@ date_default_timezone_set("asia/bangkok");
                                         <tbody>
                                             <?php
                                             for ($i = 1; $i < count($ORDER); $i++) {
+                                                // print_r($ORDER)
                                             ?>
                                                 <tr>
                                                     <!-- <td style="vertical-align: middle; text-align: center;"><?php echo $i; ?></td> -->
@@ -125,7 +126,15 @@ date_default_timezone_set("asia/bangkok");
                                                     <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER[$i]["total_unit"] ?></td>
                                                     <td style="vertical-align: middle; text-align: end;"><?php echo number_format($ORDER[$i]["total_price"], 2) ?></td>
                                                     <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $ORDER[$i]["time_order"])  ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER[$i]["type_payment"] ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;">
+                                                        <?php
+                                                        if ($ORDER[$i]["type_payment"] == 1) {
+                                                            echo "ชำระเงินแล้ว";
+                                                        } else {
+                                                            echo "ยังไม่ได้ชำระเงิน";
+                                                        }
+                                                        ?>
+                                                    </td>
                                                     <td style="vertical-align: middle; text-align: end;"><?php echo number_format($ORDER[$i]["total_price_user"], 2) ?></td>
                                                     <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $ORDER[$i]["time_payment"])  ?></td>
                                                     <td style="vertical-align: middle; text-align: center;"><?php echo $ORDER[$i]["status_order"] ?></td>
