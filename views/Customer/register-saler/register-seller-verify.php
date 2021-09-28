@@ -5,12 +5,13 @@ $uid = $USER[1]["uid"];
 require "../../../dbConnect.php";
 $time = time();
 
-if ($USER[1]["u-is-saler"] == 1) {
+if ($_SESSION[md5('typeid')] == 1) {
     $typeid = 1;
     $_SESSION[md5('typeid')] = $typeid;
     header("location: ../../Seller/profile/profile.php");
 } else {
     header("location: ../register-saler/register-seller.php");
+
     if (isset($_POST["request"]) == "register") {
         $final_image == '';
         if ($_FILES["shop-profile-img"]) {
@@ -130,6 +131,7 @@ if ($USER[1]["u-is-saler"] == 1) {
         $_SESSION[md5('shop')]   = $DATA_SHOP;
         $typeid = 1;
         $_SESSION[md5('typeid')] = $typeid;
+        echo $typeid;
 
         header("location: ../../Seller/profile/profile.php");
     }
