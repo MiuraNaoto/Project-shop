@@ -127,7 +127,7 @@ $PROVINCE = getDistricts();
                                     <div class="form-group row">
                                         <div class="col-sm-6">
                                             <label>เบอร์โทรศัพท์ <span class="text-danger">*</span></label>
-                                            <input type="number" min="0" class="form-control" id="tel" name="tel" placeholder="กรุณากรอกอีเมล" required oninvalid="this.setCustomValidity('กรุณากรอกอีเมล')" oninput="this.setCustomValidity('')">
+                                            <input type="number" min="0" class="form-control" id="tel" name="tel" placeholder="กรุณากรอกเบอร์โทรศัพท์" required oninvalid="this.setCustomValidity('กรุณากรอกเบอร์โทรศัพท์')" oninput="this.setCustomValidity('')">
                                         </div>
                                         <div class="col-sm-6">
                                             <label>อีเมล <span class="text-danger">*</span></label>
