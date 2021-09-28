@@ -1,0 +1,59 @@
+{
+    "user": {
+        "uid": 1,
+        "username": "test",
+        "firstname": "test",
+        "lastname": "test",
+        "tel": "089-987-5643",
+        "profile_user": "../img/profile/profile/1_1632673227.png"
+    },
+    "order": {
+        "1": {
+            "order_number": 1234567980,
+            "order_detail": {
+                "1": {
+                    "product_id": 1,
+                    "product_name": "เสื้อยืดลายการ์ตูน",
+                    "product_type": "เครื่องนุ่งห่ม",
+                    "product_unit": 5,
+                    "price": 5.00
+                },
+                "2": {
+                    "product_id": 1,
+                    "product_name": "กางเกง",
+                    "product_type": "เครื่องนุ่งห่ม",
+                    "product_unit": 5,
+                    "price": 20.50
+                }
+            },
+            "delivery_address": {
+                "id": 1,
+                "address": "123 ต.เมือง อ.เมือง จ.นครปฐม 73000"
+            },
+            "shop": {
+                "shop_id": 1,
+                "shop_name": "ร้านขายเสื้อยืด",
+                "email": "shirt@gmail.com",
+                "address": "123 ต.เมือง อ.เมือง จ.นครปฐม 73000",
+                "tel": "089-987-5643",
+                "time_opened": "10:00",
+                "time_closed": "16:00",
+                "owner_id": 1
+            },
+            "total_unit": 8,
+            "total_price": 145.50,
+            "total_price_user": 145.50,
+            "type_payment": {
+                "id": 1,
+                "name": "โอนผ่านธนาคาร"
+            },
+            "time_order": 1632673227,
+            "time_payment": 1632673227,
+            "picture_payment": "../img/payment/bill/12_1632673227.png",
+            "status_order": {
+                "id": 1,
+                "status": "ชำระแล้ว"
+            }
+        }
+    }
+}

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2021 at 02:48 PM
+-- Generation Time: Sep 28, 2021 at 08:56 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.0
 
@@ -1097,6 +1097,14 @@ CREATE TABLE `favourite` (
   `uid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `favourite`
+--
+
+INSERT INTO `favourite` (`fid`, `product_id`, `uid`) VALUES
+(6, 3, 3),
+(8, 4, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -1156,6 +1164,15 @@ CREATE TABLE `orders` (
   `review_shop` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `order_number`, `shop_id`, `daid`, `total_unit`, `total_price_user`, `total_price`, `type_payment`, `time_order`, `time_payment`, `picture_payment`, `status_order`, `reason_id`, `reason_desc`, `status_refund`, `picture_refund`, `tracking_code`, `time_delivery`, `delivery_type`, `review_shop`) VALUES
+(1, '1285031262', 1, 1, 8, 213, 895, 1, 1632673177, 1632961140, '2_1632673195.png', 4, 3, 'fdfdfd', NULL, NULL, NULL, NULL, NULL, NULL),
+(2, '1022844448', 1, 1, 2, 23, 265, 2, 1632673227, 0, '4_1632803261.png', 6, NULL, NULL, NULL, NULL, 'rererere', 1632803517, 1, NULL),
+(3, '1042514097', 1, 1, 7, NULL, 238, NULL, 1632797562, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -1173,6 +1190,17 @@ CREATE TABLE `orders_detail` (
   `status_order` int(11) DEFAULT NULL,
   `review_product` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orders_detail`
+--
+
+INSERT INTO `orders_detail` (`od_id`, `orders_id`, `product_id`, `quantity_product`, `status_review`, `quantity_star`, `review_desc`, `status_order`, `review_product`) VALUES
+(1, 1, 1, 7, NULL, NULL, NULL, 4, NULL),
+(2, 1, 4, 1, NULL, NULL, NULL, 4, NULL),
+(3, 2, 3, 1, NULL, NULL, NULL, 3, NULL),
+(4, 2, 4, 1, NULL, NULL, NULL, 3, NULL),
+(5, 3, 4, 7, NULL, NULL, NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -1452,10 +1480,9 @@ CREATE TABLE `shopping_cart` (
 --
 
 INSERT INTO `shopping_cart` (`scid`, `uid`, `product_id`, `quantity`, `feature`) VALUES
-(1, 1, 1, 7, NULL),
-(2, 1, 4, 1, NULL),
-(3, 3, 1, 4, NULL),
-(5, 3, 4, 4, NULL);
+(3, 3, 1, 5, NULL),
+(5, 3, 4, 5, NULL),
+(6, 3, 3, 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -9243,19 +9270,19 @@ ALTER TABLE `districts`
 -- AUTO_INCREMENT for table `favourite`
 --
 ALTER TABLE `favourite`
-  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `orders_detail`
 --
 ALTER TABLE `orders_detail`
-  MODIFY `od_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `od_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -9309,7 +9336,7 @@ ALTER TABLE `seller-list`
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `scid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `scid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `status_order`
@@ -9327,7 +9354,7 @@ ALTER TABLE `subdistricts`
 -- AUTO_INCREMENT for table `type_payment`
 --
 ALTER TABLE `type_payment`
-  MODIFY `tpid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tpid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user-list`

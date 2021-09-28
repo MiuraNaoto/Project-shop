@@ -267,7 +267,6 @@ function getAllOrder()
                     INNER JOIN `provinces` ON `districts`.`province_id` = `provinces`.`id`
                     INNER JOIN `user-list` ON `delivery_address`.`uid` = `user-list`.`uid`
                     INNER JOIN `user-title` ON `delivery_address`.`title` = `user-title`.`id`
-                    INNER JOIN `type_payment` ON `orders`.`type_payment` = `type_payment`.`tpid`
                     INNER JOIN `status_order` ON `orders`.`status_order` = `status_order`.`so_id`
             WHERE `orders`.`status_order` = 1 OR `orders`.`status_order` = 2";
     $DATA = selectData($sql);
