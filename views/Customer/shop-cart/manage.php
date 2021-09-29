@@ -12,6 +12,7 @@ $shop_id = $_POST['shop_id'];
 $quantity = $_POST['quantity'];
 $request = $_POST['request'];
 $allProductInCart = $_POST['data'];
+$shippingTypeid = $_POST['shippingTypeid'];
 //$allProductInCart = json_decode($json);
 
 echo $scid;
@@ -19,8 +20,9 @@ echo $scid;
 echo "...........";
 echo print_r($allProductInCart);
 //echo print_r($quantity);
-echo "...".$quantity[1];
+//echo "...".$quantity[1];
 echo $request;
+echo $shippingTypeid;
 //echo 'scid='.$allProductInCart[1]['scid'];
 //echo 'count='.count($allProductInCart);
 
@@ -48,8 +50,12 @@ switch ($request) {
         }
         
         break;
-    
-    
+    /*
+        case 'checkOut':
+            $sql = "UPDATE `orders` SET `delivery_type`=$shippingTypeid WHERE ";
+            break;
+            */
+
         
         
 }

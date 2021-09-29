@@ -17,6 +17,18 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     //echo "<br><br>" . $uid[0];
 }
 $SHOPING_CART = getShopingCart($uid[0]);
+$scidList = array();
+$priceList = array();
+for ($i = 1; $i < count($SHOPING_CART); $i++) {
+    array_push($scidList, $SHOPING_CART[$i]['scid']);
+    array_push($priceList, $SHOPING_CART[$i]['price']);
+}
+$scidList = json_encode($scidList);
+$priceList = json_encode($priceList);
+//echo print_r($SHOPING_CART);
+//echo print_r($scidList);
+//echo print_r($priceList);
+$sqlOrderid = "";
 ?>
 
 <head>
@@ -83,7 +95,7 @@ $SHOPING_CART = getShopingCart($uid[0]);
                                         <td class="cart__price"><?php echo  "฿ " . number_format($SHOPING_CART[$i]["price"], 2); ?></td>
                                         <input type="text" id="productPrice" name="productPrice" value=<?php echo number_format($SHOPING_CART[$i]["price"], 2); ?> hidden>
 
-                                        <td class="cart__quantity" id="cart__quantity" name="cart__quantity" onclick="changeQuantity(<?php echo $SHOPING_CART[$i]['scid'] . ',' .  $SHOPING_CART[$i]['price']; ?>)">
+                                        <td class="cart__quantity" id="cart__quantity" name="cart__quantity" onclick="changeQuantity(<?php echo $SHOPING_CART[$i]['scid'] . ',' .  $SHOPING_CART[$i]['price'] ?>,objscid,objprice,obj)">
                                             <div class="pro-qty" id="pro-qty" name="pro-qty">
                                                 <input type="text" id="quantity<?php echo $SHOPING_CART[$i]["scid"]; ?>" name="quantity" value="<?php echo $SHOPING_CART[$i]["quantity"]; ?>" disabled>
                                             </div>
@@ -119,22 +131,60 @@ $SHOPING_CART = getShopingCart($uid[0]);
                         //echo $json;
                         ?>
 
-                        <a onclick="updateCart(obj)"><span class="icon_loading"></span> Update cart</a>
+                        <!-- <a onclick="updateCart(obj)"><span class="icon_loading"></span> Update cart</a> -->
 
                     </div>
                 </div>
             </div>
             <div class="row">
+                <!--
                 <div class="col-lg-6">
                     <div class="discount__content">
-                        <!-- <h6>Discount codes</h6>
+                         <h6>Discount codes</h6>
                         <form action="#">
                             <input type="text" placeholder="Enter your coupon code">
                             <button type="submit" class="site-btn">Apply</button>
-                        </form> -->
+                        </form> 
                     </div>
                 </div>
-                <div class="col-lg-4 offset-lg-2">
+                -->
+                <?php
+                if (isset($SHOPING_CART[1]['shop_id'])) {
+                    $shopid = $SHOPING_CART[1]['shop_id'];
+                    $sql = "SELECT * FROM ((`seller-list` INNER JOIN `shipping_method` ON `seller-list`.`shop_id`=`shipping_method`.`seller_id`)
+                    INNER JOIN `delivery_type` ON `delivery_type`.`id`=`shipping_method`.`delivery_type`)
+                    WHERE `seller-list`.`shop_id`=$shopid";
+                    $shippingTypeList = selectData($sql);
+                    // echo print_r($shippingTypeList);
+                }
+                ?>
+                <div class="col-lg-4 ">
+                    <div class="cart__total__procced">
+                        <div class="row">
+                            <i class="fa fa-truck fa-2x" aria-hidden="true" style="margin-right: 20px;"></i>
+                            <h4>เลือกประเภทการจัดส่ง</h4>
+                        </div><br>
+                        <ul>
+                            <?php for ($i = 1; $i < count($shippingTypeList); $i++) { ?>
+                                <div class="col">
+                                    <input class="form-check-input" type="radio" name="shippingType" id="shippingType<?php echo $shippingTypeList[$i]['delivery_type']; ?>" value="<?php echo $shippingTypeList[$i]['delivery_type']; ?>" style="margin-top: 8px;" onclick="chooseShippingType()">
+
+                                    <label class="form-check-label" for="shippingType<?php echo $shippingTypeList[$i]['delivery_type']; ?>" style="font-size: 20px; ">
+                                        <?php echo $shippingTypeList[$i]['delivery_name']; ?>
+                                    </label>
+
+                                    <input type="text" id="shoppingPrice<?php echo $shippingTypeList[$i]['delivery_type']; ?>" value="<?php echo $shippingTypeList[$i]['standard_price']; ?>" hidden />
+                                </div>
+                            <?php
+                            }
+                            ?>
+
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4 offset-lg-4">
                     <div class="cart__total__procced">
                         <h6>ยอดสั่งซื้อรวม</h6>
                         <ul>
@@ -153,15 +203,25 @@ $SHOPING_CART = getShopingCart($uid[0]);
                                             //array_push($PRICES, $price);
                                         }
                                         //echo number_format(array_sum($PRICES), 2);
-                                        echo number_format($price,2);
+
+                                        //echo number_format($price, 2);
+                                        echo ' <span id="sumPrice" name="sumPrice" value="' . $price . '">' . number_format($price, 2) . '</span>';
+                                        echo ' <input type="text" id="sumPriceText" value="' . $price . '" hidden/>';
                                     } else {
-                                        echo number_format(0, 2);
+                                        //echo number_format(0, 2);
+                                        echo ' <span id="sumPrice" name="sumPrice" value="0">0.00</span>';
+                                        echo ' <input type="text" id="sumPriceText" value="0" hidden/>';
                                     }
 
                                     ?>
 
-                                </span></li>
+                                </span>
+                            </li>
+
                         </ul>
+
+
+
                         <?php
 
                         $getProductStock = "SELECT * FROM `product` INNER JOIN `shopping_cart` ON `product`.`product_id`=`shopping_cart`.`product_id` WHERE uid = '$uid'";
@@ -172,10 +232,16 @@ $SHOPING_CART = getShopingCart($uid[0]);
                         ?>
                         <a class="primary-btn btn btn-danger text-light" style="width: 280px;" onclick="checkCart(objCheckCart)">ยืนยันคำสั่งซื้อ</a>
                         <!-- <a href="../checkout/checkout.php" class="primary-btn"></a> -->
+
                     </div>
                 </div>
+
+
+
             </div>
+
         </div>
+
     </section>
     <!-- Shop Cart Section End -->
 
@@ -217,5 +283,7 @@ $SHOPING_CART = getShopingCart($uid[0]);
 <script>
     var obj = JSON.parse('<?= $json; ?>');
     var objCheckCart = JSON.parse('<?= $jsonCheckCart; ?>');
+    var objscid = JSON.parse('<?= $scidList; ?>');
+    var objprice = JSON.parse('<?= $priceList; ?>');
     //console.log(obj)
 </script>
