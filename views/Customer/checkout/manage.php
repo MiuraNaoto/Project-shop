@@ -57,11 +57,14 @@ switch ($request) {
             // print_r($DATA);
             // print_r(json_encode($or_detail, JSON_UNESCAPED_UNICODE) . "<br>");
         }
+        $detail = "SELECT * FROM `orders_detail`";
+        $DETAIL = selectData($detail);
 
-        for ($i = 1; $i < count($DETAIL); $i++) { 
+        for ($i = 1; $i < count($DETAIL); $i++) {
             # code...
-            $delete_order = "DELETE FROM `shopping_cart` WHERE `uid` = '$uid' AND `product_id` = '".$DETAIL[$i]['product_id']."' AND `quantity` = '".$DETAIL[$i]['quantity_product']."'";
-            deleteData($delete_order);
+            $delete_order = "DELETE FROM `shopping_cart` WHERE `uid` = '$uid' AND `product_id` = '" . $DETAIL[$i]['product_id'] . "' AND `quantity` = '" . $DETAIL[$i]['quantity_product'] . "'";
+            $DATA = deleteData($delete_order);
+            // echo $DATA;
         }
 
         header("location: ../payment/payment.php?order_number=".$rand);

@@ -8,8 +8,8 @@
         "profile_user": "1_1632152358.png"
     },
     "order": {
-        "8": {
-            "order_number": 1397717933,
+        "9": {
+            "order_number": 1087534993,
             "order_detail": [
                 {
                     "1": {
@@ -129,6 +129,36 @@
                         "product_unit": "6",
                         "price_unit": "123213",
                         "total_price": 739278
+                    }
+                },
+                {
+                    "13": {
+                        "product_id": "5",
+                        "product_name": "ererwrere",
+                        "product_type": "อาหารและของทานเล่น",
+                        "product_unit": "3",
+                        "price_unit": "123213",
+                        "total_price": 369639
+                    }
+                },
+                {
+                    "14": {
+                        "product_id": "3",
+                        "product_name": "rrr",
+                        "product_type": "ของใช้และเครื่องประดับ",
+                        "product_unit": "1",
+                        "price_unit": "231",
+                        "total_price": 231
+                    }
+                },
+                {
+                    "15": {
+                        "product_id": "4",
+                        "product_name": "rewrer",
+                        "product_type": "เครื่องดื่ม",
+                        "product_unit": "1",
+                        "price_unit": "34",
+                        "total_price": 34
                     }
                 }
             ],

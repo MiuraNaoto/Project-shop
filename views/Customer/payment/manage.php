@@ -184,7 +184,7 @@ switch ($request) {
         $DATA_ORDER_DETAIL = json_encode($ARRAY_DATA_OR, JSON_UNESCAPED_UNICODE);
         // print_r($DATA_ORDER_DETAIL . "<br>");
 
-        $fp = fopen('../../../data/'.$uid.'.json', 'w');
+        $fp = fopen('../../../data/' . $order_number . '.json', 'w');
         fwrite($fp, $DATA_ORDER_DETAIL);
         fclose($fp);
 
