@@ -83,7 +83,8 @@ switch ($request) {
         WHERE `orders_id`='$orders_id'";
         updateData($sql_order_detail);
         // echo $sql_order_detail . "<br>";
-        $ORDER = "SELECT * FROM `orders` INNER JOIN `orders_detail` ON `orders`.`order_id` = `orders_detail`.`orders_id`";
+
+        $ORDER = "SELECT * FROM `orders` INNER JOIN `orders_detail` ON `orders`.`order_id` = `orders_detail`.`orders_id` WHERE `orders`.`order_number` = '$order_number'";
         $ORDER_DETAIL = selectData($ORDER);
 
         $daid = $ORDER_DETAIL[1]['daid'];
