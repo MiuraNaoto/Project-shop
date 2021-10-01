@@ -32,7 +32,7 @@ $purchaseInfo = selectData($sql);
 
 $checkShopId = "";
 $orderid = "";
-//echo print_r($purchaseInfo);
+echo print_r($purchaseInfo);
 //echo "<br>" . $checkShopId;
 //echo "<br>" .count($purchaseInfo);
 /*
@@ -94,6 +94,7 @@ if ($purchaseInfo[1]['shop_id'] == $checkShopId) {
 
                                             if (($purchaseInfo[$i]['order_id'] != $orderid)) {
                                                 $orderid = $purchaseInfo[$i]['order_id'];
+                                                echo $orderid;
                                                 $checkShopId = "";
 
                                                 $sql2 = "SELECT * FROM `reason`";
@@ -187,9 +188,9 @@ if ($purchaseInfo[1]['shop_id'] == $checkShopId) {
                                             if (count($purchaseInfo) > $i + 1) {
                                                 if ($purchaseInfo[$i + 1]['order_id'] != $orderid) {
                                                     //$orderid = $purchaseInfo[$i]['order_id'];
-                                                    echo '        
+                                                    echo '       
                                             <div class="col-12 d-flex justify-content-end align-self-center">
-                                                <span class="mb-0 h6 text-muted" style="margin-right: 25px; align-self: center;">ยอดคำสั่งซื้อทั้งหมด </span>
+                                                <span class="mb-0 h6 text-muted" style="margin-right: 25px; align-content: center;">ยอดคำสั่งซื้อทั้งหมด </span>
                                                 <span class="mb-0 h5" style="color: #FF6633; font-size: 22px">฿ ' . number_format($purchaseInfo[$i]['total_price']) . '</span>
                                             </div>
                                             <br>';
@@ -206,57 +207,43 @@ if ($purchaseInfo[1]['shop_id'] == $checkShopId) {
                                                 <button type="button" class="btn btn-danger text-light cancelModal" data-orderid="[' . $purchaseInfo[$i]['order_id'] . ',' . $purchaseInfo[$i]['order_number'] . ']" data-toggle="modal" href="#cancelOrder">ยกเลิกคำสั่งซื้อ</button>
                                             </div>
                                             <br>';
-                                                    } else if ($purchaseInfo[$i]['so_id'] == 4) {
+                                                    } else if (($purchaseInfo[$i]['so_id'] == 3) || ($purchaseInfo[$i]['so_id'] == 4) || ($purchaseInfo[$i]['so_id'] == 5) || $purchaseInfo[$i]['so_id'] == 6) {
                                                         echo '
-                                                <div class="col-12 d-flex justify-content-end align-self-center">
-                                                    <a href="../profile-shop/profile-shop.php"><button type="button" class="btn btn-secondary" style="width: 120px;">ซื้ออีกครั้ง</button></a>
-                                                </div>
-                                                <br>';
-                                                    } else if (($purchaseInfo[$i]['so_id'] == 3) || ($purchaseInfo[$i]['so_id'] == 5) || $purchaseInfo[$i]['so_id'] == 6) {
-                                                        echo '<br>';
+                                                        <div class="col-12 d-flex justify-content-end align-self-center">
+                                                            <button type="button" class="btn btn-secondary" style="width: 120px;" onclick="buyAgain(' . $purchaseInfo[$i]['order_id'] . ',' . $uid . ')">ซื้ออีกครั้ง</button>
+                                                        </div>
+                                                        <br>';
                                                     } else if ($purchaseInfo[$i]['so_id'] == 7) {
                                                         $sqlOrder = "SELECT * FROM (((`orders` INNER JOIN `orders_detail` ON `orders`.`order_id`=`orders_detail`.`orders_id`) 
                                                         INNER JOIN `product` ON `orders_detail`.`product_id`=`product`.`product_id`)
                                                         INNER JOIN `seller-list` ON `seller-list`.`shop_id`=`product`.`shop_id`)
                                                         WHERE `orders`.`order_id`=$orderid";
                                                         $orderDetail = selectData($sqlOrder);
-                                                        $shopName = $orderDetail[1]['shop_name'];
-                                                        $shopid = $orderDetail[1]['shop_id'];
-                                                        /*
-                                                        $productid = array("0");
-                                                        for ($k = 1; $k < count($orderDetail); $k++) {
-                                                            $productid[$k]['product_id'] = $orderDetail[$k]['product_id'];
-                                                            $productid[$k]['product_name'] = $orderDetail[$k]['product_name'];
-                                                            $productid[$k]['od_id'] = $orderDetail[$k]['od_id'];
-                                                        }
-                                                        echo print_r($productid);
-                                                        */
-                                                        //echo $productid[2]['product_name'];
-                                                        //echo print_r($orderDetail);
-                                                        //echo "shopid = ".$shopid;
-                                                       
-                                            echo' 
+
+
+                                                        echo ' 
                                             <div class="col-12 d-flex justify-content-end align-self-center">
                                             <button type="button" class="btn btn-success text-light reviewProductModal" data-productid=';
-                                                
-                                                for($l=1 ; $l<count($orderDetail) ; $l++){
-                                                    if($l == 1){
-                                                        echo '{';
-                                                    }
-                                                     
-                                                     if($l == count($orderDetail)-1){
-                                                        echo '"'.$l.'":{"product_id":"'.$orderDetail[$l]['product_id'].'","product_name":"'.$orderDetail[$l]['product_name'].'","od_id":"'.$orderDetail[$l]['od_id'].'"}';
-                                                        echo '}';
-                                                    }else{
-                                                        echo '"'.$l.'":{"product_id":"'.$orderDetail[$l]['product_id'].'","product_name":"'.$orderDetail[$l]['product_name'].'","od_id":"'.$orderDetail[$l]['od_id'].'"},';
-                                                    }
-                                                }
-                                                echo '
+
+                                                        for ($l = 1; $l < count($orderDetail); $l++) {
+                                                            if ($l == 1) {
+                                                                echo '{';
+                                                            }
+
+                                                            if ($l == count($orderDetail) - 1) {
+                                                                echo '"' . $l . '":{"product_id":"' . $orderDetail[$l]['product_id'] . '","product_name":"' . $orderDetail[$l]['product_name'] . '","od_id":"' . $orderDetail[$l]['od_id'] . '","profile_product":"' . $orderDetail[$l]['profile_product'] . '"}';
+                                                                echo '}';
+                                                            } else {
+                                                                echo '"' . $l . '":{"product_id":"' . $orderDetail[$l]['product_id'] . '","product_name":"' . $orderDetail[$l]['product_name'] . '","od_id":"' . $orderDetail[$l]['od_id'] . '","profile_product":"' . $orderDetail[$l]['profile_product'] . '"},';
+                                                            }
+                                                        }
+                                                        echo '
                                                 data-toggle="modal" href="#reviewProduct" style="margin-right: 20px";>ให้คะเเนนสินค้า</button>
-                                                <button type="button" class="btn btn-success text-light reviewShopModal" data-shopid="'.$shopid.','.$shopName.'" data-toggle="modal" href="#reviewShop">ให้คะเเนนร้านค้า</button>
+                                                <button type="button" class="btn btn-success text-light reviewShopModal" style="margin-right: 20px"; data-orderid={"order_id":"' . $orderDetail[1]['order_id'] . '","shop_name":"' . $orderDetail[1]['shop_name'] . '"} data-toggle="modal" href="#reviewShop">ให้คะเเนนร้านค้า</button>
+                                                <button type="button" class="btn btn-secondary" style="width: 120px; " onclick="buyAgain(' . $purchaseInfo[$i]['order_id'] . ',' . $uid . ')">ซื้ออีกครั้ง</button>
                                             </div>
                                             <br>';
-                                           
+                                                       
                                                     }
                                                 }
                                             } else if ($i == count($purchaseInfo) - 1) {
@@ -279,68 +266,45 @@ if ($purchaseInfo[1]['shop_id'] == $checkShopId) {
                                             <button type="button" class="btn btn-danger text-light cancelModal" data-orderid="[' . $purchaseInfo[$i]['order_id'] . ',' . $purchaseInfo[$i]['order_number'] . ']"  data-toggle="modal" href="#cancelOrder">ยกเลิกคำสั่งซื้อ</button>
                                         </div>
                                         <br>';
-                                                } else if ($purchaseInfo[$i]['so_id'] == 4) {
+                                                } else if (($purchaseInfo[$i]['so_id'] == 3) || ($purchaseInfo[$i]['so_id'] == 4) || ($purchaseInfo[$i]['so_id'] == 5) || $purchaseInfo[$i]['so_id'] == 6) {
                                                     echo '
                                             <div class="col-12 d-flex justify-content-end align-self-center">
-                                                <a href="../profile-shop/profile-shop.php"><button type="button" class="btn btn-secondary" style="width: 120px;">ซื้ออีกครั้ง</button></a>
+                                                <button type="button" class="btn btn-secondary" style="width: 120px;" onclick="buyAgain(' . $purchaseInfo[$i]['order_id'] . ',' . $uid . ')">ซื้ออีกครั้ง</button>
                                             </div>
                                             <br>';
-                                                } else if (($purchaseInfo[$i]['so_id'] == 3) || ($purchaseInfo[$i]['so_id'] == 5) || $purchaseInfo[$i]['so_id'] == 6) {
-                                                    echo '<br>';
-                                                } else if ($purchaseInfo[$i]['so_id'] == 7) {
+                                                } else if ($purchaseInfo[$i]['so_id'] == 7 && $purchaseInfo[$i]['review_shop'] == null) {
                                                     $sqlOrder = "SELECT * FROM (((`orders` INNER JOIN `orders_detail` ON `orders`.`order_id`=`orders_detail`.`orders_id`) 
                                                         INNER JOIN `product` ON `orders_detail`.`product_id`=`product`.`product_id`) 
                                                         INNER JOIN `seller-list` ON `seller-list`.`shop_id`=`product`.`shop_id`)
                                                         WHERE `orders`.`order_id`=$orderid";
                                                     $orderDetail = selectData($sqlOrder);
-                                                    $shopid = $orderDetail[1]['shop_id'];
-                                                    $shopName = $orderDetail[1]['shop_name'];
-                                                    $productid = array("0");
-                                                    for ($k = 1; $k < count($orderDetail); $k++) {
-                                                        $productid[$k]['product_id'] = $orderDetail[$k]['product_id'];
-                                                        $productid[$k]['product_name'] = $orderDetail[$k]['product_name'];
-                                                        $productid[$k]['od_id'] = $orderDetail[$k]['od_id'];
-                                                    }
-                                                    //echo print_r($productid);
-                                                    //echo strval(json_encode($productid))
 
-                                                    //echo $productid[2]['product_name'];
-                                                    //echo print_r($orderDetail);
-                                                    //echo "shopid = ".$shopid;
-                                                    /*
-                                                    for($l=1 ; $l<count($orderDetail) ; $l++){
-                                                        if($l == 1){
-                                                            echo '{';
-                                                        }
-                                                         echo '{"product_id":"'.$orderDetail[$l]['product_id'].'", "product_name":"'.$orderDetail[$l]['product_name'].'", "od_id":"'.$orderDetail[$l]['od_id'].'"},';
-                                                         if($l == count($orderDetail)-1){
-                                                            echo '}';
-                                                        }
-                                                    }
-                                                    */
-                                                    
+
+
                                                     echo '
                                             <div class="col-12 d-flex justify-content-end align-self-center">
                                                 <button type="button" class="btn btn-success text-light reviewProductModal" data-productid=';
-                                               
-                                                for($l=1 ; $l<count($orderDetail) ; $l++){
-                                                    if($l == 1){
-                                                        echo '{';
+
+                                                    for ($l = 1; $l < count($orderDetail); $l++) {
+                                                        if ($l == 1) {
+                                                            echo '{';
+                                                        }
+
+                                                        if ($l == count($orderDetail) - 1) {
+                                                            echo '"' . $l . '":{"product_id":"' . $orderDetail[$l]['product_id'] . '","product_name":"' . $orderDetail[$l]['product_name'] . '","od_id":"' . $orderDetail[$l]['od_id'] . '","profile_product":"' . $orderDetail[$l]['profile_product'] . '"}';
+                                                            echo '}';
+                                                        } else {
+                                                            echo '"' . $l . '":{"product_id":"' . $orderDetail[$l]['product_id'] . '","product_name":"' . $orderDetail[$l]['product_name'] . '","od_id":"' . $orderDetail[$l]['od_id'] . '","profile_product":"' . $orderDetail[$l]['profile_product'] . '"},';
+                                                        }
                                                     }
-                                                     
-                                                     if($l == count($orderDetail)-1){
-                                                        echo '"'.$l.'":{"product_id":"'.$orderDetail[$l]['product_id'].'","product_name":"'.$orderDetail[$l]['product_name'].'","od_id":"'.$orderDetail[$l]['od_id'].'"}';
-                                                        echo '}';
-                                                    }else{
-                                                        echo '"'.$l.'":{"product_id":"'.$orderDetail[$l]['product_id'].'","product_name":"'.$orderDetail[$l]['product_name'].'","od_id":"'.$orderDetail[$l]['od_id'].'"},';
-                                                    }
-                                                }
-                                                echo '
+                                                    echo '
                                                 data-toggle="modal" href="#reviewProduct" style="margin-right: 20px";>ให้คะเเนนสินค้า</button>
-                                                <button type="button" class="btn btn-success text-light reviewShopModal" data-shopid="'. $shopid.','.$shopName .'" data-toggle="modal" href="#reviewShop">ให้คะเเนนร้านค้า</button>
+                                                <button type="button" class="btn btn-success text-light reviewShopModal" style="margin-right: 20px"; data-orderid={"order_id":"' . $orderDetail[1]['order_id'] . '","shop_name":"' . $orderDetail[1]['shop_name'] . '"} data-toggle="modal" href="#reviewShop">ให้คะเเนนร้านค้า</button>
+                                                <button type="button" class="btn btn-secondary" style="width: 120px;" onclick="buyAgain(' . $purchaseInfo[$i]['order_id'] . ',' . $uid . ')">ซื้ออีกครั้ง</button>
                                             </div>
                                             <br>';
-                                            
+
+                                                  
                                                 }
                                             }
                                         }
@@ -375,13 +339,15 @@ if ($purchaseInfo[1]['shop_id'] == $checkShopId) {
         </div>
 
         <div class="modal fade center" tabindex="-1" role="dialog" id="reviewProduct">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title"><b>ให้คะเเนนสินค้า</b></h5>
                     </div>
                     <div class="modal-body" id="modal-body">
+                        <div id="content">
 
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" data-dismiss="modal" style="width: 10%;" onclick="">ตกลง</button>
@@ -391,18 +357,39 @@ if ($purchaseInfo[1]['shop_id'] == $checkShopId) {
             </div>
         </div>
 
-        <div class="modal fade" tabindex="-1" role="dialog" id="shopName">
+        <div class="modal fade" tabindex="-1" role="dialog" id="reviewShop">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title"><b>ให้คะเเนนร้านค้า</b></h5>
                     </div>
                     <div class="modal-body" id="modal-body">
-                    <span style="font-size: 16px;"><b>ชื่อร้านค้า: </b></span><span style="font-size: 20px;" name="shopName" id="shopName"></span><br>
-                        <input name="shop_id" id="shop_id" value=""  />
+                        <span style="font-size: 20px;"><b>ชื่อร้านค้า: </b></span><span style="font-size: 20px;" name="shopName" id="shopName"></span><br><br>
+                        <input name="orderid" id="orderid" value="" hidden />
+
+                        <div class="rate">
+
+                            <span style="font-size: 20px; margin-right: 10px;"><b>ให้คะเเนน: </b></span>
+
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+
+                        </div>
+                        <div class="container">
+                            <span id="rateMe2" class="empty-stars"></span>
+                        </div> <br>
+                        <textarea class="form-control" id="desc" name="desc" rows="3" value=""></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal" style="width: 15%;" onclick="">ตกลง</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal" style="width: 15%;" onclick="ratingShop(document.getElementById('orderid').value,document.getElementById('desc').value)">ตกลง</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
                     </div>
                 </div>
@@ -418,6 +405,8 @@ if ($purchaseInfo[1]['shop_id'] == $checkShopId) {
     include_once("purchaseModal.php");
     ?>
     <script src="purchase.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
 </body>
 
 </html>
