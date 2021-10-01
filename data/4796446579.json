@@ -1,0 +1,53 @@
+{
+    "user": {
+        "uid": "1",
+        "username": "test",
+        "firstname": "test",
+        "lastname": "test",
+        "tel": "7896543210",
+        "profile_user": "1_1632152358.png"
+    },
+    "order": {
+        "order_number": 4796446579,
+        "order_detail": [
+            {
+                "1": {
+                    "product_id": "5",
+                    "product_name": "ererwrere",
+                    "product_type": "อาหารและของทานเล่น",
+                    "product_unit": "5",
+                    "price_unit": "123213",
+                    "total_price": 616065
+                }
+            }
+        ],
+        "delivery_address": {
+            "id": "1",
+            "address": "4421 ต.บางม่วง อ.บางใหญ่ จ.นนทบุรี 11140"
+        },
+        "shop": {
+            "shop_id": "1",
+            "shop_name": "test_shop",
+            "email": "test@gmail.com",
+            "address": "2133 ต.พลา อ.บ้านฉาง จ.ระยอง 21130",
+            "tel": "0123456789",
+            "time_opened": "21:00",
+            "time_closed": "08:00",
+            "owner_id": "1"
+        },
+        "total_unit": "5",
+        "total_price": "616065",
+        "total_price_user": "66666",
+        "type_payment": {
+            "id": "1",
+            "name": "ชำระผ่าน mobile banking"
+        },
+        "time_order": "1633099272",
+        "time_payment": "1633117260",
+        "picture_payment": "14_1633099294.png",
+        "status_order": {
+            "id": "2",
+            "status": "ชำระเงินแล้ว"
+        }
+    }
+}

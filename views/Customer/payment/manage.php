@@ -181,7 +181,7 @@ switch ($request) {
             "type_payment" => $SELECTED_TYPE_PAYMENT, "time_order" => $time_order, "time_payment" => $time_payment, "picture_payment" => $picture_payment,
             "status_order" => $STATUS_ORDER
         );
-        $ARRAY_DATA_OR = array("user" => $DATA_OR, "order" => array($id => $ORDER));
+        $ARRAY_DATA_OR = array("user" => $DATA_OR, "order" => $ORDER);
         $DATA_ORDER_DETAIL = json_encode($ARRAY_DATA_OR, JSON_UNESCAPED_UNICODE);
         // print_r($DATA_ORDER_DETAIL . "<br>");
 
