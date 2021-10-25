@@ -260,7 +260,7 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
                                             // $postvalue = array("a", "b", "c");
                                             $ORDER_DETAIL_json = json_encode($ORDER_DETAIL);
 
-                                            echo array_sum($PRICES);
+                                            echo number_format(array_sum($PRICES), 2);
                                             $QUANTITY_json = json_encode(number_format(array_sum($QUANTITY), 2));
                                             // print_r($ORDER_DETAIL_json);
 
