@@ -1,0 +1,62 @@
+{
+  "user": {
+    "uid": "1",
+    "username": "test",
+    "firstname": "test",
+    "lastname": "test",
+    "tel": "7896543210",
+    "profile_user": "1_1632152358.png"
+  },
+  "order": {
+    "order_number": 6075712232,
+    "order_detail": [
+      {
+        "1": {
+          "product_id": "3",
+          "product_name": "rrr",
+          "product_type": "ของใช้และเครื่องประดับ",
+          "product_unit": "3",
+          "price_unit": "231",
+          "total_price": 693
+        }
+      },
+      {
+        "2": {
+          "product_id": "4",
+          "product_name": "rewrer",
+          "product_type": "เครื่องดื่ม",
+          "product_unit": "3",
+          "price_unit": "34",
+          "total_price": 102
+        }
+      }
+    ],
+    "delivery_address": {
+      "id": "1",
+      "address": "4421 ต.บางม่วง อ.บางใหญ่ จ.นนทบุรี 11140"
+    },
+    "shop": {
+      "shop_id": "1",
+      "shop_name": "test_shop",
+      "email": "test@gmail.com",
+      "address": "2133 ต.พลา อ.บ้านฉาง จ.ระยอง 21130",
+      "tel": "0123456789",
+      "time_opened": "21:00",
+      "time_closed": "08:00",
+      "owner_id": "1"
+    },
+    "total_unit": "6",
+    "total_price": "795",
+    "total_price_user": "666",
+    "type_payment": { "id": "1", "name": "ชำระผ่าน mobile banking" },
+    "time_order": "1635227469",
+    "time_payment": "1635245520",
+    "picture_payment": "2_1635227524.png",
+    "status_order": {
+      "id": "4",
+      "status": "ไม่อนุมัติคำสั่งซื้อ",
+      "reason": "โอนเงินเกินจำนวน",
+      "reason_desc": ""
+    }
+  }
+}

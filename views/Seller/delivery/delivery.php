@@ -12,8 +12,12 @@ $uid = $USER[1]["uid"];
 $shop_id = $SELLER[1]["shop_id"];
 
 $CurrentMenu = "delivery";
-$ORDER_CONFIRM = getOrderConfirm();
+// $ORDER_CONFIRM = getOrderConfirm();
 // print_r($ORDER_CONFIRM);
+
+$files = scandir("../../../data");
+$count_file = (int) (count($files));
+$scan_dir = array_diff(scandir("../../../data/"), array('..', '.'));
 ?>
 
 <head>
@@ -75,7 +79,6 @@ $ORDER_CONFIRM = getOrderConfirm();
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th style="text-align: center;">ลำดับ</th>
                                             <th style="text-align: center;">หมายเลข<br>คำสั่งซื้อ</th>
                                             <th style="text-align: center;">ชื่อ-นามสกุล</th>
                                             <th style="text-align: center;">จำนวน</th>
@@ -86,22 +89,36 @@ $ORDER_CONFIRM = getOrderConfirm();
                                     </thead>
                                     <tbody>
                                         <?php
-                                        for ($i = 1; $i < count($ORDER_CONFIRM); $i++) {
+                                        for ($i = 2; $i < $count_file; $i++) {
+                                            
+                                            $file_json = file_get_contents("../../../data/" . $scan_dir[$i]);
+                                            $ORDER = json_decode($file_json, true);
+                                            $ordernumber = $ORDER["order"]["order_number"];
+                                            $firstname = $ORDER["user"]["firstname"];
+                                            $lastname = $ORDER["user"]["lastname"];
+                                            $total_unit = $ORDER["order"]["total_unit"];
+                                            $total_price = $ORDER["order"]["total_price"];
+                                            $time_order = $ORDER["order"]["time_order"];
+                                            $status_order = $ORDER["order"]["status_order"]["status"];
+                                            
+                                            $sql_order_id = "SELECT `order_id` FROM `orders` WHERE `orders`.`order_number` = '" . $ordernumber . "' ";
+                                            $orderId = selectDataOne($sql_order_id)["order_id"];
+                                            if ($status_order == "ยืนยันการชำระ") {
                                         ?>
-                                            <tr>
-                                                <td class="d-flex align-items-center d-flex justify-content-center"><?php echo $i; ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_CONFIRM[$i]["order_number"] ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_CONFIRM[$i]["title"] . $ORDER_CONFIRM[$i]["firstname"] . " " . $ORDER_CONFIRM[$i]["lastname"] ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_CONFIRM[$i]["total_unit"] ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo number_format($ORDER_CONFIRM[$i]["total_price"], 2) ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $ORDER_CONFIRM[$i]["time_order"])  ?></td>
-                                                <td style="text-align: center; vertical-align: middle;">
-                                                    <button type="button" id="show" onclick="delivery('<?php echo $ORDER_CONFIRM[$i]['order_id'] ?>', '<?php echo $ORDER_CONFIRM[$i]['order_number'] ?>')" class="btn btn-warning btn-md" title='เพิ่มเลขพัสดุ' data-toggle="modal" data-target="#transportModal">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ordernumber ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $firstname . " " . $lastname ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $total_unit ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo number_format($total_price, 2) ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $time_order) ?></td>
+                                                    <td style="text-align: center; vertical-align: middle;">
+                                                        <button type="button" id="show" onclick="delivery('<?php echo $orderId ?>', '<?php echo $ordernumber ?>')" class="btn btn-warning btn-md" title='เพิ่มเลขพัสดุ' data-toggle="modal" data-target="#transportModal">
+                                                            <i class="fas fa-plus"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
                                         <?php
+                                            }
                                         }
                                         ?>
                                     </tbody>

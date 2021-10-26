@@ -146,41 +146,42 @@ $scan_dir = array_diff(scandir("../../../data/"), array('..', '.'));
                                                 $tel = $ORDER["user"]["tel"];
                                                 $picture_payment = $ORDER["order"]["picture_payment"];
 
-                                                $sql_order_id = "SELECT `order_id` FROM `orders` WHERE `orders`.`order_number` = '".$ordernumber."' ";
+                                                $sql_order_id = "SELECT `order_id` FROM `orders` WHERE `orders`.`order_number` = '" . $ordernumber . "' ";
                                                 $orderId = selectDataOne($sql_order_id)["order_id"];
+                                                if ($status_order == "ชำระเงินแล้ว") {
                                             ?>
-                                                <tr>
-                                                    <!-- <td style="vertical-align: middle; text-align: center;"><?php echo $i; ?></td> -->
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ordernumber ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $firstname . " " . $lastname ?></td>
-                                                    <!-- <td style="vertical-align: middle; text-align: center;">
+                                                    <tr>
+                                                        <!-- <td style="vertical-align: middle; text-align: center;"><?php echo $i; ?></td> -->
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $ordernumber ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $firstname . " " . $lastname ?></td>
+                                                        <!-- <td style="vertical-align: middle; text-align: center;">
                                                         <button type="button" id="show" class="btn btn-primary btn-md" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#viewModal">
                                                             <i class="fas fa-search"></i>
                                                         </button>
                                                     </td> -->
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $total_unit ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo number_format($total_price, 2) ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $time_order)  ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;">
-                                                        <?php
-                                                        if ($ORDER["order"]["type_payment"]["id"] == 1) {
-                                                            echo "ชำระเงินแล้ว";
-                                                        } else {
-                                                            echo "ยังไม่ได้ชำระเงิน";
-                                                        }
-                                                        ?>
-                                                    </td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo number_format($total_price_user, 2) ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $time_payment)  ?></td>
-                                                    <td style="vertical-align: middle; text-align: center;"><?php echo $status_order ?></td>
-                                                    <td style="text-align: center; vertical-align: middle;">
-                                                        <?php
-                                                        if ($status_order == "รอชำระเงิน") {
-                                                        ?>
-                                                            <button type="button" id="show" order_number='<?php echo $ordernumber ?>' fullname='<?php echo $firstname . " " . $lastname ?>' address='<?php $delivery_address ?>' tel='<?php echo format_phonenumber($tel) ?>' status_order='<?php echo $status_order ?>' total='<?php echo number_format($total_price, 2) ?>' class="btn btn-primary btn-md detail-order" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#detailOderModal">
-                                                                <i class="fas fa-bars"></i>
-                                                            </button>
-                                                            <!-- <button type="button" id="show" class="btn btn-primary btn-md" title='หลักฐานการโอนเงิน' data-toggle="modal" data-target="#paymentModal">
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $total_unit ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo number_format($total_price, 2) ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $time_order)  ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;">
+                                                            <?php
+                                                            if ($ORDER["order"]["type_payment"]["id"] == 1) {
+                                                                echo "ชำระเงินแล้ว";
+                                                            } else {
+                                                                echo "ยังไม่ได้ชำระเงิน";
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo number_format($total_price_user, 2) ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $time_payment)  ?></td>
+                                                        <td style="vertical-align: middle; text-align: center;"><?php echo $status_order ?></td>
+                                                        <td style="text-align: center; vertical-align: middle;">
+                                                            <?php
+                                                            if ($status_order == "รอชำระเงิน") {
+                                                            ?>
+                                                                <button type="button" id="show" order_number='<?php echo $ordernumber ?>' fullname='<?php echo $firstname . " " . $lastname ?>' address='<?php $delivery_address ?>' tel='<?php echo format_phonenumber($tel) ?>' status_order='<?php echo $status_order ?>' total='<?php echo number_format($total_price, 2) ?>' class="btn btn-primary btn-md detail-order" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#detailOderModal">
+                                                                    <i class="fas fa-bars"></i>
+                                                                </button>
+                                                                <!-- <button type="button" id="show" class="btn btn-primary btn-md" title='หลักฐานการโอนเงิน' data-toggle="modal" data-target="#paymentModal">
                                                                 <i class="fas fa-image"></i>
                                                             </button>
                                                             <button type="button" id="show" class="btn btn-success btn-md" title='ยืนยันการซื้อ' disabled>
@@ -189,35 +190,36 @@ $scan_dir = array_diff(scandir("../../../data/"), array('..', '.'));
                                                             <button type="button" id="show" class="btn btn-danger btn-md" title='ไม่ยืนยันการซื้อ' data-toggle="modal" data-target="#disapprovedModal" disabled>
                                                                 <i class="fas fa-ban"></i>
                                                             </button> -->
-                                                        <?php
-                                                        } else {
-                                                        ?>
-                                                            <button type="button" id="show" order_number='<?php echo $ordernumber ?>' fullname='<?php echo $firstname . " " . $lastname ?>' address='<?php echo $delivery_address ?>' tel='<?php echo format_phonenumber($tel) ?>' status_order='<?php echo $status_order ?>' total='<?php echo number_format($total_price, 2) ?>' class="btn btn-primary btn-md detail-order" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#detailOderModal">
-                                                                <i class="fas fa-bars"></i>
-                                                            </button>
-                                                            <button type="button" id="show" payment='<?php echo "../../../img/payment/bill/" . $picture_payment ?>' class="btn btn-primary btn-md payment" title='หลักฐานการโอนเงิน' data-toggle="modal" data-target="#paymentModal">
-                                                                <i class="fas fa-image"></i>
-                                                            </button>
-                                                            <button type="button" id="success" name="success" onclick="approved('<?php echo $orderId ?>', '<?php echo $ordernumber ?>')" class="btn btn-success btn-md" title='ยืนยันการซื้อ'>
-                                                                <i class="fas fa-check"></i>
-                                                            </button>
-                                                            <button type="button" id="show" class="btn btn-danger btn-md" onclick="disapproved('<?php echo $orderId ?>', '<?php echo $ordernumber ?>')" title='ไม่ยืนยันการซื้อ' data-toggle="modal" data-target="#disapprovedModal">
-                                                                <i class="fas fa-ban"></i>
-                                                            </button>
-                                                        <?php
-                                                        }
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <button type="button" id="show" order_number='<?php echo $ordernumber ?>' fullname='<?php echo $firstname . " " . $lastname ?>' address='<?php echo $delivery_address ?>' tel='<?php echo format_phonenumber($tel) ?>' status_order='<?php echo $status_order ?>' total='<?php echo number_format($total_price, 2) ?>' class="btn btn-primary btn-md detail-order" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#detailOderModal">
+                                                                    <i class="fas fa-bars"></i>
+                                                                </button>
+                                                                <button type="button" id="show" payment='<?php echo "../../../img/payment/bill/" . $picture_payment ?>' class="btn btn-primary btn-md payment" title='หลักฐานการโอนเงิน' data-toggle="modal" data-target="#paymentModal">
+                                                                    <i class="fas fa-image"></i>
+                                                                </button>
+                                                                <button type="button" id="success" name="success" onclick="approved('<?php echo $orderId ?>', '<?php echo $ordernumber ?>')" class="btn btn-success btn-md" title='ยืนยันการซื้อ'>
+                                                                    <i class="fas fa-check"></i>
+                                                                </button>
+                                                                <button type="button" id="show" class="btn btn-danger btn-md" onclick="disapproved('<?php echo $orderId ?>', '<?php echo $ordernumber ?>')" title='ไม่ยืนยันการซื้อ' data-toggle="modal" data-target="#disapprovedModal">
+                                                                    <i class="fas fa-ban"></i>
+                                                                </button>
+                                                            <?php
+                                                            }
 
-                                                        ?>
+                                                            ?>
 
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                    </tr>
                                             <?php
+                                                }
                                             }
                                             ?>
                                         </tbody>
                                     </table>
                                 </div>
-                                
+
                                 <!-- รายการคำสั่งซื้อที่ไม่อนุมัติ -->
                                 <div class="tab-pane fade" id="tap2" role="tabpanel" aria-labelledby="tap2-tab">
                                     <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
@@ -237,47 +239,55 @@ $scan_dir = array_diff(scandir("../../../data/"), array('..', '.'));
                                         </thead>
                                         <tbody>
                                             <?php
-                                            for ($i = 1; $i < count($ORDER_DISAPPROVED); $i++) {
+                                            for ($i = 2; $i < $count_file; $i++) {
+                                                $file_json = file_get_contents("../../../data/" . $scan_dir[$i]);
+                                                $ORDER = json_decode($file_json, true);
+                                                $ordernumber = $ORDER["order"]["order_number"];
+                                                $firstname = $ORDER["user"]["firstname"];
+                                                $lastname = $ORDER["user"]["lastname"];
+                                                $total_unit = $ORDER["order"]["total_unit"];
+                                                $total_price = $ORDER["order"]["total_price"];
+                                                $time_order = $ORDER["order"]["time_order"];
+                                                $total_price_user = $ORDER["order"]["total_price_user"];
+                                                $time_payment = $ORDER["order"]["time_payment"];
+                                                $status_order = $ORDER["order"]["status_order"]["status"];
+                                                $delivery_address = $ORDER["order"]["delivery_address"]["address"];
+                                                $tel = $ORDER["user"]["tel"];
+                                                $picture_payment = $ORDER["order"]["picture_payment"];
+
+                                                $sql_order_id = "SELECT `order_id` FROM `orders` WHERE `orders`.`order_number` = '" . $ordernumber . "' ";
+                                                $orderId = selectDataOne($sql_order_id)["order_id"];
+
+                                                if ($status_order == "ไม่อนุมัติคำสั่งซื้อ") {
+                                                    $reason = $ORDER["order"]["status_order"]["reason"];
+                                                    $reason_desc = $ORDER["order"]["status_order"]["reason_desc"];
                                             ?>
-                                                <tr>
-                                                    <!-- <td style="vertical-align: middle; text-align: center;"><?php echo $i; ?></td> -->
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_DISAPPROVED[$i]["order_number"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_DISAPPROVED[$i]["title"] . $ORDER_DISAPPROVED[$i]["firstname"] . " " . $ORDER_DISAPPROVED[$i]["lastname"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_DISAPPROVED[$i]["total_unit"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo number_format($ORDER_DISAPPROVED[$i]["total_price"], 2) ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $ORDER_DISAPPROVED[$i]["time_order"])  ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_DISAPPROVED[$i]["reason"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_DISAPPROVED[$i]["reason_desc"] ?></td>
-                                                    <td style="width: 15%;  text-align: center; vertical-align: middle;">
-                                                        <button type="button" id="show" order_number='<?php echo $ORDER_DISAPPROVED[$i]["order_number"] ?>' fullname='<?php echo $ORDER_DISAPPROVED[$i]["title"] . $ORDER_DISAPPROVED[$i]["firstname"] . " " . $ORDER_DISAPPROVED[$i]["lastname"] ?>' address='<?php
-                                                                                                                                                                                                                                                                                                                if ($ORDER_DISAPPROVED[1]["provinces_name_in_thai"] == "กรุงเทพมหานคร") {
-                                                                                                                                                                                                                                                                                                                    echo "เลขที่ " . $ORDER_DISAPPROVED[1]["address"] .
-                                                                                                                                                                                                                                                                                                                        " แขวง" . $ORDER_DISAPPROVED[1]["subdistricts_name_in_thai"] .
-                                                                                                                                                                                                                                                                                                                        " " . $ORDER_DISAPPROVED[1]["districts_name_in_thai"] .
-                                                                                                                                                                                                                                                                                                                        " " . $ORDER_DISAPPROVED[1]["provinces_name_in_thai"] .
-                                                                                                                                                                                                                                                                                                                        ", " . $ORDER_DISAPPROVED[1]["zip_code"];
-                                                                                                                                                                                                                                                                                                                } else {
-                                                                                                                                                                                                                                                                                                                    echo "เลขที่ " . $ORDER_DISAPPROVED[1]["address"] .
-                                                                                                                                                                                                                                                                                                                        " ต." . $ORDER_DISAPPROVED[1]["subdistricts_name_in_thai"] .
-                                                                                                                                                                                                                                                                                                                        " อ." . $ORDER_DISAPPROVED[1]["districts_name_in_thai"] .
-                                                                                                                                                                                                                                                                                                                        " จ." . $ORDER_DISAPPROVED[1]["provinces_name_in_thai"] .
-                                                                                                                                                                                                                                                                                                                        ", " . $ORDER_DISAPPROVED[1]["zip_code"];
-                                                                                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                                                                                                ?>' tel='<?php echo format_phonenumber($ORDER_DISAPPROVED[$i]["tel"]) ?>' status_order='<?php echo $ORDER_DISAPPROVED[$i]["status_order"] ?>' total='<?php echo number_format($ORDER_DISAPPROVED[$i]["total_price"], 2) ?>' class="btn btn-primary btn-md detail-order" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#detailOderModal">
-                                                            <i class="fas fa-bars"></i>
-                                                        </button>
-                                                        <button type="button" id="show" payment='<?php echo $ORDER_DISAPPROVED[$i]["picture_payment"] ?>' class="btn btn-primary btn-md payment" title='หลักฐานการโอนเงิน' data-toggle="modal" data-target="#paymentModal">
-                                                            <i class="fas fa-image"></i>
-                                                        </button>
-                                                        <button type="button" id="success" name="success" onclick="approved('<?php echo $ORDER_DISAPPROVED[$i]['order_id'] ?>', '<?php echo $ORDER_DISAPPROVED[$i]['order_number'] ?>')" class="btn btn-success btn-md" title='ยืนยันการซื้อ'>
-                                                            <i class="fas fa-check"></i>
-                                                        </button>
-                                                        <button type="button" id="show" class="btn btn-danger btn-md" title='ยกเลิกคำสั่งซื้อ' onclick="cancelfunction('<?php echo $ORDER_DISAPPROVED[$i]['order_id'] ?>', '<?php echo $ORDER_DISAPPROVED[$i]['order_number'] ?>')">
-                                                            <i class="fas fa-times"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                                    <tr>
+                                                        <!-- <td style="vertical-align: middle; text-align: center;"><?php echo $i; ?></td> -->
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $ordernumber ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $firstname . " " . $lastname ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $total_unit ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo number_format($total_price, 2) ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $time_order) ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $reason ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $reason_desc ?></td>
+                                                        <td style="width: 15%;  text-align: center; vertical-align: middle;">
+                                                            <button type="button" id="show" order_number='<?php echo $ordernumber ?>' fullname='<?php echo $firstname . " " . $lastname ?>' address='<?php echo $delivery_address ?>' tel='<?php echo format_phonenumber($tel) ?>' status_order='<?php echo $status_order ?>' total='<?php echo number_format($total_price, 2) ?>' class="btn btn-primary btn-md detail-order" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#detailOderModal">
+                                                                <i class="fas fa-bars"></i>
+                                                            </button>
+                                                            <button type="button" id="show" payment='<?php echo "../../../img/payment/bill/" . $picture_payment ?>' class="btn btn-primary btn-md payment" title='หลักฐานการโอนเงิน' data-toggle="modal" data-target="#paymentModal">
+                                                                <i class="fas fa-image"></i>
+                                                            </button>
+                                                            <button type="button" id="success" name="success" onclick="approved('<?php echo $orderId ?>', '<?php echo $ordernumber ?>')" class="btn btn-success btn-md" title='ยืนยันการซื้อ'>
+                                                                <i class="fas fa-check"></i>
+                                                            </button>
+                                                            <button type="button" id="show" class="btn btn-danger btn-md" title='ยกเลิกคำสั่งซื้อ' onclick="cancelfunction('<?php echo $orderId ?>', '<?php echo $ordernumber ?>')">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
                                             <?php
+                                                }
                                             }
                                             ?>
                                         </tbody>
@@ -300,18 +310,40 @@ $scan_dir = array_diff(scandir("../../../data/"), array('..', '.'));
                                         </thead>
                                         <tbody>
                                             <?php
-                                            for ($i = 1; $i < count($ORDER_CANCEL); $i++) {
+                                            for ($i = 2; $i < $count_file; $i++) {
+                                                $file_json = file_get_contents("../../../data/" . $scan_dir[$i]);
+                                                $ORDER = json_decode($file_json, true);
+                                                $ordernumber = $ORDER["order"]["order_number"];
+                                                $firstname = $ORDER["user"]["firstname"];
+                                                $lastname = $ORDER["user"]["lastname"];
+                                                $total_unit = $ORDER["order"]["total_unit"];
+                                                $total_price = $ORDER["order"]["total_price"];
+                                                $time_order = $ORDER["order"]["time_order"];
+                                                $total_price_user = $ORDER["order"]["total_price_user"];
+                                                $time_payment = $ORDER["order"]["time_payment"];
+                                                $status_order = $ORDER["order"]["status_order"]["status"];
+                                                $delivery_address = $ORDER["order"]["delivery_address"]["address"];
+                                                $tel = $ORDER["user"]["tel"];
+                                                $picture_payment = $ORDER["order"]["picture_payment"];
+
+                                                $sql_order_id = "SELECT `order_id` FROM `orders` WHERE `orders`.`order_number` = '" . $ordernumber . "' ";
+                                                $orderId = selectDataOne($sql_order_id)["order_id"];
+
+                                                if ($status_order == "ยกเลิกคำสั่งซื้อ") {
+                                                    $reason = $ORDER["order"]["status_order"]["reason"];
+                                                    $reason_desc = $ORDER["order"]["status_order"]["reason_desc"];
                                             ?>
-                                                <tr>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_CANCEL[$i]["order_number"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_CANCEL[$i]["title"] . $ORDER_CANCEL[$i]["firstname"] . " " . $ORDER_CANCEL[$i]["lastname"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_CANCEL[$i]["total_unit"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo number_format($ORDER_CANCEL[$i]["total_price"], 2) ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $ORDER_CANCEL[$i]["time_order"])  ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_CANCEL[$i]["reason"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_CANCEL[$i]["reason_desc"] ?></td>
-                                                </tr>
+                                                    <tr>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $ordernumber ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $firstname . " " . $lastname ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $total_unit ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo number_format($total_price, 2) ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $time_order) ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $reason ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $reason_desc ?></td>
+                                                    </tr>
                                             <?php
+                                                }
                                             }
                                             ?>
                                         </tbody>
@@ -335,44 +367,55 @@ $scan_dir = array_diff(scandir("../../../data/"), array('..', '.'));
                                         </thead>
                                         <tbody>
                                             <?php
-                                            for ($i = 1; $i < count($ORDER_REFUND); $i++) {
-                                            ?>
-                                                <tr>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_REFUND[$i]["order_number"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_REFUND[$i]["title"] . $ORDER_REFUND[$i]["firstname"] . " " . $ORDER_REFUND[$i]["lastname"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_REFUND[$i]["total_unit"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo number_format($ORDER_REFUND[$i]["total_price"], 2) ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $ORDER_REFUND[$i]["time_order"])  ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_REFUND[$i]["reason"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_REFUND[$i]["reason_desc"] ?></td>
-                                                    <td style="width: 15%;  text-align: center; vertical-align: middle;">
-                                                        <button type="button" id="show" order_number='<?php echo $ORDER_REFUND[$i]["order_number"] ?>' fullname='<?php echo $ORDER_REFUND[$i]["title"] . $ORDER_REFUND[$i]["firstname"] . " " . $ORDER_REFUND[$i]["lastname"] ?>' address='<?php
-                                                                                                                                                                                                                                                                                            if ($ORDER_REFUND[1]["provinces_name_in_thai"] == "กรุงเทพมหานคร") {
-                                                                                                                                                                                                                                                                                                echo "เลขที่ " . $ORDER_REFUND[1]["address"] .
-                                                                                                                                                                                                                                                                                                    " แขวง" . $ORDER_REFUND[1]["subdistricts_name_in_thai"] .
-                                                                                                                                                                                                                                                                                                    " " . $ORDER_REFUND[1]["districts_name_in_thai"] .
-                                                                                                                                                                                                                                                                                                    " " . $ORDER_REFUND[1]["provinces_name_in_thai"] .
-                                                                                                                                                                                                                                                                                                    ", " . $ORDER_REFUND[1]["zip_code"];
-                                                                                                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                                                                                                echo "เลขที่ " . $ORDER_REFUND[1]["address"] .
-                                                                                                                                                                                                                                                                                                    " ต." . $ORDER_REFUND[1]["subdistricts_name_in_thai"] .
-                                                                                                                                                                                                                                                                                                    " อ." . $ORDER_REFUND[1]["districts_name_in_thai"] .
-                                                                                                                                                                                                                                                                                                    " จ." . $ORDER_REFUND[1]["provinces_name_in_thai"] .
-                                                                                                                                                                                                                                                                                                    ", " . $ORDER_REFUND[1]["zip_code"];
-                                                                                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                                                                                            ?>' tel='<?php echo format_phonenumber($ORDER_REFUND[$i]["tel"]) ?>' status_order='<?php echo $ORDER_REFUND[$i]["status_order"] ?>' total='<?php echo number_format($ORDER_REFUND[$i]["total_price"], 2) ?>' class="btn btn-primary btn-md detail-order" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#detailOderModal">
-                                                            <i class="fas fa-bars"></i>
-                                                        </button>
-                                                        <button type="button" id="show" payment='<?php echo $ORDER_DISAPPROVED[$i]["picture_payment"] ?>' class="btn btn-primary btn-md payment" title='หลักฐานการโอนเงิน' data-toggle="modal" data-target="#paymentModal">
-                                                            <i class="fas fa-image"></i>
-                                                        </button>
-                                                        <button type="button" id="success" name="success" onclick="refund('<?php echo $ORDER_REFUND[$i]['order_id'] ?>', '<?php echo $ORDER_REFUND[$i]['order_number'] ?>')" class="btn btn-success btn-md" title='ยืนยันการคืนเงิน'>
-                                                            <i class="fas fa-check"></i>
-                                                        </button>
+                                            for ($i = 2; $i < $count_file; $i++) {
+                                                $file_json = file_get_contents("../../../data/" . $scan_dir[$i]);
+                                                $ORDER = json_decode($file_json, true);
+                                                $ordernumber = $ORDER["order"]["order_number"];
+                                                $firstname = $ORDER["user"]["firstname"];
+                                                $lastname = $ORDER["user"]["lastname"];
+                                                $total_unit = $ORDER["order"]["total_unit"];
+                                                $total_price = $ORDER["order"]["total_price"];
+                                                $time_order = $ORDER["order"]["time_order"];
+                                                $total_price_user = $ORDER["order"]["total_price_user"];
+                                                $time_payment = $ORDER["order"]["time_payment"];
+                                                $status_order = $ORDER["order"]["status_order"]["status"];
+                                                if (isset($ORDER["order"]["status_order"]["status_refund"])) {
+                                                    $status_refund = $ORDER["order"]["status_order"]["status_refund"];
+                                                }
+                                                $delivery_address = $ORDER["order"]["delivery_address"]["address"];
+                                                $tel = $ORDER["user"]["tel"];
+                                                $picture_payment = $ORDER["order"]["picture_payment"];
 
-                                                    </td>
-                                                </tr>
+                                                $sql_order_id = "SELECT `order_id` FROM `orders` WHERE `orders`.`order_number` = '" . $ordernumber . "' ";
+                                                $orderId = selectDataOne($sql_order_id)["order_id"];
+
+                                                if ($status_order == "ยกเลิกคำสั่งซื้อ" && $status_refund == "0") {
+                                                    $reason = $ORDER["order"]["status_order"]["reason"];
+                                                    $reason_desc = $ORDER["order"]["status_order"]["reason_desc"];
+                                            ?>
+                                                    <tr>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $ordernumber ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $firstname . " " . $lastname ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $total_unit ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo number_format($total_price, 2) ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $time_order) ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $reason ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $reason_desc ?></td>
+                                                        <td style="width: 15%;  text-align: center; vertical-align: middle;">
+                                                            <button type="button" id="show" order_number='<?php echo $ordernumber ?>' fullname='<?php echo $firstname . " " . $lastname ?>' address='<?php echo $delivery_address ?>' tel='<?php echo format_phonenumber($tel) ?>' status_order='<?php echo $status_order ?>' total='<?php echo number_format($total_price, 2) ?>' class="btn btn-primary btn-md detail-order" style="background-color: #6f42c1; border-color: #6f42c1;" title='รายละเอียดคำสั่งซื้อ' data-toggle="modal" data-target="#detailOderModal">
+                                                                <i class="fas fa-bars"></i>
+                                                            </button>
+                                                            <button type="button" id="show" payment='<?php echo "../../../img/payment/bill/" . $picture_payment ?>' class="btn btn-primary btn-md payment" title='หลักฐานการโอนเงิน' data-toggle="modal" data-target="#paymentModal">
+                                                                <i class="fas fa-image"></i>
+                                                            </button>
+                                                            <button type="button" id="success" name="success" onclick="refund('<?php echo $orderId ?>', '<?php echo $ordernumber ?>')" class="btn btn-success btn-md" title='ยืนยันการคืนเงิน'>
+                                                                <i class="fas fa-check"></i>
+                                                            </button>
+
+                                                        </td>
+                                                    </tr>
                                             <?php
+                                                }
                                             }
                                             ?>
                                         </tbody>
@@ -396,28 +439,44 @@ $scan_dir = array_diff(scandir("../../../data/"), array('..', '.'));
                                         </thead>
                                         <tbody>
                                             <?php
-                                            for ($i = 1; $i < count($ORDER_IS_REFUND); $i++) {
-                                            ?>
-                                                <tr>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_IS_REFUND[$i]["order_number"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_IS_REFUND[$i]["title"] . $ORDER_IS_REFUND[$i]["firstname"] . " " . $ORDER_IS_REFUND[$i]["lastname"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_IS_REFUND[$i]["total_unit"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo number_format($ORDER_IS_REFUND[$i]["total_price"], 2) ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $ORDER_IS_REFUND[$i]["time_order"])  ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_IS_REFUND[$i]["reason"] ?></td>
-                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_IS_REFUND[$i]["reason_desc"] ?></td>
-                                                    <td style="width: 15%;  text-align: center; vertical-align: middle;">
-                                                        <?php
-                                                        if ($ORDER_IS_REFUND[$i]["status_refund"] == 1) {
-                                                            echo "คืนเงินแล้ว";
-                                                        } else {
-                                                            echo "ยังม่ได้คืนเงินแล้ว";
-                                                        }
+                                            for ($i = 2; $i < $count_file; $i++) {
+                                                $file_json = file_get_contents("../../../data/" . $scan_dir[$i]);
+                                                $ORDER = json_decode($file_json, true);
+                                                $ordernumber = $ORDER["order"]["order_number"];
+                                                $firstname = $ORDER["user"]["firstname"];
+                                                $lastname = $ORDER["user"]["lastname"];
+                                                $total_unit = $ORDER["order"]["total_unit"];
+                                                $total_price = $ORDER["order"]["total_price"];
+                                                $time_order = $ORDER["order"]["time_order"];
+                                                $total_price_user = $ORDER["order"]["total_price_user"];
+                                                $time_payment = $ORDER["order"]["time_payment"];
+                                                $status_order = $ORDER["order"]["status_order"]["status"];
+                                                if (isset($ORDER["order"]["status_order"]["status_refund"])) {
+                                                    $status_refund = $ORDER["order"]["status_order"]["status_refund"];
+                                                }
+                                                $delivery_address = $ORDER["order"]["delivery_address"]["address"];
+                                                $tel = $ORDER["user"]["tel"];
+                                                $picture_payment = $ORDER["order"]["picture_payment"];
 
-                                                        ?>
-                                                    </td>
-                                                </tr>
+                                                $sql_order_id = "SELECT `order_id` FROM `orders` WHERE `orders`.`order_number` = '" . $ordernumber . "' ";
+                                                $orderId = selectDataOne($sql_order_id)["order_id"];
+
+                                                if ($status_order == "ยกเลิกคำสั่งซื้อ" && $status_refund == "1") {
+                                                    $reason = $ORDER["order"]["status_order"]["reason"];
+                                                    $reason_desc = $ORDER["order"]["status_order"]["reason_desc"];
+                                            ?>
+                                                    <tr>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $ordernumber ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $firstname . " " . $lastname ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $total_unit ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo number_format($total_price, 2) ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $time_order) ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $reason ?></td>
+                                                        <td style="vertical-align: middle; text-align: end;"><?php echo $reason_desc ?></td>
+                                                        <td style="width: 15%;  text-align: center; vertical-align: middle;"><?php echo "คืนเงินแล้ว"; ?></td>
+                                                    </tr>
                                             <?php
+                                                }
                                             }
                                             ?>
                                         </tbody>

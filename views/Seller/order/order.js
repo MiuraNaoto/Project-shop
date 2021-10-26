@@ -67,6 +67,7 @@ function confirm_order(order_id, order_number) {
     success: function (data) {
       location.reload();
       console.log(data);
+      // alert(data);
       //location.href = "./manage.php"
     },
   });
@@ -105,7 +106,7 @@ function disapproved(order_id, order_number) {
         location.reload();
         console.log(data);
         // alert(data);
-        //location.href = "./manage.php"
+        // location.href = "./manage.php"
       },
     });
   });
@@ -199,7 +200,7 @@ function confirm_refund(order_id, order_number) {
     success: function (data) {
       location.reload();
       console.log(data);
-      //location.href = "./manage.php"
+      // location.href = "./manage.php"
     },
   });
 }

@@ -14,10 +14,13 @@ $shop_id = $SELLER[1]["shop_id"];
 
 $CurrentMenu = "sales";
 
-$PRODUCT = getProductByShopID($uid);
 // $PRODUCT = getProductByShopID($uid);
-$ORDER_SUCCESS = getOrderSuccess();
+// $PRODUCT = getProductByShopID($uid);
+// $ORDER_SUCCESS = getOrderSuccess();
 // print_r($ORDER_SUCCESS);
+$files = scandir("../../../data");
+$count_file = (int) (count($files));
+$scan_dir = array_diff(scandir("../../../data/"), array('..', '.'));
 ?>
 
 <head>
@@ -70,7 +73,6 @@ $ORDER_SUCCESS = getOrderSuccess();
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th style="text-align: center;">ลำดับ</th>
                                             <th style="text-align: center;">หมายเลข<br>คำสั่งซื้อ</th>
                                             <th style="text-align: center;">ชื่อ-นามสกุล</th>
                                             <th style="text-align: center;">จำนวน</th>
@@ -83,20 +85,36 @@ $ORDER_SUCCESS = getOrderSuccess();
                                     </thead>
                                     <tbody>
                                         <?php
-                                        for ($i = 1; $i < count($ORDER_SUCCESS); $i++) {
+                                        for ($i = 2; $i < $count_file; $i++) {
+                                            $file_json = file_get_contents("../../../data/" . $scan_dir[$i]);
+                                            $ORDER = json_decode($file_json, true);
+                                            $ordernumber = $ORDER["order"]["order_number"];
+                                            $firstname = $ORDER["user"]["firstname"];
+                                            $lastname = $ORDER["user"]["lastname"];
+                                            $total_unit = $ORDER["order"]["total_unit"];
+                                            $total_price = $ORDER["order"]["total_price"];
+                                            $time_order = $ORDER["order"]["time_order"];
+                                            $status_order = $ORDER["order"]["status_order"]["status"];
+
+                                            $sql_order_id = "SELECT `order_id` FROM `orders` WHERE `orders`.`order_number` = '" . $ordernumber . "' ";
+                                            $orderId = selectDataOne($sql_order_id)["order_id"];
+                                            if ($status_order == "กำลังจัดส่ง") {
+                                                $time_delivery = $ORDER["order"]["status_order"]["delivery"]["time_delivery"];
+                                                $delivery_name = $ORDER["order"]["status_order"]["delivery"]["transport"];
+                                                $tracking_code = $ORDER["order"]["status_order"]["delivery"]["track"];
                                         ?>
-                                            <tr>
-                                                <td class="d-flex align-items-center d-flex justify-content-center"><?php echo $i; ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_SUCCESS[$i]["order_number"] ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_SUCCESS[$i]["title"] . $ORDER_SUCCESS[$i]["firstname"] . " " . $ORDER_SUCCESS[$i]["lastname"] ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_SUCCESS[$i]["total_unit"] ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo number_format($ORDER_SUCCESS[$i]["total_price"], 2) ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $ORDER_SUCCESS[$i]["time_order"])  ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $ORDER_SUCCESS[$i]["time_delivery"])  ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_SUCCESS[$i]["delivery_name"] ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ORDER_SUCCESS[$i]["tracking_code"] ?></td>
-                                            </tr>
+                                                <tr>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $ordernumber ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $firstname . " " . $lastname ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $total_unit ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo number_format($total_price, 2) ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $time_order) ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo date("Y-m-d H:i:s", $time_delivery)  ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $delivery_name ?></td>
+                                                    <td style="vertical-align: middle; text-align: end;"><?php echo $tracking_code ?></td>
+                                                </tr>
                                         <?php
+                                            }
                                         }
                                         ?>
                                     </tbody>
