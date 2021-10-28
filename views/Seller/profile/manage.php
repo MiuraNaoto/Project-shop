@@ -200,6 +200,14 @@ switch ($request) {
         deleteData($sql);
         break;
 
+    case "delete_d":
+        $sm_id = $_POST["sm_id"];
+
+        $sql = "DELETE FROM `shipping_method` WHERE `shipping_method`.`sm_id` = '$sm_id'";
+        deleteData($sql);
+        break;
+
+
     case 'insert_shipping_method':
         $type_delivery = $_POST["type_delivery"];
         $weight = $_POST["weight"];

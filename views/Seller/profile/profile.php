@@ -358,9 +358,8 @@ $SHIPPING_METHOD = getShippingMethod($shop_id)
                                     for ($i = 1; $i < count($SHIPPING_METHOD); $i++) {
                                         // print_r($SHIPPING_METHOD);
                                 ?>
-
                                         <div class="col-lg-3 mb-4">
-                                            <div class="card edit-bank-account" data-toggle="modal" onclick="delfunction('<?php echo $SHIPPING_METHOD[$i]['baid'] ?>', '<?php echo $BANK_ACCOUNT[$i]['account_code'] ?>', '<?php echo $BANK_ACCOUNT[$i]['account_name'] ?>')" baid="<?php echo $BANK_ACCOUNT[$i]["baid"] ?>" account_code="<?php echo $BANK_ACCOUNT[$i]["account_code"] ?>" account_name="<?php echo $BANK_ACCOUNT[$i]["account_name"] ?>" bank_id="<?php echo $BANK_ACCOUNT[$i]["id"] ?>" style="cursor: pointer;">
+                                            <div class="card edit-bank-account" data-toggle="modal" onclick="delDfunction('<?php echo $SHIPPING_METHOD[$i]['sm_id'] ?>', '<?php echo $SHIPPING_METHOD[$i]['delivery_name'] ?>', '<?php echo $SHIPPING_METHOD[$i]['weight_product'] ?>', '<?php echo $SHIPPING_METHOD[$i]['price_per_unit'] ?>')" baid="<?php echo $BANK_ACCOUNT[$i]["baid"] ?>" account_code="<?php echo $BANK_ACCOUNT[$i]["account_code"] ?>" account_name="<?php echo $BANK_ACCOUNT[$i]["account_name"] ?>" bank_id="<?php echo $BANK_ACCOUNT[$i]["id"] ?>" style="cursor: pointer;">
                                                 <!-- <img class="card-img-top" src='<?php echo "../../../img/payment/" . $SHIPPING_METHOD[$i]["picture"] ?>' alt="<?php echo $SHIPPING_METHOD[$i]["name"] ?>"> -->
                                                 <div class="card-body text-center font-weight-bold">
                                                     <div class="row mt-2 mb-4 ">

@@ -32,7 +32,7 @@ $purchaseInfo = selectData($sql);
 
 $checkShopId = "";
 $orderid = "";
-echo print_r($purchaseInfo);
+// echo print_r($purchaseInfo);
 //echo "<br>" . $checkShopId;
 //echo "<br>" .count($purchaseInfo);
 /*

@@ -160,18 +160,23 @@ $sqlOrderid = "";
                 ?>
                 <div class="col-lg-4 ">
                     <div class="cart__total__procced">
-                        <div class="row">
+                        <div class="row align-self-center">
                             <i class="fa fa-truck fa-2x" aria-hidden="true" style="margin-right: 20px;"></i>
-                            <h4>เลือกประเภทการจัดส่ง</h4>
+                            <h5 class="align-self-center">เลือกประเภทการจัดส่ง</h5>
                         </div><br>
                         <ul>
                             <?php for ($i = 1; $i < count($shippingTypeList); $i++) { ?>
                                 <div class="col">
                                     <input class="form-check-input" type="radio" name="shippingType" id="shippingType<?php echo $shippingTypeList[$i]['delivery_type']; ?>" value="<?php echo $shippingTypeList[$i]['delivery_type']; ?>" style="margin-top: 8px;" onclick="chooseShippingType()">
 
-                                    <label class="form-check-label" for="shippingType<?php echo $shippingTypeList[$i]['delivery_type']; ?>" style="font-size: 20px; ">
-                                        <?php echo $shippingTypeList[$i]['delivery_name']; ?>
-                                    </label>
+                                    <span class="form-check-label" for="shippingType<?php echo $shippingTypeList[$i]['delivery_type']; ?>">
+                                        <tr>
+                                            <td class="text-muted"><?php echo $shippingTypeList[$i]['delivery_name']; ?></td>
+                                            <td class="text-muted">ราคา</td>
+                                            <td class="text-muted"><?php echo $shippingTypeList[$i]['price_per_unit']; ?></td>
+                                            <td class="text-muted">บาท</td>
+                                        </tr>
+                                    </span>
 
                                     <input type="text" id="shoppingPrice<?php echo $shippingTypeList[$i]['delivery_type']; ?>" value="<?php echo $shippingTypeList[$i]['standard_price']; ?>" hidden />
                                 </div>

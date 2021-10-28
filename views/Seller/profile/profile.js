@@ -333,6 +333,56 @@ function delete_1(_baid, _accountcode, _accountname) {
   });
 }
 
+function delDfunction(
+  _sm_id,
+  _delivery_name,
+  _weight_product,
+  _price_per_unit
+) {
+  // alert(_productid + " " + _code + " " + _name);
+  Swal.fire({
+    title: `คุณต้องการลบ ${_delivery_name}`,
+    text: `น้ำหนัก ${_weight_product} ราคา ${_price_per_unit} หรือไม่ ?`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#e74a3b",
+    cancelButtonColor: "#858796",
+    confirmButtonText: "ยืนยัน",
+    cancelButtonText: "ยกเลิก",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "ลบข้อมูลสำเร็จ",
+        icon: "success",
+        confirmButtonColor: "#e74a3b",
+        confirmButtonText: "ยืนยัน",
+      }).then((result) => {
+        this.delete_d_1(_sm_id);
+      });
+    } else {
+    }
+  });
+}
+
+function delete_d_1(_sm_id) {
+  // alert(_baid + " " + _accountcode + " " + _accountname);
+  $.ajax({
+    type: "POST",
+    url: "manage.php",
+    //data: s.concat(id),
+    data: {
+      sm_id: _sm_id,
+      request: "delete_d",
+    },
+
+    success: function (data) {
+      location.reload();
+      console.log(data);
+      //location.href = "./manage.php"
+    },
+  });
+}
+
 function change_password(userid) {
   var current_password = $("#current_password").val();
   var new_password = $("#new_password").val();
