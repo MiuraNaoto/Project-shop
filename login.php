@@ -57,8 +57,8 @@
                 <div class="row" style="margin-left: 25%;">
                     <div class="col-xl-7 col-lg-12 col-md-12">
                         <div class="login-header">
-                            <h4 class="text-center">ระบบขายสินค้าบนเว็บไซต์รัฐวิสาหกิจชุมชน </h4>
-                            <h6 class="text-center login-small">Community Enterprise Marketing System</h6>
+                            <h4 class="text-center">U2T Project (Kasetsart U - Buapaktha subdistrictX</h4>
+                            <!-- <h6 class="text-center login-small">Community Enterprise Marketing System</h6> -->
                         </div>
                         <div class="card o-hidden border-0 shadow-lg my-5">
                             <div class="card card-signin my-1">
