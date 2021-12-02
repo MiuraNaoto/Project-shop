@@ -401,6 +401,7 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
         <div class="container-fluid">
             <div class="row">
                 <?php
+                echo count($PRODUCT_TYPE);
                 for ($i = 1; $i < count($PRODUCT_TYPE); $i++) {
                     if ($i == 1) {
                 ?>
