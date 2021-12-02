@@ -153,34 +153,65 @@
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo  $USER[1]["username"] ?></span>
-                <img class="img-profile rounded-circle" src="<?php echo "../../../img/profile/" . $USER[1]["profile_user"] ?>">
-            </a>
+
             <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <!-- <a class="dropdown-item" href="../profile/profile.php">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
-                </a> -->
-                <a class="dropdown-item" href="../../../index.php">
-                    <i class="fas fa-user-tag fa-sm fa-fw mr-2 text-gray-400"></i>
-                    หน้าลูกค้า
+            <?php
+            if ($idUT == 2) {
+            ?>
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $SELLER[1]["username"] ?></span>
+                    <img class="img-profile rounded-circle" src='<?php echo "../../../img/profile/saler/" . $SELLER[1]["profile_shop"] ?>'>
                 </a>
-                <a class="dropdown-item" href="../../Seller/dashboard/dashboard.php">
-                    <i class="fas fa-user-tag fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Seller Centre
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    <!-- <a class="dropdown-item" href="../profile/profile.php">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Profile
+                    </a> -->
+
+                    <a class="dropdown-item" href="../../../index.php">
+                        <i class="fas fa-user-tag fa-sm fa-fw mr-2 text-gray-400"></i>
+                        หน้าลูกค้า
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" onclick="delfunction('<?php echo $SELLER[1]['shop_name'] ?>'">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                    </a>
+                </div>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                    </a>
+                </div>
+            <?php
+            } elseif ($idUT == 1) {
+            ?>
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $SELLER[1]["username"] ?></span>
+                    <img class="img-profile rounded-circle" src='<?php echo "../../../img/profile/saler/" . $SELLER[1]["profile_shop"] ?>'>
                 </a>
-                <!-- <a class="dropdown-item" href="#">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Activity Log
-                </a> -->
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Logout
-                </a>
-            </div>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    <!-- <a class="dropdown-item" href="../profile/profile.php">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Profile
+                    </a> -->
+                    <a class="dropdown-item" href="../../../index.php">
+                        <i class="fas fa-user-tag fa-sm fa-fw mr-2 text-gray-400"></i>
+                        หน้าลูกค้า
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" onclick="delfunction('<?php echo $SELLER[1]['shop_name'] ?>'">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                    </a>
+                </div>
+            <?php
+            }
+
+            ?>
+
         </li>
 
     </ul>

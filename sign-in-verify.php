@@ -8,7 +8,7 @@ session_unset();
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-echo "user $username passwd $password-" . md5($username . $password) . "<br>";
+// echo "user $username passwd $password-" . md5($username . $password) . "<br>";
 $sql = "SELECT * FROM `user-list` WHERE `username` = '" . $username . "' AND `password` = '" . md5($username . $password) . "'";
 $DATA = selectData($sql);
 
@@ -22,16 +22,24 @@ $DATA_SHOP = selectData($sql_shop);
 // print($DATA[1]['u-is-farmer']);
 
 if (sizeof($DATA) == 2) {
-    if ($DATA[1]['u-is-admin'] == 1) {
-        header("location: ./views/Seller/dashboard/dashboard.php");
-        $typeid = 2;
-    } else if ($DATA[1]['u-is-saler'] == 1) {
-        header("location: ./views/Seller/dashboard/dashboard.php");
-        $typeid = 1;
+    if ($DATA[1]['is-blocked-user'] == 0) {
+        if ($DATA[1]['u-is-admin'] == 1) {
+            header("location: ./views/Admin/customerlist/customer.php");
+            $typeid = 2;
+        } else if ($DATA[1]['u-is-saler'] == 1) {
+            header("location: ./views/Seller/dashboard/dashboard.php");
+            $typeid = 1;
+        } else {
+            header("location: ./index.php");
+            $typeid = 3;
+        }
     } else {
-        header("location: ./index.php");
-        $typeid = 3;
+        echo "<script>
+                alert('บัญชีผู้ใช่คุณถูกบล็อคอยู่')
+                location.href = 'login.php';
+            </script>";
     }
+
 
     $_SESSION[md5('LAST_ACTIVITY')] = $_SERVER['REQUEST_TIME'];
 

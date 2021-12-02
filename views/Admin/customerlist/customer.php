@@ -2,11 +2,18 @@
 include_once("../../../query/query.php");
 include_once("../../../query/function.php");
 session_start();
+$idUT = $_SESSION[md5('typeid')];
+$username = $_SESSION[md5('username')];
 $USER = $_SESSION[md5('user')];
 $uid = $USER[1]["uid"];
-$USER = getUser($uid);
+$SELLER = $_SESSION[md5('shop')];
+$shop_id = $SELLER[1]["shop_id"];
+
+$ALLUSER = getAllUser();
+// print_r($ALLUSER);
 $ADDRESS_USER = getAddressUser($uid);
 $PROVINCE = getDistricts();
+$CurrentMenu = "customerlist";
 ?>
 
 
@@ -69,9 +76,8 @@ $PROVINCE = getDistricts();
                                     <thead>
                                         <tr>
                                             <th style="text-align: center;">ลำดับ</th>
-                                            <th style="text-align: center;">ชื่อ-นามสกุล</th>
-                                            <th style="text-align: center;">เบอร์โทรศัพท์</th>
                                             <th style="text-align: center;">ชื่อบัญชี</th>
+                                            <th style="text-align: center;">เบอร์โทรศัพท์</th>
                                             <th style="text-align: center;">ที่อยู่</th>
                                             <th style="text-align: center;">วันที่สมัคร</th>
                                             <th style="text-align: center;">จัดการ</th>
@@ -98,15 +104,14 @@ $PROVINCE = getDistricts();
                                         ?>
                                             <tr>
                                                 <td class="d-flex align-items-center d-flex justify-content-center"><?php echo $i ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo $u[$i]['firstname'] . ' ' . $u[$i]['lastname'] ?></td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo format_phonenumber($u[$i]['tel']) ?></td>
-                                                <td style="vertical-align: middle;"><?php echo $u[$i]['username'] ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo $ALLUSER[$i]['username'] ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo format_phonenumber($ALLUSER[$i]['tel']) ?></td>
                                                 <td style="vertical-align: middle; text-align: center;">
-                                                    <button type="button" id="<?php echo $u[$i]['uid'] ?>" class="btn btn-info btn-md btn_province" title='ดูที่อยู่จัดส่ง' data-toggle="modal" data-target="#addressModal">
+                                                    <button type="button" id="<?php echo $ALLUSER[$i]['uid'] ?>" class="btn btn-info btn-md btn_province" title='ดูที่อยู่จัดส่ง' data-toggle="modal" data-target="#addressModal">
                                                         <i class="fas fa-search"></i>
                                                     </button>
                                                 </td>
-                                                <td style="vertical-align: middle; text-align: end;"><?php echo date("d-m-Y H:i:s", $u[$i]['modify_user']); ?></td>
+                                                <td style="vertical-align: middle; text-align: end;"><?php echo date("d-m-Y H:i:s", $ALLUSER[$i]['modify_user']); ?></td>
                                                 <td style="text-align: center; vertical-align: middle;">
                                                     <!-- <button type="button" id="btm_qrcode" class="btn btn-primary btn-md" title='ดู qr-code สินค้า' data-toggle="modal" data-target="#showQRcodeModal">
                                                     <i class="fas fa-bars"></i>
@@ -114,14 +119,29 @@ $PROVINCE = getDistricts();
                                                     <!-- <button type="button" id="btn_info" class="btn btn-warning btn-md" title='แก้ไขข้อมูลผู้ใช้' data-toggle="modal" data-target="#editModal">
                                                     <i class="fas fa-edit"></i>
                                                 </button> -->
-                                                    <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='บล็อคผู้ใช้' style="background-color: #e67e22; border-color: #e67e22;" onclick="banfunction('<?php echo $i ?>','<?php echo $u[$i]['shop_name'] ?>','<?php echo $u[$i]['firstname'] . ' ' . $u[$i]['lastname'] ?>',
-                                                    '<?php echo $u[$i]['username'] ?>','65')">
-                                                        <i class="fas fa-ban"></i>
-                                                    </button>
-                                                    <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='ลบผู้ใช้' onclick="delfunction('<?php echo $i ?>','<?php echo $u[$i]['shop_name'] ?>','<?php echo $u[$i]['firstname'] . ' ' . $u[$i]['lastname'] ?>',
-                                                    '<?php echo $u[$i]['username'] ?>','65')">
+
+                                                    <?php
+                                                    if ($ALLUSER[$i]['is-blocked-user'] == 1) {
+                                                    ?>
+                                                        <button type="button" id="btn_pass" class="btn btn-success btn-md" title='ปลดบล็อคผู้ใช้' onclick="unbanfunction('<?php echo $ALLUSER[$i]['uid'] ?>','<?php echo $ALLUSER[$i]['username'] ?>')">
+                                                            <!-- <i class="fas fa-ban"></i> -->
+                                                            <i class="fas fa-lock-open"></i>
+                                                        </button>
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='บล็อคผู้ใช้' style="background-color: #e67e22; border-color: #e67e22;" onclick="banfunction('<?php echo $ALLUSER[$i]['uid'] ?>','<?php echo $ALLUSER[$i]['username'] ?>')">
+                                                            <!-- <i class="fas fa-ban"></i> -->
+                                                            <i class="fas fa-lock"></i>
+                                                        </button>
+
+                                                    <?php
+                                                    }
+
+                                                    ?>
+                                                    <!-- <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='ลบผู้ใช้' onclick="delfunction('<?php echo $ALLUSER[$i]['uid'] ?>','<?php echo $ALLUSER[$i]['username'] ?>')">
                                                         <i class="fas fa-trash"></i>
-                                                    </button>
+                                                    </button> -->
                                                 </td>
                                             </tr>
                                         <?php

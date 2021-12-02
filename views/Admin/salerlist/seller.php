@@ -6,12 +6,19 @@ include_once("./query.php");
 include_once("../../../query/query.php");
 include_once("../../../query/function.php");
 session_start();
+$idUT = $_SESSION[md5('typeid')];
+$username = $_SESSION[md5('username')];
+$SELLER = $_SESSION[md5('shop')];
 $USER = $_SESSION[md5('user')];
 $uid = $USER[1]["uid"];
+$shop_id = $SELLER[1]["shop_id"];
+
 $USER = getUser($uid);
+$CurrentMenu = "salerlist";
 $ADDRESS_USER = getAddressUser($uid);
 $PROVINCE = getDistricts();
 $sellerList = getAllSaler();
+// print_r($sellerList);
 //echo json_encode($sellerList);
 ?>
 
@@ -124,25 +131,33 @@ $sellerList = getAllSaler();
                                                 <td style="text-align: center; vertical-align: middle;">';
                                         ?>
 
+
                                             <?php
-                                            if ($sellerList[$i]['is-blocked-saler'] == 0) {
-                                                echo
-                                                ' <button type="button" class="btn btn-danger btn-md openBlockModel" title="บล็อคผู้ใช้" style="background-color: #e67e22; border-color: #e67e22;" data-toggle="modal" data-target="#blockSaler" data-sid="' . $sellerList[$i]['uid'] . '" data-name="' . $sellerList[$i]['firstname'] . ' ' . $sellerList[$i]['lastname'] . '" >
-                                                    <i class="fas fa-ban"></i>
-                                                    </button>';
+                                            if ($sellerList[$i]['is-blocked-saler'] == 1) {
+                                            ?>
+                                                <button type="button" id="btn_pass" class="btn btn-success btn-md" title='ปลดบล็อคร้านค้า' onclick="unbanfunction('<?php echo $sellerList[$i]['shop_id'] ?>','<?php echo $sellerList[$i]['shop_name'] ?>')">
+                                                    <!-- <i class="fas fa-ban"></i> -->
+                                                    <i class="fas fa-lock-open"></i>
+                                                </button>
+                                            <?php
                                             } else {
-                                                echo
-                                                ' <button type="button" class="btn btn-warning btn-md openBlockModel" title="ปลดบล็อคผู้ใช้" style="background-color:yellowgreen; border-color: yellowgreen;" data-toggle="modal" data-target="#unblockSaler" data-sid="' . $sellerList[$i]['uid'] . '" data-name="' . $sellerList[$i]['firstname'] . ' ' . $sellerList[$i]['lastname'] . '" >
-                                                    <i class="fas fa-unlock"></i></i>
-                                                    </button>';
+                                            ?>
+                                                <button type="button" id="btn_pass" class="btn btn-danger btn-md" title='บล็อคร้านค้า' style="background-color: #e67e22; border-color: #e67e22;" onclick="banfunction('<?php echo $sellerList[$i]['shop_id'] ?>','<?php echo $sellerList[$i]['shop_name'] ?>')">
+                                                    <!-- <i class="fas fa-ban"></i> -->
+                                                    <i class="fas fa-lock"></i>
+                                                </button>
+
+                                            <?php
                                             }
 
+                                            ?>
 
-                                            echo '<button type="button" id="delS" class="btn btn-danger btn-md" title="ลบผู้ใช้" data-toggle="modal" data-target="#delSaler" data-sid="' . $sellerList[$i]['uid'] . '" data-name="' . $sellerList[$i]['firstname'] . ' ' . $sellerList[$i]['lastname'] . '">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </td>
-                                            </tr>';
+                                            <?php
+                                            // echo '<button type="button" id="delS" class="btn btn-danger btn-md" title="ลบผู้ใช้" data-toggle="modal" data-target="#delSaler" data-sid="' . $sellerList[$i]['uid'] . '" data-name="' . $sellerList[$i]['firstname'] . ' ' . $sellerList[$i]['lastname'] . '">
+                                            //         <i class="fas fa-trash"></i>
+                                            //     </button>
+                                            // </td>
+                                            echo '</tr>';
                                             ?>
                                         <?php } ?>
 

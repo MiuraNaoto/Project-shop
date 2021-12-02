@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
 
 
 function getAllSaler(){
-    $sql = "SELECT * FROM `user-list` WHERE `u-is-saler`= 1 AND `u-is-admin`=0";
+    $sql = "SELECT * FROM `user-list` INNER JOIN `seller-list` ON `user-list`.`shop_id` = `seller-list`.`shop_id` WHERE `u-is-saler`= 1 AND `u-is-admin`=0;";
     $DATA = selectData($sql);
     return $DATA;
 }
@@ -53,5 +53,3 @@ function deleteSaler($id){
     $sql = 'DELETE FROM `user-list` WHERE `uid`='.$id;
     deleteData($sql);
 }
-
-?>

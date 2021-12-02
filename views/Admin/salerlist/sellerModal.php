@@ -1,3 +1,7 @@
+<?php
+include_once("./query.php");
+// $id = $_POST['sid'];
+?>
 <!-- Edit Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" a aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -9,7 +13,16 @@
                 </button>
             </div>
             <form action="manage.php" method="post" enctype="multipart/form-data" id="editform" id="editForm" name="editform" role="form">
+
                 <div class="modal-body">
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <span>ชื่อร้านค้า<span class="text-danger"> *</span></span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <input type="text" class="form-control" id="shop_name" name="shop_name" placeholder="กรุณากรอกชื่อร้าน" value="ขายอะไรก็ไม่รู้ แต่อยากขายนะ" required="" oninput="setCustomValidity('')">
+                        </div>
+                    </div>
                     <div class="row mb-4">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
                             <span>คำนำหน้า<span class="text-danger"> *</span></span>
@@ -57,7 +70,15 @@
                     </div>
                     <div class="row mb-4">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
-                            <span>วันที่สมัครสมาชิก</span>
+                            <span>คะแนนความพึงพอใจ <span class="text-danger"> *</span></span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="กรุณากรอกชื่อบัญชี" value="65" required="" oninput="setCustomValidity('')">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-flex justify-content-end d-flex align-items-center">
+                            <span>วันที่สมัครสมาชิก </span>
                         </div>
                         <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
                             <input type="text" class="form-control" id="username" name="username" placeholder="กรุณากรอกชื่อบัญชี" value="11/07/2564 17:30:14" required="" oninput="setCustomValidity('')" disabled>
@@ -133,28 +154,166 @@
     </div>
 </div>
 
-<!-- Address Modal -->
-<div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" a aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+<div class="modal fade" id="blockSaler" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">ที่อยู่จัดส่ง</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h4 class="modal-title">Block Saler</h4>
             </div>
-            <form action="manage.php" method="post" enctype="multipart/form-data" id="editform" id="editForm" name="editform" role="form">
-                <div class="modal-body" id="show_data_address">
-                    
-                </div>
-                <input type="hidden" name="e_time" id="e_time" />
 
+            <div class="modal-body">
+                Do you want to block saler name <b style="color: red;"></b> ?
 
-                <div class="modal-footer">
-                    <input type="hidden" id="hidden_id" name="request" value="edit" />
-                    <button type="submit" id="edit" class="btn btn-danger" data-dismiss="modal" style="width: 70px;">ปิด</button>
-                </div>
-            </form>
+                <input type="text" id="sidBlock" name="sidBlock" hidden />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info btn" data-dismiss="modal" style="background: red; border-color:red">Cancel</button>
+                <button type="button" id="block" name="block" class="btn btn-info btn" data-dismiss="modal" style="width: 17%; background:yellowgreen; border-color:yellowgreen" data-toggle="modal" data-target="#successBlock" onclick="confirmBlock()">Yes</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="unblockSaler" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Unblock Saler</h4>
+            </div>
+
+            <div class="modal-body">
+                Do you want to unblock saler name <b style="color: red;"></b> ?
+
+                <input type="text" id="sidUnblock" name="sidUnblock" hidden />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info btn" data-dismiss="modal" style="background: red; border-color:red">Cancel</button>
+                <button type="button" class="btn btn-info btn" data-dismiss="modal" style="width: 17%; background:yellowgreen; border-color:yellowgreen" data-toggle="modal" data-target="#successUnblock" onclick="confirmUnblock()">Yes</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="delSaler" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Seler</h4>
+            </div>
+            <div class="modal-body" id="delModal">
+                Do you want to delete saler name <b style="color: red;"></b> ?
+                <input type="text" id="sidDel" name="sidDel" hidden />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info btn" data-dismiss="modal" style="background: red; border-color:red">Cancel</button>
+                <button type="button" class="btn btn-info btn" data-dismiss="modal" style="width: 17%; background:yellowgreen; border-color:yellowgreen" data-toggle="modal" data-target="#successDelete" onclick="confirmDelete()">Yes</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="successBlock" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Success</h4>
+            </div>
+            <div class="modal-body" id="delModal">
+                <p><b>Block saler sucessfully.</b></p>
+            </div>
+            <button type="button" class="btn btn-info btn" data-dismiss="modal" style="background: yellowgreen; border-color:yellowgreen" onclick="reload()">OK</button>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="successUnblock" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Success</h4>
+            </div>
+            <div class="modal-body" id="delModal">
+                <p><b>Unblock saler sucessfully.</b></p>
+            </div>
+            <button type="button" class="btn btn-info btn" data-dismiss="modal" style="background: yellowgreen; border-color:yellowgreen" onclick="reload()">OK</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="successDelete" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Success</h4>
+            </div>
+            <div class="modal-body" id="delModal">
+                <p><b>Delete saler sucessfully.</b></p>
+            </div>
+            <button type="button" class="btn btn-info btn" data-dismiss="modal" style="background: yellowgreen; border-color:yellowgreen" onclick="reload()">OK</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function reload() {
+        location.reload();
+    }
+
+
+    function confirmBlock() {
+        var id = document.getElementById('sidBlock').value
+
+        $.ajax({
+            url: 'query.php',
+            type: 'POST',
+            data: {
+                id: id,
+                call: "blockSaler",
+            },
+            success: function(data) {
+                console.log(data); // Inspect this in your console
+                $("#successBlock").modal(show);
+
+            }
+        });
+    }
+
+    function confirmUnblock() {
+        var id = document.getElementById('sidUnblock').value
+
+        $.ajax({
+            url: 'query.php',
+            type: 'POST',
+            data: {
+                id: id,
+                call: "unblockSaler",
+            },
+            success: function(data) {
+                console.log(data); // Inspect this in your console
+                $("#successUnblock").modal(show);
+            }
+        });
+    }
+
+    function confirmDelete() {
+        var id = document.getElementById('sidDel').value
+
+        $.ajax({
+            url: 'query.php',
+            type: 'POST',
+            data: {
+                id: id,
+                call: "deleteSaler",
+            },
+            success: function(data) {
+                console.log(data); // Inspect this in your console
+                $("#successDelete").modal(show);
+            }
+        });
+    }
+</script>

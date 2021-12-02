@@ -15,7 +15,7 @@ switch ($request) {
         $userid = $_POST['uid'];
         $add = getAddressUser($userid);
         // print_r($add);
-        
+
         for ($i = 1; $i < count($add); $i++) {
             $modal_data_address = '
             <div class="row mb-4">
@@ -63,15 +63,48 @@ switch ($request) {
             </div>
             
             ';
-            if($i != count($add) && $i != 1){
+            if ($i != count($add) && $i != 1) {
                 echo '</br><hr></br>';
             }
 
             echo $modal_data_address;
         }
 
-        
+
+
         //print_r($add);
 
+        break;
+    case 'banuser':
+        $userid = $_POST['uid'];
+        $username = $_POST["username"];
+        echo $uid . " " . $username;
+
+        $sql = "UPDATE `user-list` SET `is-blocked-user`='1' WHERE `uid`='$userid'";
+        echo $sql;
+        $data = updateData($sql);
+        print_r($data);
+        break;
+
+    case 'unbanuser':
+        $userid = $_POST['uid'];
+        $username = $_POST["username"];
+        echo $uid . " " . $username;
+
+        $sql = "UPDATE `user-list` SET `is-blocked-user`='0' WHERE `uid`='$userid'";
+        echo $sql;
+        $data = updateData($sql);
+        print_r($data);
+        break;
+
+    case 'deleteuser':
+        $userid = $_POST['uid'];
+        $username = $_POST["username"];
+        echo $uid . " " . $username;
+
+        $sql = "DELETE FROM `user-list` WHERE `user-list`.`uid` = '$userid'";
+        echo $sql;
+        $data = updateData($sql);
+        print_r($data);
         break;
 }
