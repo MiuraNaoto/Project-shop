@@ -400,10 +400,7 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
     <section class="categories">
         <div class="container-fluid">
             <div class="row">
-                <?php
-                echo count($PRODUCT_TYPE);
-                for ($i = 1; $i < count($PRODUCT_TYPE); $i++) {
-                ?>
+
                     <div class="col-lg-6 p-0">
                         <div class="categories__item categories__large__item set-bg" data-setbg="img/categories/food.png">
                             <div class="categories__text">
@@ -456,16 +453,6 @@ $current_date = date_create(date("Y-m-d H:i:s", time()));
                             </div>
                         </div>
                     </div>
-                    <?php
-
-                    ?>
-
-                <?php
-                }
-
-                ?>
-
-
             </div>
         </div>
     </section>
