@@ -165,7 +165,8 @@ $sqlOrderid = "";
                             <h5 class="align-self-center">เลือกประเภทการจัดส่ง</h5>
                         </div><br>
                         <ul>
-                            <?php for ($i = 1; $i < count($shippingTypeList); $i++) { ?>
+                            <?php for ($i = 1; $i < count($shippingTypeList); $i++) {
+                                ?>
                                 <div class="col">
                                     <input class="form-check-input" type="radio" name="shippingType" id="shippingType<?php echo $shippingTypeList[$i]['delivery_type']; ?>" value="<?php echo $shippingTypeList[$i]['delivery_type']; ?>" style="margin-top: 8px;" onclick="chooseShippingType()">
 
@@ -173,7 +174,7 @@ $sqlOrderid = "";
                                         <tr>
                                             <td class="text-muted"><?php echo $shippingTypeList[$i]['delivery_name']; ?></td>
                                             <td class="text-muted">ราคา</td>
-                                            <td class="text-muted"><?php echo $shippingTypeList[$i]['price_per_unit']; ?></td>
+                                            <td class="text-muted"><?php echo $shippingTypeList[$i]['standard_price']; ?></td>
                                             <td class="text-muted">บาท</td>
                                         </tr>
                                     </span>

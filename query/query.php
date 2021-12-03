@@ -61,17 +61,17 @@ function getBankAccount($shop_id)
 {
     $sql = "SELECT * FROM `bank_account` 
                     INNER JOIN `bank` ON `bank_account`.`bankid` = `bank`.`id`
-                    WHERE `bank_account`.`shop_id` = $shop_id";
+            WHERE `bank_account`.`shop_id` = $shop_id";
     $DATA = selectData($sql);
     return $DATA;
 }
 
-function getBankShop()
+function getBankShop($shop_id, $order_number)
 {
     $sql = "SELECT * FROM `orders` 
                     INNER JOIN `bank_account` ON `orders`.`shop_id` = `bank_account`.`shop_id` 
                     INNER JOIN `bank` ON `bank_account`.`bankid` = `bank`.`id`
-            GROUP BY `bank`.`id`";
+            WHERE `orders`.`shop_id` = '$shop_id' AND `orders`.`order_number` = '$order_number';";
     $DATA = selectData($sql);
     return $DATA;
 }

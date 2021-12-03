@@ -14,8 +14,12 @@ if (isset($_SESSION[md5('typeid')]) && isset($_SESSION[md5('username')]) && isse
     // echo $username;
     // echo print_r($USER);
     $order_number = $_GET["order_number"];
-    $ACCOUNT_SHOP = getBankShop();
+
+
     $ORDER_PAYMENT = OrderByOrdernumber($order_number);
+
+    $ACCOUNT_SHOP = getBankShop($ORDER_PAYMENT[1]["shop_id"], $order_number);
+
     $BANK = getBank();
     // print_r($ORDER_PAYMENT);
 
